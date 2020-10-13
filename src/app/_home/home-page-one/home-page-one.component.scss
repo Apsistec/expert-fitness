@@ -31,37 +31,41 @@
   background: linear-gradient(
       to bottom left,
       rgba(0, 0, 0, 0.45) 15%,
-      rgba(0, 0, 0, 0.55) 50%,
+      rgba(71, 0, 0, 0.55) 50%,
       rgba(0, 0, 0, 0.45) 85%
     ),
     linear-gradient(
       to right,
       rgba(92, 0, 8, 0.35) 0%,
-      rgba(78, 3, 11, 0.45)50%,
+      rgba(17, 0, 2, 0.45)50%,
       rgba(83, 0, 7, 0.35) 100%
     ),
     url(../../../assets/images/fitness-balancing.jpg) center/ cover no-repeat;
 }
 
 .logo-card {
-  font: normal 700 200% 14px/1.5 LeageMonoVariable;
-  color: white;
+  margin: 15px 0;
+  padding: 10px;
+  font: 700 18px/.5 Montserrat;
   background-origin: border-box;
   width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   font-size: x-large;
-  // font-stretch: ultra-expanded;
-  // text-transform: lowercase;
-  // font-variant: small-caps;
+  text-transform: capitalize;
+  font-variant: small-caps;
   background: linear-gradient(
     to bottom left,
-    rgba(73, 0, 11, 1) 0%,
-    rgba(34, 0, 2, 1) 40%,
-    rgba(73, 0, 11, 1) 100%
-  );
+    rgba(134, 131, 131, 0.86) 10%,
+    rgba(77, 67, 67, 0.86) 50%,
+    rgba(134, 131, 131, 0.86) 90%
+    );
+
 }
 
+
 .cta {
-  margin: 10px;
+  margin: 15px;
 }
 
 .learn-more-animate {

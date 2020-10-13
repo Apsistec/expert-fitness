@@ -29,7 +29,7 @@
 @import "~ngx-sharebuttons/themes/material/material-dark-theme";
 
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Open+Sans:wght@800&family=Philosopher:wght@700&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800,900&family=Open+Sans:wght@800&family=Philosopher:wght@700,800&family=Roboto&display=swap');
 
 
 // Classes
@@ -81,7 +81,7 @@ ion-toolbar {
   --border-radius: 10px;
   --border-style: solid;
   --border-width: 4px;
-  --box-shadow: 0 2px 2px;
+  --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   --color: var(--ion-color-light);
 }
 
@@ -91,7 +91,7 @@ ion-toolbar {
   --border-radius: 10px;
   --border-style: solid;
   --border-width: 4px;
-  --box-shadow: 0 2px 2px;
+  --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   --color: var(--ion-color-light);
 }
 
@@ -101,7 +101,7 @@ ion-toolbar {
   --border-radius: 10px;
   --border-style: solid;
   --border-width: 4px;
-  --box-shadow: 0 2px 2px;
+--box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   --color: var(--ion-color-light);
 }
 
@@ -150,14 +150,4 @@ ion-toolbar {
   }
 }
 
-
-
-
-// .fab-fab {
-//   animation: 2s ease-out infinite fade-in-right;
-//   z-index: 2;
-//   --border-style: solid;
-//   --border-color: var(--ion-color-primary);
-//   --box-shadow: -3px 2px 5px black;
-// }
 

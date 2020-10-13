@@ -1,28 +1,28 @@
 <app-header></app-header>
 <ion-content>
   <ion-grid class="ion-no-padding">
-    <ion-row class="scene-one ion-justify-content-around" >
-      <ion-col size-md="8" class="ion-align-self-center" style="border: 2px solid blue; ">
-        <!-- <ion-row class="ion-justify-content-center">
-          <ion-col size-md="5"> -->
-            <ion-row style="border: 2px solid green;" >
-              <ion-col size-md="5" style="border: 2px solid blue;">
-            <ion-row>
+    <ion-row class="scene-one ion-justify-content-around" style="margin-top: -5em;">
+      <ion-col size-md="8" class="ion-align-self-center"  >
+        <ion-row class="ion-justify-content-center">
+          <ion-col size-md="5">
+            <ion-row >
+              <ion-col>
+            <ion-row class="ion-justify-content-center">
                 <img src="../../../assets/logos/logo.png" max-width="50%" />
 
-              <!-- </ion-col>
+              </ion-col>
             </ion-row>
-              <ion-col> -->
-                  <ion-text class="logo-card">
+              <ion-col>
+                  <ion-text color="warning" class="logo-card">
                 A new paradigm in total body fitness
               </ion-text>
             </ion-row>
-            <ion-row>
-              
+            <ion-row class="ion-justify-content-center">
+
 
                 <ion-button
                 class="cta"
-                color="medium"
+                color="light"
                 size="large"
                 routerLink="/home/testimonials"
                 fill="outline"
@@ -32,16 +32,14 @@
                 [@pulse]="pulse"
                 class="cta"
                 size="large"
-                color="light"
-                style="background-color: var(--ion-color-primary);"
-                fill="outline"
+                color="secondary"
                 (click)="showModalGetStarted()"
                 >Get Started</ion-button
                 >
             </ion-row>
               </ion-col>
-     
-          <ion-col class="ion-text-center ion-align-self-center" style="border: 2px solid orange;" size-md="4" offset-md="2">
+
+          <ion-col class="ion-text-center ion-align-self-center" size-md="4" offset-md="2">
             <img src="../../../assets/svg/btn-play.svg" style="height: 12em" />
           </ion-col>
         </ion-row>
