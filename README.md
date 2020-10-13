@@ -1,1 +1,1 @@
-# expert-fitness-app
+# expert-fitness
