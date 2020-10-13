@@ -1,0 +1,145 @@
+<ion-header translucent>
+  <!-- small screen/ hamburger-->
+  <ion-toolbar color="dark" class="small-screen">
+    <ion-buttons slot="start">
+      <ion-menu-button color="warning"> </ion-menu-button>
+    </ion-buttons>
+    <img
+      src="../../../assets/logos/logo.png"
+      slot="start"
+      class="small-logo"
+    />
+
+    <ng-container *ngIf="user | async; else startButton">
+      <ion-item
+        slot="end"
+        type="button"
+        color="dark"
+        (click)="presentPopover($event)"
+        detail="false"
+        lines="none"
+      >
+        <ion-icon slot="start" name="arrow-dropdown"></ion-icon>
+        <ion-avatar>
+          <img [src]="user.photoURL || '../../../assets/img/dummy-user.png'" />
+        </ion-avatar>
+      </ion-item>
+    </ng-container>
+
+    <ng-template #startButton>
+      <ion-buttons slot="end">
+        <ion-button
+          style="padding-right: 20px; font-size: large"
+          appBlink
+          (click)="showModalGetStarted()"
+        >
+          <ion-text> Sign In </ion-text>
+        </ion-button>
+      </ion-buttons>
+    </ng-template>
+  </ion-toolbar>
+
+  <!-- large screen/ no hamburger -->
+  <ion-toolbar color="dark" class="large-screen">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" color="warning"></ion-back-button>
+    </ion-buttons>
+    <img
+      src="../../../assets/logos/logo.png"
+      slot="start"
+      class="small-logo"
+    />
+    <ion-buttons class="header-menu" slot="start">
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/home"
+        routerLinkActive="active-link"
+        routerLinkActiveOptions="{ exact: true }"
+      >
+        <ion-label> Home </ion-label>
+      </ion-item>
+
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/home/products"
+        routerLinkActive="active-link"
+      >
+        <ion-label> Products </ion-label>
+      </ion-item>
+
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/home/faq"
+        routerLinkActive="active-link"
+      >
+        <ion-label> FAQs </ion-label>
+      </ion-item>
+
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/home/testimonials"
+        routerLinkActive="active-link"
+      >
+        <ion-label> Testimonials </ion-label>
+      </ion-item>
+
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/home/about"
+        routerLinkActive="active-link"
+      >
+        <ion-label> About </ion-label>
+      </ion-item>
+
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/home/contact"
+        routerLinkActive="active-link"
+      >
+        <ion-label> Contact </ion-label>
+      </ion-item>
+    </ion-buttons>
+
+    <ng-container *ngIf="user | async; else getStarted">
+      <ion-item
+        slot="end"
+        type="button"
+        color="dark"
+        (click)="presentPopover($event)"
+        detail="false"
+        lines="none"
+      >
+        <ion-icon slot="start" name="arrow-dropdown"></ion-icon>
+        <ion-avatar>
+          <img
+            [src]="user.photoURL || '../../../assets/images/dummy-user.png'"
+          />
+        </ion-avatar>
+      </ion-item>
+    </ng-container>
+
+    <ng-template #getStarted>
+      <ion-buttons slot="end">
+        <ion-button
+          style="padding-right: 20px; font-size: large"
+          appBlink
+          (click)="showModalGetStarted()"
+        >
+          <ion-text> Sign In </ion-text>
+        </ion-button>
+      </ion-buttons>
+    </ng-template>
+  </ion-toolbar>
+</ion-header>

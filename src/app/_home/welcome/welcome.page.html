@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <img slot="start" class="small-logo "src="../../../assets/logos/logo.png"/>
+    <ion-buttons slot="end">
+      <ion-button
+        class="ion-text-uppercase"
+        style="margin-right: 20px; font-size: large; font-weight: 700;"
+        color="warning"
+        (click)="startApp()"
+        [hidden]="!showSkip"
+        >Skip</ion-button
+      >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" color="primary">
+  <ion-slides
+    #slides
+    (ionSlideWillChange)="onSlideChangeStart($event)"
+    [options]="slideOpts"
+    pager="false"
+  >
+    <ion-slide>
+      <video
+        autoplay
+        oncanplay="this.muted=true"
+        poster="../../assets/images/video-image.png"
+      >
+        <source src="../../../assets/videos/video.mp4" type="video/mp4" />
+      </video>
+      <ion-card
+        class="cta-card slide-one ion-no-margin ion-padding ion-text-center"
+      >
+
+        <ion-text color="tertiary" class="ion-text-uppercase">
+          <h1>
+            10
+
+            <ion-text color="warning">
+              <sup>
+                <b> X </b>
+              </sup>
+            </ion-text>
+            Fitness
+          </h1>
+        </ion-text>
+        <ion-text color="light">
+          <p>A new paradigm of total body fitness</p>
+        </ion-text>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <div class="slide2">
+        <ion-text color="tertiary">
+          <h1>
+            <b> Soul....Mind....Body </b>
+          </h1>
+
+          <p>Together we can achieve anything</p>
+        </ion-text>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="last-slide">
+        <ion-text color="tertiary">
+          <b>www.ExpertFitness.com</b>
+        </ion-text>
+        <hr />
+        <ion-button
+          class="ion-text-capitalize"
+          color="secondary"
+          size="large"
+          (click)="startApp()"
+          >Learn More</ion-button
+        >
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-fab
+    horizontal="end"
+    vertical="center"
+    [style.display]="isEnd ? 'none' : 'auto'"
+  >
+      <ion-fab-button
+      class="div-animate"
+        color="tertiary"
+        type="button"
+        (click)="onSlideSwipeOrFabTap()"
+      >
+        <ion-icon appBlink name="chevron-forward-sharp"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+</ion-content>

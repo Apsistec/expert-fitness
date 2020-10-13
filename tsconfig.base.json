@@ -1,0 +1,20 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "noImplicitAny": false,
+    "module": "es2020",
+    "lib": ["es2018", "dom"],
+    "paths": {
+        "exceljs": ["./node_modules/exceljs/dist/exceljs.min.js"]
+    }
+  }
+}

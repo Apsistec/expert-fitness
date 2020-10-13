@@ -1,0 +1,109 @@
+<ion-grid>
+  <ion-row class="ion-text-center">
+    <ion-col class="ion-align-self-stretch">
+      <ion-card color="light" class="ion-text-center trio-card">
+        <ion-card-header>
+        <ion-card-title>
+          <h2>
+            <ion-text> Mind </ion-text>
+          </h2>
+        </ion-card-title>
+        </ion-card-header>
+        <img src="../../../assets/images/mind.jpg" class="trio" />
+        <ion-card-content>
+          <p>THE Mind IS THE MAIN COMPONENT OF THE HUMAN BEING</p>
+          <p>
+            Vivamus magna justo, lacinia eget consectetur sed, convallis at
+            tellus. Vivamus suscipit tortor eget felis porttitor volutpat.
+            Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque
+            in ipsum id orci porta dapibus. Proin eget tortor risus. Curabitur
+            non nulla sit amet nisl tempus convallis quis ac lectus. Quisque
+            velit nisi, pretium ut lacinia in, elementum id enim.
+          </p>
+
+          <ion-button
+            class="card-button"
+            color="secondary"
+            (click)="showModalMind()"
+            expand="block"
+            >Mind
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col class="ion-align-self-stretch">
+      <ion-card color="light" class="ion-text-center trio-card">
+        <ion-card-header>
+        <ion-card-title>
+          <h2>
+            <ion-text> Body </ion-text>
+          </h2>
+        </ion-card-title>
+        </ion-card-header>
+        <img src="../../../assets/images/body.jpg" class="trio" />
+        <ion-card-content>
+          <p>
+            Uponn phlosophical analysis, the body into and from which penetrates
+            the essence of life shaping the behaviors of man permitting the
+            continuation of man along the framework for maintaining progress:
+            the health of the body is projected to the in the mind.
+          </p>
+          <ion-button
+            class="card-button"
+            color="secondary"
+            (click)="showModalBody()"
+            expand="block"
+             >Body
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col class="ion-align-self-stretch">
+      <ion-card color="light" class="ion-text-center trio-card">
+        <ion-card-header>
+        <ion-card-title>
+          <h2>
+            <ion-text> Soul </ion-text>
+          </h2>
+        </ion-card-title>
+        </ion-card-header>
+        <img src="../../../assets/images/soul.webp" class="trio" />
+        <ion-card-content>
+          <p>
+            According to philosophy, the soul is the main component of the human
+            being. His writings present an in-depth research of the essence of
+            the human soul, its structure, and its many functions. It is a
+            philosophical analysis, the “branches” of which penetrate into the
+            essence of life through the behavior of man and the framework for
+            maintaining his health: the health of the soul is projected to the
+            body.
+          </p>
+          <ion-button
+            color="secondary"
+            class="card-button"
+            (click)="showModalSoul()"
+            expand="block"
+             >Soul
+          </ion-button>
+        
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-margin-vertical ion-no-margin-horizontal">
+    <ion-toolbar color="primary">
+      <ion-text [@slideInRight]="slideInRight">
+        <h2>There is no time better than this time</h2>
+      </ion-text>
+
+      <ion-button
+        color="success"
+        (click)="showModalGetStarted()"
+        [@slideInLeft]="slideInLeft"
+        >Get Started
+      </ion-button>
+    </ion-toolbar>
+  </ion-row>
+</ion-grid>
+
+

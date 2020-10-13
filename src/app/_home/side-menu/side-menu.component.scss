@@ -1,0 +1,39 @@
+.under-menu {
+  position: absolute;
+  text-align: center;
+  bottom: 80px;
+}
+.first-row {
+  position: relative;
+  padding-left: 38px;
+}
+
+.under-button {
+  padding-left: 38px;
+  position: relative;
+}
+.bottom-toolbar {
+  position: absolute;
+  bottom: 0px;
+}
+
+.active-item {
+  border-left: 10px solid var(--ion-color-tertiary);
+//   background: rgba(var(--ion-color-warning-rgb) 0.4);
+}
+
+ion-item {
+  border-left: 10px solid var(--ion-color-light);
+
+}
+.small-logo{
+  height: 48px;
+}
+
+.side-menu-font {
+  // text-decoration: none;
+  // font: normal 800 16px sans-serif !important;
+  font-weight: 700;
+  text-transform: capitalize;
+  font-variant: small-caps; 
+}

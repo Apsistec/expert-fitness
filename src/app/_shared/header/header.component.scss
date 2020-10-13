@@ -1,0 +1,45 @@
+.menu-font :hover {
+    border-bottom: 5px solid var(--ion-color-medium-tint);
+    color: var(--ion-color-medium);
+  }
+  .menu-font {
+    // text-decoration: none;
+    // font: normal 800 18px sans-serif !important;
+    padding: 0 15px;
+    display: inline-block;
+    text-transform: lowercase; 
+    border-bottom: 5px solid transparent; 
+  }
+  
+  
+  .active-link {
+    ion-label{
+      color: var(--ion-color-medium);
+      border-bottom: 5px solid var(--ion-color-medium);
+    }
+  }
+
+  
+  .header-menu{
+    margin-left: 150px;
+  }
+
+  .silhouette {
+    max-height: 44px;
+  }
+  
+  @media (max-width: 415px) {
+    .large-screen {
+      display: none !important;
+    }
+  }
+  @media (min-width: 416px) {
+    .small-screen {
+      display: none !important;
+    }
+  }
+  
+
+  
+
+

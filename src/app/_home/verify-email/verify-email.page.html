@@ -1,0 +1,45 @@
+<ion-content fullscreen>
+  <ion-card
+    class="ion-padding ion-text-center"
+    style="margin: auto; top: 10vh; max-width: 500px"
+    color="light"
+  >
+    <div class="displayTableCell">
+      <div class="authBlock">
+        <h3>Thank You for Registering</h3>
+
+        <div class="formGroup" *ngIf="user | async">
+          <p class="text-center">
+            We have sent a confirmation email to
+            <strong>{{user.email}}</strong>.
+          </p>
+          <p class="text-center">
+            Please check your email and click on the link to verfiy your email
+            address.
+          </p>
+        </div>
+
+        <!-- Calling SendVerificationMail() method using authService Api -->
+        <div class="formGroup">
+          <ion-button
+            class="ion-text-capitalize"
+            type="button"
+            class="btn btnPrimary"
+            (click)="authService.SendVerificationMail()"
+          >
+            <i class="fas fa-redo-alt"></i>
+            Resend Verification Email
+          </ion-button>
+        </div>
+      </div>
+
+      <div class="redirectToSignIn">
+        <span
+          >Go back to?<span class="redirect" routerLink="/get-started">
+            Sign in</span
+          ></span
+        >
+      </div>
+    </div>
+  </ion-card>
+</ion-content>

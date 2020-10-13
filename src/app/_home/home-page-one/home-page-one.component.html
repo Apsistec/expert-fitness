@@ -1,0 +1,196 @@
+<app-header></app-header>
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="scene-one ion-justify-content-around" >
+      <ion-col size-md="8" class="ion-align-self-center" style="border: 2px solid blue; ">
+        <!-- <ion-row class="ion-justify-content-center">
+          <ion-col size-md="5"> -->
+            <ion-row style="border: 2px solid green;" >
+              <ion-col size-md="5" style="border: 2px solid blue;">
+            <ion-row>
+                <img src="../../../assets/logos/logo.png" max-width="50%" />
+
+              <!-- </ion-col>
+            </ion-row>
+              <ion-col> -->
+                  <ion-text class="logo-card">
+                A new paradigm in total body fitness
+              </ion-text>
+            </ion-row>
+            <ion-row>
+              
+
+                <ion-button
+                class="cta"
+                color="medium"
+                size="large"
+                routerLink="/home/testimonials"
+                fill="outline"
+                >Learn More</ion-button
+              >
+              <ion-button
+                [@pulse]="pulse"
+                class="cta"
+                size="large"
+                color="light"
+                style="background-color: var(--ion-color-primary);"
+                fill="outline"
+                (click)="showModalGetStarted()"
+                >Get Started</ion-button
+                >
+            </ion-row>
+              </ion-col>
+     
+          <ion-col class="ion-text-center ion-align-self-center" style="border: 2px solid orange;" size-md="4" offset-md="2">
+            <img src="../../../assets/svg/btn-play.svg" style="height: 12em" />
+          </ion-col>
+        </ion-row>
+
+      </ion-col>
+    </ion-row>
+
+    <!-- Scene Two Component -->
+    <app-home-page-two></app-home-page-two>
+
+    <!-- Scene three for home -->
+    <app-home-page-three></app-home-page-three>
+    <!-- Scene four for home -->
+    <app-home-page-four></app-home-page-four>
+
+    <!-- Footer` -->
+    <ion-row class="footer ion-justify-content-around">
+      <ion-col size="auto">
+        <ion-row>
+          <ion-col>
+            <ul class="bottom-menu">
+              <li><h3>Menu</h3></li>
+              <li routerLink="/">
+                <ion-label>Home</ion-label>
+              </li>
+              <!-- SignedIn Menu Items -->
+              <li *ngIf="user | async" routerLink="/members/dashboard">
+                <ion-label>Dashboard</ion-label>
+              </li>
+              <li *ngIf="user | async" routerLink="/members/workouts">
+                <ion-label>Workouts</ion-label>
+              </li>
+              <li *ngIf="user | async" routerLink="/members/nutrition">
+                <ion-label>Nutrition</ion-label>
+              </li>
+              <li *ngIf="user | async" routerLink="/members/videos">
+                <ion-label>Videos</ion-label>
+              </li>
+              <li *ngIf="user | async" routerLink="/members/messages">
+                <ion-label>Messages</ion-label>
+              </li>
+              <li *ngIf="user | async" routerLink="/members/settings">
+                <ion-label>Settings</ion-label>
+              </li>
+              <!-- Menu Options for nonusers -->
+              <li *ngIf="!user" routerLink="/home/products">
+                <ion-label>Products</ion-label>
+              </li>
+              <li *ngIf="!user" routerLink="/home/faq">
+                <ion-label>FAQs</ion-label>
+              </li>
+              <li *ngIf="!user" routerLink="/home/testimonials">
+                <ion-label>Testimonials</ion-label>
+              </li>
+              <li routerLink="/home/about">
+                <ion-label>About</ion-label>
+              </li>
+              <li routerLink="/home/contact">
+                <ion-label>Contact</ion-label>
+              </li>
+            </ul>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <img
+              src="../../../assets/logos/logo.png"
+              class="small-logo"
+            />
+            <ion-text color="light">
+              <small>
+                &#9426;{{ yearDate | date: "yyyy" }} www.expertfitness.com
+              </small>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col size="auto" class="ion-align-self-start">
+        <ul>
+          <li><h3>Authentication</h3></li>
+          <li *ngIf="user | async" button (click)="authService.SignOut()">
+            <ion-label> Sign Out </ion-label>
+          </li>
+          <li *ngIf="!user" (click)="showModalGetStarted()">
+            <ion-label>Get Started</ion-label>
+          </li>
+        </ul>
+        <ul>
+          <li><h3>Welcome Slides</h3></li>
+          <li (click)="userService.resetWelcome()">
+            <ion-label> Reset Welcome </ion-label>
+          </li>
+        </ul>
+      </ion-col>
+
+      <ion-col size="auto" class="ion-align-self-center">
+        <ion-row>
+          <ion-buttons>
+            <ion-button color="tertiary" (click)="showModalPrivacy()">
+              Privacy
+            </ion-button>
+            <ion-button color="tertiary" (click)="showModalTerms()">
+              Terms
+            </ion-button>
+            <ion-button color="tertiary" (click)="showModalAbout()">
+              About App
+            </ion-button>
+          </ion-buttons>
+        </ion-row>
+        <ion-row style="max-width: 300px">
+          <ion-buttons>
+            <share-buttons
+              theme="material-dark"
+              show="4"
+              size="-4"
+            ></share-buttons>
+          </ion-buttons>
+        </ion-row>
+      </ion-col>
+
+      <ion-col size="auto" class="ion-text-center ion-align-self-start">
+        <ion-card class="ion-padding" routerLink="/home/contact">
+          <ion-card-header>
+            <ion-item color="primary">
+              <ion-card-title color="light">
+                Expert Fitness Gym
+              </ion-card-title>
+            </ion-item>
+          </ion-card-header>
+          <ion-text style="font-weight: bold">
+            <p>3000 N. Garfield Street Suite 159</p>
+            <p>Midland TX 79705</p>
+          </ion-text>
+          <ion-button size="small" href="tel://432-684-0844">
+            <ion-icon color="warning" name="call-sharp" slot="start"></ion-icon>
+            <ion-text>
+              <b>(432) 684-0844</b>
+            </ion-text>
+          </ion-button>
+          <br />
+
+          <ion-button size="small" routerLink="/home/contact">
+            <ion-icon color="warning" name="mail-sharp" slot="start"></ion-icon>
+            Contact Us
+          </ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,34 @@
+{
+  "students": [
+    {
+      "uid": "sd9jfl;sdfs13131545fdafsad1f3w1f",
+      "displayName": "Enola Rowe",
+      "subscription": "platinum",
+      "email": "a@b.com"
+    },
+    {
+      "uid": "sd8jfl;sdfs13131545fdafsad1f3w1f",
+      "displayName": "Timmothy Lueilwitz",
+      "phoneNumber": "15",
+      "email": "a@b.com"
+    },
+    {
+      "uid": "s5djfl;sdfs13131545fdafsad1f3w1f",
+      "displayName": "Madilyn Pacocha",
+      "phoneNumber": "14",
+      "email": "a@b.com"
+    },
+    {
+      "uid": "sfdjfl;sdfs13131545fdafsad1f3w1f",
+      "displayName": "Harley Cremin",
+      "phoneNumber": "17",
+      "email": "a@b.com"
+    },
+    {
+      "uid": "s3djfl;sdfs13131545fdafsad1f3w1f",
+      "displayName": "Juana Ziemann",
+      "phoneNumber": "16",
+      "email": "a@b.com"
+    }
+  ]
+}

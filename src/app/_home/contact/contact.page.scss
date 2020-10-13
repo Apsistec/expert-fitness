@@ -1,0 +1,15 @@
+.map-canvas {
+  position: absolute;
+
+  height:40vh;
+  width: 100%;
+
+  background-color: transparent;
+
+  opacity: 0;
+  transition: opacity 150ms ease-in;
+}
+
+.show-map {
+  opacity: 1;
+}

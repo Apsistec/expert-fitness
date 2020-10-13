@@ -1,0 +1,473 @@
+<app-header></app-header>
+<ion-content fullscreen>
+  <ion-grid *ngIf="!user.emailVerified; else verified">
+    <ion-row>
+      <ion-col>
+        <ion-card
+          style="margin: auto; top: 40vh; max-width: 500px"
+          color="medium"
+          class="ion-padding ion-text-center"
+        >
+          <ion-card-header>
+            <ion-card-title>
+              <ion-text color="danger">
+                <h2>
+                  To activate your account access, check your email and verify
+                  your account
+                </h2>
+              </ion-text>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Image of checking email for verification
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid #verified *ngIf="user && user.emailVerified; then user | async">
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img
+                [src]='user.photoURL || "../../../assets/images/dummy-user.png"'
+              />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ user.displayName }}</h3>
+              <p>{{user.email}}</p>
+            </ion-label>
+          </ion-item>
+
+          <img src="../../../assets/images/body.jpg" />
+          <ion-card-header>
+            <ion-card-title>Video Name</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            iaculis mollis ligula sed ultrices.
+          </ion-card-content>
+
+          <ion-footer>
+            <ion-row>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>1.5k Likes</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="text"></ion-icon>
+                  <div>4 Comments</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="time"></ion-icon>
+                  <div>11h ago</div>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-footer>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img
+                [src]='user.photoURL || "../../../assets/images/dummy-user.png"'
+              />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ user.displayName }}</h3>
+              <p>{{user.email}}</p>
+            </ion-label>
+          </ion-item>
+
+          <img src="../../../assets/images/body.jpg" />
+          <ion-card-header>
+            <ion-card-title>Video Name</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            iaculis mollis ligula sed ultrices.
+          </ion-card-content>
+
+          <ion-footer>
+            <ion-row>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>1.5k Likes</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="text"></ion-icon>
+                  <div>4 Comments</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="time"></ion-icon>
+                  <div>11h ago</div>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-footer>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img
+                [src]='user.photoURL || "../../../assets/images/dummy-user.png"'
+              />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ user.displayName }}</h3>
+              <p>{{user.email}}</p>
+            </ion-label>
+          </ion-item>
+
+          <img src="../../../assets/images/body.jpg" />
+          <ion-card-header>
+            <ion-card-title>Video Name</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            iaculis mollis ligula sed ultrices.
+          </ion-card-content>
+
+          <ion-footer>
+            <ion-row>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>1.5k Likes</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="text"></ion-icon>
+                  <div>4 Comments</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="time"></ion-icon>
+                  <div>11h ago</div>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-footer>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img
+                [src]='user.photoURL || "../../../assets/images/dummy-user.png"'
+              />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ user.displayName }}</h3>
+              <p>{{user.email}}</p>
+            </ion-label>
+          </ion-item>
+
+          <img src="../../../assets/images/body.jpg" />
+          <ion-card-header>
+            <ion-card-title>Video Name</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            iaculis mollis ligula sed ultrices.
+          </ion-card-content>
+
+          <ion-footer>
+            <ion-row>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>1.5k Likes</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="text"></ion-icon>
+                  <div>4 Comments</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="time"></ion-icon>
+                  <div>11h ago</div>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-footer>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img
+                [src]='user.photoURL || "../../../assets/images/dummy-user.png"'
+              />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ user.displayName }}</h3>
+              <p>{{user.email}}</p>
+            </ion-label>
+          </ion-item>
+
+          <img src="../../../assets/images/body.jpg" />
+          <ion-card-header>
+            <ion-card-title>Video Name</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            iaculis mollis ligula sed ultrices.
+          </ion-card-content>
+
+          <ion-footer>
+            <ion-row>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>1.5k Likes</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="text"></ion-icon>
+                  <div>4 Comments</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="time"></ion-icon>
+                  <div>11h ago</div>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-footer>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img
+                [src]='user.photoURL || "../../../assets/images/dummy-user.png"'
+              />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ user.displayName }}</h3>
+              <p>{{user.email}}</p>
+            </ion-label>
+          </ion-item>
+
+          <img src="../../../assets/images/body.jpg" />
+          <ion-card-header>
+            <ion-card-title>Video Name</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            iaculis mollis ligula sed ultrices.
+          </ion-card-content>
+
+          <ion-footer>
+            <ion-row>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>1.5k Likes</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="text"></ion-icon>
+                  <div>4 Comments</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="time"></ion-icon>
+                  <div>11h ago</div>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-footer>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img
+                [src]='user.photoURL || "../../../assets/images/dummy-user.png"'
+              />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ user.displayName }}</h3>
+              <p>{{user.email}}</p>
+            </ion-label>
+          </ion-item>
+          <img src="../../../assets/images/body.jpg" />
+          <ion-card-header>
+            <ion-card-title>Video Name</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            iaculis mollis ligula sed ultrices.
+          </ion-card-content>
+
+          <ion-footer>
+            <ion-row>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>1.5k Likes</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="text"></ion-icon>
+                  <div>4 Comments</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="time"></ion-icon>
+                  <div>11h ago</div>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-footer>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img
+                [src]='user.photoURL || "../../../assets/images/dummy-user.png"'
+              />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ user.displayName }}</h3>
+              <p>{{user.email}}</p>
+            </ion-label>
+          </ion-item>
+          <img src="../../../assets/images/body.jpg" />
+          <ion-card-header>
+            <ion-card-title>Video Name</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            iaculis mollis ligula sed ultrices.
+          </ion-card-content>
+          <ion-footer>
+            <ion-row>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>1.5k Likes</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="text"></ion-icon>
+                  <div>4 Comments</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="time"></ion-icon>
+                  <div>11h ago</div>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-footer>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img
+                [src]='user.photoURL || "../../../assets/images/dummy-user.png"'
+              />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ user.displayName }}</h3>
+              <p>{{user.email}}</p>
+            </ion-label>
+          </ion-item>
+
+          <img src="../../../assets/images/body.jpg" />
+          <ion-card-header>
+            <ion-card-title>Video Name</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            iaculis mollis ligula sed ultrices.
+          </ion-card-content>
+          <ion-footer>
+            <ion-row>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>1.5k Likes</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="text"></ion-icon>
+                  <div>4 Comments</div>
+                </ion-button>
+              </ion-col>
+              <ion-col class="text-center">
+                <ion-button class="ion-text-capitalize">
+                  <ion-icon name="time"></ion-icon>
+                  <div>11h ago</div>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-footer>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              <ion-text> Charts </ion-text>
+            </ion-card-title>
+            <ion-card-subtitle>
+              <ion-text> Bar, Line, and Adjustable w/ Drag and Drop </ion-text>
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <app-charts></app-charts>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
