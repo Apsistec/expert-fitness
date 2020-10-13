@@ -1,26 +1,29 @@
 <app-header></app-header>
 <ion-content>
   <ion-grid class="ion-no-padding">
-    <ion-row class="scene-one ion-justify-content-around" style="margin-top: -5em;">
-      <ion-col size-md="8" class="ion-align-self-center"  >
-        <ion-row class="ion-justify-content-center">
-          <ion-col size-md="5">
-            <ion-row >
-              <ion-col>
+    <ion-row
+      class="scene-one ion-justify-content-around"
+      style="margin-top: -30px"
+    >
+      <ion-col size="auto" class="ion-align-self-center">
+        <!-- <ion-row class="ion-justify-content-center">
+          <ion-col size-md="5"> -->
+        <!-- <ion-row>
+          <ion-col> -->
             <ion-row class="ion-justify-content-center">
-                <img src="../../../assets/logos/logo.png" max-width="50%" />
+              <img src="../../../assets/logos/logo.png" max-width="25 %" />
 
-              </ion-col>
+              <!-- </ion-col>
             </ion-row>
-              <ion-col>
-                  <ion-text color="warning" class="logo-card">
-                A new paradigm in total body fitness
+              <ion-col> -->
+              <ion-text color="warning" class="logo-card">
+                <p>
+                  A new paradigm in total body fitness
+                </p>
               </ion-text>
             </ion-row>
             <ion-row class="ion-justify-content-center">
-
-
-                <ion-button
+              <ion-button
                 class="cta"
                 color="light"
                 size="large"
@@ -35,17 +38,19 @@
                 color="secondary"
                 (click)="showModalGetStarted()"
                 >Get Started</ion-button
-                >
+              >
             </ion-row>
-              </ion-col>
+          </ion-col>
 
-          <ion-col class="ion-text-center ion-align-self-center" size-md="4" offset-md="2">
-            <img src="../../../assets/svg/btn-play.svg" style="height: 12em" />
+          <ion-col
+            class="ion-text-center ion-align-self-center"
+
+          >
+            <ion-img src="../../../assets/svg/btn-play.svg" style="height: 12em;" routerLink="/video"></ion-img>
           </ion-col>
         </ion-row>
-
-      </ion-col>
-    </ion-row>
+      <!-- </ion-col>
+    </ion-row> -->
 
     <!-- Scene Two Component -->
     <app-home-page-two></app-home-page-two>
@@ -106,10 +111,7 @@
 
         <ion-row>
           <ion-col>
-            <img
-              src="../../../assets/logos/logo.png"
-              class="small-logo"
-            />
+            <img src="../../../assets/logos/logo.png" class="small-logo" />
             <ion-text color="light">
               <small>
                 &#9426;{{ yearDate | date: "yyyy" }} www.expertfitness.com
