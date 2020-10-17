@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { ApiService } from "../../_services/api.service";
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../_services/api.service';
 
 @Component({
-  selector: "app-list-users",
-  templateUrl: "./list-users.page.html",
-  styleUrls: ["./list-users.page.scss"],
+  selector: 'app-list-users',
+  templateUrl: './list-users.page.html',
+  styleUrls: ['./list-users.page.scss'],
 })
 export class ListUsersPage implements OnInit {
   userData: any;
@@ -24,7 +24,7 @@ export class ListUsersPage implements OnInit {
   }
 
   getAllUsers() {
-    //Get saved list of user
+    // Get saved list of user
     this.apiService.getList().subscribe((response) => {
       console.log(response);
       this.userData = response;
@@ -32,9 +32,9 @@ export class ListUsersPage implements OnInit {
   }
 
   delete(item) {
-    //Delete item in Student data
+    // Delete item in Student data
     this.apiService.deleteItem(item.id).subscribe((Response) => {
-      //Update list after delete is successful
+      // Update list after delete is successful
       this.getAllUsers();
     });
   }

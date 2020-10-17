@@ -17,9 +17,9 @@ export class AlertService {
   topicName = 'super-awesome-topic';
   remoteToken: string;
 
-  constructor(private platform: Platform, private zone: NgZone) {}
+  constructor(private platform: Platform, private zone: NgZone) {
 
-  ngOnInit() {
+
     PushNotifications.addListener('registration', (data) => {
       alert(JSON.stringify(data));
       console.log(data);
@@ -54,7 +54,7 @@ export class AlertService {
       .unsubscribeFrom({ topic: 'test' })
       .then((r) => alert(`unsubscribed from topic ${this.topicName}`))
       .catch((err) => console.log(err));
-    if (this.platform.is('android')) fcm.deleteInstance();
+    if (this.platform.is('android')) { fcm.deleteInstance(); }
   }
 
   getToken() {

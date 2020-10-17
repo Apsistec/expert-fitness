@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <img slot="start" class="small-logo "src="../../../assets/logos/logo.png"/>
+    <img slot="start" class="small-logo" src="../../../assets/logos/logo.png" />
     <ion-buttons slot="end">
       <ion-button
         class="ion-text-uppercase"
-        style="margin-right: 20px; font-size: large; font-weight: 700;"
+        style="margin-right: 1.25em; font-size: large; font-weight: 700"
         color="warning"
         (click)="startApp()"
         [hidden]="!showSkip"
@@ -32,7 +32,6 @@
       <ion-card
         class="cta-card slide-one ion-no-margin ion-padding ion-text-center"
       >
-
         <ion-text color="tertiary" class="ion-text-uppercase">
           <h1>
             10
@@ -83,13 +82,13 @@
     vertical="center"
     [style.display]="isEnd ? 'none' : 'auto'"
   >
-      <ion-fab-button
+    <ion-fab-button
       class="div-animate"
-        color="tertiary"
-        type="button"
-        (click)="onSlideSwipeOrFabTap()"
-      >
-        <ion-icon appBlink name="chevron-forward-sharp"></ion-icon>
-      </ion-fab-button>
+      color="tertiary"
+      type="button"
+      (click)="onSlideSwipeOrFabTap()"
+    >
+      <ion-icon appBlink name="chevron-forward-sharp"></ion-icon>
+    </ion-fab-button>
   </ion-fab>
 </ion-content>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class MessageService {
   choice;
@@ -33,11 +33,11 @@ export class MessageService {
 
   async registerSuccessToast() {
     const toast = await this.toastController.create({
-      header: "Registration Successful",
+      header: 'Registration Successful',
       message:
-        "You have successfully registered, now verify your email. Check your email inbox for instructions!",
-      cssClass: "successT",
-      position: "middle",
+        'You have successfully registered, now verify your email. Check your email inbox for instructions!',
+      cssClass: 'successT',
+      position: 'middle',
       keyboardClose: true,
       duration: 4000,
     });
@@ -46,10 +46,10 @@ export class MessageService {
 
   async isLoggedInToast() {
     const toast = await this.toastController.create({
-      header: "Log In Successful",
-      message: "Welcome Back!",
-      cssClass: "successT",
-      position: "middle",
+      header: 'Log In Successful',
+      message: 'Welcome Back!',
+      cssClass: 'successT',
+      position: 'middle',
       keyboardClose: true,
       duration: 3000,
     });
@@ -58,10 +58,10 @@ export class MessageService {
 
   async federatedLoginToast(data: any) {
     const toast = await this.toastController.create({
-      header: "Log In Successful",
-      message: " Welcome back " + data.user.displayName + "!",
-      cssClass: "successT",
-      position: "middle",
+      header: 'Log In Successful',
+      message: ' Welcome back ' + data.user.displayName + '!',
+      cssClass: 'successT',
+      position: 'middle',
       duration: 3000,
 
       keyboardClose: true,
@@ -71,10 +71,10 @@ export class MessageService {
 
   async signOutToast() {
     const toast = await this.toastController.create({
-      header: "Sign Out Successful",
-      cssClass: "successT",
-      message: "Thank You for Stopping By!",
-      position: "middle",
+      header: 'Sign Out Successful',
+      cssClass: 'successT',
+      message: 'Thank You for Stopping By!',
+      position: 'middle',
       duration: 3000,
 
       keyboardClose: true,
@@ -83,10 +83,10 @@ export class MessageService {
   }
   async deleteTicketToast() {
     const toast = await this.toastController.create({
-      header: "Ticket Deleted",
-      cssClass: "successT",
-      message: "The ticket was successfully deleted.",
-      position: "middle",
+      header: 'Ticket Deleted',
+      cssClass: 'successT',
+      message: 'The ticket was successfully deleted.',
+      position: 'middle',
       duration: 3000,
 
       keyboardClose: true,
@@ -96,11 +96,11 @@ export class MessageService {
 
   async updateNameToast() {
     const toast = await this.toastController.create({
-      header: "Update Successful",
-      message: "User info was updated",
+      header: 'Update Successful',
+      message: 'User info was updated',
       duration: 3000,
-      position: "middle",
-      cssClass: "successT",
+      position: 'middle',
+      cssClass: 'successT',
 
       keyboardClose: true,
     });
@@ -109,10 +109,10 @@ export class MessageService {
 
   async subscribedToast() {
     const toast = await this.toastController.create({
-      header: "Payment Successful",
-      cssClass: "successT",
-      message: "You are subscribed! Thank You!",
-      position: "middle",
+      header: 'Payment Successful',
+      cssClass: 'successT',
+      message: 'You are subscribed! Thank You!',
+      position: 'middle',
       duration: 3000,
 
       keyboardClose: true,
@@ -122,10 +122,10 @@ export class MessageService {
 
   async alreadySubscribedToast() {
     const toast = await this.toastController.create({
-      header: "Invalid Request",
-      cssClass: "warningT",
-      message: " You are already Subscribed",
-      position: "middle",
+      header: 'Invalid Request',
+      cssClass: 'warningT',
+      message: ' You are already Subscribed',
+      position: 'middle',
       duration: 3000,
 
       keyboardClose: true,
@@ -136,9 +136,9 @@ export class MessageService {
   async generalToast(header: string, message: string) {
     const toast = await this.toastController.create({
       header,
-      cssClass: "successT",
+      cssClass: 'successT',
       message,
-      position: "middle",
+      position: 'middle',
       duration: 2000,
       keyboardClose: true,
     });
@@ -148,100 +148,100 @@ export class MessageService {
   //  Alerts
   async noExistFederatedUserAlert() {
     const alert = await this.alertController.create({
-      header: "Error Occurred",
-      subHeader: "That email address is not in our system",
+      header: 'Error Occurred',
+      subHeader: 'That email address is not in our system',
       message:
-        "Try another account. If you continue to have trouble, \n open a trouble ticket and we will assist you",
-      buttons: ["OK"],
+        'Try another account. If you continue to have trouble, \n open a trouble ticket and we will assist you',
+      buttons: ['OK'],
     });
     await alert.present();
   }
 
   async needPaymentAlert() {
     const alert = await this.alertController.create({
-      header: "Members Area Only",
-      subHeader: "Paid PRO Package Required",
-      message: "Purchase any RF$ports PRO Package for immediate access",
-      buttons: ["OK"],
+      header: 'Members Area Only',
+      subHeader: 'Paid PRO Package Required',
+      message: 'Purchase any RF$ports PRO Package for immediate access',
+      buttons: ['OK'],
     });
     await alert.present();
   }
 
   async resetPasswordAlert() {
     const alert = await this.alertController.create({
-      header: "Request Successful",
-      subHeader: "Password Reset Request Sent",
-      message: "Check your email for a link to RESET your password",
+      header: 'Request Successful',
+      subHeader: 'Password Reset Request Sent',
+      message: 'Check your email for a link to RESET your password',
 
-      buttons: ["OK"],
+      buttons: ['OK'],
     });
     await alert.present();
   }
 
   async repurchaseAlert() {
     const alert = await this.alertController.create({
-      header: "Invalid Request",
-      message: "You are already Subscribed",
-      buttons: ["OK"],
+      header: 'Invalid Request',
+      message: 'You are already Subscribed',
+      buttons: ['OK'],
     });
     await alert.present();
   }
 
   async internalBlockPageAlert() {
     const internalBlock = await this.alertController.create({
-      header: "Invalid Request",
-      subHeader: "You are already Signed In",
-      message: "Your account does not need access to this area",
+      header: 'Invalid Request',
+      subHeader: 'You are already Signed In',
+      message: 'Your account does not need access to this area',
 
-      buttons: ["OK"],
+      buttons: ['OK'],
     });
     await internalBlock.present();
   }
 
   async unsubscribedAlert() {
     const alert = await this.alertController.create({
-      header: "Cancellation Successful",
-      subHeader: "Your account has been cancelled",
+      header: 'Cancellation Successful',
+      subHeader: 'Your account has been cancelled',
 
-      message: "Effective immediately. Thank you for giving us a try!",
-      buttons: ["OK"],
+      message: 'Effective immediately. Thank you for giving us a try!',
+      buttons: ['OK'],
     });
     await alert.present();
   }
 
   async globalErrorAlert(err, router) {
     const alert = await this.alertController.create({
-      header: "Error",
-      subHeader: "Location: " + router.url,
-      message: "Error Message: " + err.message,
-      buttons: ["OK"],
-      cssClass: "warningA",
+      header: 'Error',
+      subHeader: 'Location: ' + router.url,
+      message: 'Error Message: ' + err.message,
+      buttons: ['OK'],
+      cssClass: 'warningA',
     });
     await alert.present();
   }
   async errorAlert(err: any) {
     const alert = await this.alertController.create({
-      header: "An Error Occurred",
+      header: 'An Error Occurred',
       message: err.message,
-      buttons: ["OK"],
+      buttons: ['OK'],
     });
     await alert.present();
   }
 
   async saveOrCancel() {
     const alert = await this.alertController.create({
-      header: "Are You Sure?",
-      subHeader: "Changes were NOT saved",
-      message: "Press Save to resume editing or press OK to close",
+      header: 'Are You Sure?',
+      subHeader: 'Changes were NOT saved',
+      message: 'Press Save to resume editing or press OK to close',
       backdropDismiss: false,
       buttons: [
         {
-          text: "OK",
-          role: "cancel",
+          text: 'OK',
+          role: 'cancel',
         },
         {
-          text: "Save",
-          role: "save",
+          text: 'Save',
+          role: 'save',
         },
       ],
     });
@@ -257,15 +257,15 @@ export class MessageService {
       header,
       message,
       backdropDismiss: false,
-      cssClass: "infoA",
+      cssClass: 'infoA',
       buttons: [
         {
-          text: "Cancel",
-          role: "cancel",
+          text: 'Cancel',
+          role: 'cancel',
         },
         {
-          text: "Okay",
-          role: "okay",
+          text: 'Okay',
+          role: 'okay',
         },
       ],
     });
@@ -279,23 +279,47 @@ export class MessageService {
 
   async deleteFeedAlert(feedId) {
     const alert = await this.alertController.create({
-      header: "Delete Post",
+      header: 'Delete Post',
       subHeader: feedId,
-      message: "Are you sure you want to delete this post?",
-      cssClass: "warningA",
+      message: 'Are you sure you want to delete this post?',
+      cssClass: 'warningA',
       backdropDismiss: false,
       buttons: [
         {
-          text: "Cancel",
-          role: "cancel",
+          text: 'Cancel',
+          role: 'cancel',
         },
         {
-          text: "Delete",
-          role: "delete",
+          text: 'Delete',
+          role: 'delete',
         },
       ],
     });
 
+    await alert.present();
+    await alert.onDidDismiss().then((data) => {
+      this.choice = data;
+    });
+    return this.choice;
+  }
+
+  async updateOrCancel() {
+    const alert = await this.alertController.create({
+      header: 'Update Available?',
+      subHeader: 'An update is available by reloading',
+      message: 'Press Update to reload the page and apply the new update or press cancel to close.',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Update',
+          role: 'update',
+        },
+      ],
+    });
     await alert.present();
     await alert.onDidDismiss().then((data) => {
       this.choice = data;

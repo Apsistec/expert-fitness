@@ -7,9 +7,9 @@ import { IonSlide, IonSlides, MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
-  selector: "app-welcome",
-  templateUrl: "./welcome.page.html",
-  styleUrls: ["./welcome.page.scss"],
+  selector: 'app-welcome',
+  templateUrl: './welcome.page.html',
+  styleUrls: ['./welcome.page.scss'],
   // animations: [
   //   trigger("fadeInLeft", [
   //     transition(
@@ -24,22 +24,22 @@ import { Storage } from '@ionic/storage';
   // ],
 })
 export class WelcomePage {
-  title = "welcome";
+  title = 'welcome';
   showSkip: boolean;
   bounce;
   isEnd;
 
   slideOpts = {
     centeredSlides: true,
-    effect: "flip",
+    effect: 'flip',
     allowSlidePrev: false,
     pagination: {
-      el: ".swiper-pagination",
-      type: "progressbar",
+      el: '.swiper-pagination',
+      type: 'progressbar',
     },
   };
 
-  @ViewChild("slides", { static: true }) slides: IonSlides;
+  @ViewChild('slides', { static: true }) slides: IonSlides;
   // @ViewChild('slide', { static: true }) slide: IonSlide;
 
   constructor(
@@ -50,11 +50,11 @@ export class WelcomePage {
 
   async startApp() {
     await this.storage.clear().then(() => {
-      this.storage.set("ion_did_tutorial", true)
-       .then((value: boolean) =>{
+      this.storage.set('ion_did_tutorial', true)
+       .then((value: boolean) => {
          if ( value ) {
-           console.log('value: ', value)
-           this.router.navigateByUrl("/home")
+           console.log('value: ', value);
+           this.router.navigateByUrl('/home');
          }
        });
     });
@@ -71,9 +71,9 @@ export class WelcomePage {
   }
 
   ionViewWillEnter() {
-    this.storage.get("ion_did_tutorial").then((res) => {
+    this.storage.get('ion_did_tutorial').then((res) => {
       if (res === true) {
-        this.router.navigateByUrl("/home", { replaceUrl: true });
+        this.router.navigateByUrl('/home', { replaceUrl: true });
       }
     });
 

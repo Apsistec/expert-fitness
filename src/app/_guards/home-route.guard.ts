@@ -7,7 +7,7 @@ import {
 import { Storage } from '@ionic/storage';
 
 Injectable({
-    providedIn: "root",
+    providedIn: 'root',
 });
 export class HomeRouteGuard implements CanActivate {
     constructor(private storage: Storage, private router: Router) {}
@@ -20,13 +20,13 @@ export class HomeRouteGuard implements CanActivate {
         | Promise<boolean | UrlTree>
         | boolean
         | UrlTree {
-        console.log("check welcome guard");
-        return this.storage.get("ion_did_tutorial").then((res: boolean) => {
+        console.log('check welcome guard');
+        return this.storage.get('ion_did_tutorial').then((res: boolean) => {
             if ( res && res != null ) {
-                this.router.navigate(["/home"]);
+                this.router.navigate(['/home']);
                 return true;
-            } 
-                return false;
+            }
+            return false;
         });
     }
 }

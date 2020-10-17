@@ -4,20 +4,20 @@ import {
   Inject,
   ViewChild,
   AfterViewInit,
-} from "@angular/core";
-import { ConferenceData } from "../../_data/conference-data";
-import { Platform } from "@ionic/angular";
-import { DOCUMENT } from "@angular/common";
+} from '@angular/core';
+import { ConferenceData } from '../../_data/conference-data';
+import { Platform } from '@ionic/angular';
+import { DOCUMENT } from '@angular/common';
 
-import { darkStyle } from "./map-dark-style";
+import { darkStyle } from './map-dark-style';
 
 @Component({
-  selector: "app-contact",
-  templateUrl: "./contact.page.html",
-  styleUrls: ["./contact.page.scss"],
+  selector: 'app-contact',
+  templateUrl: './contact.page.html',
+  styleUrls: ['./contact.page.scss'],
 })
 export class ContactPage implements AfterViewInit {
-  @ViewChild("mapCanvas", { static: true }) mapElement: ElementRef;
+  @ViewChild('mapCanvas', { static: true }) mapElement: ElementRef;
 
   constructor(
     @Inject(DOCUMENT) private doc: Document,
@@ -26,15 +26,15 @@ export class ContactPage implements AfterViewInit {
   ) {}
 
   async ngAfterViewInit() {
-    const appEl = this.doc.querySelector("ion-app");
+    const appEl = this.doc.querySelector('ion-app');
     let isDark = false;
     let style = [];
-    if (appEl.classList.contains("dark-theme")) {
+    if (appEl.classList.contains('dark-theme')) {
       style = darkStyle;
     }
 
     const googleMaps = await getGoogleMaps(
-      "AIzaSyBiBxbmdVNvYMRdFSJDf-uWRsQ7Y7DPjbg"
+      'AIzaSyBiBxbmdVNvYMRdFSJDf-uWRsQ7Y7DPjbg'
     );
 
     let map;
@@ -59,21 +59,21 @@ export class ContactPage implements AfterViewInit {
           title: markerData.name,
         });
 
-        marker.addListener("click", () => {
+        marker.addListener('click', () => {
           infoWindow.open(map, marker);
         });
       });
 
-      googleMaps.event.addListenerOnce(map, "idle", () => {
-        mapEle.classList.add("show-map");
+      googleMaps.event.addListenerOnce(map, 'idle', () => {
+        mapEle.classList.add('show-map');
       });
     });
 
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.attributeName === "class") {
+        if (mutation.attributeName === 'class') {
           const el = mutation.target as HTMLElement;
-          isDark = el.classList.contains("dark-theme");
+          isDark = el.classList.contains('dark-theme');
           if (map && isDark) {
             map.setOptions({ styles: darkStyle });
           } else if (map) {
@@ -96,7 +96,7 @@ function getGoogleMaps(apiKey: string): Promise<any> {
   }
 
   return new Promise((resolve, reject) => {
-    const script = document.createElement("script");
+    const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=beta`;
     script.async = true;
     script.defer = true;
@@ -106,7 +106,7 @@ function getGoogleMaps(apiKey: string): Promise<any> {
       if (googleModule2 && googleModule2.maps) {
         resolve(googleModule2.maps);
       } else {
-        reject("google maps not available");
+        reject('google maps not available');
       }
     };
   });

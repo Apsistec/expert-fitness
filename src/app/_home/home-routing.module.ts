@@ -1,70 +1,70 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { HomePageOneComponent } from "./home-page-one/home-page-one.component";
+import { HomePageOneComponent } from './home-page-one/home-page-one.component';
 
-import { HomePage } from "./home.page";
+import { HomePage } from './home.page';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: HomePage,
 
     children: [
       {
-        path: "",
+        path: '',
         component: HomePageOneComponent,
         // outlet: "home",
       },
       {
-        path: "faq",
+        path: 'faq',
         loadChildren: () =>
-          import("../_home/faq/faq.module").then((m) => m.FaqPageModule),
+          import('../_home/faq/faq.module').then((m) => m.FaqPageModule),
         // outlet: "home",
       },
 
       {
-        path: "testimonials",
+        path: 'testimonials',
         loadChildren: () =>
-          import("../_home/testimonials/testimonials.module").then(
+          import('../_home/testimonials/testimonials.module').then(
             (m) => m.TestimonialsPageModule
           ),
         // outlet: "home",
       },
       {
-        path: "products",
+        path: 'products',
         loadChildren: () =>
-          import("../_home/products/products.module").then(
+          import('../_home/products/products.module').then(
             (m) => m.ProductsPageModule
           ),
         // outlet: "home",
       },
 
       {
-        path: "contact",
+        path: 'contact',
         loadChildren: () =>
-          import("../_home/contact/contact.module").then(
+          import('../_home/contact/contact.module').then(
             (m) => m.ContactPageModule
           ),
         // outlet: "home",
       },
 
       {
-        path: "mind",
+        path: 'mind',
         loadChildren: () =>
-          import("../_home/mind/mind.module").then((m) => m.MindPageModule),
+          import('../_home/mind/mind.module').then((m) => m.MindPageModule),
         // outlet: "home",
       },
       {
-        path: "body",
+        path: 'body',
         loadChildren: () =>
-          import("../_home/body/body.module").then((m) => m.BodyPageModule),
+          import('../_home/body/body.module').then((m) => m.BodyPageModule),
         // outlet: "home"
       },
       {
-        path: "soul",
+        path: 'soul',
         loadChildren: () =>
-          import("../_home/soul/soul.module").then((m) => m.SoulPageModule),
+          import('../_home/soul/soul.module').then((m) => m.SoulPageModule),
         // outlet: "home",
       },
     ],

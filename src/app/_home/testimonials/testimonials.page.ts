@@ -1,24 +1,24 @@
-import { Component } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { FormBuilder, Validators } from "@angular/forms";
-import { ModalController } from "@ionic/angular";
-import { Observable } from "rxjs";
-import { map, switchMap } from "rxjs/operators";
-import { User } from "src/app/_models/user";
-import { AuthService } from "src/app/_services/auth.service";
-import { MessageService } from "src/app/_services/message.service";
-import { Testimonial } from "../../_models/testimonial.model";
+import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { User } from 'src/app/_models/user';
+import { AuthService } from 'src/app/_services/auth.service';
+import { MessageService } from 'src/app/_services/message.service';
+import { Testimonial } from '../../_models/testimonial.model';
 
 @Component({
-  selector: "app-testimonials",
-  templateUrl: "testimonials.page.html",
-  styleUrls: ["testimonials.page.scss"],
+  selector: 'app-testimonials',
+  templateUrl: 'testimonials.page.html',
+  styleUrls: ['testimonials.page.scss'],
 })
 export class TestimonialsPage {
-  title = "Credibility";
+  title = 'Credibility';
   testimonials: any;
-  imgDescription = "Submitted by RF$ PRO Members";
+  imgDescription = 'Submitted by RF$ PRO Members';
   slideOpts = {
     zoom: true,
     mousewheel: true,
@@ -40,7 +40,7 @@ export class TestimonialsPage {
     this.authService.user$.pipe(map((user) => (this.user = user)));
 
     this.reviewForm = this.fb.group({
-      review: ["", [Validators.required]],
+      review: ['', [Validators.required]],
     });
   }
 
@@ -52,15 +52,15 @@ export class TestimonialsPage {
       })
       .then(() => {
         this.messageService.generalToast(
-          "Testimonial Created",
-          "Your review/testimonial has been created."
+          'Testimonial Created',
+          'Your review/testimonial has been created.'
         );
       });
   }
 
   getTestimonial() {
     this.afs
-      .collection<Testimonial>("testimonials")
+      .collection<Testimonial>('testimonials')
       .get()
       .pipe(
         map((testimonial) => {

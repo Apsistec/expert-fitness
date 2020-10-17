@@ -1,15 +1,15 @@
 .under-menu {
   position: absolute;
   text-align: center;
-  bottom: 80px;
+  bottom: 5em;
 }
 .first-row {
   position: relative;
-  padding-left: 38px;
+  padding-left: 3.5em;
 }
 
 .under-button {
-  padding-left: 38px;
+  padding-left: 3.5em;
   position: relative;
 }
 .bottom-toolbar {
@@ -18,22 +18,19 @@
 }
 
 .active-item {
-  border-left: 10px solid var(--ion-color-tertiary);
-//   background: rgba(var(--ion-color-warning-rgb) 0.4);
+  border-left: 0.625em solid var(--ion-color-tertiary);
+  //   background: rgba(var(--ion-color-warning-rgb) 0.4);
 }
 
 ion-item {
-  border-left: 10px solid var(--ion-color-light);
+  border-left: 0.625em solid var(--ion-color-light);
+}
 
-}
-.small-logo{
-  height: 48px;
-}
 
 .side-menu-font {
   // text-decoration: none;
-  // font: normal 800 16px sans-serif !important;
+  // font: normal 800 1em sans-serif !important;
   font-weight: 700;
   text-transform: capitalize;
-  font-variant: small-caps; 
+  font-variant: small-caps;
 }

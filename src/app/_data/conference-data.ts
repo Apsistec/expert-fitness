@@ -1,12 +1,12 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { of } from "rxjs";
-import { map } from "rxjs/operators";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { UserData } from "./user-data";
+import { UserData } from './user-data';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ConferenceData {
   data: any;
@@ -18,7 +18,7 @@ export class ConferenceData {
       return of(this.data);
     } else {
       return this.http
-        .get("assets/data/conference_data.json")
+        .get('assets/data/conference_data.json')
         .pipe(map(this.processData, this));
     }
   }
@@ -56,18 +56,18 @@ export class ConferenceData {
 
   getTimeline(
     dayIndex: number,
-    queryText = "",
+    queryText = '',
     excludeTracks: any[] = [],
-    segment = "all"
+    segment = 'all'
   ) {
     return this.load().pipe(
       map((data: any) => {
         const day = data.schedule[dayIndex];
         day.shownSessions = 0;
 
-        queryText = queryText.toLowerCase().replace(/,|\.|-/g, " ");
+        queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
         const queryWords = queryText
-          .split(" ")
+          .split(' ')
           .filter((w) => !!w.trim().length);
 
         day.groups.forEach((group: any) => {
@@ -121,7 +121,7 @@ export class ConferenceData {
     // if the segment is 'favorites', but session is not a user favorite
     // then this session does not pass the segment test
     let matchesSegment = false;
-    if (segment === "favorites") {
+    if (segment === 'favorites') {
       if (this.user.hasFavorite(session.name)) {
         matchesSegment = true;
       }
@@ -137,8 +137,8 @@ export class ConferenceData {
     return this.load().pipe(
       map((data: any) => {
         return data.employees.sort((a: any, b: any) => {
-          const aName = a.name.split(" ").pop();
-          const bName = b.name.split(" ").pop();
+          const aName = a.name.split(' ').pop();
+          const bName = b.name.split(' ').pop();
           return aName.localeCompare(bName);
         });
       })

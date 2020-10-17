@@ -1,58 +1,72 @@
-<app-header></app-header>
-<ion-content>
+<app-header [title]="title"></app-header>
+<ion-content fullscreen translucent>
   <ion-grid class="ion-no-padding">
-    <ion-row
-      class="scene-one ion-justify-content-around"
-      style="margin-top: -30px"
-    >
-      <ion-col size="auto" class="ion-align-self-center">
-        <!-- <ion-row class="ion-justify-content-center">
-          <ion-col size-md="5"> -->
-        <!-- <ion-row>
-          <ion-col> -->
-            <ion-row class="ion-justify-content-center">
-              <img src="../../../assets/logos/logo.png" max-width="25 %" />
+  <div class="scene-one">
+    <ion-row class="ion-text-center" style="padding-top: 14vh">
+      <ion-col
+        size-xl="4"
+        offset-xl="2"
+        size-lg="6"
+        offset-lg=1
+        size-md="6"
+        offset-md="1"
+       size-sm="12"
+       size-xs="12"
+      >
 
-              <!-- </ion-col>
-            </ion-row>
-              <ion-col> -->
-              <ion-text color="warning" class="logo-card">
-                <p>
-                  A new paradigm in total body fitness
-                </p>
-              </ion-text>
-            </ion-row>
-            <ion-row class="ion-justify-content-center">
-              <ion-button
-                class="cta"
-                color="light"
-                size="large"
-                routerLink="/home/testimonials"
-                fill="outline"
-                >Learn More</ion-button
-              >
-              <ion-button
-                [@pulse]="pulse"
-                class="cta"
-                size="large"
-                color="secondary"
-                (click)="showModalGetStarted()"
-                >Get Started</ion-button
-              >
-            </ion-row>
-          </ion-col>
+        <ion-row class="ion-justify-content-center ion-padding">
+          <ion-img
+          src="../../../assets/logos/logo.png"
+          style="width: 80%;"
+          ></ion-img>
 
-          <ion-col
-            class="ion-text-center ion-align-self-center"
-
-          >
-            <ion-img src="../../../assets/svg/btn-play.svg" style="height: 12em;" routerLink="/video"></ion-img>
-          </ion-col>
+          <ion-text color="warning" class="logo-card">
+            <p>A new paradigm in total body fitness</p>
+          </ion-text>
         </ion-row>
-      <!-- </ion-col>
-    </ion-row> -->
+        <ion-row class="ion-justify-content-center">
+          <ion-button
+          class="cta"
+          color="light"
+          size="large"
+          routerLink="/home/testimonials"
+          fill="outline"
+          >Learn More</ion-button
+          >
+          <ion-button
+          [@pulse]="pulse"
+          class="cta"
+          size="large"
+          color="secondary"
+          (click)="showModalGetStarted()"
+          >Get Started</ion-button
+          >
+        </ion-row>
 
-    <!-- Scene Two Component -->
+      </ion-col>
+
+
+        <ion-col
+        size-xl="2"
+        offset-xl="2"
+        size-lg="2"
+        offset-lg="2"
+        size-md="4"
+        size-sm="12"
+        size-xs="12"
+        class="ion-align-self-center ion-padding"
+      >
+        <ion-img
+          src="../../../assets/svg/btn-play.svg"
+          style="height: 12em"
+          routerLink="/members/video"
+        ></ion-img>
+      </ion-col>
+    </ion-row>
+    </div>
+
+
+    Scene Two Component
     <app-home-page-two></app-home-page-two>
 
     <!-- Scene three for home -->
@@ -62,9 +76,9 @@
 
     <!-- Footer` -->
     <ion-row class="footer ion-justify-content-around">
-      <ion-col size="auto">
+      <ion-col size="12">
         <ion-row>
-          <ion-col>
+          <ion-col size="12">
             <ul class="bottom-menu">
               <li><h3>Menu</h3></li>
               <li routerLink="/">
@@ -110,7 +124,7 @@
         </ion-row>
 
         <ion-row>
-          <ion-col>
+          <ion-col size="12">
             <img src="../../../assets/logos/logo.png" class="small-logo" />
             <ion-text color="light">
               <small>
@@ -121,7 +135,7 @@
         </ion-row>
       </ion-col>
 
-      <ion-col size="auto" class="ion-align-self-start">
+      <ion-col size="12" class="ion-align-self-start">
         <ul>
           <li><h3>Authentication</h3></li>
           <li *ngIf="user | async" button (click)="authService.SignOut()">
@@ -139,7 +153,7 @@
         </ul>
       </ion-col>
 
-      <ion-col size="auto" class="ion-align-self-center">
+      <ion-col size="12" class="ion-align-self-center">
         <ion-row>
           <ion-buttons>
             <ion-button color="tertiary" (click)="showModalPrivacy()">
@@ -153,7 +167,7 @@
             </ion-button>
           </ion-buttons>
         </ion-row>
-        <ion-row style="max-width: 300px">
+        <ion-row style="max-width: 18.75em">
           <ion-buttons>
             <share-buttons
               theme="material-dark"
@@ -164,7 +178,7 @@
         </ion-row>
       </ion-col>
 
-      <ion-col size="auto" class="ion-text-center ion-align-self-start">
+      <ion-col size="12" class="ion-text-center ion-align-self-start">
         <ion-card class="ion-padding" routerLink="/home/contact">
           <ion-card-header>
             <ion-item color="primary">

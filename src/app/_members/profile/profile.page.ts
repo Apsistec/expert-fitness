@@ -1,25 +1,25 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { Router } from "@angular/router";
-import { AlertController, ModalController } from "@ionic/angular";
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+import { AlertController, ModalController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
-import { User } from "../../_models/user";
-import { AuthService } from "../../_services/auth.service";
-import { PhotoService } from "../../_services/photo.service";
-import { StripeService } from "../../_services/stripe.service";
-import { ThemeService } from "../../_services/theme.service";
-import { UserService } from "../../_services/user.service";
-import { CancelSubscriptionComponent } from "../cancel-subscription/cancel-subscription.component";
-import { InvoicesComponent } from "../invoices/invoices.component";
+import { User } from '../../_models/user';
+import { AuthService } from '../../_services/auth.service';
+import { PhotoService } from '../../_services/photo.service';
+import { StripeService } from '../../_services/stripe.service';
+import { ThemeService } from '../../_services/theme.service';
+import { UserService } from '../../_services/user.service';
+import { CancelSubscriptionComponent } from '../cancel-subscription/cancel-subscription.component';
+import { InvoicesComponent } from '../invoices/invoices.component';
 
 @Component({
-  selector: "app-profile",
-  templateUrl: "./profile.page.html",
-  styleUrls: ["./profile.page.scss"],
+  selector: 'app-profile',
+  templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit, AfterViewInit {
-  title = "User Profile";
+  title = 'User Profile';
   planId;
   atp;
   buy;
@@ -83,7 +83,7 @@ export class ProfilePage implements OnInit, AfterViewInit {
   }
 
   updatePicture() {
-    console.log("Clicked to update picture");
+    console.log('Clicked to update picture');
   }
 
   // Present an alert with the current email populated
@@ -91,11 +91,11 @@ export class ProfilePage implements OnInit, AfterViewInit {
   // clicking Cancel will close the alert and do nothing
   async changeEmail() {
     const alert = await this.alertController.create({
-      header: "Change Email",
+      header: 'Change Email',
       buttons: [
-        "Cancel",
+        'Cancel',
         {
-          text: "Ok",
+          text: 'Ok',
           handler: (data: any) => {
             this.userService.setEmail(data.email);
             this.getEmail();
@@ -104,10 +104,10 @@ export class ProfilePage implements OnInit, AfterViewInit {
       ],
       inputs: [
         {
-          type: "email",
-          name: "email",
+          type: 'email',
+          name: 'email',
           value: this.email,
-          placeholder: "email",
+          placeholder: 'email',
         },
       ],
     });
@@ -119,16 +119,16 @@ export class ProfilePage implements OnInit, AfterViewInit {
   }
 
   changePassword() {
-    console.log("Clicked to change password");
+    console.log('Clicked to change password');
   }
 
   logout() {
     this.authService.SignOut().then(() => {
-      this.router.navigateByUrl("/home");
+      this.router.navigateByUrl('/home');
     });
   }
 
   support() {
-    this.router.navigateByUrl("/support");
+    this.router.navigateByUrl('/support');
   }
 }

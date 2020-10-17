@@ -2,7 +2,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-//api.service.ts
+// api.service.ts
 import { Injectable } from '@angular/core';
 
 import { User } from '../_models/user';
@@ -22,7 +22,7 @@ export class ApiService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  }
+  };
 
   // Handle API errors
   handleError(error: HttpErrorResponse) {
@@ -39,7 +39,7 @@ export class ApiService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
-  };
+  }
 
 
   // Create a new item
@@ -49,7 +49,7 @@ export class ApiService {
       .pipe(
         retry(2),
         catchError(this.handleError)
-      )
+      );
   }
 
   // Get single student data by ID
@@ -59,7 +59,7 @@ export class ApiService {
       .pipe(
         retry(2),
         catchError(this.handleError)
-      )
+      );
   }
 
   // Get students data
@@ -69,7 +69,7 @@ export class ApiService {
       .pipe(
         retry(2),
         catchError(this.handleError)
-      )
+      );
   }
 
   // Update item by id
@@ -79,7 +79,7 @@ export class ApiService {
       .pipe(
         retry(2),
         catchError(this.handleError)
-      )
+      );
   }
 
   // Delete item by id
@@ -89,7 +89,7 @@ export class ApiService {
       .pipe(
         retry(2),
         catchError(this.handleError)
-      )
+      );
   }
 
 }

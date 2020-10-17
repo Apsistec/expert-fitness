@@ -36,16 +36,17 @@ export class TicketComponent implements OnInit {
     if (this.id) {
       this.ticket.getTicket(this.id).subscribe(ticket => {
         this.ticketForm.patchValue({
+          // tslint:disable-next-line: no-string-literal
           title: ticket['title'],
-          desc: ticket['desc'],
-          status: ticket[status]
+          desc: ticket.desc,
+          status: ticket.status
         });
 
         // this.ticketForm.controls['title'].disable();
         // this.ticketForm.controls['desc'].disable();
 
-        this.ticket.getUser(ticket['creator']).subscribe(user => {
-          this.user = user['email'];
+        this.ticket.getUser(ticket[creator]).subscribe(user => {
+          this.user = user.email;
         });
       });
     }

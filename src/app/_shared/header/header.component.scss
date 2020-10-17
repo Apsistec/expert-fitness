@@ -1,46 +1,40 @@
 .menu-font :hover {
-    border-bottom: 5px solid var(--ion-color-medium-tint);
+  border-bottom: 0.3125em solid var(--ion-color-light-tint);
+  color: var(--ion-color-light-tint);
+}
+.menu-font {
+  ion-label{
+    font: 800 1.4em/2  "Montserrat", sans-serif;
+    text-transform: uppercase;
     color: var(--ion-color-medium);
+
   }
-  .menu-font {
-    // text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    padding: 0 15px;
-    display: inline-block;
-    text-transform: uppercase ;
+  padding: 0 1.3125em;
+  display: inline-block;
+  border-bottom: 0.3125em solid transparent;
+  margin-left: 2.375em;
+}
 
-    border-bottom: 5px solid transparent;
+.active-link {
+  ion-label {
+    color: var(--ion-color-light-tint);
+    border-bottom: 0.3125em solid var(--ion-color-warning-shade);
   }
+}
 
 
-  .active-link {
-    ion-label{
-      color: var(--ion-color-medium);
-      border-bottom: 5px solid var(--ion-color-medium);
-    }
+
+.silhouette {
+  max-height: 2.75em;
+}
+
+@media (max-width: 41.3125em) {
+  .large-screen {
+    display: none !important;
   }
-
-
-  .header-menu{
-    margin-left: 150px;
+}
+@media (min-width: 416px) {
+  .small-screen {
+    display: none !important;
   }
-
-  .silhouette {
-    max-height: 44px;
-  }
-
-  @media (max-width: 415px) {
-    .large-screen {
-      display: none !important;
-    }
-  }
-  @media (min-width: 416px) {
-    .small-screen {
-      display: none !important;
-    }
-  }
-
-
-
-
-
+}

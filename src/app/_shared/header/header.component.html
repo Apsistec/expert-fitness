@@ -4,11 +4,10 @@
     <ion-buttons slot="start">
       <ion-menu-button color="warning"> </ion-menu-button>
     </ion-buttons>
-    <img
+    <ion-img
       src="../../../assets/logos/logo.png"
       slot="start"
-      class="small-logo"
-    />
+      class="small-logo"></ion-img>
 
     <ng-container *ngIf="user | async; else startButton">
       <ion-item
@@ -21,7 +20,7 @@
       >
         <ion-icon slot="start" name="arrow-dropdown"></ion-icon>
         <ion-avatar>
-          <img [src]="user.photoURL || '../../../assets/img/dummy-user.png'" />
+          <ion-img [src]="user.photoURL || '../../../assets/img/dummy-user.png'" ></ion-img>
         </ion-avatar>
       </ion-item>
     </ng-container>
@@ -29,7 +28,7 @@
     <ng-template #startButton>
       <ion-buttons slot="end">
         <ion-button
-          style="padding-right: 20px; font-size: large"
+          style="padding-right: 1.25em; font-size: large"
           appBlink
           (click)="showModalGetStarted()"
         >
@@ -42,19 +41,19 @@
   <!-- large screen/ no hamburger -->
   <ion-toolbar color="dark" class="large-screen">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/" color="warning"></ion-back-button>
-    </ion-buttons>
-    <img
+      <!-- <ng-component *ngIf="!hideBackButton"> -->
+      <ion-back-button *ngIf="!hideBackButton" defaultHref="/" color="warning-shade"></ion-back-button>
+      <!-- </ng-component> -->
+    <ion-img
       src="../../../assets/logos/logo.png"
       slot="start"
-      class="small-logo"
-    />
-    <ion-buttons class="header-menu" slot="start">
+      class="small-logo"></ion-img>
+
       <ion-item
         class="menu-font"
         button
         color="dark"
-        routerLink="/home"
+        routerLink="/home/"
         routerLinkActive="active-link"
         routerLinkActiveOptions="{ exact: true }"
       >
@@ -67,6 +66,7 @@
         color="dark"
         routerLink="/home/products"
         routerLinkActive="active-link"
+        routerLinkActiveOptions="{ exact: true }"
       >
         <ion-label> Products </ion-label>
       </ion-item>
@@ -91,16 +91,7 @@
         <ion-label> Testimonials </ion-label>
       </ion-item>
 
-      <ion-item
-        class="menu-font"
-        button
-        color="dark"
-        routerLink="/home/about"
-        routerLinkActive="active-link"
-      >
-        <ion-label> About </ion-label>
-      </ion-item>
-
+  
       <ion-item
         class="menu-font"
         button
@@ -123,9 +114,8 @@
       >
         <ion-icon slot="start" name="arrow-dropdown"></ion-icon>
         <ion-avatar>
-          <img
-            [src]="user.photoURL || '../../../assets/images/dummy-user.png'"
-          />
+          <ion-img
+            [src]="user.photoURL || '../../../assets/images/dummy-user.png'"></ion-img>
         </ion-avatar>
       </ion-item>
     </ng-container>
@@ -133,7 +123,7 @@
     <ng-template #getStarted>
       <ion-buttons slot="end">
         <ion-button
-          style="padding-right: 20px; font-size: large"
+          style="margin-right: 2.25em; margin-top: 1.5em; font-size: x-large;"
           appBlink
           (click)="showModalGetStarted()"
         >

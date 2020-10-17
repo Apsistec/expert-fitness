@@ -4,12 +4,11 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-// import { TitleService } from './_services/title.service';
+import { CheckForUpdateService } from './_services/check-for-update.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  // providers: [TitleService],
 
   styleUrls: ['app.component.scss'],
 })
@@ -18,6 +17,7 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
+    private checkForUpdate: CheckForUpdateService
   ) {
     this.initializeApp();
   }
@@ -27,8 +27,10 @@ export class AppComponent implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
 
-
+  checkUpdate() {
+    this.checkForUpdate.
   }
 
   ngOnInit() {}

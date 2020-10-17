@@ -57,7 +57,7 @@ import './zone-flags';
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import "exceljs";
+import 'exceljs';
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 
@@ -68,8 +68,8 @@ import 'core-js/modules/es.promise';
 
 import 'core-js/modules/es.object.assign';
 import 'core-js/modules/es.object.keys';
-import "core-js/modules/es.promise";
-import "regenerator-runtime/runtime";
+import 'core-js/modules/es.promise';
+import 'regenerator-runtime/runtime';
 
 
 

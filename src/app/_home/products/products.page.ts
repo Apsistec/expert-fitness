@@ -13,7 +13,7 @@ export class ProductsPage implements OnInit {
   }
 
   purchaseChoiceOne() {
-      
+
   }
 
   purchaseChoiceTwo() {

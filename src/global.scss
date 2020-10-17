@@ -29,79 +29,102 @@
 @import "~ngx-sharebuttons/themes/material/material-dark-theme";
 
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800,900&family=Open+Sans:wght@800&family=Philosopher:wght@700,800&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800,900&family=Open+Sans:wght@800&family=Philosopher:wght@700,800&family=Roboto&display=swap");
 
+// ion-col {
+//   border: 0.125em solid green;
+// }
 
 // Classes
 a:hover {
   cursor: pointer;
 }
 
-ion-header >ion-toolbar{
-  height: 85px;
+ion-header > ion-toolbar {
+  height: 7em;
   // max-height: 30vh;
 }
 
 ion-list-header {
   background: var(--ion-color-medium);
-    font-family: 'Montserrat', sans-serif;
-    color: var(--ion-color-secondary);
+  font-family: "Montserrat", sans-serif;
+  color: var(--ion-color-secondary);
 }
 
 ion-card-header {
-  background: var(--ion-color-primary);
-  >ion-card-title{
-    --color: white;
-    font-family: 'Montserrat', sans-serif;
-  }
-  >ion-card-subtitle{
-    color: var(--ion-color-light-shade);
-  font-family: 'Philosopher', sans-serif;  }
+  background: var(--ion-color-primary-tint);
 }
+  ion-card-title {
+    ion-text{
+  color: var(--ion-color-light-tint);
+    font: 800 "Montserrat", sans-serif;
+  }
+  }
+  ion-card-subtitle {
+    ion-text{
+    color: var(--ion-color-warning);
+    font-family: "Philosopher", sans-serif;
+  }}
 
+  
 ion-toolbar {
-  background: var(--ion-color-primary) ;
-  color: var(--ion-color-tertiary);
+  background: var(--ion-color-primary);
+  color: var(--ion-color-light);
   text-transform: uppercase;
   ion-button {
     color: var(--ion-color-warning);
   }
 }
 
-
-
-.small-logo{
-  max-height: 58px;
+.small-logo {
+  // height: 4.5em;
+  width: 7.5em;
+  margin: 25px 10px 0 25px;
 }
 
 // Toasts
 .successT {
   --background: var(--ion-color-success-tint);
   --border-color: var(--ion-color-success-shade);
-  --border-radius: 10px;
+  --border-radius: 0.625em;
   --border-style: solid;
-  --border-width: 4px;
-  --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  --border-width: 0.25em;
+  --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05), 
+    0px 6px 6px rgba(0, 0, 0, 0.1),
+    0px 8px 8px rgba(0, 0, 0, 0.05), 
+    0px 10px 15px rgba(0, 0, 0, 0.03),
+    0px 30px 30px rgba(0, 0, 0, 0.15),
+    0px 70px 60px rgba(0, 0, 0, 0.15);
   --color: var(--ion-color-light);
 }
 
 .warningT {
   --background: var(--ion-color-warning-tint);
   --border-color: var(--ion-color-warning-shade);
-  --border-radius: 10px;
+  --border-radius: 0.625em;
   --border-style: solid;
-  --border-width: 4px;
-  --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  --border-width: 0.25em;
+  --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05), 
+    0px 6px 6px rgba(0, 0, 0, 0.1),
+    0px 8px 8px rgba(0, 0, 0, 0.05), 
+    0px 10px 15px rgba(0, 0, 0, 0.03),
+    0px 30px 30px rgba(0, 0, 0, 0.15),
+    0px 70px 60px rgba(0, 0, 0, 0.15);
   --color: var(--ion-color-light);
 }
 
 .dangerT {
   --background: var(--ion-color-danger-tint);
   --border-color: var(--ion-color-danger-shade);
-  --border-radius: 10px;
+  --border-radius: 0.625em;
   --border-style: solid;
-  --border-width: 4px;
---box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  --border-width: 0.25em;
+  --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05), 
+    0px 6px 6px rgba(0, 0, 0, 0.1),
+    0px 8px 8px rgba(0, 0, 0, 0.05), 
+    0px 10px 15px rgba(0, 0, 0, 0.03),
+    0px 30px 30px rgba(0, 0, 0, 0.15),
+    0px 70px 60px rgba(0, 0, 0, 0.15);
   --color: var(--ion-color-light);
 }
 
@@ -119,28 +142,25 @@ ion-toolbar {
   color: var(--ion-color-light);
 }
 
-
-
 // Font color on Form Validators
 .ion-invalid.ion-touched ion-label {
   color: var(--ion-color-danger);
 }
 
-
 // Modals
 .cart-modal {
   @extend .modal-css;
   --height: 50%;
-  --border-radius: 10px;
-  padding: 25px;
+  --border-radius: 0.625em;
+  padding: 2.3125em;
 }
 
 .modal-css {
-  --border: 4px solid var(--ion-color-primary);
+  --border: 0.25em solid var(--ion-color-primary);
   --backdrop-opacity: 80% !important;
   ion-toolbar {
     text-align: center;
-    --background: var(--ion-color-primary) ;
+    --background: var(--ion-color-primary);
     --color: var(--ion-color-tertiary);
     text-transform: capitalize;
     font-variant: small-caps;
@@ -149,5 +169,3 @@ ion-toolbar {
     }
   }
 }
-
-

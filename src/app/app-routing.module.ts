@@ -1,69 +1,70 @@
-import { QuicklinkStrategy } from "ngx-quicklink";
+import { QuicklinkStrategy } from 'ngx-quicklink';
 
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import {
   canActivate,
   emailVerified,
   redirectLoggedInTo,
   redirectUnauthorizedTo,
-} from "@angular/fire/auth-guard";
-import { RouterModule, Routes } from "@angular/router";
+} from '@angular/fire/auth-guard';
+import { RouterModule, Routes } from '@angular/router';
 
-import { HomeRouteGuard } from "./_guards/home-route.guard";
-import { WelcomePage } from "./_home/welcome/welcome.page";
+import { HomeRouteGuard } from './_guards/home-route.guard';
+import { WelcomePage } from './_home/welcome/welcome.page';
 
-const redirectLoggedInToDash = () => redirectLoggedInTo(["/members/dashboard"]);
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(["/"]);
+const redirectLoggedInToDash = () => redirectLoggedInTo(['/members/dashboard']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 const verifiedEmail = () => emailVerified;
 
 const routes: Routes = [
   {
-    path: "welcome",
+    path: 'welcome',
     component: WelcomePage,
     ...canActivate(redirectLoggedInToDash),
     // canActivate: [HomeRouteGuard],
   },
 
   {
-    path: "unknown",
+    path: 'unknown',
     loadChildren: () =>
-      import("./_home/unknown/unknown.module").then((m) => m.UnknownPageModule),
+      import('./_home/unknown/unknown.module').then((m) => m.UnknownPageModule),
   },
   {
-    path: "verify-email",
+    path: 'verify-email',
     loadChildren: () =>
-      import("./_home/verify-email/verify-email.module").then(
+      import('./_home/verify-email/verify-email.module').then(
         (m) => m.VerifyEmailPageModule
       ),
   },
   {
-    path: "members",
+    path: 'members',
     loadChildren: () =>
-      import("./_members/members.module").then((m) => m.MembersModule),
+      import('./_members/members.module').then((m) => m.MembersModule),
     ...canActivate(redirectUnauthorizedToLogin),
     ...canActivate(verifiedEmail),
   },
   {
-    path: "home",
+    path: 'home',
     loadChildren: () =>
-      import("./_home/home.module").then((m) => m.HomePageModule),
+      import('./_home/home.module').then((m) => m.HomePageModule),
     ...canActivate(redirectLoggedInToDash),
   },
   {
-    path: "admins",
+    path: 'admins',
     loadChildren: () =>
-      import("./_admins/admins.module").then((m) => m.AdminsModule),
+      import('./_admins/admins.module').then((m) => m.AdminsModule),
     ...canActivate(redirectUnauthorizedToLogin),
   },
+
   {
-    path: "",
-    redirectTo: "/welcome",
-    pathMatch: "full",
+    path: '',
+    redirectTo: '/welcome',
+    pathMatch: 'full',
   },
   {
-    path: "**",
-    redirectTo: "/unknown",
-    pathMatch: "full",
+    path: '**',
+    redirectTo: '/unknown',
+    pathMatch: 'full',
   },
 ];
 @NgModule({

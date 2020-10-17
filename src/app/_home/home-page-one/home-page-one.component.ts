@@ -4,66 +4,66 @@ import {
   pulse,
   slideInLeft,
   slideInRight,
-} from "ng-animate";
-import { map } from "rxjs/operators";
+} from 'ng-animate';
+import { map } from 'rxjs/operators';
 
-import { transition, trigger, useAnimation } from "@angular/animations";
-import { Component, OnInit } from "@angular/core";
-import { ModalController } from "@ionic/angular";
+import { transition, trigger, useAnimation } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
-import { AboutAppComponent } from "../../_home/about-app/about-app.component";
-import { GetStartedComponent } from "../../_home/get-started/get-started.component";
-import { PrivacyComponent } from "../../_home/privacy/privacy.component";
-import { TermsComponent } from "../../_home/terms/terms.component";
-import { User } from "../../_models/user";
-import { AuthService } from "../../_services/auth.service";
-import { MessageService } from "../../_services/message.service";
-import { UserService } from "../../_services/user.service";
+import { AboutAppComponent } from '../../_home/about-app/about-app.component';
+import { GetStartedComponent } from '../../_home/get-started/get-started.component';
+import { PrivacyComponent } from '../../_home/privacy/privacy.component';
+import { TermsComponent } from '../../_home/terms/terms.component';
+import { User } from '../../_models/user';
+import { AuthService } from '../../_services/auth.service';
+import { MessageService } from '../../_services/message.service';
+import { UserService } from '../../_services/user.service';
 
 @Component({
-  selector: "app-home-page-one.component",
-  templateUrl: "./home-page-one.component.html",
-  styleUrls: ["./home-page-one.component.scss"],
+  selector: 'app-home-page-one.component',
+  templateUrl: './home-page-one.component.html',
+  styleUrls: ['./home-page-one.component.scss'],
   animations: [
-    trigger("fadeInDown", [
+    trigger('fadeInDown', [
       transition(
-        "* => *",
+        '* => *',
         useAnimation(fadeInDown, {
           // Set the duration to 5seconds and delay to 2seconds
           params: { timing: 1.5, delay: 0.5 },
         })
       ),
     ]),
-    trigger("slideInRight", [
+    trigger('slideInRight', [
       transition(
-        "* => *",
+        '* => *',
         useAnimation(slideInRight, {
           // Set the duration to 5seconds and delay to 2seconds
           params: { timing: 1.5, delay: 0.5 },
         })
       ),
     ]),
-    trigger("slideInLeft", [
+    trigger('slideInLeft', [
       transition(
-        "* => *",
+        '* => *',
         useAnimation(slideInLeft, {
           // Set the duration to 5seconds and delay to 2seconds
           params: { timing: 1.5, delay: 0.5 },
         })
       ),
     ]),
-    trigger("pulse", [
+    trigger('pulse', [
       transition(
-        "* => *",
+        '* => *',
         useAnimation(pulse, {
           // Set the duration to 5seconds and delay to 2seconds
           params: { timing: 2, delay: 0.75 },
         })
       ),
     ]),
-    trigger("flash", [
+    trigger('flash', [
       transition(
-        "* => *",
+        '* => *',
         useAnimation(flash, {
           // Set the duration to 5seconds and delay to 2seconds
           params: { timing: 2, delay: 0.75 },
@@ -73,7 +73,7 @@ import { UserService } from "../../_services/user.service";
   ],
 })
 export class HomePageOneComponent implements OnInit {
-  title = "home";
+  title = 'Home';
   user: User;
   fadeInDown;
   flash;
@@ -102,7 +102,7 @@ export class HomePageOneComponent implements OnInit {
   async showModalTerms() {
     const modal = await this.modalController.create({
       component: TermsComponent,
-      cssClass: "modal-css",
+      cssClass: 'modal-css',
       backdropDismiss: true,
       swipeToClose: true,
       showBackdrop: true,
@@ -115,7 +115,7 @@ export class HomePageOneComponent implements OnInit {
   async showModalPrivacy() {
     const modal = await this.modalController.create({
       component: PrivacyComponent,
-      cssClass: "modal-css",
+      cssClass: 'modal-css',
       backdropDismiss: true,
       swipeToClose: true,
       showBackdrop: true,
@@ -128,7 +128,7 @@ export class HomePageOneComponent implements OnInit {
   async showModalGetStarted() {
     const modal = await this.modalController.create({
       component: GetStartedComponent,
-      cssClass: "modal-css",
+      cssClass: 'modal-css',
       showBackdrop: true,
       backdropDismiss: false,
     });
@@ -140,7 +140,7 @@ export class HomePageOneComponent implements OnInit {
   async showModalAbout() {
     const modal = await this.modalController.create({
       component: AboutAppComponent,
-      cssClass: "modal-css",
+      cssClass: 'modal-css',
       backdropDismiss: true,
       swipeToClose: true,
       showBackdrop: true,

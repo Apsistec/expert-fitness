@@ -1,7 +1,7 @@
 .selector {
   font-weight: bold;
   font-size: larger;
-  padding-right: 10px;
+  padding-right: 0.625em;
 }
 
 /* entire container, keeps perspective */
@@ -48,11 +48,10 @@
   transform: rotateY(180deg);
 }
 
-.start-button{
-  padding-left:10px;
+.start-button {
+  padding-left: 0.625em;
 }
 
-.end-button{
-  padding-right: 10px;
+.end-button {
+  padding-right: 0.625em;
 }
-

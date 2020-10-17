@@ -1,4 +1,4 @@
-//student-create.page.ts
+// student-create.page.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -6,9 +6,9 @@ import { User } from '../../_models/user';
 import { ApiService } from '../../_services/api.service';
 
 @Component({
-  selector: "app-create-users",
-  templateUrl: "./create-users.page.html",
-  styleUrls: ["./create-users.page.scss"],
+  selector: 'app-create-users',
+  templateUrl: './create-users.page.html',
+  styleUrls: ['./create-users.page.scss'],
 })
 export class CreateUsersPage implements OnInit {
   data: User;
@@ -21,7 +21,7 @@ export class CreateUsersPage implements OnInit {
 
   submitForm() {
     this.apiService.createItem(this.data).subscribe((response) => {
-      this.router.navigate(["list-user"]);
+      this.router.navigate(['list-user']);
     });
   }
 }

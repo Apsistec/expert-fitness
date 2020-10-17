@@ -1,52 +1,52 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { AdminsPage } from "./admins.page";
-import { CommonModule } from "@angular/common";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { IonicModule } from "@ionic/angular";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AdminsPage } from './admins.page';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
 
 const routes: Routes = [
   {
-    path: "admins",
+    path: 'admins',
     component: AdminsPage,
     children: [
       {
-        path: "",
-        redirectTo:"/admins/dashboard",
-        pathMatch: "full"
+        path: '',
+        redirectTo: '/admins/dashboard',
+        pathMatch: 'full'
       },
       {
-        path: "dashboard",
+        path: 'dashboard',
         loadChildren: () =>
-          import("./admin-dashboard/admin-dashboard.module").then(
+          import('./admin-dashboard/admin-dashboard.module').then(
             (m) => m.AdminDashboardPageModule
           ),
       },
       {
-        path: "create-users",
+        path: 'create-users',
         loadChildren: () =>
-          import("./create-users/create-users.module").then(
+          import('./create-users/create-users.module').then(
             (m) => m.CreateUsersPageModule
           ),
       },
       {
-        path: "edit-users",
+        path: 'edit-users',
         loadChildren: () =>
-          import("./edit-users/edit-users.module").then(
+          import('./edit-users/edit-users.module').then(
             (m) => m.EditUsersPageModule
           ),
       },
       {
-        path: "list-users",
+        path: 'list-users',
         loadChildren: () =>
-          import("./list-users/list-users.module").then(
+          import('./list-users/list-users.module').then(
             (m) => m.ListUsersPageModule
           ),
       },
       {
-        path: "detail-users",
+        path: 'detail-users',
         loadChildren: () =>
-          import("./detail-users/detail-users.module").then(
+          import('./detail-users/detail-users.module').then(
             (m) => m.DetailUsersPageModule
           ),
       }
