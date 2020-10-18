@@ -1,20 +1,24 @@
-<ion-header translucent>
+<ion-header>
   <ion-toolbar color="medium">
     <ion-buttons slot="start">
-      <ion-button class="ion-text-capitalize" (click)="close()">
+      <ion-button (click)="close()">
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>
-      <ion-text color="medium"> Ticket Details </ion-text>
+      <ion-text color="medium">
+        Ticket Details
+      </ion-text>
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content fullscreen>
+<ion-content full-screen="true">
   <ion-card color="light">
     <ion-card-header>
       <ion-card-title *ngIf="!id">
-        <ion-text> New Ticket </ion-text>
+        <ion-text>
+          New Ticket
+        </ion-text>
       </ion-card-title>
       <ion-card-title *ngIf="id">
         <ion-text> Ticket: #{{ id }} </ion-text>
@@ -53,7 +57,6 @@
           </ion-segment>
         </ion-item>
         <ion-button
-          class="ion-text-capitalize"
           class="ion-padding-horizontal ion-margin-vertical"
           expand="block"
           [disabled]="!ticketForm.valid"
@@ -64,7 +67,6 @@
           <p *ngIf="id">Update Ticket</p>
         </ion-button>
         <ion-button
-          class="ion-text-capitalize"
           class="ion-padding-horizontal ion-margin-vertical"
           expand="block"
           (click)="deleteTicket()"

@@ -1,3 +1,4 @@
+// tslint:disable: no-string-literal
 import { AuthService } from '../../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,7 +8,7 @@ import { TicketService } from '../../_services/ticket.service';
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.scss']
+  styleUrls: ['./ticket.component.scss'],
 })
 export class TicketComponent implements OnInit {
   ticketForm: FormGroup;
@@ -16,49 +17,46 @@ export class TicketComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private modalController: ModalController,
-    private loadingController: LoadingController,
+    private modalCtrl: ModalController,
+    private loadingCtrl: LoadingController,
     private ticket: TicketService,
     private navParam: NavParams,
     public auth: AuthService
-  ) {
+  ) {}
 
+  ngOnInit() {
     this.ticketForm = this.fb.group({
       title: ['', Validators.required],
       desc: ['', Validators.required],
-      status: 0
+      status: 0,
     });
-  }
-
-  ngOnInit() {
 
     this.id = this.navParam.get('id');
     if (this.id) {
-      this.ticket.getTicket(this.id).subscribe(ticket => {
+      this.ticket.getTicket(this.id).subscribe((ticket) => {
         this.ticketForm.patchValue({
-          // tslint:disable-next-line: no-string-literal
           title: ticket['title'],
-          desc: ticket.desc,
-          status: ticket.status
+          desc: ticket['desc'],
+          status: ticket['status'],
         });
 
         // this.ticketForm.controls['title'].disable();
         // this.ticketForm.controls['desc'].disable();
 
-        this.ticket.getUser(ticket[creator]).subscribe(user => {
-          this.user = user.email;
+        this.ticket.getUser(ticket['creator']).subscribe((user) => {
+          this.user = user['email'];
         });
       });
     }
   }
 
   close() {
-    this.modalController.dismiss();
+    this.modalCtrl.dismiss();
   }
 
   async saveOrUpdate() {
-    const loading = await this.loadingController.create({
-      message: 'Loading...'
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading...',
     });
     await loading.present();
 
@@ -67,7 +65,7 @@ export class TicketComponent implements OnInit {
         loading.dismiss();
         this.close();
       },
-      err => {
+      (err) => {
         loading.dismiss();
       }
     );
@@ -75,7 +73,7 @@ export class TicketComponent implements OnInit {
 
   deleteTicket() {
     this.ticket.deleteTicket(this.id).then(() => {
-      this.modalController.dismiss();
+      this.modalCtrl.dismiss();
     });
   }
 }

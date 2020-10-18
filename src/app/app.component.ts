@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { CheckForUpdateService } from './_services/check-for-update.service';
+// import { CheckForUpdateService } from './_services/check-for-update.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private checkForUpdate: CheckForUpdateService
+    // private checkForUpdate: CheckForUpdateService
   ) {
     this.initializeApp();
   }
@@ -29,9 +29,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  checkUpdate() {
-    this.checkForUpdate.
+  ngOnInit() {
+    // this.checkForUpdate.checkForUpdateService();
   }
-
-  ngOnInit() {}
 }

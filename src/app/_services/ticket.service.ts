@@ -7,7 +7,7 @@ import { map, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TicketService {
   private ngUnsubscribe: Subject<any> = new Subject();
@@ -17,7 +17,7 @@ export class TicketService {
     private auth: AuthService,
     private afAuth: AngularFireAuth
   ) {
-    this.afAuth.authState.subscribe(user => {
+    this.afAuth.authState.subscribe((user) => {
       if (!user) {
         this.ngUnsubscribe.next();
         this.ngUnsubscribe.complete();
@@ -38,11 +38,11 @@ export class TicketService {
   getUserTickets() {
     const id = this.auth.currentBehaviorUser.value.id;
     return this.db
-      .collection('tickets', ref => ref.where('creator', '==', id))
+      .collection('tickets', (ref) => ref.where('creator', '==', id))
       .snapshotChanges()
       .pipe(
-        map(actions =>
-          actions.map(a => {
+        map((actions) =>
+          actions.map((a) => {
             const data: any = a.payload.doc.data();
             // tslint:disable-next-line: no-shadowed-variable
             const id: any = a.payload.doc.id;
@@ -58,8 +58,8 @@ export class TicketService {
       .collection('tickets')
       .snapshotChanges()
       .pipe(
-        map(actions =>
-          actions.map(a => {
+        map((actions) =>
+          actions.map((a) => {
             const data: any = a.payload.doc.data();
             const id: any = a.payload.doc.id;
             return { id, ...data };
@@ -70,17 +70,11 @@ export class TicketService {
   }
 
   getTicket(id) {
-    return this.db
-      .doc(`tickets/${id}`)
-      .valueChanges()
-      .pipe(take(1));
+    return this.db.doc(`tickets/${id}`).valueChanges().pipe(take(1));
   }
 
   getUser(id) {
-    return this.db
-      .doc(`users/${id}`)
-      .valueChanges()
-      .pipe(take(1));
+    return this.db.doc(`users/${id}`).valueChanges().pipe(take(1));
   }
 
   deleteTicket(id) {
