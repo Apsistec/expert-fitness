@@ -1,19 +1,16 @@
 <ion-header translucent>
-  <ion-toolbar color="primary" class="ion-text-center">
-    <ion-title color="tertiary" *ngIf="loginTitle"> Account Login</ion-title>
-    <ion-title color="tertiary" *ngIf="!loginTitle">
-      Account Registration</ion-title
-    >
+  <ion-toolbar class="ion-text-center">
+    <ion-title *ngIf="loginTitle">Account Login</ion-title>
+    <ion-title *ngIf="!loginTitle">Account Registration</ion-title>
     <ion-buttons slot="end">
-      <ion-button class="end-button" (click)="dismissModal()"
-        >Close
-      </ion-button>
+      <ion-button (click)="dismissModal()">Close </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
   <div class="flip-container" #flipcontainer>
     <div class="flipper">
+      <!-- Login Side of card -->
       <div class="front ion-no-margin">
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
           <ion-list class="ion-no-margin ion-no-padding">
@@ -47,7 +44,6 @@
                 Email not Valid.
               </ion-text>
             </div>
-
             <ion-item>
               <ion-label position="floating">Password</ion-label>
               <ion-input
@@ -64,7 +60,8 @@
                 slot="end"
                 *ngIf="!hid"
                 name="eye-sharp"
-              ></ion-icon>
+              >
+              </ion-icon>
               <ion-icon
                 color="dark"
                 size="small"
@@ -72,7 +69,8 @@
                 slot="end"
                 *ngIf="hid"
                 name="eye-off-sharp"
-              ></ion-icon>
+              >
+              </ion-icon>
             </ion-item>
             <div
               *ngIf="
@@ -84,29 +82,28 @@
                 *ngIf="loginFormControl.password.errors.required"
                 color="danger"
               >
-                Password required.
+                Password required
               </ion-text>
               <ion-text
                 *ngIf="loginFormControl.password.errors.minlength"
                 color="danger"
               >
-                Must be 6 characters or more.
+                Must be 6 characters or more
               </ion-text>
               <ion-text
                 *ngIf="loginFormControl.password.errors.maxlength"
                 color="danger"
               >
-                Must be no more than 25 characters.
+                Must be no more than 25 characters
               </ion-text>
               <ion-text
                 *ngIf="loginFormControl.password.errors.pattern"
                 color="danger"
               >
-                At least 1 uppercase, 1 lowercase, and 1 number required.
+                At least 1 uppercase, 1 lowercase, and 1 number required
               </ion-text>
             </div>
-
-            <ion-item lines="none">
+            <ion-item>
               <ion-label>Select Role</ion-label>
               <ion-select
                 class="selector"
@@ -120,20 +117,18 @@
               </ion-select>
             </ion-item>
           </ion-list>
-
           <ion-button
             [disabled]="loginForm.invalid"
-            color="tertiary"
-            expand="full"
+            color="secondary"
+            expand="block"
             type="submit"
           >
             <ion-icon size="small" slot="start" name="arrow-forward-sharp">
             </ion-icon>
             <ion-text> Login </ion-text>
           </ion-button>
-          <hr />
           <ion-button
-            expand="full"
+            expand="block"
             color="google"
             type="button"
             (click)="authService.GoogleAuth()"
@@ -143,32 +138,28 @@
           </ion-button>
           <ion-button
             type="button"
-            expand="full"
+            expand="block"
             color="twitter"
             (click)="authService.GoogleAuth()"
           >
             <ion-icon size="small" slot="start" name="logo-twitter"></ion-icon>
             Login with Twitter
           </ion-button>
-          <hr />
           <ion-button
-            strong
-            expand="full"
+            size="small"
+            color="dark-shadow"
+            expand="block"
             fill="clear"
             type="button"
             (click)="toggleRegister()"
           >
-    
-            <ion-icon
-              size="small"
-              slot="start"
-              name="person-add-sharp"
-            ></ion-icon>
-            Create Account
+            I want to Create an Account
+            <ion-icon size="small" slot="end" name="arrow-forward"></ion-icon>
           </ion-button>
         </form>
       </div>
 
+      <!-- Register Side of Card -->
       <div class="back ion-no-margin">
         <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
           <ion-list class="ion-no-margin ion-no-padding">
@@ -203,7 +194,6 @@
                 Must be no more than 25 characters.
               </ion-text>
             </div>
-
             <ion-item>
               <ion-label position="floating">Email</ion-label>
               <ion-input
@@ -234,7 +224,6 @@
                 Email not valid.
               </ion-text>
             </div>
-
             <ion-item>
               <ion-label position="floating">Password</ion-label>
               <ion-input
@@ -251,7 +240,8 @@
                 slot="end"
                 *ngIf="!hide"
                 name="eye-sharp"
-              ></ion-icon>
+              >
+              </ion-icon>
               <ion-icon
                 color="dark"
                 size="small"
@@ -259,7 +249,8 @@
                 slot="end"
                 *ngIf="hide"
                 name="eye-off-sharp"
-              ></ion-icon>
+              >
+              </ion-icon>
             </ion-item>
             <div
               *ngIf="
@@ -296,7 +287,7 @@
           <ion-button
             type="submit"
             color="tertiary"
-            expand="full"
+            expand="block"
             [disabled]="registerForm.invalid"
           >
             <ion-icon
@@ -306,10 +297,9 @@
             ></ion-icon>
             <ion-text> Register </ion-text>
           </ion-button>
-          <hr />
           <ion-button
             type="button"
-            expand="full"
+            expand="block"
             color="google"
             (click)="authService.GoogleAuth()"
           >
@@ -318,16 +308,15 @@
           </ion-button>
           <ion-button
             (click)="authService.GoogleAuth()"
-            expand="full"
+            expand="block"
             color="twitter"
           >
             <ion-icon size="small" slot="start" name="logo-twitter"></ion-icon>
             Register with Twitter
           </ion-button>
-          <hr />
           <ion-button
-            strong
-            expand="full"
+            color="dark-tint"
+            expand="block"
             fill="clear"
             type="button"
             (click)="toggleRegister()"
@@ -338,10 +327,10 @@
               slot="start"
               type="button"
             ></ion-icon>
-            Back to Sign In
+            Go Back to Sign In
           </ion-button>
         </form>
       </div>
     </div>
   </div>
-</ion-content>
+<ion-content>

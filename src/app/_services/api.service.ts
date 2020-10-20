@@ -13,7 +13,7 @@ import { User } from '../_models/user';
 export class ApiService {
 
   // API path
-  base_path = 'http://localhost:3000/students';
+  Base_Path = 'http://localhost:3000/students';
 
   constructor(private http: HttpClient) { }
 
@@ -45,7 +45,7 @@ export class ApiService {
   // Create a new item
   createItem(item): Observable<User> {
     return this.http
-      .post<User>(this.base_path, JSON.stringify(item), this.httpOptions)
+      .post<User>(this.Base_Path, JSON.stringify(item), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -55,7 +55,7 @@ export class ApiService {
   // Get single student data by ID
   getItem(id): Observable<User> {
     return this.http
-      .get<User>(this.base_path + '/' + id)
+      .get<User>(this.Base_Path + '/' + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -65,7 +65,7 @@ export class ApiService {
   // Get students data
   getList(): Observable<User> {
     return this.http
-      .get<User>(this.base_path)
+      .get<User>(this.Base_Path)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -75,7 +75,7 @@ export class ApiService {
   // Update item by id
   updateItem(id, item): Observable<User> {
     return this.http
-      .put<User>(this.base_path + '/' + id, JSON.stringify(item), this.httpOptions)
+      .put<User>(this.Base_Path + '/' + id, JSON.stringify(item), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -85,7 +85,7 @@ export class ApiService {
   // Delete item by id
   deleteItem(id) {
     return this.http
-      .delete<User>(this.base_path + '/' + id, this.httpOptions)
+      .delete<User>(this.Base_Path + '/' + id, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

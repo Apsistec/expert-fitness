@@ -29,62 +29,61 @@
 @import "~ngx-sharebuttons/themes/material/material-dark-theme";
 
 // Fonts
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800,900&family=Open+Sans:wght@800&family=Philosopher:wght@700,800&family=Roboto&display=swap");
-
-// ion-col {
-//   border: 0.125em solid green;
-// }
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Open+Sans:wght@700;800&family=Philosopher:wght@700;800&family=Roboto:wght@700;800&display=swap");
 
 // Classes
 a:hover {
   cursor: pointer;
 }
 
-ion-header > ion-toolbar {
-  height: 7em;
-  // max-height: 30vh;
-}
-
 ion-list-header {
-  background: var(--ion-color-medium);
-  font-family: "Montserrat", sans-serif;
-  color: var(--ion-color-secondary);
+  --background: var(--ion-color-medium-tint);
+  color: var(--ion-color-secondary-shade);
+  text-transform: uppercase;
+  font: 800 16px/1 "Montserrat", sans-serif;
 }
 
 ion-card-header {
-  background: var(--ion-color-primary-tint);
+  --background: var(--ion-color-primary-tint);
 }
-  ion-card-title {
-    ion-text{
-  color: var(--ion-color-light-tint);
+
+ion-card-title {
+  ion-text{
+    color: var(--ion-color-light-tint);
     font: 800 "Montserrat", sans-serif;
   }
-  }
-  ion-card-subtitle {
-    ion-text{
+}
+
+ion-card-subtitle {
+  ion-text{
     color: var(--ion-color-warning);
-    font-family: "Philosopher", sans-serif;
-  }}
+    font: 800 "Philosopher", sans-serif;
+  }
+}
 
   
 ion-toolbar {
-  background: var(--ion-color-primary);
-  color: var(--ion-color-light);
-  text-transform: uppercase;
+  --min-height: 5em;
+  --background: var(--ion-color-primary-tint);
+  ion-title{
+    font: 800 "Montserrat", sans-serif;
+    text-transform: uppercase;
+    color: var(--ion-color-medium-tint);
+    text-transform: uppercase;
+    margin-left: 4em;
+  }
   ion-button {
-    color: var(--ion-color-warning);
+    color: var(--ion-color-warning-tint);
   }
 }
 
 .small-logo {
-  // height: 4.5em;
   width: 7.5em;
-  margin: 25px 10px 0 25px;
+  margin: 15px 10px 10px 25px;
 }
 
 // Toasts
 .successT {
-  --background: var(--ion-color-success-tint);
   --border-color: var(--ion-color-success-shade);
   --border-radius: 0.625em;
   --border-style: solid;
@@ -131,15 +130,15 @@ ion-toolbar {
 // Alerts
 .successA {
   --background: var(--ion-color-success-tint);
-  color: var(--ion-color-light);
+  --color: var(--ion-color-light);
 }
 .warningA {
   --background: var(--ion-color-warning-tint);
-  color: var(--ion-color-light);
+  --color: var(--ion-color-light);
 }
 .dangerA {
   --background: var(--ion-color-danger-tint);
-  color: var(--ion-color-light);
+  --color: var(--ion-color-light);
 }
 
 // Font color on Form Validators
@@ -159,13 +158,13 @@ ion-toolbar {
   --border: 0.25em solid var(--ion-color-primary);
   --backdrop-opacity: 80% !important;
   ion-toolbar {
-    text-align: center;
     --background: var(--ion-color-primary);
     --color: var(--ion-color-tertiary);
+    text-align: center;
     text-transform: capitalize;
     font-variant: small-caps;
     ion-button {
-      color: var(--ion-color-warning);
+      --color: var(--ion-color-warning);
     }
   }
 }

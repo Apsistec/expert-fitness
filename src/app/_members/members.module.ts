@@ -9,10 +9,9 @@ import { ChartsComponent } from './charts/charts.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ExcelSheetJsComponent } from './excel-sheet-js/excel-sheet-js.component';
 import { UploadExcelComponent } from './upload-excel/upload-excel.component';
-import { RouterModule } from '@angular/router';
 import { DragndropComponent } from './dragndrop/dragndrop.component';
 import { SharedModule } from '../_shared/shared.module';
-
+import { MembersRoutingModule } from "./members-routing.module";
 @NgModule({
   declarations: [
     CancelSubscriptionComponent,
@@ -26,29 +25,28 @@ import { SharedModule } from '../_shared/shared.module';
   ],
   entryComponents: [TicketComponent],
   imports: [
-    RouterModule,
     IonicModule,
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
     HighchartsChartModule,
-    SharedModule
+    SharedModule,
+    MembersRoutingModule,
   ],
   exports: [
-    CancelSubscriptionComponent,
-    DragndropComponent,
-    InvoicesComponent,
-    ChartsComponent,
-    TicketComponent,
-    ExcelSheetJsComponent,
-    UploadExcelComponent,
-    InvoicesComponent,
-    RouterModule,
-    IonicModule,
-    FormsModule,
-    CommonModule,
-    ReactiveFormsModule,
-    HighchartsChartModule,
+    // CancelSubscriptionComponent,
+    // DragndropComponent,
+    // InvoicesComponent,
+    // ChartsComponent,
+    // TicketComponent,
+    // ExcelSheetJsComponent,
+    // UploadExcelComponent,
+    // InvoicesComponent,
+    // IonicModule,
+    // FormsModule,
+    // CommonModule,
+    // ReactiveFormsModule,
+    // HighchartsChartModule,
   ],
 })
-export class MembersModule{}
+export class MembersPageModule{}

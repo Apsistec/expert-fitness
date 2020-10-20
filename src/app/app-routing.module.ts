@@ -18,53 +18,57 @@ const verifiedEmail = () => emailVerified;
 
 const routes: Routes = [
   {
-    path: 'welcome',
+    path: "welcome",
     component: WelcomePage,
     ...canActivate(redirectLoggedInToDash),
-    // canActivate: [HomeRouteGuard],
-  },
-
-  {
-    path: 'unknown',
-    loadChildren: () =>
-      import('./_home/unknown/unknown.module').then((m) => m.UnknownPageModule),
+    canActivate: [HomeRouteGuard]
   },
   {
-    path: 'verify-email',
+    path: "unknown",
     loadChildren: () =>
-      import('./_home/verify-email/verify-email.module').then(
+      import("./_home/unknown/unknown.module").then((m) => m.UnknownPageModule)
+  },
+  {
+    path: "verify-email",
+    loadChildren: () =>
+      import("./_home/verify-email/verify-email.module").then(
         (m) => m.VerifyEmailPageModule
-      ),
+      )
   },
   {
-    path: 'members',
+    path: "members",
     loadChildren: () =>
-      import('./_members/members.module').then((m) => m.MembersModule),
+      import("./_members/members.module").then((m) => m.MembersPageModule),
     ...canActivate(redirectUnauthorizedToLogin),
-    ...canActivate(verifiedEmail),
+    ...canActivate(verifiedEmail)
   },
   {
-    path: 'home',
+    path: "home",
     loadChildren: () =>
-      import('./_home/home.module').then((m) => m.HomePageModule),
-    ...canActivate(redirectLoggedInToDash),
+      import("./_home/home.module").then((m) => m.HomePageModule),
+    ...canActivate(redirectLoggedInToDash)
   },
   {
-    path: 'admins',
+    path: "trainers",
     loadChildren: () =>
-      import('./_admins/admins.module').then((m) => m.AdminsModule),
-    ...canActivate(redirectUnauthorizedToLogin),
-  },
-
-  {
-    path: '',
-    redirectTo: '/welcome',
-    pathMatch: 'full',
+      import("./_trainers/trainers.module").then((m) => m.TrainersPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
-    path: '**',
-    redirectTo: '/unknown',
-    pathMatch: 'full',
+    path: "admins",
+    loadChildren: () =>
+      import("./_admins/admins.module").then((m) => m.AdminsModule),
+    ...canActivate(redirectUnauthorizedToLogin)
+  },
+  {
+    path: "",
+    redirectTo: "/welcome",
+    pathMatch: "full"
+  },
+  {
+    path: "**",
+    redirectTo: "/unknown",
+    pathMatch: "full"
   },
 ];
 @NgModule({

@@ -21,6 +21,7 @@ module.exports = {
     "@typescript-eslint/prefer-for-of": "warn",
     "@typescript-eslint/triple-slash-reference": "error",
     "@typescript-eslint/unified-signatures": "warn",
+    "@typescript-eslint/no"
     "comma-dangle": "warn",
     "constructor-super": "error",
     eqeqeq: ["warn", "always"],

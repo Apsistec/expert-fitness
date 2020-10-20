@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../_services/auth.service';
 import { TicketService } from '../../_services/ticket.service';
-import { TicketComponent } from '../../_shared/ticket/ticket.component';
+import { TicketComponent } from '../../_members/ticket/ticket.component';
 
 @Component({
   selector: 'app-user-tickets',

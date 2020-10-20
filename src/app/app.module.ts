@@ -1,6 +1,6 @@
 import { QuicklinkModule } from 'ngx-quicklink';
-import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
-import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+// import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+// import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -67,10 +67,10 @@ import { AboutAppComponent } from './_home/about-app/about-app.component';
     QuicklinkModule,
     AppRoutingModule,
     HttpClientModule,
-    ShareButtonsModule.withConfig({
-      debug: true,
-    }),
-    ShareIconsModule,
+    // ShareButtonsModule.withConfig({
+    //   debug: true,
+    // }),
+    // ShareIconsModule,
   ],
   providers: [
     StatusBar,

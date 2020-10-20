@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs';
-
 import { Injectable } from '@angular/core';
 import {
     ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree
@@ -10,6 +9,7 @@ Injectable({
     providedIn: 'root',
 });
 export class HomeRouteGuard implements CanActivate {
+  
     constructor(private storage: Storage, private router: Router) {}
 
     canActivate(

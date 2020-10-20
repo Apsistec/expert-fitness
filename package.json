@@ -14,7 +14,7 @@
   "private": true,
   "dependencies": {
     "@angular-devkit/schematics": "^10.1.4",
-    "@angular/animations": "~10.1.0",
+    "@angular/animations": "^10.1.6",
     "@angular/cdk": "^10.2.0",
     "@angular/common": "~10.1.0",
     "@angular/core": "~10.1.0",
@@ -52,7 +52,6 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1001.0",
     "@angular/cli": "~10.1.0",
     "@angular/compiler": "~10.1.0",
     "@angular/compiler-cli": "~10.1.0",

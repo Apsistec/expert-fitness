@@ -7,14 +7,9 @@ import { IonicModule } from '@ionic/angular';
 
 const routes: Routes = [
   {
-    path: 'admins',
+    path: '',
     component: AdminsPage,
     children: [
-      {
-        path: '',
-        redirectTo: '/admins/dashboard',
-        pathMatch: 'full'
-      },
       {
         path: 'dashboard',
         loadChildren: () =>
@@ -49,7 +44,12 @@ const routes: Routes = [
           import('./detail-users/detail-users.module').then(
             (m) => m.DetailUsersPageModule
           ),
-      }
+      },
+      {
+        path: '',
+        redirectTo: '/admins/dashboard',
+        pathMatch: 'full',
+      },
     ],
   },
 ];
