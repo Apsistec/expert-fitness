@@ -11,7 +11,8 @@ import { ExcelSheetJsComponent } from './excel-sheet-js/excel-sheet-js.component
 import { UploadExcelComponent } from './upload-excel/upload-excel.component';
 import { DragndropComponent } from './dragndrop/dragndrop.component';
 import { SharedModule } from '../_shared/shared.module';
-import { MembersRoutingModule } from "./members-routing.module";
+import { MembersRoutingModule } from './members-routing.module';
+import { MaterialModule } from '../material/material.module';
 @NgModule({
   declarations: [
     CancelSubscriptionComponent,
@@ -27,6 +28,7 @@ import { MembersRoutingModule } from "./members-routing.module";
   imports: [
     IonicModule,
     FormsModule,
+    MaterialModule,
     CommonModule,
     ReactiveFormsModule,
     HighchartsChartModule,

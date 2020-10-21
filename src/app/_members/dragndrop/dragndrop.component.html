@@ -1,33 +1,46 @@
-
-
-  <ion-grid>
-    <ion-row>
-
-      <ion-col>
-        <ion-card color='medium' class='ion-padding'>
-          <h2>My Lineup</h2>
-          <ion-card class='ion-padding' color='medium'>
-            <div cdkDropList #todoList='cdkDropList' [cdkDropListData]='myLineup'
-            [cdkDropListConnectedTo]='doneList' class='list' (cdkDropListDropped)='drop($event)'>
-            <div class='list-item' *ngFor='let item of myLineup' cdkDrag>{{item}}</div>
-          </div>
-        </ion-card>
-      </ion-card>
-    </ion-col>
-    <ion-col>
-    <ion-card color='light' class='ion-padding'>
-
-        <h2>Players</h2>
-        <ion-card class='ion-padding' color='medium'>
-          <div cdkDropList #doneList='cdkDropList' [cdkDropListData]='players'
-          [cdkDropListConnectedTo]='todoList' class='list' (cdkDropListDropped)='drop($event)'>
-          <div class='list-item' *ngFor='let item of players' cdkDrag>{{item}}</div>
+<ion-content cdkDropListGroup>
+  <ion-card class="example-container">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-text>
+          <h2>Available items</h2>
+        </ion-text>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div
+        cdkDropList
+        [cdkDropListData]="items"
+        class="example-list"
+        cdkDropListSortingDisabled
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let item of items" cdkDrag>
+          {{ item }}
         </div>
-      </ion-card>
-    </ion-card>
-    </ion-col>
+      </div>
+    </ion-card-content>
+  </ion-card>
 
-    </ion-row>
-  </ion-grid>
-
-
+  <ion-card class="example-container">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-text>
+          <h2>Shopping basket</h2>
+        </ion-text>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div
+        cdkDropList
+        [cdkDropListData]="basket"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let item of basket" cdkDrag>
+          {{ item }}
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

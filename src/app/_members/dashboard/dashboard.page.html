@@ -1,13 +1,15 @@
 <app-header></app-header>
 <ion-content fullscreen>
-  <ion-grid *ngIf="!user.emailVerified; else verified">
-    <ion-row>
-      <ion-col>
-        <ion-card
+  <ion-grid>
+    <ng-component *ngIf="!user.emailVerified; else verified">
+
+      <ion-row>
+        <ion-col>
+          <ion-card
           style="margin: auto; top: 40vh; max-width: 500px"
           color="medium"
           class="ion-padding ion-text-center"
-        >
+          >
           <ion-card-header>
             <ion-card-title>
               <ion-text color="danger">
@@ -24,9 +26,9 @@
         </ion-card>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ng-component>
 
-  <ion-grid #verified *ngIf="user && user.emailVerified; then user | async">
+ <ng-template #verified *ngIf="user && user.emailVerified; then user | async">
     <ion-row>
       <ion-col>
         <ion-card>
@@ -469,5 +471,6 @@
         </ion-card>
       </ion-col>
     </ion-row>
+ </ng-template>
   </ion-grid>
 </ion-content>

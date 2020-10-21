@@ -1,92 +1,82 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { TicketComponent } from "./ticket/ticket.component";
-import { DragndropComponent } from "./dragndrop/dragndrop.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { TicketComponent } from './ticket/ticket.component';
+import { DragndropComponent } from './dragndrop/dragndrop.component';
 
-import { MembersPage } from "./members.page";
+import { MembersPage } from './members.page';
 import { UploadExcelComponent } from './upload-excel/upload-excel.component';
 import { ExcelSheetJsComponent } from './excel-sheet-js/excel-sheet-js.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: MembersPage,
 
     children: [
       {
-        path: "workouts",
+        path: 'workouts',
         loadChildren: () =>
-          import("./workouts/workouts.module").then(
+          import('./workouts/workouts.module').then(
             (m) => m.WorkoutsPageModule
           ),
         // outlet: "home",
       },
       {
-        path: "videos",
+        path: 'videos',
         loadChildren: () =>
-          import("./videos/videos.module").then((m) => m.VideosPageModule),
+          import('./videos/videos.module').then((m) => m.VideosPageModule),
         // outlet: "home",
       },
       {
-        path: "newsfeed",
+        path: 'newsfeed',
         loadChildren: () =>
-          import("./newsfeed/newsfeed.module").then(
+          import('./newsfeed/newsfeed.module').then(
             (m) => m.NewsfeedPageModule
           ),
         // outlet: "home",
       },
       {
-        path: "nutrition",
+        path: 'nutrition',
         loadChildren: () =>
-          import("./nutrition/nutrition.module").then(
+          import('./nutrition/nutrition.module').then(
             (m) => m.NutritionPageModule
           ),
         // outlet: "home",
       },
       {
-        path: "dashboard",
+        path: 'user-tickets',
         loadChildren: () =>
-          import("./dashboard/dashboard.module").then(
-            (m) => m.DashboardPageModule
-          ),
-        // outlet: "home",
-      },
-      {
-        path: "user-tickets",
-        loadChildren: () =>
-          import("./user-tickets/user-tickets.module").then(
+          import('./user-tickets/user-tickets.module').then(
             (m) => m.UserTicketsPageModule
-          ),
-        // outlet: "home",
+          ), 
       },
       {
-        path: "dashboard",
+        path: 'dashboard',
         loadChildren: () =>
-          import("./dashboard/dashboard.module").then(
+          import('./dashboard/dashboard.module').then(
             (m) => m.DashboardPageModule
-          ),
-        // outlet: "home",
+          )
       },
       {
-        path: "dragndrop",
+        path: 'dragndrop',
         component: DragndropComponent,
       },
       {
-        path: "ticket",
+        path: 'ticket',
         component: TicketComponent,
       },
       {
-        path: "upload-excel",
+        path: 'upload-excel',
         component: UploadExcelComponent,
       },
       {
-        path: "excel-sheet-js",
+        path: 'excel-sheet-js',
         component: ExcelSheetJsComponent,
       },
       {
-        path: "",
-        redirectTo: "/members/dashboard",
-        pathMatch: "full",
+        path: '',
+        redirectTo: '/members/dashboard',
+        pathMatch: 'full',
         // outlet: "home"
       },
     ],

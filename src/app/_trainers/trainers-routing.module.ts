@@ -5,20 +5,20 @@ import { TrainersPage } from './trainers.page';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: TrainersPage,
     children: [
       {
-        path: "dashboard",
+        path: 'dashboard',
         loadChildren: () =>
-          import("./dashboard/dashboard.module").then(
+          import('./dashboard/dashboard.module').then(
             (m) => m.DashboardPageModule
           ),
       },
       {
         path: '',
-        redirectTo: "/trainers/dashboard",
-        pathMatch: "full"
+        redirectTo: '/trainers/dashboard',
+        pathMatch: 'full'
       }
     ],
   },
