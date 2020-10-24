@@ -1,125 +1,184 @@
 <app-header></app-header>
 <ion-content fullscreen>
 
-    <ion-grid style="background-image: url(../../../assets/svg/us.svg)">
-        <ion-row class="ion-text-center ion-justify-content-center">
-        <ion-col size-md="4">
-            <h1>Pricing Plans</h1>
-        </ion-col>
-    </ion-row>
-    
-    <ion-row class="ion-justify-content-around">
-        <ion-col size-md="3" class="ion-text-left ion-align-self-stretch">
+    <ion-grid>
+      <ion-card color="secondary" class="title-card ion-text-center ion-padding">
+
+
+            <ion-card-title>
+              <ion-text>
+
+                <h1>Pricing Plans</h1>
+              </ion-text>
+            </ion-card-title>
+            <ion-card-subtitle>
+              <ion-text>
+               <h4>Choose one of our Awesome plans</h4>
+              </ion-text>
+            </ion-card-subtitle>
+
+    </ion-card>
+
+        <ion-row class="ion-justify-content-around">
+          <ion-col size-md="3" class="ion-text-left ion-align-self-stretch">
             <ion-card class="ion-padding">
-                <ion-card-header>
+              <ion-card-header>                    <ion-card-title>
+                <ion-row class="ion-justify-content-start">
+                  <ion-text>
+                    <h2>Startup</h2>
+                  </ion-text>
+                </ion-row>
+                <ion-row class="ion-justify-content-end">
+                  <ion-text>
+                    <p class="h2"><strong>$9.90</strong></p>
+                  </ion-text>
+                </ion-row>
+              </ion-card-title>
+              <ion-card-subtitle>
+                <ion-text>
+                  <p class="h4">
+                    Far far away, behind the word mountains, far
+                    from the countries.
+                  </p>
+                </ion-text>
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <hr>
+              <ion-list style="border-radius: 12px;">
+                <ion-list-header>
+                  <ion-title>
+                    <ion-text>
+                      Features:
+                    </ion-text>
+                  </ion-title>
+                </ion-list-header>
+                <ion-item>
+                  <p class="ion-text-start"><em>Unlimited calls</em></p>
+                </ion-item>
+                <ion-item>
+                  <p class="ion-text-start"><em>Free hosting</em></p>
+                </ion-item>
+                <ion-item lines="none">
+                  <p class="ion-text-start"><em>40MB of storage</em></p>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+            <ion-footer class="ion-text-center ion-padding">
+              <ion-button color="tertiary" size="large" (click)="purchaseChoiceOne()"
+              >Choose Plan One</ion-button
+              >
+            </ion-footer>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size-md="3" class="ion-text-left ion-align-self-stretch">
+          <ion-card class="ion-padding">
+            <ion-card-header >
                     <ion-card-title>
-                        <ion-row>
-                            <ion-text>
-                                <h2>Startup</h2>
-                            </ion-text>
-                        </ion-row>
-                        <ion-row>
-                            <ion-text>
-                                <p class="h2"><strong>$9.90</strong></p>
-                            </ion-text>
-                        </ion-row>
+                      <ion-row class="ion-justify-content-start">
+                        <ion-text>
+                          <h2>Startup</h2>
+                        </ion-text>
+                      </ion-row>
+                      <ion-row class="ion-justify-content-end">
+                        <ion-text>
+                          <p class="h2"><strong>$19.90</strong></p>
+                        </ion-text>
+                      </ion-row>
                     </ion-card-title>
                     <ion-card-subtitle>
-                        <ion-text>
-                            <p class="h4">
-                                Far far away, behind the word mountains, far
-                                from the countries.
-                            </p>
-                        </ion-text>
+                      <ion-text>
+                        <p class="h4">
+                          Far far away, behind the word mountains, far
+                          from the countries.
+                        </p>
+                      </ion-text>
                     </ion-card-subtitle>
-                </ion-card-header>
-                <ion-card-content>
-                    <p class="ion-text-right"><em>Unlimited calls</em></p>
-                    <p class="ion-text-right"><em>Free hosting</em></p>
-                    <p class="ion-text-right"><em>40MB of storage</em></p>
-                </ion-card-content>
-                <ion-footer>
-                    <ion-button (click)="purchaseChoiceOne()"
-                    >Choose Plan One</ion-button
-                    >
-                </ion-footer>
-            </ion-card>
-        </ion-col>
-        
-        <ion-col size-md="3" class="ion-text-left ion-align-self-stretch">
-            <ion-card class="ion-padding">
-                <ion-card-header>
-                    <ion-card-title>
-                        <ion-row>
-                            <ion-text>
-                                <h2>Startup</h2>
-                            </ion-text>
-                        </ion-row>
-                        <ion-row>
-                            <ion-text>
-                                <p class="h2"><strong>$19.90</strong></p>
-                            </ion-text>
-                        </ion-row>
-                    </ion-card-title>
-                    <ion-card-subtitle>
-                        <ion-text>
-                            <p class="h4">
-                                Far far away, behind the word mountains, far
-                                from the countries.
-                            </p>
-                        </ion-text>
-                    </ion-card-subtitle>
-                </ion-card-header>
-                <ion-card-content>
-                    <p class="ion-text-right"><em>Unlimited calls</em></p>
-                    <p class="ion-text-right"><em>Free hosting</em></p>
-                    <p class="ion-text-right"><em>40MB of storage</em></p>
-                </ion-card-content>
-                <ion-footer>
-                    <ion-button (click)="purchaseChoiceTwo()"
+                  </ion-card-header>
+                  <ion-card-content>
+                    <hr>
+                    <ion-list style="border-radius: 12px;">
+                      <ion-list-header>
+                        <ion-title>
+                          <ion-text>
+                            Features:
+                          </ion-text>
+                        </ion-title>
+                      </ion-list-header>
+                      <ion-item>
+                        <p class="ion-text-start"><em>Unlimited calls</em></p>
+                      </ion-item>
+                      <ion-item>
+                        <p class="ion-text-start"><em>Free hosting</em></p>
+                      </ion-item>
+                      <ion-item lines="none">
+                        <p class="ion-text-start"><em>40MB of storage</em></p>
+                      </ion-item>
+                    </ion-list>
+                  </ion-card-content>
+                  <ion-footer class=" ion-padding ion-text-center">
+                    <ion-button color="tertiary" size="large" (click)="purchaseChoiceTwo()"
                     >Choose Plan Two</ion-button
                     >
-                </ion-footer>
-            </ion-card>
-        </ion-col>
-        
-        <ion-col size-md="3" class="ion-text-left ion-align-self-stretch">
-            <ion-card class="ion-padding">
-                <ion-card-header>
+                  </ion-footer>
+                </ion-card>
+              </ion-col>
+
+              <ion-col size-md="3" class="ion-text-left ion-align-self-stretch">
+                <ion-card class="ion-padding">
+                  <ion-card-header >
                     <ion-card-title>
-                        <ion-row>
-                            <ion-text>
-                                <h2>Startup</h2>
-                            </ion-text>
-                        </ion-row>
-                        <ion-row>
-                            <ion-text>
-                                <p class="h2"><strong>$29.90</strong></p>
-                            </ion-text>
-                        </ion-row>
+                      <ion-row class="ion-justify-content-start">
+                        <ion-text>
+                          <h2>Startup</h2>
+                        </ion-text>
+                      </ion-row>
+                      <ion-row class="ion-justify-content-end">
+                        <ion-text>
+                          <p class="h2"><strong>$29.90</strong></p>
+                        </ion-text>
+                      </ion-row>
                     </ion-card-title>
                     <ion-card-subtitle>
-                        <ion-text>
-                            <p class="h4">
-                                Far far away, behind the word mountains, far
-                                from the countries.
-                            </p>
-                        </ion-text>
+                      <ion-text>
+                        <p class="h4">
+                          Far far away, behind the word mountains, far
+                          from the countries.
+                        </p>
+                      </ion-text>
                     </ion-card-subtitle>
-                </ion-card-header>
-                <ion-card-content>
-                    <p class="ion-text-right"><em>Unlimited calls</em></p>
-                    <p class="ion-text-right"><em>Free hosting</em></p>
-                    <p class="ion-text-right"><em>40MB of storage</em></p>
-                </ion-card-content>
-                <ion-footer>
-                    <ion-button (click)="purchaseChoiceThree()"
+                  </ion-card-header>
+                  <ion-card-content>
+                    <hr>
+                    <ion-list style="border-radius: 12px;">
+                      <ion-list-header>
+                        <ion-title>
+                          <ion-text>
+                            Features:
+                          </ion-text>
+                        </ion-title>
+                      </ion-list-header>
+                      <ion-item>
+                        <p class="ion-text-start"><em>Unlimited calls</em></p>
+                      </ion-item>
+                      <ion-item>
+                        <p class="ion-text-start"><em>Free hosting</em></p>
+                      </ion-item>
+                      <ion-item lines="none">
+                        <p class="ion-text-start"><em>40MB of storage</em></p>
+                      </ion-item>
+                    </ion-list>
+                  </ion-card-content>
+                  <ion-footer class="ion-padding ion-text-center">
+                    <ion-button color="tertiary" size="large" (click)="purchaseChoiceThree()"
                     >Choose Plan Three</ion-button
                     >
-                </ion-footer>
-            </ion-card>
-        </ion-col>
-    </ion-row>
-</ion-grid>
+                  </ion-footer>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+
+  </ion-grid>
 
 </ion-content>

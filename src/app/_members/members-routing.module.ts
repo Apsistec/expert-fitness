@@ -48,14 +48,14 @@ const routes: Routes = [
         loadChildren: () =>
           import('./user-tickets/user-tickets.module').then(
             (m) => m.UserTicketsPageModule
-          ), 
+          ),
       },
       {
         path: 'dashboard',
         loadChildren: () =>
           import('./dashboard/dashboard.module').then(
             (m) => m.DashboardPageModule
-          )
+          ), outlet: 'memberOutlet',
       },
       {
         path: 'dragndrop',
@@ -77,7 +77,6 @@ const routes: Routes = [
         path: '',
         redirectTo: '/members/dashboard',
         pathMatch: 'full',
-        // outlet: "home"
       },
     ],
   },

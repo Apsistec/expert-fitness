@@ -9,31 +9,28 @@ import {
 } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeRouteGuard } from './_guards/home-route.guard';
-import { WelcomePage } from './_home/welcome/welcome.page';
-
-const redirectLoggedInToDash = () => redirectLoggedInTo(['/members/dashboard']);
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
-const verifiedEmail = () => emailVerified;
+// const redirectLoggedInToDash = () => redirectLoggedInTo(['/members/dashboard']);
+// const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
+// const verifiedEmail = () => emailVerified;
 
 const routes: Routes = [
   {
-    path: 'welcome',
-    component: WelcomePage,
-    ...canActivate(redirectLoggedInToDash),
-    canActivate: [HomeRouteGuard]
+    path: 'home',
+    loadChildren: () =>
+      import('./_home/home.module').then((m) => m.HomePageModule),
+    // ...canActivate(redirectLoggedInToDash)
   },
   {
     path: 'unknown',
     loadChildren: () =>
-      import('./_home/unknown/unknown.module').then((m) => m.UnknownPageModule)
+      import('./_home/unknown/unknown.module').then((m) => m.UnknownPageModule),
   },
   {
     path: 'verify-email',
     loadChildren: () =>
       import('./_home/verify-email/verify-email.module').then(
         (m) => m.VerifyEmailPageModule
-      )
+      ),
   },
   {
     path: 'members',
@@ -41,12 +38,6 @@ const routes: Routes = [
       import('./_members/members.module').then((m) => m.MembersPageModule),
     // ...canActivate(redirectUnauthorizedToLogin),
     // ...canActivate(verifiedEmail)
-  },
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('./_home/home.module').then((m) => m.HomePageModule),
-    // ...canActivate(redirectLoggedInToDash)
   },
   {
     path: 'trainers',
@@ -62,27 +53,27 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/welcome',
-    pathMatch: 'full'
+    redirectTo: '/home',
+    pathMatch: 'full',
   },
   {
     path: '**',
     redirectTo: '/unknown',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
 ];
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
       preloadingStrategy: QuicklinkStrategy,
+      // enableTracing: true,
+      // scrollPositionRestoration: 'enabled',
+      // onSameUrlNavigation: 'reload',
+      // anchorScrolling: 'enabled',
+      // useHash: true,
       // relativeLinkResolution: "corrected",
-      // onSameUrlNavigation: "reload",
-      enableTracing: true,
       // urlUpdateStrategy: "eager",
       // scrollOffset: [100, 100],
-      // scrollPositionRestoration: "enabled",
-      // anchorScrolling: "enabled",
-      // useHash: true,
       // paramsInheritanceStrategy: "always"
       // errorHandler: routingError;
     }),

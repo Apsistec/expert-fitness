@@ -209,9 +209,9 @@ export class MessageService {
     await alert.present();
   }
 
-  async globalErrorAlert(err, router) {
+  async globalErrorAlert(err, router, page?) {
     const alert = await this.alertController.create({
-      header: 'Error',
+      header: 'Page: ' + page,
       subHeader: 'Location: ' + router.url,
       message: 'Error Message: ' + err.message,
       buttons: ['OK'],

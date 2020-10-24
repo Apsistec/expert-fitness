@@ -153,4 +153,9 @@ export class HomePageOneComponent implements OnInit {
   dismissModal() {
     this.modalController.dismiss();
   }
+
+  // topFunction() {
+
+  // }
+
 }

@@ -2,25 +2,9 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-slides [options]="slideOpts">
-          <ion-slide *ngFor="let testimonial of testimonials">
-            <ion-card>
-              <ion-card-header>
-                <ion-avatar>
-                  <ion-img src="{{ testimonial.img }}"></ion-img>
-                </ion-avatar>
-                <ion-card-title>
-                  <ion-text> {{ testimonial.name }} </ion-text>
-                </ion-card-title>
-              </ion-card-header>
-              <ion-card-content>
-                <ion-text> {{ testimonial.review }} </ion-text>
-              </ion-card-content>
-            </ion-card>
-          </ion-slide>
-        </ion-slides>
-      </ion-col>
+
+<app-testimoniall-insert></app-testimoniall-insert>
+
     </ion-row>
     <ion-row>
       <ion-col>
@@ -29,7 +13,7 @@
             <ion-text> Add A Review of Expert Fitness App </ion-text>
           </ion-card-title>
           <ion-card-content>
-            <form
+            <!-- <form
               *ngIf="user"
               [formGroup]="reviewForm"
               (ngSubmit)="setTestimonial()"
@@ -66,9 +50,9 @@
               >
                 <ion-icon size="small" slot="start" name="arrow-forward-sharp">
                 </ion-icon>
-                <ion-text> Create </ion-text>
+                <ion-text>Create</ion-text>
               </ion-button>
-            </form>
+            </form> -->
           </ion-card-content>
         </ion-card>
       </ion-col>

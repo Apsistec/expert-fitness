@@ -10,20 +10,22 @@ import { Router } from '@angular/router';
 export class GlobalErrorHandlerService implements ErrorHandler {
   constructor(
     private message: MessageService,
-    private injector: Injector
+    private injector: Injector,
+    private router: Router
     ) {}
 
   handleError(error) {
-    const router = this.injector.get(Router);
-    console.log('URL: ' + router.url);
+    const page = this.router.url;
+    const route = this.injector.get(Router);
+    console.log('URL: ' + route.url, 'Page: ' + page);
 
     if (error instanceof HttpErrorResponse) {
       // Backend returns unsuccessful response codes such as 404, 500 etc.
       console.error('Backend returned status code: ', error.status);
       console.error('Response body:', error.message);
-      this.message.globalErrorAlert(error, router);
+      this.message.globalErrorAlert('Error: ' + error.message, 'URL: ' + route.url, 'Page: ' + page);
     } else {
-      this.message.globalErrorAlert(error, router);
+      this.message.globalErrorAlert('Error: ' + error.message, 'URL: ' + route.url, 'Page: ' + page);
     }
   }
 }

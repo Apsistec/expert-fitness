@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+// tslint:disable: max-line-length
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalController, IonSlides } from '@ionic/angular';
 import { GetStartedComponent } from '../../_home/get-started/get-started.component';
 import { MessageService } from '../../_services/message.service';
 import { slideInRight, slideInLeft } from 'ng-animate';
@@ -8,6 +9,7 @@ import * as animator from 'ng-animate';
 import { BodyPage } from '../../_home/body/body.page';
 import { MindPage } from '../../_home/mind/mind.page';
 import { SoulPage } from '../../_home/soul/soul.page';
+import { Benefits } from '../../_models/benefits';
 
 @Component({
   selector: 'app-home-page-two',
@@ -35,14 +37,47 @@ import { SoulPage } from '../../_home/soul/soul.page';
   ],
 })
 export class HomePageTwoComponent implements OnInit {
+
+  @ViewChild('mySlider') slider: IonSlides;
+
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400,
+    loop: true,
+    breakpoints: {
+      // when window width is >= 320px
+      150: {
+        slidesPerView: 1.5,
+        spaceBetween: 20
+      },
+      // when window width is >= 480px
+      576: {
+        slidesPerView: 2.5,
+        spaceBetween: 30
+      },
+      // when window width is >= 640px
+      1200: {
+        slidesPerView: 3.5,
+        spaceBetween: 15
+      }
+    }
+  };
+
+  benefits = Benefits;
+
   slideInRight;
   slideInLeft;
+
   constructor(
     private modalController: ModalController,
     private messageService: MessageService
   ) {}
 
   ngOnInit() {}
+
+  slidesDidLoad(slides: IonSlides) {
+    slides.startAutoplay();
+  }
 
   async showModalGetStarted() {
     const modal = await this.modalController.create({

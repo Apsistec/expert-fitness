@@ -1,6 +1,4 @@
-import { QuicklinkModule } from 'ngx-quicklink';
-// import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
-// import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -17,21 +15,18 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage';
-import { HttpClientModule } from '@angular/common/http';
-
+import { QuicklinkModule } from 'ngx-quicklink';
 import { environment } from '../environments/environment';
-
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AboutAppComponent } from './_home/about-app/about-app.component';
+import { GetStartedComponent } from './_home/get-started/get-started.component';
+import { PrivacyComponent } from './_home/privacy/privacy.component';
+import { SideMenuComponent } from './_home/side-menu/side-menu.component';
+import { TermsComponent } from './_home/terms/terms.component';
 import { SafePipe } from './_pipes/safe.pipe';
 import { ToHttpsPipe } from './_pipes/to-https.pipe';
 import { GlobalErrorHandlerService } from './_services/error-handler.service';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-import { TermsComponent } from './_home/terms/terms.component';
-import { SideMenuComponent } from './_home/side-menu/side-menu.component';
-import { PrivacyComponent } from './_home/privacy/privacy.component';
-import { GetStartedComponent } from './_home/get-started/get-started.component';
-import { AboutAppComponent } from './_home/about-app/about-app.component';
 
 @NgModule({
   declarations: [
@@ -67,10 +62,6 @@ import { AboutAppComponent } from './_home/about-app/about-app.component';
     QuicklinkModule,
     AppRoutingModule,
     HttpClientModule,
-    // ShareButtonsModule.withConfig({
-    //   debug: true,
-    // }),
-    // ShareIconsModule,
   ],
   providers: [
     StatusBar,

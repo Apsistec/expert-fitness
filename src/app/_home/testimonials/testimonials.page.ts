@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { User } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
 import { MessageService } from 'src/app/_services/message.service';
-import { Testimonial } from '../../_models/testimonial.model';
+import { Testimonial, Testimonials } from '../../_models/testimonial.model';
 
 @Component({
   selector: 'app-testimonials',
@@ -16,16 +14,29 @@ import { Testimonial } from '../../_models/testimonial.model';
   styleUrls: ['testimonials.page.scss'],
 })
 export class TestimonialsPage {
-  title = 'Credibility';
-  testimonials: any;
   imgDescription = 'Submitted by RF$ PRO Members';
+  testimonials: Testimonial[] = [ ];
   slideOpts = {
-    zoom: true,
-    mousewheel: true,
-    keyboard: true,
-    spaceBetween: 10,
-    width: 500,
+    initialSlide: 1,
+    speed: 400,
     loop: true,
+    breakpoints: {
+      // when window width is >= 320px
+      150: {
+        slidesPerView: 1.5,
+        spaceBetween: 20
+      },
+      // when window width is >= 480px
+      576: {
+        slidesPerView: 2.5,
+        spaceBetween: 30
+      },
+      // when window width is >= 640px
+      1200: {
+        slidesPerView: 3.5,
+        spaceBetween: 15
+      }
+    }
   };
   reviewForm;
   user: User;
@@ -44,28 +55,30 @@ export class TestimonialsPage {
     });
   }
 
-  setTestimonial(review: string): Promise<any> {
-    return this.afs
-      .doc(`testimonials/${this.testimonials.uid}`)
-      .update({
-        review,
-      })
-      .then(() => {
-        this.messageService.generalToast(
-          'Testimonial Created',
-          'Your review/testimonial has been created.'
-        );
-      });
-  }
+  // setTestimonial(review: string): Promise<any> {
+  //   // return this.afs
+  //   //   .doc(`testimonials/${this.testimonials.uid}`)
+  //   //   .update({
+  //   //     review,
+  //   //   })
+  //   //   .then(() => {
+  //   //     this.messageService.generalToast(
+  //   //       'Testimonial Created',
+  //   //       'Your review/testimonial has been created.'
+  //   //     );
+  //   //   });
+  // }
 
-  getTestimonial() {
-    this.afs
-      .collection<Testimonial>('testimonials')
-      .get()
-      .pipe(
-        map((testimonial) => {
-          this.testimonials = testimonial;
-        })
-      );
-  }
+  // getTestimonial() {
+  //   // this.afs
+  //   //   .collection<Testimonial>('testimonials')
+  //   //   .get()
+  //   //   .pipe(
+  //   //     map((testimonial) => {
+  //   //       this.testimonials = testimonial;
+  //   //     })
+  //   //   );
+
+
+  // }
 }

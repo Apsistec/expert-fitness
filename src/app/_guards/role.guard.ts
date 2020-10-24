@@ -1,3 +1,4 @@
+// tslint:disable: no-string-literal
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';

@@ -54,8 +54,8 @@ const routes: Routes = [
       {
         path: '',
         component: HomePageOneComponent,
-        // outlet: "homeOutlet",
-      },
+        // outlet: 'homeOutlet',
+      }
     ],
   },
 ];

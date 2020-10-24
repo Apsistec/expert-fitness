@@ -1,84 +1,65 @@
 <app-header [title]="title"></app-header>
 <ion-content fullscreen translucent>
   <ion-grid class="ion-no-padding">
-  <div class="scene-one">
-    <ion-row class="ion-text-center" style="padding-top: 14vh">
-      <ion-col
-        size-xl="4"
-        offset-xl="2"
-        size-lg="6"
-        offset-lg=1
-        size-md="6"
-        offset-md="1"
-       size-sm="12"
-       size-xs="12"
-      >
-
-        <ion-row class="ion-justify-content-center ion-padding">
-          <ion-img
-          src="../../../assets/logos/logo.png"
-          style="width: 80%;"
-          ></ion-img>
-
-          <ion-text color="warning" class="logo-card">
-            <p>A new paradigm in total body fitness</p>
-          </ion-text>
+    <ion-row
+      class="scene-one ion-justify-content-around"
+      style="padding-top: 14vh"
+    >
+      <ion-col size="12" size-md="6" class="ion-align-self-start">
+        <ion-row class="ion-justify-content-center">
+          <img src="../../../assets/logos/logo.png" style="max-width: 50%" />
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-card class="logo-card ion-padding">
+            <ion-card-title>
+              <ion-text color="tertiary">
+                A new paradigm in total body fitness
+              </ion-text>
+            </ion-card-title>
+          </ion-card>
         </ion-row>
         <ion-row class="ion-justify-content-center">
           <ion-button
-          class="cta"
-          color="light"
-          size="large"
-          routerLink="/home/testimonials"
-          fill="outline"
-          >Learn More</ion-button
+            class="cta"
+            color="light"
+            size="large"
+            routerLink="/home/testimonials"
+            fill="outline"
+            >Learn More</ion-button
           >
           <ion-button
-          [@pulse]="pulse"
-          class="cta"
-          size="large"
-          color="secondary"
-          (click)="showModalGetStarted()"
-          >Get Started</ion-button
+            [@pulse]="pulse"
+            class="cta"
+            size="large"
+            color="primary"
+            (click)="showModalGetStarted()"
+            >View Pricing</ion-button
           >
         </ion-row>
-
       </ion-col>
 
-
-        <ion-col
-        size-xl="2"
-        offset-xl="2"
-        size-lg="2"
-        offset-lg="2"
-        size-md="4"
-        size-sm="12"
-        size-xs="12"
-        class="ion-align-self-center ion-padding"
+      <ion-col
+        size="12"
+        size-md="6"
+        class="ion-align-self-stretch ion-text-center"
       >
-        <ion-img
-          src="../../../assets/svg/btn-play.svg"
-          style="height: 12em"
-          routerLink="/members/video"
-        ></ion-img>
+        <div>
+          <img src="../../../assets/svg/btn-play.svg" />
+        </div>
       </ion-col>
     </ion-row>
-    </div>
 
-
-    Scene Two Component
     <app-home-page-two></app-home-page-two>
+    <!-- <ion-fab>
+      <ion-fab-button (click)="topFunction()" id="myBtn" title="Go to top">Top</ion-fab-button>
 
-    <!-- Scene three for home -->
-    <app-home-page-three></app-home-page-three>
-    <!-- Scene four for home -->
-    <app-home-page-four></app-home-page-four>
+    </ion-fab> -->
 
     <!-- Footer` -->
     <ion-row class="footer ion-justify-content-around">
-      <ion-col size="12">
+      <ion-col size="12" size-sm="4">
         <ion-row>
-          <ion-col size="12">
+          <ion-col>
             <ul class="bottom-menu">
               <li><h3>Menu</h3></li>
               <li routerLink="/">
@@ -124,8 +105,9 @@
         </ion-row>
 
         <ion-row>
-          <ion-col size="12">
+          <ion-col class="ion-padding">
             <img src="../../../assets/logos/logo.png" class="small-logo" />
+            <br />
             <ion-text color="light">
               <small>
                 &#9426;{{ yearDate | date: "yyyy" }} www.expertfitness.com
@@ -135,76 +117,78 @@
         </ion-row>
       </ion-col>
 
-      <ion-col size="12" class="ion-align-self-start">
-        <ul>
-          <li><h3>Authentication</h3></li>
-          <li *ngIf="user | async" button (click)="authService.SignOut()">
-            <ion-label> Sign Out </ion-label>
-          </li>
-          <li *ngIf="!user" (click)="showModalGetStarted()">
-            <ion-label>Get Started</ion-label>
-          </li>
-        </ul>
-        <ul>
-          <li><h3>Welcome Slides</h3></li>
-          <li (click)="userService.resetWelcome()">
-            <ion-label> Reset Welcome </ion-label>
-          </li>
-        </ul>
+      <ion-col
+        size-sm="4"
+        size="12"
+        push-sm="4"
+        class="ion-align-self-center"
+        routerLink="/home/contact"
+      >
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="8">
+            <ion-card color="primary" class="ion-text-center">
+              <ion-card-header color="primary">
+                <ion-card-title>
+                  <img
+                    src="../../../assets/icons/icon-144x144.png"
+                    style="max-height: 38px"
+                  />
+                  Expert Fitness Gym
+                </ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                <ion-text style="font-weight: bold">
+                  <p>3000 N. Garfield Street Suite 159</p>
+                  <p>Midland TX 79705</p>
+                </ion-text>
+                <ion-chip color="light" href="tel://432-684-0844">
+                  <ion-icon color="warning" name="call-sharp"></ion-icon>
+                  <ion-label> (432) 684-0844 </ion-label>
+                </ion-chip>
+
+                <ion-chip color="light" routerLink="/home/contact">
+                  <ion-icon color="warning" name="mail-sharp"></ion-icon>
+                  <ion-label> Contact Us </ion-label>
+                </ion-chip>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
       </ion-col>
 
-      <ion-col size="12" class="ion-align-self-center">
-        <ion-row>
-          <ion-buttons>
-            <ion-button color="tertiary" (click)="showModalPrivacy()">
-              Privacy
-            </ion-button>
-            <ion-button color="tertiary" (click)="showModalTerms()">
-              Terms
-            </ion-button>
-            <ion-button color="tertiary" (click)="showModalAbout()">
-              About App
-            </ion-button>
-          </ion-buttons>
-        </ion-row>
-        <ion-row style="max-width: 18.75em">
-          <ion-buttons>
+      <ion-col size="12" pull-sm="4" size-sm="4" >
+        <!-- <ion-row> -->
+
+
+            <app-testimoniall-insert></app-testimoniall-insert>
+
+        <!-- </ion-row>
+        <ion-row class="ion-justify-content-center ion-text-center">
+          <ion-col class="ion-align-self-end ion-text-center"> -->
+
+            <ion-buttons>
+              <ion-button color="tertiary" (click)="showModalPrivacy()">
+                Privacy
+              </ion-button>
+              <ion-button color="tertiary" (click)="showModalTerms()">
+                Terms
+              </ion-button>
+              <ion-button color="tertiary" (click)="showModalAbout()">
+                About App
+              </ion-button>
+            </ion-buttons>
+            <hr>
+
             <share-buttons
-              theme="material-dark"
-              show="4"
-              size="-4"
+            theme="material-dark"
+            show="4"
+            size="-3"
             ></share-buttons>
-          </ion-buttons>
-        </ion-row>
-      </ion-col>
-
-      <ion-col size="12" class="ion-text-center ion-align-self-start">
-        <ion-card class="ion-padding" routerLink="/home/contact">
-          <ion-card-header>
-            <ion-item color="primary">
-              <ion-card-title color="light">
-                Expert Fitness Gym
-              </ion-card-title>
-            </ion-item>
-          </ion-card-header>
-          <ion-text style="font-weight: bold">
-            <p>3000 N. Garfield Street Suite 159</p>
-            <p>Midland TX 79705</p>
-          </ion-text>
-          <ion-button size="small" href="tel://432-684-0844">
-            <ion-icon color="warning" name="call-sharp" slot="start"></ion-icon>
-            <ion-text>
-              <b>(432) 684-0844</b>
-            </ion-text>
-          </ion-button>
-          <br />
-
-          <ion-button size="small" routerLink="/home/contact">
-            <ion-icon color="warning" name="mail-sharp" slot="start"></ion-icon>
-            Contact Us
-          </ion-button>
-        </ion-card>
-      </ion-col>
+          </ion-col>
+        <!-- </ion-row>
+      </ion-col> -->
     </ion-row>
   </ion-grid>
 </ion-content>

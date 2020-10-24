@@ -8,22 +8,27 @@ import { HeaderComponent } from './header/header.component';
 import { PopoverComponent } from './popover/popover.component';
 import { RouterModule } from '@angular/router';
 import { QuicklinkModule } from 'ngx-quicklink';
-
+import { HighchartsChartModule } from 'highcharts-angular';
+import { ChartsComponent } from './charts/charts.component';
+import { TestimoniallInsertComponent } from './testimoniall-insert/testimoniall-insert.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
     PopoverComponent,
+    ChartsComponent,
+    TestimoniallInsertComponent,
   ],
   imports: [
     RouterModule,
     QuicklinkModule,
     IonicModule,
-    FormsModule,
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     SharedDirectivesModule,
+    HighchartsChartModule,
   ],
   exports: [
     RouterModule,
@@ -36,6 +41,8 @@ import { QuicklinkModule } from 'ngx-quicklink';
     PopoverComponent,
     HeaderComponent,
     FooterComponent,
+    ChartsComponent,
+    TestimoniallInsertComponent,
   ],
 })
 export class SharedModule {}

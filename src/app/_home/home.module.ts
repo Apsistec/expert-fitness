@@ -11,7 +11,6 @@ import { HomePageOneComponent } from './home-page-one/home-page-one.component';
 import { HomePageThreeComponent } from './home-page-three/home-page-three.component';
 import { HomePageFourComponent } from './home-page-four/home-page-four.component';
 import { SharedModule } from '../_shared/shared.module';
-import { WelcomePage } from './welcome/welcome.page';
 
 @NgModule({
   imports: [
@@ -21,7 +20,7 @@ import { WelcomePage } from './welcome/welcome.page';
     HomeRoutingModule,
     ShareIconsModule,
     ShareButtonsModule,
-    SharedModule,
+    SharedModule
   ],
   declarations: [
     HomePage,
@@ -29,7 +28,6 @@ import { WelcomePage } from './welcome/welcome.page';
     HomePageOneComponent,
     HomePageThreeComponent,
     HomePageFourComponent,
-    WelcomePage
   ],
 })
 export class HomePageModule {}
