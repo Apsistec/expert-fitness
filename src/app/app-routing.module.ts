@@ -9,16 +9,16 @@ import {
 } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 
-// const redirectLoggedInToDash = () => redirectLoggedInTo(['/members/dashboard']);
-// const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
-// const verifiedEmail = () => emailVerified;
+const redirectLoggedInToDash = () => redirectLoggedInTo(['/members/dashboard']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
+const verifiedEmail = () => emailVerified;
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
       import('./_home/home.module').then((m) => m.HomePageModule),
-    // ...canActivate(redirectLoggedInToDash)
+    ...canActivate(redirectLoggedInToDash)
   },
   {
     path: 'unknown',
@@ -33,24 +33,28 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'members',
-    loadChildren: () =>
-      import('./_members/members.module').then((m) => m.MembersPageModule),
-    // ...canActivate(redirectUnauthorizedToLogin),
-    // ...canActivate(verifiedEmail)
-  },
-  {
-    path: 'trainers',
-    loadChildren: () =>
-      import('./_trainers/trainers.module').then((m) => m.TrainersPageModule),
-    // ...canActivate(redirectUnauthorizedToLogin)
-  },
-  {
-    path: 'admins',
-    loadChildren: () =>
-      import('./_admins/admins.module').then((m) => m.AdminsModule),
-    // ...canActivate(redirectUnauthorizedToLogin)
-  },
+    path: 'tabs',
+    loadChildren: ()
+  }
+  // {
+  //   path: 'members',
+  //   loadChildren: () =>
+  //     import('./_members/members.module').then((m) => m.MembersPageModule),
+  //   // ...canActivate(redirectUnauthorizedToLogin),
+  //   // ...canActivate(verifiedEmail)
+  // },
+  // {
+  //   path: 'trainers',
+  //   loadChildren: () =>
+  //     import('./_trainers/trainers.module').then((m) => m.TrainersPageModule),
+  //   ...canActivate(redirectUnauthorizedToLogin)
+  // },
+  // {
+  //   path: 'admins',
+  //   loadChildren: () =>
+  //     import('./_admins/admins.module').then((m) => m.AdminsModule),
+  //   ...canActivate(redirectUnauthorizedToLogin)
+  // },
   {
     path: '',
     redirectTo: '/home',

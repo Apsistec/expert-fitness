@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { User } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
 import { MessageService } from 'src/app/_services/message.service';
-import { Testimonial, Testimonials } from '../../_models/testimonial.model';
 
 @Component({
   selector: 'app-testimonials',
@@ -15,7 +14,6 @@ import { Testimonial, Testimonials } from '../../_models/testimonial.model';
 })
 export class TestimonialsPage {
   imgDescription = 'Submitted by RF$ PRO Members';
-  testimonials: Testimonial[] = [ ];
   slideOpts = {
     initialSlide: 1,
     speed: 400,
@@ -43,10 +41,10 @@ export class TestimonialsPage {
 
   constructor(
     public modalController: ModalController,
-    private afs: AngularFirestore,
     private authService: AuthService,
+    private fb: FormBuilder,
     private messageService: MessageService,
-    private fb: FormBuilder
+    private afs: AngularFirestore,
   ) {
     this.authService.user$.pipe(map((user) => (this.user = user)));
 

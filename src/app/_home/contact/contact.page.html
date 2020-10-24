@@ -1,9 +1,28 @@
 <app-header></app-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div #mapCanvas class="map-canvas"></div>
 
-  <div #mapCanvas class="map-canvas"></div>
-<app-about-us></app-about-us>
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+
+      <ion-col>
+        <app-about-us></app-about-us>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+<app-footer></app-footer>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
 
 

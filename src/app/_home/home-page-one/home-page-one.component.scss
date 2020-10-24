@@ -94,10 +94,13 @@
     color: var(--ion-color-medium-tint);
     list-style-type: none;
   }
+  li::hover, .active-bottom-menu {
+    color: var(--ion-color-tertiary-shade);
+  }
 
   h2,
   h3 {
-    color: var(--ion-color-warning-shade);
+    color: var(--ion-color-tertiary-shade);
   }
 }
 

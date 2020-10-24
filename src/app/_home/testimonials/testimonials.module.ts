@@ -5,16 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { TestimonialsPage } from './testimonials.page';
 import { SharedModule } from '../../_shared/shared.module';
 
-
-
-
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    SharedModule
-  ],
-  declarations: [ TestimonialsPage ]
+  imports: [CommonModule, FormsModule, IonicModule, SharedModule],
+  declarations: [TestimonialsPage],
 })
 export class TestimonialsPageModule {}

@@ -1,4 +1,4 @@
-ion-header{
+ion-header {
   z-index: 22;
 }
 
@@ -7,11 +7,10 @@ ion-header{
   color: var(--ion-color-light-tint);
 }
 .menu-font {
-  ion-label{
-    font: 800 1.4em/2  "Montserrat", sans-serif;
+  ion-label {
+    font: 800 1.4em/2 "Montserrat", sans-serif;
     text-transform: uppercase;
     color: var(--ion-color-medium-tint);
-
   }
   padding: 0 1.3125em;
   display: inline-block;
@@ -23,11 +22,8 @@ ion-header{
   ion-label {
     color: var(--ion-color-light-tint);
     border-bottom: 0.3125em solid var(--ion-color-warning-shade);
-
   }
 }
-
-
 
 .silhouette {
   max-height: 2.75em;

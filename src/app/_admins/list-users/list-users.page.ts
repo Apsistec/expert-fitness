@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiService } from '../../_services/api.service';
 
 @Component({
@@ -6,16 +6,14 @@ import { ApiService } from '../../_services/api.service';
   templateUrl: './list-users.page.html',
   styleUrls: ['./list-users.page.scss'],
 })
-export class ListUsersPage implements OnInit {
+export class ListUsersPage{
   userData: any;
 
   constructor(public apiService: ApiService) {
     this.userData = [];
   }
 
-  ngOnInit() {
-    // this.getAllUsers();
-  }
+
 
   ionViewWillEnter() {
     // Used ionViewWillEnter as ngOnInit is not
@@ -26,7 +24,7 @@ export class ListUsersPage implements OnInit {
   getAllUsers() {
     // Get saved list of user
     this.apiService.getList().subscribe((response) => {
-      console.log(response);
+      console.log('apiResponse: ', response);
       this.userData = response;
     });
   }

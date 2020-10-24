@@ -1,12 +1,8 @@
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/_models/user';
 
-import { Component, Input, OnInit } from '@angular/core';
-import {
-  ModalController,
-  PopoverController,
-  NavController,
-} from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { ModalController, PopoverController } from '@ionic/angular';
 
 import { GetStartedComponent } from '../../_home/get-started/get-started.component';
 import { AuthService } from '../../_services/auth.service';
@@ -49,7 +45,7 @@ export class HeaderComponent implements OnInit {
       component: PopoverComponent,
       event: ev,
       translucent: true,
-      cssClass: 'popoverUser',
+      cssClass: 'user-popover',
     });
     return popover.present().catch((err) => {
       return this.messageService.errorAlert(err);

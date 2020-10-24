@@ -1,6 +1,6 @@
-<ion-grid>
+<ion-grid class="page-two-grid">
   <ion-row class="ion-no-margin-horizontal ion-margin-vertical ion-text-center">
-  <ion-toolbar class="toolbar-global">
+    <ion-toolbar class="toolbar-global">
       <ion-title [@slideInRight]="slideInRight">
         <ion-text color="tertiary">
           Benefits of Having a Personal Trainer
@@ -34,21 +34,37 @@
       </ion-slide>
     </ion-slides>
   </ion-row>
-  <ion-row class="ion-no-margin-horizontal ion-margin-vertical ion-text-center" color="primary">
-  <ion-toolbar class="toolbar-global">
+  <ion-row
+    class="ion-no-margin-horizontal ion-margin-vertical ion-text-center"
+    color="primary"
+  >
+    <ion-toolbar class="toolbar-global">
       <ion-title [@slideInRight]="slideInRight">
-        <ion-text>
-          You've already made it this far.... Register now so you can set up an 15 minute appointment to come by and we can make introductions and let you make sure this is the right place for you.
+        <ion-text color="warning">
+        <h2>
+
+          You've already made it this far....
+        </h2>
         </ion-text>
       </ion-title>
+          <ion-title>
+            <ion-text color="light">
+<h3>
+
+  Register now so you can set up an
+  15 minute appointment to come by and we can make introductions and let
+  you make sure this is the right place for you.
+</h3>
+            </ion-text>
+          </ion-title>
       <ion-button
         size="large"
         style="padding: 0.4em"
-        color="tertiary"
+        color="light"
         (click)="showModalGetStarted()"
         [@slideInLeft]="slideInLeft"
-        >View Pricing
-    </ion-button>
+        >View Plans
+      </ion-button>
     </ion-toolbar>
   </ion-row>
 </ion-grid>

@@ -1,13 +1,14 @@
-<app-header [title]="title"></app-header>
+<app-header ></app-header>
 <ion-content fullscreen translucent>
   <ion-grid class="ion-no-padding">
     <ion-row
       class="scene-one ion-justify-content-around"
       style="padding-top: 14vh"
     >
-      <ion-col size="12" size-md="6" class="ion-align-self-start">
+      <ion-col size="12" size-md="6" class="ion-align-self-start ion-text-center">
         <ion-row class="ion-justify-content-center">
           <img src="../../../assets/logos/logo.png" style="max-width: 50%" />
+          <hr>
         </ion-row>
         <ion-row class="ion-justify-content-center">
           <ion-card class="logo-card ion-padding">
@@ -62,42 +63,42 @@
           <ion-col>
             <ul class="bottom-menu">
               <li><h3>Menu</h3></li>
-              <li routerLink="/">
+              <li routerLink="/home" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
                 <ion-label>Home</ion-label>
               </li>
               <!-- SignedIn Menu Items -->
-              <li *ngIf="user | async" routerLink="/members/dashboard">
+              <li *ngIf="user | async" routerLink="/members/dashboard" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
                 <ion-label>Dashboard</ion-label>
               </li>
-              <li *ngIf="user | async" routerLink="/members/workouts">
+              <li *ngIf="user | async" routerLink="/members/workouts" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
                 <ion-label>Workouts</ion-label>
               </li>
-              <li *ngIf="user | async" routerLink="/members/nutrition">
+              <li *ngIf="user | async" routerLink="/members/nutrition" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
                 <ion-label>Nutrition</ion-label>
               </li>
-              <li *ngIf="user | async" routerLink="/members/videos">
+              <li *ngIf="user | async" routerLink="/members/videos" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
                 <ion-label>Videos</ion-label>
               </li>
-              <li *ngIf="user | async" routerLink="/members/messages">
+              <li *ngIf="user | async" routerLink="/members/messages" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
                 <ion-label>Messages</ion-label>
               </li>
-              <li *ngIf="user | async" routerLink="/members/settings">
+              <li *ngIf="user | async" routerLink="/members/settings" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
                 <ion-label>Settings</ion-label>
               </li>
               <!-- Menu Options for nonusers -->
-              <li *ngIf="!user" routerLink="/home/products">
+              <li *ngIf="!user" routerLink="/home/products" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
                 <ion-label>Products</ion-label>
               </li>
-              <li *ngIf="!user" routerLink="/home/faq">
+              <li *ngIf="!user" routerLink="/home/faqs" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
                 <ion-label>FAQs</ion-label>
               </li>
               <li *ngIf="!user" routerLink="/home/testimonials">
                 <ion-label>Testimonials</ion-label>
               </li>
-              <li routerLink="/home/about">
+              <li routerLink="/home/about" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
                 <ion-label>About</ion-label>
               </li>
-              <li routerLink="/home/contact">
+              <li routerLink="/home/contact" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
                 <ion-label>Contact</ion-label>
               </li>
             </ul>
@@ -162,7 +163,7 @@
         <ion-row>
 
 
-            <app-testimoniall-insert></app-testimoniall-insert>
+            <!-- <app-testimoniall-insert></app-testimoniall-insert> -->
 
         </ion-row>
         <ion-row class="ion-justify-content-center ion-text-center">

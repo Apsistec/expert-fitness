@@ -9,7 +9,7 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
-        path: 'faq',
+        path: 'faqs',
         loadChildren: () =>
           import('../_home/faq/faq.module').then((m) => m.FaqPageModule),
       },
@@ -36,21 +36,7 @@ const routes: Routes = [
             (m) => m.ContactPageModule
           ),
       },
-      {
-        path: 'mind',
-        loadChildren: () =>
-          import('../_home/mind/mind.module').then((m) => m.MindPageModule),
-      },
-      {
-        path: 'body',
-        loadChildren: () =>
-          import('../_home/body/body.module').then((m) => m.BodyPageModule),
-      },
-      {
-        path: 'soul',
-        loadChildren: () =>
-          import('../_home/soul/soul.module').then((m) => m.SoulPageModule),
-      },
+
       {
         path: '',
         component: HomePageOneComponent,

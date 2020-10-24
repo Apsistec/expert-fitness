@@ -16,39 +16,49 @@
   </ion-slide>
 </ion-slides> -->
 <ion-slides
-#reviewSlider
-pager="true"
-(ionSlidesDidLoad)="slidesDidLoad(reviewSlider)"
-[options]="slideOpts"
+  #reviewSlider
+  pager="true"
+  (ionSlidesDidLoad)="slidesDidLoad(reviewSlider)"
+  [options]="slideOpts"
 >
-<ion-slide *ngFor="let testimonial of testimonials">
-  <ion-col class="ion-align-self-start">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>
-          <ion-text>
-            {{ testimonial.name }}">
-          </ion-text>
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item>
-          <ion-avatar>
-            <img src="../../../assets/images/dummy-user.png">
-          </ion-avatar>
-          <!-- <ion-chip color="dark"> -->
-            <ion-icon name="heart-outline" color="danger" size="small"></ion-icon>
-            <ion-icon name="heart-outline" color="danger" size="small"></ion-icon>
+  <ion-slide *ngFor="let testimonial of testimonials">
+    <ion-col class="ion-align-self-start">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-text> {{ testimonial.name }}"> </ion-text>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-avatar>
+              <img src="../../../assets/images/dummy-user.png" />
+            </ion-avatar>
+            <!-- <ion-chip color="dark"> -->
+            <ion-icon
+              name="heart-outline"
+              color="danger"
+              size="small"
+            ></ion-icon>
+            <ion-icon
+              name="heart-outline"
+              color="danger"
+              size="small"
+            ></ion-icon>
             <ion-icon name="heart" color="danger" size="small"></ion-icon>
             <ion-icon name="heart" color="danger" size="small"></ion-icon>
             <ion-icon name="heart" color="danger" size="small"></ion-icon>
             <ion-text> {{ testimonial.rating }} </ion-text>
-          <!-- </ion-chip> -->
-        </ion-item>
-        <br>
-        <ion-text> {{ testimonial.review }} </ion-text>
-      </ion-card-content>
-    </ion-card>
-  </ion-col>
-</ion-slide>
+            <!-- </ion-chip> -->
+          </ion-item>
+          <br />
+          <ion-text>
+            <p>
+              {{ testimonial.review }}
+            </p>
+            </ion-text>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-slide>
 </ion-slides>
