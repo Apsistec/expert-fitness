@@ -15,9 +15,8 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) // private checkForUpdate: CheckForUpdateService
-  {
+    private statusBar: StatusBar // private checkForUpdate: CheckForUpdateService
+  ) {
     this.initializeApp();
   }
 

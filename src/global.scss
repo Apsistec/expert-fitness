@@ -36,36 +36,32 @@ a:hover {
   cursor: pointer;
 }
 
-ion-list-header {
+.list-header-global {
   --background: var(--ion-color-medium-tint);
   color: var(--ion-color-secondary-shade);
   text-transform: uppercase;
   font: 800 16px/1 "Montserrat", sans-serif;
 }
 
-
-ion-card-subtitle {
-  ion-text{
-    color: var(--ion-color-light-shade);
-    font: 800 "Philosopher", sans-serif;
-  }
+.card-subtitle-global {
+  color: var(--ion-color-light-shade);
+  font: 800 "Philosopher", sans-serif;
 }
 
-
-ion-toolbar {
+.toolbar-global {
   --min-height: 5em;
   --background: var(--ion-color-secondary-shade);
-  ion-title{
-    ion-text{
-    font: 800 "Montserrat", sans-serif;
-    text-transform: uppercase;
-    color: var(--ion-color-medium-tint);
-    margin-left: 4em;
-  }
-    }
-  ion-button {
-    color: var(--ion-color-warning-tint);
-  }
+}
+
+.toolbar-title {
+  font: 800 "Montserrat", sans-serif;
+  text-transform: uppercase;
+  color: var(--ion-color-medium-tint);
+  margin-left: 4em;
+}
+
+.toolbar-end-button {
+  color: var(--ion-color-warning-tint);
 }
 
 .small-logo {
@@ -79,12 +75,9 @@ ion-toolbar {
   --border-radius: 0.625em;
   --border-style: solid;
   --border-width: 0.25em;
-  --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05),
-    0px 6px 6px rgba(0, 0, 0, 0.1),
-    0px 8px 8px rgba(0, 0, 0, 0.05),
-    0px 10px 15px rgba(0, 0, 0, 0.03),
-    0px 30px 30px rgba(0, 0, 0, 0.15),
-    0px 70px 60px rgba(0, 0, 0, 0.15);
+  --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05), 0px 6px 6px rgba(0, 0, 0, 0.1),
+    0px 8px 8px rgba(0, 0, 0, 0.05), 0px 10px 15px rgba(0, 0, 0, 0.03),
+    0px 30px 30px rgba(0, 0, 0, 0.15), 0px 70px 60px rgba(0, 0, 0, 0.15);
   --color: var(--ion-color-light);
 }
 
@@ -94,12 +87,9 @@ ion-toolbar {
   --border-radius: 0.625em;
   --border-style: solid;
   --border-width: 0.25em;
-  --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05),
-    0px 6px 6px rgba(0, 0, 0, 0.1),
-    0px 8px 8px rgba(0, 0, 0, 0.05),
-    0px 10px 15px rgba(0, 0, 0, 0.03),
-    0px 30px 30px rgba(0, 0, 0, 0.15),
-    0px 70px 60px rgba(0, 0, 0, 0.15);
+  --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05), 0px 6px 6px rgba(0, 0, 0, 0.1),
+    0px 8px 8px rgba(0, 0, 0, 0.05), 0px 10px 15px rgba(0, 0, 0, 0.03),
+    0px 30px 30px rgba(0, 0, 0, 0.15), 0px 70px 60px rgba(0, 0, 0, 0.15);
   --color: var(--ion-color-light);
 }
 
@@ -109,12 +99,9 @@ ion-toolbar {
   --border-radius: 0.625em;
   --border-style: solid;
   --border-width: 0.25em;
-  --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05),
-    0px 6px 6px rgba(0, 0, 0, 0.1),
-    0px 8px 8px rgba(0, 0, 0, 0.05),
-    0px 10px 15px rgba(0, 0, 0, 0.03),
-    0px 30px 30px rgba(0, 0, 0, 0.15),
-    0px 70px 60px rgba(0, 0, 0, 0.15);
+  --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05), 0px 6px 6px rgba(0, 0, 0, 0.1),
+    0px 8px 8px rgba(0, 0, 0, 0.05), 0px 10px 15px rgba(0, 0, 0, 0.03),
+    0px 30px 30px rgba(0, 0, 0, 0.15), 0px 70px 60px rgba(0, 0, 0, 0.15);
   --color: var(--ion-color-light);
 }
 
@@ -149,13 +136,13 @@ ion-toolbar {
   --border: 3px solid var(--ion-color-warning);
   --border-radius: 5px;
   --backdrop-opacity: 30% !important;
-  ion-toolbar {
+  .modal-toolbar {
     --background: var(--ion-color-secondary-shade);
     --color: var(--ion-color-tertiary);
     text-align: center;
     text-transform: capitalize;
     font-variant: small-caps;
-    ion-button {
+    .modal-toolbar-endbutton {
       --color: var(--ion-color-warning);
     }
   }

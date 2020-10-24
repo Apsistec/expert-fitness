@@ -1,7 +1,7 @@
 <ion-menu contentId="main-content" type="overlay">
   <ion-header>
     <ion-menu-toggle>
-      <ion-toolbar color="primary">
+  <ion-toolbar class="toolbar-global">
         <ion-buttons slot="start">
           <ion-menu-button color="tertiary"></ion-menu-button>
           <img src="../assets/logos/logo.png" class="small-logo" />
@@ -11,7 +11,7 @@
   </ion-header>
   <ion-content color="light-shade">
     <ion-list class="ion-no-padding" lines="none">
-      <ion-list-header> Menu </ion-list-header>
+      <ion-list-header class="list-header-global"> Menu </ion-list-header>
       <ion-menu-toggle>
         <!-- Menu options -->
         <ion-item
@@ -154,7 +154,7 @@
           <ion-label class="side-menu-font">Contact</ion-label>
         </ion-item>
         <!-- authentication area of menu -->
-        <ion-list-header> Authentication </ion-list-header>
+        <ion-list-header class="list-header-global"> Authentication </ion-list-header>
         <ng-component *ngIf="user | async; else nouser">
           <ion-item color="light" button (click)="authService.SignOut()">
             <ion-label color="danger" class="side-menu-font">
@@ -188,7 +188,7 @@
             >
           </ion-item>
         </ng-template>
-        <ion-list-header> Intro Slides </ion-list-header>
+        <ion-list-header class="list-header-global"> Intro Slides </ion-list-header>
         <ion-item
           color="light"
           lines="none"

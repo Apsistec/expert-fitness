@@ -1,21 +1,21 @@
-ion-content{
+.page-content{
 	--background: var(--ion-color-light-shade);
 }
-ion-card{
+.page-card{
 	--background: var(--ion-color-medium-shade);
   border-radius: 12px;
-  ion-card-header{
+  .page-card-header{
     border: 2px solid transparent;
     border-radius: 12px;
-    
+
   }
 }
 
 
 
-ion-card-header {
+.page-card-header {
   --background: var(--ion-color-primary-shade);
-  ion-card-title {
+  .page-card-title {
     ion-text{
       color: var(--ion-color-warning-tint);
       font: 800 16px/1 "Roboto", sans-serif;
@@ -26,18 +26,13 @@ ion-card-header {
 }
 
 .title-card {
-  ion-card-title{
-  ion-text{
     color: var(--ion-color-tertiary-tint);
     font: 800 16px/1 "Roboto", sans-serif;
     text-transform: uppercase;
   }
-}
-ion-card-subtitle {
-  ion-text{
+
+.card-subtitle-products {
     font: 700 16px/1 "Open Sans", sans-serif;
     color: var(--ion-color-light-shade);
     text-transform: capitalize;
   }
-}
-}

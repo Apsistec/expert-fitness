@@ -26,6 +26,7 @@ export class ProfilePage implements OnInit, AfterViewInit {
   purchase;
   user: User;
   email: any;
+  subs: any;
 
   constructor(
     private theme: ThemeService,
