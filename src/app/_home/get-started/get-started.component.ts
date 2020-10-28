@@ -25,7 +25,7 @@ export class GetStartedComponent implements OnInit {
     public authService: AuthService,
     private loadingController: LoadingController,
     private modalController: ModalController,
-    private alertController: AlertController,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -47,7 +47,7 @@ export class GetStartedComponent implements OnInit {
           Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$'),
         ],
       ],
-      displayName: [
+      name: [
         '',
         [
           Validators.required,

@@ -6,7 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 
-import { User } from '../_models/user';
+import { User } from '../_models/users.model';
 import { MessageService } from './message.service';
 
 @Injectable({

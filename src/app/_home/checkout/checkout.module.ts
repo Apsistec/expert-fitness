@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ArchwizardModule } from 'angular-archwizard';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -14,7 +15,8 @@ import { CheckoutPage } from './checkout.page';
     FormsModule,
     IonicModule,
     CheckoutPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ArchwizardModule
   ],
   declarations: [CheckoutPage]
 })

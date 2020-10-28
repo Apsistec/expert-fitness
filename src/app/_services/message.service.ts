@@ -59,7 +59,7 @@ export class MessageService {
   async federatedLoginToast(data: any) {
     const toast = await this.toastController.create({
       header: 'Log In Successful',
-      message: ' Welcome back ' + data.user.displayName + '!',
+      message: ' Welcome back ' + data.user.name + '!',
       cssClass: 'successT',
       position: 'middle',
       duration: 3000,
@@ -307,7 +307,8 @@ export class MessageService {
     const alert = await this.alertController.create({
       header: 'Update Available?',
       subHeader: 'An update is available by reloading',
-      message: 'Press Update to reload the page and apply the new update or press cancel to close.',
+      message:
+        'Press Update to reload the page and apply the new update or press cancel to close.',
       backdropDismiss: false,
       buttons: [
         {

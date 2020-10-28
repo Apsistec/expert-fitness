@@ -9,8 +9,7 @@ import { PopoverComponent } from '../../_shared/popover/popover.component';
 import { TermsComponent } from '../terms/terms.component';
 import { PrivacyComponent } from '../privacy/privacy.component';
 import { AboutAppComponent } from '../about-app/about-app.component';
-import { User } from '../../_models/user';
-import { Observable } from 'rxjs';
+import { User } from '../../_models/users.model';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -20,7 +19,6 @@ import { map } from 'rxjs/operators';
 })
 export class SideMenuComponent implements OnInit {
   yearDate;
-  @Input() titleId;
   user: User;
 
   constructor(

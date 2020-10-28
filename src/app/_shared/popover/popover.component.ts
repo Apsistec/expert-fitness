@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
-import { User } from '../../_models/user';
+import { User } from '../../_models/users.model';
 import { AuthService } from '../../_services/auth.service';
 
 @Component({

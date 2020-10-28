@@ -2,7 +2,7 @@ import { map } from 'rxjs/operators';
 import { UserService } from 'src/app/_services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { User } from '../../_models/user';
+import { User } from '../../_models/users.model';
 import { AuthService } from '../../_services/auth.service';
 import { StorageService } from '../../_services/storage.service';
 

@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
-import { User } from '../../_models/user';
+import { User } from '../../_models/users.model';
 import { AuthService } from '../../_services/auth.service';
 import { PhotoService } from '../../_services/photo.service';
 import { StripeService } from '../../_services/stripe.service';

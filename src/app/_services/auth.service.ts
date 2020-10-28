@@ -1,17 +1,15 @@
-import * as fire from 'firebase/app';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-
-import { User } from '../_models/user';
+import * as fire from 'firebase/app';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { User } from '../_models/users.model';
 import { MessageService } from './message.service';
 
 export interface UserCredentials {
-  displayName: string;
+  name: string;
   email: string;
   password: string;
   role: string;
@@ -43,31 +41,28 @@ export class AuthService {
     );
   }
 
-
   SignIn(credentials: UserCredentials) {
     return this.afAuth
-    .signInWithEmailAndPassword( credentials.email, credentials.password )
-    .then((data) => {
-      return this.afs.doc(`users/${data.user.uid}`).update({
-        displayName: credentials.displayName,
-        email: data.user.email,
-        lastSignInTime: data.user.metadata.lastSignInTime,
-        providerId: data.user.providerId,
-        emailVerified: data.user.emailVerified,
+      .signInWithEmailAndPassword(credentials.email, credentials.password)
+      .then((data) => {
+        return this.afs.doc(`users/${data.user.uid}`).update({
+          name: credentials.name,
+          email: data.user.email,
+          lastSignInTime: data.user.metadata.lastSignInTime,
+          providerId: data.user.providerId,
+          emailVerified: data.user.emailVerified,
+        });
       });
-    });
-      }
-
+  }
 
   SignUp(credentials: UserCredentials) {
     return this.afAuth
       .createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then((data) => {
-
         this.SendVerificationMail();
         return this.afs.doc(`users/${data.user.uid}`).set({
           uid: data.user.uid,
-          displayName: credentials.displayName,
+          name: credentials.name,
           email: data.user.email,
           lastSignInTime: data.user.metadata.lastSignInTime,
           role: 'USER',
@@ -79,75 +74,66 @@ export class AuthService {
       });
   }
 
-
-
   // Auth providers
   AuthLogin(provider) {
     return this.afAuth.signInWithRedirect(provider).then(() => {
-      return this.afAuth
-        .getRedirectResult()
-        .then((data) => {
-            return this.afs.doc(`users/${data.user.uid}`).update({
-              uid: data.user.uid,
-              displayName: data.user.displayName,
-              photoURL: data.user.photoURL,
-              lastSignInTime: data.user.metadata.lastSignInTime,
-              email: data.user.email,
-              role: 'USER',
-              created: data.user.metadata.creationTime,
-              providerId: data.user.providerId,
-              permissions: ['delete-ticket'],
-              emailVerified: data.user.emailVerified,
-            });
-          });
-
+      return this.afAuth.getRedirectResult().then((data) => {
+        return this.afs.doc(`users/${data.user.uid}`).update({
+          uid: data.user.uid,
+          name: data.user.name,
+          photoURL: data.user.photoURL,
+          lastSignInTime: data.user.metadata.lastSignInTime,
+          email: data.user.email,
+          role: 'USER',
+          created: data.user.metadata.creationTime,
+          providerId: data.user.providerId,
+          permissions: ['delete-ticket'],
+          emailVerified: data.user.emailVerified,
         });
-      }
-      // .catch(async (error) => {
-        //   const alert = await this.alertController.create({
-          //     header: "Error",
-          //     subHeader: error.code,
-          //     message: error.message,
-          //     cssClass: "warningA"
-          //   });
+      });
+    });
+  }
+  // .catch(async (error) => {
+  //   const alert = await this.alertController.create({
+  //     header: "Error",
+  //     subHeader: error.code,
+  //     message: error.message,
+  //     cssClass: "warningA"
+  //   });
 
-          //   await alert.present();
-          // });
+  //   await alert.present();
+  // });
 
+  // Sign in with 3rd party Oauth
+  GoogleAuth() {
+    this.AuthLogin(new fire.auth.GoogleAuthProvider());
+  }
 
+  TwitterAuth() {
+    this.AuthLogin(new fire.auth.TwitterAuthProvider());
+  }
 
-          // Sign in with 3rd party Oauth
-          GoogleAuth() {
-            this.AuthLogin(new fire.auth.GoogleAuthProvider());
-          }
+  /* Send email verfificaiton when new user sign up */
+  SendVerificationMail() {
+    fire
+      .auth()
+      .currentUser.sendEmailVerification()
+      .then(() => {
+        this.messageService.registerSuccessToast();
+        this.router.navigate(['/verify-email']);
+      });
+  }
 
-          TwitterAuth() {
-       this.AuthLogin(new fire.auth.TwitterAuthProvider());
-     }
+  // Recover password
+  ForgotPassword(passwordResetEmail) {
+    return this.afAuth.sendPasswordResetEmail(passwordResetEmail).then(() => {
+      this.messageService.resetPasswordAlert();
+    });
+  }
 
-
-
-
-    /* Send email verfificaiton when new user sign up */
-     SendVerificationMail() {
-       fire.auth().currentUser.sendEmailVerification()
-         .then(() => {
-           this.messageService.registerSuccessToast();
-           this.router.navigate(['/verify-email']);
-         });
-     }
-
-     // Recover password
-     ForgotPassword(passwordResetEmail) {
-       return this.afAuth.sendPasswordResetEmail(passwordResetEmail).then(() => {
-         this.messageService.resetPasswordAlert();
-       });
-     }
-
-
-    // Sign-out
-    SignOut() {
-      return this.afAuth.signOut().then(() => {
+  // Sign-out
+  SignOut() {
+    return this.afAuth.signOut().then(() => {
       this.messageService.signOutToast().then(() => {
         this.router.navigate(['/home']);
       });

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { Router } from '@angular/router';
 
-import { User } from '../_models/user';
+import { User } from '../_models/users.model';
 import { AuthService } from './auth.service';
 import { MessageService } from './message.service';
 import { SpinnerService } from './spinner.service';

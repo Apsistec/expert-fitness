@@ -5,7 +5,7 @@ import { GetStartedComponent } from '../../_home/get-started/get-started.compone
 import { MessageService } from '../../_services/message.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import * as animator from 'ng-animate';
-import { Benefits } from '../../_models/benefits';
+import { Benefits } from '../../_models/training-benefits';
 import { slideInRight, slideInLeft } from 'ng-animate';
 
 @Component({

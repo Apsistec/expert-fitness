@@ -1,130 +1,193 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnChanges, AfterViewInit, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { PopoverController, LoadingController, ModalController } from '@ionic/angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
-import { environment } from '../../../environments/environment';
-import { User } from '../../_models/user';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireFunctions } from '@angular/fire/functions';
 import { AuthService } from '../../_services/auth.service';
-import { CartService } from '../../_services/cart.service';
-import { ProductService } from '../../_services/product.service';
-
-declare var Stripe;
+import { MessageService } from '../../_services/message.service';
+import { SeoService } from '../../_services/seo.service';
+import { WizardComponent } from 'angular-archwizard';
+import { PopoverComponent } from '../../_shared/popover/popover.component';
+import { User } from '../../_models/users.model';
+import { map, switchMap } from 'rxjs/operators';
+declare var Stripe: stripe.StripeStatic;
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.page.html',
   styleUrls: ['./checkout.page.scss']
 })
-export class CheckoutPage implements OnInit {
-  dataForm: FormGroup;
-  cart = [];
+
+export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
+
+  stripe: stripe.Stripe;
+
+  @ViewChild(WizardComponent, { static: true }) public wizard: WizardComponent;
+
+  loginForm: FormGroup;
+  registerForm: FormGroup;
+  isRegister = true;
+  isLoggedIn = false;
+
+  isLoading = false;
+
+  showDetails: boolean;
+  hideProduct: boolean;
+
   user: User;
-  stripe;
-  card;
-  cardErrors;
+  uid;
+  userId;
+
+  marked = false;
+  theCheckbox = false;
+  hide = true;
 
   @ViewChild('cardElement', { static: true }) cardElement: ElementRef;
+  card;
+  source;
+  amount = 0;
+
+  confirmation;
+  confirmation0;
+  cardErrors;
 
   constructor(
-    private loadingController: LoadingController,
+    public functions: AngularFireFunctions,
+    public authService: AuthService,
+    private messageService: MessageService,
+    public modalController: ModalController,
+    private seoService: SeoService,
+    private popoverController: PopoverController,
     private fb: FormBuilder,
-    private authService: AuthService,
-    private productService: ProductService,
-    private toastController: ToastController,
-    private cartService: CartService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private afAuth: AngularFireAuth,
+    private stepper: AwWizzardStep
+  ) {
+    this.seoService.addTwitterCard(
+      'Product and Subscription Purchase Page',
+      'View and purchase Expert Fitness\' Subscriptions and other products at great prices',
+      '../../../assets/img/rfs-logo.svg'
+      );
+  }
+
 
   ngOnInit() {
-    this.cartService.getCart().subscribe(res => {
-      this.cart = res;
-    });
+    this.authService.user$.pipe(map((user) => (this.user = user)));
 
-    this.dataForm = this.fb.group({
-      name: ['Simon Grimm', Validators.required],
-      zip: ['48165', Validators.required],
-      street: ['Klinkkampweg 30', Validators.required],
-      city: ['Muenster', Validators.required],
-      country: ['DE', Validators.required]
-    });
+    this.resetVars();
+    this.checkboxStatus();
+    this.stepperProcess();
 
-    this.stripe = Stripe(environment.stripe_key);
+    // Stripe Details
+    this.stripe = Stripe('pk_test_Rm4QbcP0thjADBses4DnzU5600K3q0XqMA');
     const elements = this.stripe.elements();
+    const style = {
+      base: {
+        color: 'var(--ion-color-secondary)',
+        fontFamily: 'Monteserat, "Helvetica Neue", sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '1em',
+        '::placeholder': {
+          color: '#121212'
+        }
+      },
+      invalid: {
+        color: '#f73008',
+        iconColor: '#f73008'
+      }
+    };
 
-    this.card = elements.create('card');
+    // Create an instance of the card Element.
+    this.card = elements.create('card', { style });
     this.card.mount(this.cardElement.nativeElement);
-
     this.card.addEventListener('change', ({ error }) => {
-      console.log('error: ', error);
       this.cardErrors = error && error.message;
     });
   }
 
-  getTotal() {
-    return this.cart.reduce((i, j) => i + j.price * j.amount, 0);
+  ngAfterViewInit() {
+    this.resetVars();
+    this.checkboxStatus();
+    this.stepperProcess();
   }
 
-  async buyNow() {
-    const stripeData = {
-      payment_method_data: {
-        billing_details: {
-          name: this.dataForm.get('name').value,
-          address: {
-            line1: this.dataForm.get('street').value,
-            city: this.dataForm.get('city').value,
-            postal_code: this.dataForm.get('zip').value,
-            country: this.dataForm.get('country').value
-          },
-          email: this.user.email
-        }
-      },
-      receipt_email: this.user.email
-    };
+  ngOnChanges() {
+    this.resetVars();
+    this.checkboxStatus();
+    this.stepperProcess();
+  }
 
-    const items = this.cart.map(item => {
-      return { id: item.id, amount: item.amount };
+  resetVars() {
+    this.hide = true;
+    this.showDetails = true;
+  }
+
+  // evaluate checkmark status
+  checkboxStatus() {
+    this.amount = this.theCheckbox ? +'5700' : +'000';
+  }
+
+  stepperProcess() {
+    if (this.authService.authenticated) {
+      this.wizard.goToStep(1);
+    } else {
+      this.wizard.goToStep(0);
+    }
+  }
+
+  firstStep() {
+    this.wizard.goToStep(0);
+  }
+
+  nextStep() {
+    this.wizard.goToStep(1);
+  }
+
+
+  // toggle checkmark status
+  toggleVisibility(e) {
+    this.marked = e.target.checked;
+  }
+
+
+  async handleForm(e) {
+      e.preventDefault();
+      const { source, error } = await this.stripe.createSource(this.card);
+      if (error) {
+        // Inform the customer that there was an error.
+        const cardErrors = error.message;
+      } else {
+        // Send the token to your server.
+        this.isLoading = true;
+        const fun = this.functions.httpsCallable('stripeCreateSubscription');
+        this.confirmation = await fun({ source: source.id, uid: this.auth.currentUserId, plan: 'bronze' }).toPromise();
+        this.isLoading = false;
+        this.wizard.goToStep(2);
+      }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+  switchAuthMode(); {
+    this.isRegister = !this.isRegister;
+  }
+
+  async presentPopover(ev: any); {
+    const popover = await this.popoverController.create({
+      component: PopoverComponent,
+      event: ev,
+      translucent: true,
+      cssClass: 'popoverUser'
     });
-
-    const loading = await this.loadingController.create();
-    await loading.present();
-
-    (await this.productService
-      .startPaymentIntent(this.getTotal() * 100, items))
-      .subscribe(async paymentIntent => {
-        console.log('my payment intent: ', paymentIntent);
-        const secret = paymentIntent.client_secret;
-
-        const { result, err } = await this.stripe.handleCardPayment(
-          secret,
-          this.card,
-          stripeData
-        );
-
-        console.log('result: ', result);
-
-        if (err) {
-          await loading.dismiss();
-          const toast = await this.toastController.create({
-            message: `Couldn't process payment, please try again later`,
-            duration: 3000
-          });
-          await toast.present();
-        } else {
-          await loading.dismiss();
-          const toast = await this.toastController.create({
-            message: 'Thanks for your order',
-            duration: 3000
-          });
-          await toast.present();
-          this.router.navigateByUrl('/members/ list');
-        }
-      }, async err => {
-        await loading.dismiss();
-        const toast = await this.toastController.create({
-          message: `Couldn't process payment, please try again later`,
-          duration: 3000
-        });
-        await toast.present();
-      });
+    popover.present();
   }
 }

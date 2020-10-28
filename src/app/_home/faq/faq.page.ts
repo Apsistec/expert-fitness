@@ -6,7 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { Faqs } from '../../_models/faq.model';
+import { Faqs } from '../../_models/faqs.model';
 import { SeoService } from '../../_services/seo.service';
 
 @Component({

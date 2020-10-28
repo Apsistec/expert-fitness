@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { User } from 'src/app/_models/user';
+import { User } from 'src/app/_models/users.model';
 
 import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';

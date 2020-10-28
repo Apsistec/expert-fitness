@@ -1,61 +1,38 @@
 rules_version = '2';
-service cloud.firestore {
-       match /{document=**} {
-          allow read, write: if isAdmin();
-      	}
-match /databases/{database}/documents {
-
-    function isSignedIn() {
-    	return request.auth != null;
+  service cloud.firestore {
+  match /databases/{database}/documents {
+    function hasBasicSubs() {
+      return request.auth.token.stripeRole == "basic";
     }
 
-    function isTrialing() {
-    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.subStatus == 'trialing';
+    function hasPremiumSubs() {
+      return request.auth.token.stripeRole == "premium";
     }
 
-    function isActive() {
-    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.subStatus == 'active';
+    match /content-basic/{doc} {
+      allow read: if hasBasicSubs() || hasPremiumSubs();
+    }
+    match /content-premium/{doc} {
+      allow read: if hasPremiumSubs();
     }
 
-    function isUser() {
-    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'USER';
-    }
-    function isPostOwner(postId) {
-    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.postId ==  postId;
-    }
+    match /customers/{uid} {
+      allow read: if request.auth.uid == uid;
 
-    function isTrainer() {
-    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'TRAINER';
-    }
-
-    function isMember() {
-    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'MEMBER';
+      match /checkout_sessions/{id} {
+        allow read, write: if request.auth.uid == uid;
+      }
+      match /subscriptions/{id} {
+        allow read: if request.auth.uid == uid;
+      }
     }
 
-    function isAdmin() {
-    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'ADMIN';
+    match /products/{id} {
+      allow read: if true;
+
+      match /prices/{id} {
+        allow read: if true;
+      }
     }
-
-    function isRegistered() {
-    	return isAdmin() || isMember() || isUser()|| isTrainer();
-    }
-
-    function isValidMember() {
-    	return isRegistered() && isSignedIn() && (isActive() || isTrialing());
-    }
-
-        match /users/{userId} {
-        	allow read, create, update: if request.auth.uid == userId || isAdmin();
-          allow delete: if isAdmin();
-      	}
-        match /tickets/{ticket} {
-          allow read, create, update: if isValidMember() || isAdmin();
-          allow delete: if isAdmin();
-     }
-        match /posts/{post} {
-          allow read, create, update: if (isValidMember() && isPostOwner(post)) || isAdmin();
-          allow delete: if isAdmin();
-     }
-
-}
+  }
 }

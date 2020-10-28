@@ -5,7 +5,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 // api.service.ts
 import { Injectable } from '@angular/core';
 
-import { User } from '../_models/user';
+import { User } from '../_models/users.model';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { User } from 'src/app/_models/user';
+import { User } from 'src/app/_models/users.model';
 import { AuthService } from '../../_services/auth.service';
 
 @Component({

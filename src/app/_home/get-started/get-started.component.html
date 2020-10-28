@@ -1,7 +1,9 @@
 <ion-header translucent>
   <ion-toolbar class="toolbar-global ion-text-center">
     <ion-title *ngIf="loginTitle" color="light">Account Login</ion-title>
-    <ion-title *ngIf="!loginTitle" color="light">Account Registration</ion-title>
+    <ion-title *ngIf="!loginTitle" color="light"
+      >Account Registration</ion-title
+    >
     <ion-buttons slot="end">
       <ion-button (click)="dismissModal()">Close </ion-button>
     </ion-buttons>
@@ -145,7 +147,7 @@
             <ion-icon size="small" slot="start" name="logo-twitter"></ion-icon>
             Login with Twitter
           </ion-button>
-          <hr>
+          <hr />
           <ion-button
             size="small"
             color="dark-shadow"
@@ -171,25 +173,25 @@
                 type="text"
                 inputmode="text"
                 autocomplete="name"
-                formControlName="displayName"
+                formControlName="name"
                 autocapitalize="words"
               >
               </ion-input>
             </ion-item>
             <div
               *ngIf="
-                registerFormControl.displayName.invalid &&
-                !registerFormControl.displayName.pristine
+                registerFormControl.name.invalid &&
+                !registerFormControl.name.pristine
               "
             >
               <ion-text
-                *ngIf="registerFormControl.displayName.errors.required"
+                *ngIf="registerFormControl.name.errors.required"
                 color="danger"
               >
                 Name required.
               </ion-text>
               <ion-text
-                *ngIf="registerFormControl.displayName.errors.maxlength"
+                *ngIf="registerFormControl.name.errors.maxlength"
                 color="danger"
               >
                 Must be no more than 25 characters.
@@ -315,7 +317,7 @@
             <ion-icon size="small" slot="start" name="logo-twitter"></ion-icon>
             Register with Twitter
           </ion-button>
-          <hr>
+          <hr />
           <ion-button
             color="dark-tint"
             expand="block"

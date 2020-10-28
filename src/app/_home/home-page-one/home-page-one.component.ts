@@ -15,7 +15,7 @@ import { AboutAppComponent } from '../../_home/about-app/about-app.component';
 import { GetStartedComponent } from '../../_home/get-started/get-started.component';
 import { PrivacyComponent } from '../../_home/privacy/privacy.component';
 import { TermsComponent } from '../../_home/terms/terms.component';
-import { User } from '../../_models/user';
+import { User } from '../../_models/users.model';
 import { AuthService } from '../../_services/auth.service';
 import { MessageService } from '../../_services/message.service';
 import { UserService } from '../../_services/user.service';

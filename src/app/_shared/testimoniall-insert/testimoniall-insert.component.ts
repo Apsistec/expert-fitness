@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
-import { Testimonial } from '../../_models/testimonial.model';
+import { Testimonial } from '../../_models/ratings.model';
 
 @Component({
   selector: 'app-testimoniall-insert',

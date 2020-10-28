@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-import { Admin } from '../_models/admin';
-import { Feed } from '../_models/feed';
+import { Admin } from '../_models/admins.model';
+import { Feed } from '../_models/feeds.model';
 import { Member } from '../_models/member';
-import { Message } from '../_models/message';
+import { Message } from '../_models/text-messages.model';
 import { Trainer } from '../_models/trainer';
-import { User } from '../_models/user';
+import { User } from '../_models/users.model';
 import { AuthService } from './auth.service';
 
 @Injectable({

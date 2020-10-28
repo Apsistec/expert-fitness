@@ -1,7 +1,6 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <ion-title>
-    List User</ion-title>
+    <ion-title> List User</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -19,11 +18,15 @@
     <tbody>
       <tr *ngFor="let item of userData">
         <td>{{ item.uid }}</td>
-        <td>{{ item.displayName }}</td>
+        <td>{{ item.name }}</td>
         <td>{{ item.phoneNumber }}</td>
         <td>{{ item.email }}</td>
         <td style="display: flex">
-          <ion-button color="warning" size="small" routerLink='/student-edit/{{item.id}}'>
+          <ion-button
+            color="warning"
+            size="small"
+            routerLink="/student-edit/{{item.id}}"
+          >
             <ion-icon name="create"></ion-icon>
           </ion-button>
           <ion-button color="danger" size="small" (click)="delete(item)">
@@ -33,7 +36,5 @@
       </tr>
     </tbody>
   </table>
-  <ion-button [routerLink]="['/student-create']">
-    Add Student
-  </ion-button>
+  <ion-button [routerLink]="['/student-create']"> Add Student </ion-button>
 </ion-content>
