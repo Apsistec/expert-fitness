@@ -34,8 +34,9 @@ const routes: Routes = [
   },
   {
     path: 'tabs',
-    loadChildren: ()
-  }
+    loadChildren: () =>
+      import('./tabs/tabs.module').then((m) => m.TabsModule),
+  },
   // {
   //   path: 'members',
   //   loadChildren: () =>

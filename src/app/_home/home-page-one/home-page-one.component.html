@@ -6,36 +6,39 @@
       style="padding-top: 14vh"
     >
       <ion-col size="12" size-md="6" class="ion-align-self-start ion-text-center">
-        <ion-row class="ion-justify-content-center">
+        <ion-row class="ion-text-center">
+          <ion-col size="6" offset="3">
+
           <img src="../../../assets/logos/logo.png" style="max-width: 50%" />
           <hr>
-        </ion-row>
-        <ion-row class="ion-justify-content-center">
-          <ion-card class="logo-card ion-padding">
-            <ion-card-title>
-              <ion-text color="tertiary">
-                A new paradigm in total body fitness
-              </ion-text>
-            </ion-card-title>
-          </ion-card>
-        </ion-row>
-        <ion-row class="ion-justify-content-center">
-          <ion-button
-            class="cta"
-            color="light"
-            size="large"
-            routerLink="/home/testimonials"
-            fill="outline"
-            >Learn More</ion-button
-          >
-          <ion-button
-            [@pulse]="pulse"
-            class="cta"
-            size="large"
-            color="primary"
-            (click)="showModalGetStarted()"
-            >View Pricing</ion-button
-          >
+          <!-- </ion-row>
+            <ion-row class="ion-justify-content-center"> -->
+              <ion-card class="logo-card ion-padding">
+                <ion-card-title>
+                  <ion-text color="tertiary">
+                    A new paradigm in total body fitness
+                  </ion-text>
+                </ion-card-title>
+              </ion-card>
+            <!-- </ion-row>
+            <ion-row class="ion-justify-content-center"> -->
+              <ion-button
+              class="cta"
+              color="light"
+              size="large"
+              routerLink="/home/testimonials"
+              fill="outline"
+              >Learn More</ion-button
+              >
+              <ion-button
+              [@pulse]="pulse"
+              class="cta"
+              size="large"
+              color="primary"
+              (click)="showModalGetStarted()"
+              >View Pricing</ion-button
+              >
+              </ion-col>
         </ion-row>
       </ion-col>
 
