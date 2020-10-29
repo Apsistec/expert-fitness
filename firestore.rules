@@ -1,21 +1,21 @@
 rules_version = '2';
   service cloud.firestore {
-  match /databases/{database}/documents {
-    function hasUserSubs() {
-      return request.auth.token.stripeRole == "user";
-    }
-    function hasMemberSubs() {
-      return request.auth.token.stripeRole == "member";
-    }
-    function hasEmployeeSubs() {
-      return request.auth.token.stripeRole == "employee";
-    }
-    function hasAdminSubs() {
-      return request.auth.token.stripeRole == "admin";
-    }
+    match /databases/{database}/documents {
+      function hasPublicSubs() {
+        return request.auth.token.stripeRole == "PUBLIC";
+      }
+      function hasMemberSubs() {
+        return request.auth.token.stripeRole == "MEMBER";
+      }
+      function hasEmployeeSubs() {
+        return request.auth.token.stripeRole == "EMPLOYEE";
+      }
+      function hasAdminSubs() {
+        return request.auth.token.stripeRole == "ADMIN";
+      }
 
-    match /user-content/{doc} {
-      allow read: if hasUserSubs() || hasMemberSubs() || hasEmployeeSubs() || hasAdminSubs();
+    match /public-content/{doc} {
+      allow read: if hasPublicSubs() || hasMemberSubs() || hasEmployeeSubs() || hasAdminSubs();
       allow write: if hasEmployeeSubs() || hasAdminSubs();
     }
     match /member-content/{doc} {
@@ -33,21 +33,18 @@ rules_version = '2';
 
     match /users/{uid} {
       allow read: if request.auth.uid == uid;
-
-      match /checkout_sessions/{id} {
-        allow read, write: if request.auth.uid == uid;
-      }
-      match /subscriptions/{id} {
-        allow read: if request.auth.uid == uid;
-      }
     }
-
+    match /checkout_sessions/{id} {
+      allow read, write: if request.auth.uid == uid;
+    }
+    match /subscriptions/{id} {
+      allow read: if request.auth.uid == uid;
+    }
     match /products/{id} {
       allow read: if true;
-
-      match /prices/{id} {
-        allow read: if true;
-      }
+    }
+    match /prices/{id} {
+      allow read: if true;
     }
   }
 }

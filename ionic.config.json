@@ -1,7 +1,8 @@
 {
-  "displayName": "expert-fitness-app",
+  "name": "expert-fitness",
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "displayName": "expert-fitness"
 }

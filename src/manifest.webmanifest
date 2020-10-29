@@ -1,6 +1,6 @@
 {
-  "displayName": "expert-fitness-app",
-  "short_name": "expert-fitness-app",
+  "displayName": "expert-fitness",
+  "short_name": "expert-fitness",
   "theme_color": "#795548",
   "background_color": "#ffffff",
   "display": "standalone",

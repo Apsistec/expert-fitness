@@ -1,6 +1,7 @@
 {
   "projects": {
-    "default": "expert-fitness-midland-tx"
+    "default": "expert-fitness-midland-tx",
+    "staging": "expert-fitness-midland-tx"
   },
   "targets": {
     "expert-fitness-midland-tx": {

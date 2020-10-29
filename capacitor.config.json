@@ -1,6 +1,6 @@
 {
   "appId": "com.expert-fitness.app",
-  "appName": "expert-fitness-app",
+  "appName": "expert-fitness",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

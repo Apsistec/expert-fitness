@@ -51,7 +51,7 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then((data) => {
-        this.SendVerificationMail();
+        this.sendVerificationMail();
         return this.afs.doc<User>(`users/${data.user.uid}`).set({
           uid: data.user.uid,
           displayName: data.user.displayName,
@@ -77,35 +77,37 @@ export class AuthService {
           emailVerified: data.user.emailVerified,
         });
       });
-    }).catch(async (error) => {
-    const alert = await this.messageService.errorAlert({header: 'Authentifcation Error',
-      subHeader: error.code,
-      message: error.message,
-      cssClass: 'warningAlert'
+    })
+    .catch((error) => {
+      this.messageService.errorAlert(error);
     });
+  }
 
   // Sign in with 3rd party Oauth
-  GoogleAuth() {
+    GoogleAuth() {
     this.AuthLogin(new fire.auth.GoogleAuthProvider());
   }
 
-  TwitterAuth() {
+    TwitterAuth() {
     this.AuthLogin(new fire.auth.TwitterAuthProvider());
   }
 
   /* Send email verfificaiton when new user sign up */
-  SendVerificationMail() {
-    fire
-      .auth()
-      .currentUser.sendEmailVerification()
-      .then(() => {
-        this.messageService.registerSuccessToast();
-        this.router.navigate(['/verify-email']);
-      });
-  }
+    sendVerificationMail() {
+      const actionCodeSettings = {
+        url: 'https://www.example.com/cart?email=user'
+      };
+      fire
+        .auth()
+        .currentUser.sendEmailVerification( actionCodeSettings )
+        .then(() => {
+            this.messageService.registerSuccessToast();
+            this.router.navigate(['/verify-email']);
+          });
+    }
 
   // Recover password
-  ForgotPassword(passwordResetEmail) {
+    ForgotPassword(passwordResetEmail) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail).then(() => {
       this.messageService.resetPasswordAlert();
     });
@@ -122,26 +124,22 @@ export class AuthService {
 
 
 
-  canRead(user: any): boolean {
+  canRead(user: User): boolean {
     return this.checkAuthorization(user);
   }
 
   // determines if user is a member
   private checkAuthorization(user: User): boolean {
-    if (!user) {
-      return false;
+    if (user && user.role === 'PUBLIC' || 'MEMBER' || 'EMPLOYEE' || 'ADMIN') {
+      return true;
     }
     {
-      // tslint:disable-next-line: triple-equals
-      if (user.role == 'USER' || 'MEMBER' || 'TRAINER' || 'ADMIN') {
-        return true;
-      } else {
-        return false;
-      }
+      return false;
     }
+
   }
 
-  hasPermissions(permissions: string[]) {
+hasPermissions(permissions: string[]) {
     for (const perm of permissions) {
       return this.user$.pipe(
         map((user) => {

@@ -16,6 +16,5 @@
         "titleBar.inactiveForeground": "#e7e7e799"
     },
     "peacock.color": "#ff3d00",
-    "typescript.tsdk": "node_modules\\typescript\\lib",
     "liveServer.settings.port": 5501
 }
