@@ -22,7 +22,7 @@ export class UserService {
     public storage: Storage,
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private message: MessageService,
+    private messageService: MessageService,
     private router: Router
     ) {}
 
@@ -45,7 +45,7 @@ export class UserService {
     return this.afs.doc(`users/${this.user.uid}`).update({
       email
     }).then(() => {
-      this.message.generalToast('Email Updated', 'The email that you sign in with was successfully updated.');
+     this.messageService.generalToast('The email that you sign in with was successfully updated.');
     });
   }
 
@@ -57,27 +57,5 @@ export class UserService {
         return email;
       })
     );
-  }
-
-  async checkHasSeenTutorial(): Promise<boolean> {
-    return this.storage.get(this.HAS_SEEN_TUTORIAL)
-    .then((value: boolean) => {
-      return value;
-    });
-  }
-
-  resetWelcome() {
-    this.message
-      .resetWelcomeAlert(
-        'Welcome Intro Reset',
-        'Press Okay to reset the welcome slides and refresh the web app; otherwise press cancel.'
-      )
-      .then((res) => {
-        if (res.role === 'okay') {
-          this.storage.remove(this.HAS_SEEN_TUTORIAL).then(() => {
-            this.router.navigateByUrl('/welcome');
-          });
-        }
-      });
   }
 }

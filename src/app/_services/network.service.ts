@@ -7,17 +7,16 @@ const { Network } = Plugins;
 @Injectable({
     providedIn: 'root'
   })
-  export class NetworkService  implements OnChanges {
-  networkStatus: any;
+  export class NetworkService  {
+  networkStatus: NetworkStatus ;
   networkListener: PluginListenerHandle;
 
-  constructor() { }
-
-  ngOnChanges() {
+  constructor() {
     this.networkListener = Network.addListener('networkStatusChange', (status) => {
       this.networkStatus = status;
       console.log('Network status changed', status);
     });
+
   }
 
   async getNetWorkStatus() {

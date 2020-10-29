@@ -44,6 +44,8 @@ export class AuthService {
           email: data.user.email,
           emailVerified: data.user.emailVerified,
         });
+      })  .catch((error) => {
+        this.messageService.errorAlert(error);
       });
   }
 
@@ -60,6 +62,8 @@ export class AuthService {
           permissions: ['delete-ticket'],
           emailVerified: data.user.emailVerified,
         });
+      })  .catch((error) => {
+        this.messageService.errorAlert(error);
       });
   }
 
@@ -85,32 +89,40 @@ export class AuthService {
 
   // Sign in with 3rd party Oauth
     GoogleAuth() {
-    this.AuthLogin(new fire.auth.GoogleAuthProvider());
+    this.AuthLogin(new fire.auth.GoogleAuthProvider())
+    .catch((error) => {
+      this.messageService.errorAlert(error);
+    });
   }
 
     TwitterAuth() {
-    this.AuthLogin(new fire.auth.TwitterAuthProvider());
+    this.AuthLogin(new fire.auth.TwitterAuthProvider())
+    .catch((error) => {
+      this.messageService.errorAlert(error);
+    });
   }
 
   /* Send email verfificaiton when new user sign up */
-    sendVerificationMail() {
-      const actionCodeSettings = {
-        url: 'https://www.example.com/cart?email=user'
-      };
-      fire
-        .auth()
-        .currentUser.sendEmailVerification( actionCodeSettings )
-        .then(() => {
-            this.messageService.registerSuccessToast();
-            this.router.navigate(['/verify-email']);
-          });
-    }
+  sendVerificationMail() {
+    const actionCodeSettings = {
+      url: 'https://www.example.com/cart?email=user'
+    };
+    fire
+      .auth()
+      .currentUser.sendEmailVerification( actionCodeSettings )
+      .then(() => {
+          this.messageService.registerSuccessToast();
+          this.router.navigate(['/verify-email']);
+        })  .catch((error) => {
+          this.messageService.errorAlert(error);
+        }).catch((err) => this.messageService.errorAlert(JSON.stringify(err)));
+  }
 
   // Recover password
     ForgotPassword(passwordResetEmail) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail).then(() => {
       this.messageService.resetPasswordAlert();
-    });
+    }).catch((err) => this.messageService.errorAlert(JSON.stringify(err)));
   }
 
   // Sign-out
@@ -118,8 +130,8 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       this.messageService.signOutToast().then(() => {
         this.router.navigate(['/home']);
-      });
-    });
+      }).catch((err) => this.messageService.errorAlert(JSON.stringify(err)));
+    }).catch((err) => this.messageService.errorAlert(JSON.stringify(err)));
   }
 
 

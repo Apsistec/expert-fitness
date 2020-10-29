@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import * as ExcelJs from 'exceljs';
 import * as fs from 'file-saver';
 import * as logo from '../../assets/data/mylogo.js';
+import { MessageService } from './message.service.js';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExportExcelService {
-  constructor() {}
+  constructor(private messageService: MessageService) {}
 
   exportExcel(excelData) {
     // Title, Header & Data
@@ -114,6 +115,6 @@ export class ExportExcelService {
           'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       });
       fs.saveAs(blob, title + '.xlsx');
-    });
+    }).catch((err) => this.messageService.errorAlert(JSON.stringify(err)));
   }
 }

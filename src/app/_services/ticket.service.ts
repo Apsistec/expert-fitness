@@ -4,7 +4,8 @@ import { AuthService } from './auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { map, take, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { User } from '../_models/users.model';
 
 @Injectable({
   providedIn: 'root',
@@ -73,11 +74,12 @@ export class TicketService {
     return this.db.doc(`tickets/${id}`).valueChanges().pipe(take(1));
   }
 
-  getUser(id) {
-    return this.db.doc(`users/${id}`).valueChanges().pipe(take(1));
-  }
-
   deleteTicket(id) {
     return this.db.doc(`tickets/${id}`).delete();
   }
+
+  getUser(uid) {
+    return this.db.doc(`users/${uid}`).valueChanges().pipe(take(1));
+  }
+
 }

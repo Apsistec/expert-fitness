@@ -14,12 +14,12 @@ export class SeoService {
     // Add Twitter Card Metatags
     this.meta.updateTag({ displayName: 'twitter:card', content: 'summary' });
     this.meta.updateTag({
-      displayName: 'twitter:site',
+      name: 'twitter:site',
       content: '@rankfsports',
     });
     this.meta.updateTag({ displayName: 'twitter:title', content: title });
     this.meta.updateTag({
-      displayName: 'twitter:description',
+      name: 'twitter:description',
       content: description,
     });
     this.meta.updateTag({ displayName: 'twitter:image', content: img });

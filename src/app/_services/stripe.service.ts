@@ -3,6 +3,7 @@ import { AngularFireFunctions } from '@angular/fire/functions';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Coupon } from '../_models/coupon.model';
 import { User } from '../_models/users.model';
 import { AuthService } from './auth.service';
 import { MessageService } from './message.service';
@@ -16,66 +17,69 @@ export class StripeService {
   subscriptions: Observable<any>;
   confirmation; // : Observable<any>;
   invoices: Observable<any>;
+  discount;
 
   constructor(
     private authService: AuthService,
     private functions: AngularFireFunctions,
-    private message: MessageService,
+    private messageService: MessageService,
     private router: Router,
     private spinner: SpinnerService
-  ) {
-    this.authService.user$.pipe(map((user) => (this.user = user)));
-  }
+    ) {
+      this.authService.user$.pipe(map((user) => (this.user = user)));
+    }
 
-  async subscribeUser(source, planId) {
-    const fun = this.functions.httpsCallable('stripeCreateSubscription');
-    this.confirmation = await fun({
-      source: source.id,
-      uid: this.user.uid,
-      plan: planId,
-    }).toPromise();
-  }
 
-  async getSubscriptions() {
-    const fun = this.functions.httpsCallable('stripeGetSubscriptions');
-    this.subscriptions = fun({ uid: this.user.uid });
-  }
+    async subscribeUser(source, planId) {
+      const fun = this.functions.httpsCallable('stripeCreateSubscription');
+      this.confirmation = await fun({
+        source: source.id,
+        uid: this.user.uid,
+        plan: planId,
+      }).toPromise();
+    }
 
-  async cancelSubscription() {
-    this.spinner.loadSpinner();
+    async getSubscriptions() {
+      const fun = this.functions.httpsCallable('stripeGetSubscriptions');
+      this.subscriptions = fun({ uid: this.user.uid });
+    }
 
-    const fun = this.functions.httpsCallable('stripeCancelSubscription');
-    this.confirmation = await fun({
-      uid: this.user.uid,
-      subId: this.user.subId,
-    })
+    async cancelSubscription() {
+      this.spinner.loadSpinner();
+
+      const fun = this.functions.httpsCallable('stripeCancelSubscription');
+      this.confirmation = await fun({
+        uid: this.user.uid,
+        subId: this.user.subId,
+      })
       .toPromise()
       .then(() => {
         this.spinner.dismissSpinner();
-        this.message.unsubscribedAlert();
+        this.messageService.unsubscribedAlert();
         this.router.navigate(['/']);
       })
       .catch((error) => {
         this.spinner.dismissSpinner();
-        this.message.errorAlert(error.message);
+        this.messageService.errorAlert(error.message);
       });
-  }
+    }
 
-  async getInvoices() {
-    const fun = this.functions.httpsCallable('stripeGetInvoices');
-    return (this.invoices = fun({ uid: this.user.uid }));
-  }
+    async getInvoices() {
+      const fun = this.functions.httpsCallable('stripeGetInvoices');
+      return (this.invoices = fun({ uid: this.user.uid }));
+    }
 
-  // Coupons
 
-  // const couponForm = document.getElementById('couponForm');
-  // const couponFun = fun.httpsCallable('stripeGetCoupon');
-
-  // couponForm.onblur = async() => {
-  //   const val = couponForm.value;
-  //   console.log(val)
-  //   const coupon = await couponFun({ coupon: val });
-  //   console.log(coupon);
-  //   alert(`sweet! ${coupon.data.displayName}`)
-  // }
+    // Coupons
+    getCoupon() {
+      const coupon: any = document.getElementById('couponForm');
+      const couponFun = this.functions.httpsCallable('stripeGetCoupon');
+      coupon.onblur = async () => {
+        const couponCode: Coupon = await couponFun({ coupon });
+        if ( couponCode.name === coupon.name ) {
+          this.discount = couponCode.value;
+          this.messageService.generalToast('');
+        }
+      };
+    }
 }

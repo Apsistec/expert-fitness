@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/s
 export class ProductService {
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth, private storage: AngularFireStorage,
-              private functions: AngularFireFunctions) { }
+              private functions: AngularFireFunctions, private messageService: MessageService) { }
 
   getAllProducts() {
     return this.db.collection('products').snapshotChanges().pipe(
@@ -48,7 +49,8 @@ export class ProductService {
     }).then(imageUrl => {
       console.log('got url: ', imageUrl);
       return this.db.doc(`products/${documentId}`).update({ img: imageUrl });
-    });
+    })      .catch((err) => this.messageService.errorAlert(JSON.stringify(err)));
+
   }
 
   async getSellerProducts() {

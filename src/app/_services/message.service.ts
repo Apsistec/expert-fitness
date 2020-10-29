@@ -1,4 +1,4 @@
-import { Injectable, ErrorHandler } from "@angular/core";
+import { Injectable, ErrorHandler } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
 @Injectable({
@@ -63,7 +63,6 @@ export class MessageService {
       cssClass: 'successT',
       position: 'middle',
       duration: 3000,
-
       keyboardClose: true,
     });
     await toast.present();
@@ -76,7 +75,6 @@ export class MessageService {
       message: 'Thank You for Stopping By!',
       position: 'middle',
       duration: 3000,
-
       keyboardClose: true,
     });
     await toast.present();
@@ -88,7 +86,6 @@ export class MessageService {
       message: 'The ticket was successfully deleted.',
       position: 'middle',
       duration: 3000,
-
       keyboardClose: true,
     });
     await toast.present();
@@ -101,7 +98,6 @@ export class MessageService {
       duration: 3000,
       position: 'middle',
       cssClass: 'successT',
-
       keyboardClose: true,
     });
     await toast.present();
@@ -114,7 +110,6 @@ export class MessageService {
       message: 'You are subscribed! Thank You!',
       position: 'middle',
       duration: 3000,
-
       keyboardClose: true,
     });
     await toast.present();
@@ -127,15 +122,14 @@ export class MessageService {
       message: ' You are already Subscribed',
       position: 'middle',
       duration: 3000,
-
       keyboardClose: true,
     });
     await toast.present();
   }
 
-  async generalToast(header: string, message: string) {
+  async generalToast(message) {
     const toast = await this.toastController.create({
-      header,
+      header: 'Message Service',
       cssClass: 'successT',
       message,
       position: 'middle',
@@ -172,7 +166,6 @@ export class MessageService {
       header: 'Request Successful',
       subHeader: 'Password Reset Request Sent',
       message: 'Check your email for a link to RESET your password',
-
       buttons: ['OK'],
     });
     await alert.present();
@@ -202,19 +195,17 @@ export class MessageService {
     const alert = await this.alertController.create({
       header: 'Cancellation Successful',
       subHeader: 'Your account has been cancelled',
-
       message: 'Effective immediately. Thank you for giving us a try!',
       buttons: ['OK'],
     });
     await alert.present();
   }
 
-  async globalErrorAlert(err: ErrorHandler, router, page?) {
+  async globalErrorAlert(err, router, page?) {
     const alert = await this.alertController.create({
       header: 'Page: ' + page,
       subHeader: 'Location: ' + router.url,
-      message: 'Error Message: ' + err.message + ,
-      buttons: ['OK'],
+      message: err.message,
       cssClass: 'warningA',
     });
     await alert.present();

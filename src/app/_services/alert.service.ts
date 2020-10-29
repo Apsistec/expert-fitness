@@ -3,6 +3,7 @@ import { Platform } from '@ionic/angular';
 
 import { Plugins, PushNotification } from '@capacitor/core';
 import { FCM } from '@capacitor-community/fcm';
+import { MessageService } from './message.service';
 
 const { PushNotifications } = Plugins;
 const fcm = new FCM();
@@ -17,14 +18,14 @@ export class AlertService {
   topicName = 'super-awesome-topic';
   remoteToken: string;
 
-  constructor(private platform: Platform, private zone: NgZone) {
+  constructor( private platform: Platform, private zone: NgZone, private messageService: MessageService ) {
 
 
     PushNotifications.addListener('registration', (data) => {
-      alert(JSON.stringify(data));
+      this.messageService.generalToast(JSON.stringify(data));
       console.log(data);
     });
-    PushNotifications.register().then(() => alert(`registered for push`));
+    PushNotifications.register().then(() => this.messageService.generalToast(`registered for push`));
     PushNotifications.addListener(
       'pushNotificationReceived',
       (notification: PushNotification) => {
@@ -43,16 +44,16 @@ export class AlertService {
       .then((_) => {
         fcm
           .subscribeTo({ topic: this.topicName })
-          .then((r) => alert(`subscribed to topic ${this.topicName}`))
+          .then((r) => this.messageService.generalToast(`subscribed to topic ${this.topicName}`))
           .catch((err) => console.log(err));
       })
-      .catch((err) => alert(JSON.stringify(err)));
+      .catch((err) => this.messageService.errorAlert(JSON.stringify(err)));
   }
 
   unsubscribeFrom() {
     fcm
       .unsubscribeFrom({ topic: 'test' })
-      .then((r) => alert(`unsubscribed from topic ${this.topicName}`))
+      .then((r) => this.messageService.generalToast(`unsubscribed from topic ${this.topicName}`))
       .catch((err) => console.log(err));
     if (this.platform.is('android')) { fcm.deleteInstance(); }
   }
@@ -63,6 +64,6 @@ export class AlertService {
       .then((result) => {
         this.remoteToken = result.token;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => this.messageService.errorAlert(JSON.stringify(err)));
   }
 }

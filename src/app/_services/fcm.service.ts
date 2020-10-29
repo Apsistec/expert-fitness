@@ -16,30 +16,20 @@ import { FCM } from '@ionic-native/fcm/ngx';
 })
 export class FcmService {
   token;
+  firebaseNative: any;
 
   constructor(
     private afMessaging: AngularFireMessaging,
     private toastController: ToastController,
     private fcm: FCM,
     private platform: Platform,
-    private message: MessageService
+    private messageService: MessageService
   ) {
     try {
       const _messaging = this.afMessaging;
       _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
       _messaging.onMessage = _messaging.onMessage.bind(_messaging);
-    } catch (e) {}
-  }
-
-  async makeToast(message) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 5000,
-      position: 'top',
-    });
-    await toast.present().catch(err => {
-      return this.message.errorAlert(err);
-    });
+    } catch (e) {this.messageService.errorAlert(e.message); }
   }
 
   getPermission() {
@@ -61,7 +51,7 @@ export class FcmService {
   listenToMessages(): any {
     let messages$;
 
-      messages$ = this.afMessaging.messages;
+    messages$ = this.afMessaging.messages;
 
 
     return messages$.pipe(tap(v => this.showMessages(v)));
@@ -70,14 +60,14 @@ export class FcmService {
 
   sub(topic): any {
     this.fcm.subscribeToTopic(topic).then(() => {
-        this.makeToast(`subscribed to ${topic}`)
-    })
+        this.messageService.generalToast(`subscribed to ${topic}`);
+    }).catch((err) => this.messageService.errorAlert(JSON.stringify(err)));
   }
 
   unsub(topic) {
     this.fcm.unsubscribeFromTopic(topic).then(() => {
-        this.makeToast(`unsubscribed from ${topic}`)
-    })
+        this.messageService.generalToast(`unsubscribed from ${topic}`);
+    }).catch((err) => this.messageService.errorAlert(JSON.stringify(err)));
   }
 
   private showMessages(payload) {
@@ -88,7 +78,7 @@ export class FcmService {
       body = payload.notification.body;
     }
 
-    this.makeToast(body);
+    this.messageService.generalToast(body);
   }
 
   private getPermissionWeb() {
@@ -99,12 +89,11 @@ export class FcmService {
     let token;
 
     if (this.platform.is('ios')) {
-    //   await this.firebaseNative.grantPermission();
+      await this.firebaseNative.grantPermission();
     }
 
-    // token = await this.firebaseNative.getToken();
+    token = await this.firebaseNative.getToken();
 
     return token;
   }
 }
-

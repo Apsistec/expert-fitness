@@ -15,7 +15,7 @@ export interface User {
   friends?: User;
   trainers?: Employee;
   subStatus?: string;
-  plan?: string;
   emailVerified?: boolean;
-
+  plan?: string;
+  subId?: string;
 }
