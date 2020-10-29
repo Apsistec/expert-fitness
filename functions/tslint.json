@@ -42,7 +42,7 @@
     "no-duplicate-variable": [true, "check-parameters"],
 
     // Disallows a variable definition in an inner scope from shadowing a variable in an outer scope. Developers should
-    // instead use a separate variable name.
+    // instead use a separate variable displayName.
     "no-shadowed-variable": true,
 
     // Empty blocks are almost never needed. Allow the one general exception: empty catch blocks.

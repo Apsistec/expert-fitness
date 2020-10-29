@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
 // Lodash should be included in Angular 10, I need to find it so I cna remove this line
 import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-upload-excel',
@@ -36,7 +36,7 @@ export class UploadExcelComponent implements OnInit {
       if (!_.includes(af, file.type)) {
         alert('Only EXCEL Docs Allowed!');
       } else {
-        this.fileInputLabel = file.name;
+        this.fileInputLabel = file.displayName;
         this.fileUploadForm.get('myfile').setValue(file);
       }
     }

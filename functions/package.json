@@ -1,5 +1,5 @@
 {
-  "name": "functions",
+  "displayName": "functions",
   "description": "Application for the firestore-stripe-subscriptions extension.",
   "scripts": {
     "lint": "tslint --project tsconfig.json",

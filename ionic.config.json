@@ -1,5 +1,5 @@
 {
-  "name": "expert-fitness-app",
+  "displayName": "expert-fitness-app",
   "integrations": {
     "capacitor": {}
   },

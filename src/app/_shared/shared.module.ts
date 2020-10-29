@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartsComponent } from './charts/charts.component';
-import { TestimoniallInsertComponent } from './testimoniall-insert/testimoniall-insert.component';
+import { RatingsInsertComponent } from './ratings-insert/ratings-insert.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { TestimoniallInsertComponent } from './testimoniall-insert/testimoniall-
     HeaderComponent,
     PopoverComponent,
     ChartsComponent,
-    TestimoniallInsertComponent,
+    RatingsInsertComponent,
   ],
   imports: [
     RouterModule,
@@ -42,7 +42,7 @@ import { TestimoniallInsertComponent } from './testimoniall-insert/testimoniall-
     HeaderComponent,
     FooterComponent,
     ChartsComponent,
-    TestimoniallInsertComponent,
+    RatingsInsertComponent,
   ],
 })
 export class SharedModule {}

@@ -1,14 +1,13 @@
+import { DOCUMENT } from '@angular/common';
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   Inject,
   ViewChild,
-  AfterViewInit,
 } from '@angular/core';
-import { ConferenceData } from '../../_data/conference-data';
 import { Platform } from '@ionic/angular';
-import { DOCUMENT } from '@angular/common';
-
+import { ConferenceData } from '../../_data/conference-data';
 import { darkStyle } from './map-dark-style';
 
 @Component({
@@ -50,13 +49,13 @@ export class ContactPage implements AfterViewInit {
 
       mapData.forEach((markerData: any) => {
         const infoWindow = new googleMaps.InfoWindow({
-          content: `<h3>${markerData.name}</h3><h6>${markerData.address}</h6><h4>${markerData.phone}</h4>`,
+          content: `<h3>${markerData.displayName}</h3><h6>${markerData.address}</h6><h4>${markerData.phone}</h4>`,
         });
 
         const marker = new googleMaps.Marker({
           position: markerData,
           map,
-          title: markerData.name,
+          title: markerData.displayName,
         });
 
         marker.addListener('click', () => {

@@ -1,14 +1,12 @@
-import { Observable } from 'rxjs';
-
 import { Injectable } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { Router } from '@angular/router';
-
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { User } from '../_models/users.model';
 import { AuthService } from './auth.service';
 import { MessageService } from './message.service';
 import { SpinnerService } from './spinner.service';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -26,10 +24,8 @@ export class StripeService {
     private router: Router,
     private spinner: SpinnerService
   ) {
-        this.authService.user$.pipe(map((user) => (this.user = user)));
-
+    this.authService.user$.pipe(map((user) => (this.user = user)));
   }
-
 
   async subscribeUser(source, planId) {
     const fun = this.functions.httpsCallable('stripeCreateSubscription');
@@ -80,6 +76,6 @@ export class StripeService {
   //   console.log(val)
   //   const coupon = await couponFun({ coupon: val });
   //   console.log(coupon);
-  //   alert(`sweet! ${coupon.data.name}`)
+  //   alert(`sweet! ${coupon.data.displayName}`)
   // }
 }

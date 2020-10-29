@@ -1,44 +1,47 @@
-<app-header ></app-header>
+<app-header></app-header>
 <ion-content fullscreen translucent>
   <ion-grid class="ion-no-padding">
     <ion-row
       class="scene-one ion-justify-content-around"
       style="padding-top: 14vh"
     >
-      <ion-col size="12" size-md="6" class="ion-align-self-start ion-text-center">
+      <ion-col
+        size="12"
+        size-md="6"
+        class="ion-align-self-start ion-text-center"
+      >
         <ion-row class="ion-text-center">
           <ion-col size="6" offset="3">
-
-          <img src="../../../assets/logos/logo.png" style="max-width: 50%" />
-          <hr>
-          <!-- </ion-row>
-            <ion-row class="ion-justify-content-center"> -->
-              <ion-card class="logo-card ion-padding">
-                <ion-card-title>
-                  <ion-text color="tertiary">
-                    A new paradigm in total body fitness
-                  </ion-text>
-                </ion-card-title>
-              </ion-card>
+            <img src="../../../assets/logos/logo.png" style="max-width: 50%" />
+            <hr />
             <!-- </ion-row>
             <ion-row class="ion-justify-content-center"> -->
-              <ion-button
+            <ion-card class="logo-card ion-padding">
+              <ion-card-title>
+                <ion-text color="tertiary">
+                  A new paradigm in total body fitness
+                </ion-text>
+              </ion-card-title>
+            </ion-card>
+            <!-- </ion-row>
+            <ion-row class="ion-justify-content-center"> -->
+            <ion-button
               class="cta"
               color="light"
               size="large"
               routerLink="/home/testimonials"
               fill="outline"
               >Learn More</ion-button
-              >
-              <ion-button
+            >
+            <ion-button
               [@pulse]="pulse"
               class="cta"
               size="large"
               color="primary"
               (click)="showModalGetStarted()"
               >View Pricing</ion-button
-              >
-              </ion-col>
+            >
+          </ion-col>
         </ion-row>
       </ion-col>
 
@@ -66,42 +69,94 @@
           <ion-col>
             <ul class="bottom-menu">
               <li><h3>Menu</h3></li>
-              <li routerLink="/home" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
+              <li
+                routerLink="/home"
+                routerLinkActive="active-bottom-menu"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 <ion-label>Home</ion-label>
               </li>
               <!-- SignedIn Menu Items -->
-              <li *ngIf="user | async" routerLink="/members/dashboard" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
+              <li
+                *ngIf="user | async"
+                routerLink="/members/dashboard"
+                routerLinkActive="active-bottom-menu"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 <ion-label>Dashboard</ion-label>
               </li>
-              <li *ngIf="user | async" routerLink="/members/workouts" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
+              <li
+                *ngIf="user | async"
+                routerLink="/members/workouts"
+                routerLinkActive="active-bottom-menu"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 <ion-label>Workouts</ion-label>
               </li>
-              <li *ngIf="user | async" routerLink="/members/nutrition" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
+              <li
+                *ngIf="user | async"
+                routerLink="/members/nutrition"
+                routerLinkActive="active-bottom-menu"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 <ion-label>Nutrition</ion-label>
               </li>
-              <li *ngIf="user | async" routerLink="/members/videos" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
+              <li
+                *ngIf="user | async"
+                routerLink="/members/videos"
+                routerLinkActive="active-bottom-menu"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 <ion-label>Videos</ion-label>
               </li>
-              <li *ngIf="user | async" routerLink="/members/messages" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
+              <li
+                *ngIf="user | async"
+                routerLink="/members/messages"
+                routerLinkActive="active-bottom-menu"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 <ion-label>Messages</ion-label>
               </li>
-              <li *ngIf="user | async" routerLink="/members/settings" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
+              <li
+                *ngIf="user | async"
+                routerLink="/members/settings"
+                routerLinkActive="active-bottom-menu"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 <ion-label>Settings</ion-label>
               </li>
               <!-- Menu Options for nonusers -->
-              <li *ngIf="!user" routerLink="/home/products" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
+              <li
+                *ngIf="!user"
+                routerLink="/home/products"
+                routerLinkActive="active-bottom-menu"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 <ion-label>Products</ion-label>
               </li>
-              <li *ngIf="!user" routerLink="/home/faqs" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
+              <li
+                *ngIf="!user"
+                routerLink="/home/faqs"
+                routerLinkActive="active-bottom-menu"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 <ion-label>FAQs</ion-label>
               </li>
               <li *ngIf="!user" routerLink="/home/testimonials">
                 <ion-label>Testimonials</ion-label>
               </li>
-              <li routerLink="/home/about" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
+              <li
+                routerLink="/home/about"
+                routerLinkActive="active-bottom-menu"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 <ion-label>About</ion-label>
               </li>
-              <li routerLink="/home/contact" routerLinkActive="active-bottom-menu" [routerLinkActiveOptions]="{exact: true}">
+              <li
+                routerLink="/home/contact"
+                routerLinkActive="active-bottom-menu"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 <ion-label>Contact</ion-label>
               </li>
             </ul>
@@ -128,7 +183,6 @@
         class="ion-align-self-center"
         routerLink="/home/contact"
       >
-
         <ion-row class="ion-justify-content-center">
           <ion-col size="8">
             <ion-card color="primary" class="ion-text-center">
@@ -148,12 +202,12 @@
                   <p>Midland TX 79705</p>
                 </ion-text>
                 <ion-chip color="light" href="tel://432-684-0844">
-                  <ion-icon color="warning" name="call-sharp"></ion-icon>
+                  <ion-icon color="warning" displayName="call-sharp"></ion-icon>
                   <ion-label> (432) 684-0844 </ion-label>
                 </ion-chip>
 
                 <ion-chip color="light" routerLink="/home/contact">
-                  <ion-icon color="warning" name="mail-sharp"></ion-icon>
+                  <ion-icon color="warning" displayName="mail-sharp"></ion-icon>
                   <ion-label> Contact Us </ion-label>
                 </ion-chip>
               </ion-card-content>
@@ -162,16 +216,12 @@
         </ion-row>
       </ion-col>
 
-      <ion-col size="12" pull-sm="4" size-sm="4" >
+      <ion-col size="12" pull-sm="4" size-sm="4">
         <ion-row>
-
-
-            <!-- <app-testimoniall-insert></app-testimoniall-insert> -->
-
+          <!-- <app-testimoniall-insert></app-testimoniall-insert> -->
         </ion-row>
         <ion-row class="ion-justify-content-center ion-text-center">
           <ion-col class="ion-align-self-end ion-text-center">
-
             <ion-buttons>
               <ion-button color="tertiary" (click)="showModalPrivacy()">
                 Privacy
@@ -183,12 +233,12 @@
                 About App
               </ion-button>
             </ion-buttons>
-            <hr>
+            <hr />
 
             <share-buttons
-            theme="material-dark"
-            show="4"
-            size="-3"
+              theme="material-dark"
+              show="4"
+              size="-3"
             ></share-buttons>
           </ion-col>
         </ion-row>

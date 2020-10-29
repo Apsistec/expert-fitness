@@ -2,13 +2,11 @@
   <ion-toolbar class="toolbar-global">
     <ion-buttons slot="start">
       <ion-button (click)="close()">
-        <ion-icon name="close"></ion-icon>
+        <ion-icon displayName="close"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>
-      <ion-text color="medium">
-        Ticket Details
-      </ion-text>
+      <ion-text color="medium"> Ticket Details </ion-text>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,9 +14,7 @@
   <ion-card color="light">
     <ion-card-header>
       <ion-card-title *ngIf="!id">
-        <ion-text>
-          New Ticket
-        </ion-text>
+        <ion-text> New Ticket </ion-text>
       </ion-card-title>
       <ion-card-title *ngIf="id">
         <ion-text> Ticket: #{{ id }} </ion-text>
@@ -48,10 +44,10 @@
           <ion-segment formControlName="status" mode="ios">
             <ion-segment-button value="0" layout="icon-start">
               <ion-label>Open</ion-label>
-              <ion-icon name="radio-button-off"></ion-icon>
+              <ion-icon displayName="radio-button-off"></ion-icon>
             </ion-segment-button>
             <ion-segment-button value="1" layout="icon-end">
-              <ion-icon color="medium" name="done-all"></ion-icon>
+              <ion-icon color="medium" displayName="done-all"></ion-icon>
               <ion-label color="medium">Fixed</ion-label>
             </ion-segment-button>
           </ion-segment>
@@ -62,7 +58,7 @@
           [disabled]="!ticketForm.valid"
           type="submit"
         >
-          <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+          <ion-icon displayName="add-circle-outline" slot="end"></ion-icon>
           <p *ngIf="!id">Create Ticket</p>
           <p *ngIf="id">Update Ticket</p>
         </ion-button>
@@ -72,7 +68,7 @@
           (click)="deleteTicket()"
           *appHasPermission="['delete-ticket']"
         >
-          <ion-icon name="trash" slot="end"></ion-icon>
+          <ion-icon displayName="trash" slot="end"></ion-icon>
           Delete Ticket
         </ion-button>
       </form>

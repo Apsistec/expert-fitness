@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
@@ -106,7 +106,7 @@ export class ProfilePage implements OnInit, AfterViewInit {
       inputs: [
         {
           type: 'email',
-          name: 'email',
+          displayName: 'email',
           value: this.email,
           placeholder: 'email',
         },

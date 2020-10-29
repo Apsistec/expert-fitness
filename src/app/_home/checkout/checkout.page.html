@@ -16,7 +16,7 @@
           style="width: 60px; height: 60px"
         />
       </div>
-      <div *ngIf="auth.afAuth.user | async as user">
+      <div *ngIf="user | async">
         <a
           (click)="presentPopover($event)"
           style="
@@ -75,7 +75,7 @@
                         >
                         <ion-input
                           autofocus
-                          formControlName="name"
+                          formControlName="displayName"
                           type="text"
                           autocapitalize="on"
                           inputmode="text"
@@ -83,11 +83,11 @@
                         ></ion-input>
                       </ion-item>
                       <div
-                        *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)"
+                        *ngIf="registerForm.controls['displayName'].invalid && (registerForm.controls['displayName'].dirty || registerForm.controls['displayName'].touched)"
                         class="alert alert-danger"
                       >
                         <div
-                          *ngIf="registerForm.controls['name'].errors.required"
+                          *ngIf="registerForm.controls['displayName'].errors.required"
                         >
                           <ion-text color="danger">
                             Name is required.
@@ -153,7 +153,7 @@
                             background: transparent;
                           "
                         >
-                          <ion-icon name="eye"> </ion-icon>
+                          <ion-icon displayName="eye"> </ion-icon>
                         </ion-button>
                         <ion-button
                           color="dark"
@@ -169,7 +169,7 @@
                             background: transparent;
                           "
                         >
-                          <ion-icon name="eye-off"> </ion-icon>
+                          <ion-icon displayName="eye-off"> </ion-icon>
                         </ion-button>
                       </ion-item>
                       <div
@@ -284,7 +284,7 @@
                           color="dark"
                           fill="clear"
                         >
-                          <ion-icon name="eye"> </ion-icon>
+                          <ion-icon displayName="eye"> </ion-icon>
                         </ion-button>
                         <ion-button
                           item-end
@@ -299,7 +299,7 @@
                           color="dark"
                           fill="clear"
                         >
-                          <ion-icon name="eye-off"> </ion-icon>
+                          <ion-icon displayName="eye-off"> </ion-icon>
                         </ion-button>
                       </ion-item>
                       <div
@@ -351,7 +351,7 @@
                       <ion-icon
                         slot="start"
                         color="light"
-                        name="arrow-round-forward"
+                        displayName="arrow-round-forward"
                         slot="start"
                       ></ion-icon>
                       <ion-text> Log In </ion-text>
@@ -483,7 +483,7 @@
                     <ion-item color="dark">
                       <ion-icon
                         appBlink
-                        name="arrow-round-forward"
+                        displayName="arrow-round-forward"
                         color="danger"
                         slot="start"
                       ></ion-icon>
@@ -568,7 +568,7 @@
                       color="secondary"
                       routerLink="/profile"
                     >
-                      <ion-icon slot="start" name="person"></ion-icon>
+                      <ion-icon slot="start" displayName="person"></ion-icon>
                       <ion-text> Goto My Profile </ion-text>
                     </ion-button>
                   </ion-card-content>
@@ -670,8 +670,8 @@
       <ion-col class="ion-padding bottom">
         <ion-text>
           <p>
-            * A valid Credit or Debit card in your name is required for account
-            authorization, and further verification may be requeseted if
+            * A valid Credit or Debit card in your displayName is required for
+            account authorization, and further verification may be requeseted if
             necessary to validate the subscription service. During the One Week
             (7 day) Free trial period, your card will not be charged, however
             the information will be used to validate the subscription. On the
@@ -705,15 +705,17 @@
             submitted, your account will be terminated immediately, and no
             further payments will be processed. For more details, please read
             our
-            <a (click)="modal.showModalTerms()">
+            <a (click)="showModalTerms()">
               <ion-text color="secondary"> Terms </ion-text>
             </a>
             . The security of your information is our priority. Please read our
-            <a (click)="modal.showModalPrivacy()">
+            <a (click)="showModalPrivacy()">
               <ion-text color="secondary"> Privacy </ion-text>
             </a>
             for more details.
           </p>
+          <br>
+          <ion-button color="medium" (click)="showModalAbout()">About App</ion-button>
         </ion-text>
       </ion-col>
     </ion-row>

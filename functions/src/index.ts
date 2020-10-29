@@ -19,7 +19,7 @@ export const createStripeCustomer = functions.auth
     console.log('snap', snap);
     const customer = await stripe.customers.create({
       email: snap.email,
-      name: snap.name,
+      displayName: snap.displayName,
     });
 
     const batch = admin.firestore().batch();
@@ -57,7 +57,9 @@ function startDataListeners() {
         const product = doc.data();
         const container = template.content.cloneNode(true);
 
-        container.querySelector('h2').innerText = product.name.toUpperCase();
+        container.querySelector(
+          'h2'
+        ).innerText = product.displayName.toUpperCase();
         container.querySelector('.description').innerText =
           product.description.toUpperCase() || '';
         // Prices dropdown
@@ -81,7 +83,7 @@ function startDataListeners() {
         if (product.images.length) {
           const img = container.querySelector('img');
           img.src = product.images[0];
-          img.alt = product.name;
+          img.alt = product.displayName;
         }
 
         const form = container.querySelector('form');
@@ -188,7 +190,7 @@ document
 exports.createStripeCustomer = functions.auth.user().onCreate(async (user) => {
   const customer = await stripe.customers.create({
     email: user.email,
-    name: user.name,
+    displayName: user.displayName,
   });
   const intent = await stripe.setupIntents.create({
     customer: customer.id,
@@ -317,8 +319,8 @@ exports.cleanupUser = functions.auth.user().onDelete(async (user) => {
 // [START reporterror]
 
 function reportError(err, context = {}) {
-  // This is the name of the StackDriver log stream that will receive the log
-  // entry. This name can be any valid log stream name, but must contain "err"
+  // This is the displayName of the StackDriver log stream that will receive the log
+  // entry. This displayName can be any valid log stream displayName, but must contain "err"
   // in order for the error to be picked up by StackDriver Error Reporting.
   const logName = 'errors';
   const log = logging.log(logName);

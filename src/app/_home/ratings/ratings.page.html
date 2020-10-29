@@ -2,7 +2,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <app-testimoniall-insert></app-testimoniall-insert>
+      <app-ratings-insert></app-ratings-insert>
     </ion-row>
     <ion-row>
       <ion-col>
@@ -19,7 +19,7 @@
             >
               <ion-list class="ion-no-margin ion-no-padding">
                 <ion-item>
-                  <ion-label>{{ user.name }}</ion-label>
+                  <ion-label>{{ user.displayName }}</ion-label>
                 </ion-item>
 
                 <ion-item>
@@ -46,7 +46,7 @@
                 expand="full"
                 type="submit"
               >
-                <ion-icon size="small" slot="start" name="arrow-forward-sharp">
+                <ion-icon size="small" slot="start" displayName="arrow-forward-sharp">
                 </ion-icon>
                 <ion-text>Create</ion-text>
               </ion-button>

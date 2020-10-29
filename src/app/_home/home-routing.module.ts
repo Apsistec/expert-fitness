@@ -15,10 +15,10 @@ const routes: Routes = [
       },
 
       {
-        path: 'testimonials',
+        path: 'ratings',
         loadChildren: () =>
-          import('../_home/testimonials/testimonials.module').then(
-            (m) => m.TestimonialsPageModule
+          import('../_home/ratings/ratings.module').then(
+            (m) => m.RatingsPageModule
           ),
         // outlet: "homeOutlet",
       },

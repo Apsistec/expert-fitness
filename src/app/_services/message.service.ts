@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ErrorHandler } from "@angular/core";
 import { AlertController, ToastController } from '@ionic/angular';
 
 @Injectable({
@@ -59,7 +59,7 @@ export class MessageService {
   async federatedLoginToast(data: any) {
     const toast = await this.toastController.create({
       header: 'Log In Successful',
-      message: ' Welcome back ' + data.user.name + '!',
+      message: ' Welcome back ' + data.user.displayName + '!',
       cssClass: 'successT',
       position: 'middle',
       duration: 3000,
@@ -209,19 +209,30 @@ export class MessageService {
     await alert.present();
   }
 
-  async globalErrorAlert(err, router, page?) {
+  async globalErrorAlert(err: ErrorHandler, router, page?) {
     const alert = await this.alertController.create({
       header: 'Page: ' + page,
       subHeader: 'Location: ' + router.url,
-      message: 'Error Message: ' + err.message,
+      message: 'Error Message: ' + err.message + ,
       buttons: ['OK'],
       cssClass: 'warningA',
     });
     await alert.present();
   }
+
   async errorAlert(err: any) {
     const alert = await this.alertController.create({
       header: 'An Error Occurred',
+      message: err.message,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  async authErrorAlert(err: any) {
+    const alert = await this.alertController.create({
+      header: 'An Authentication Error Has Occurred',
+      subHeader: 'Error Code: ' + err.code,
       message: err.message,
       buttons: ['OK'],
     });

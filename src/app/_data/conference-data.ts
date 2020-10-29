@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { UserData } from './user-data';
 
 @Injectable({
@@ -38,7 +37,7 @@ export class ConferenceData {
           if (session.employeeNames) {
             session.employeeNames.forEach((employeeName: any) => {
               const speaker = this.data.employees.find(
-                (s: any) => s.name === employeeName
+                (s: any) => s.displayName === employeeName
               );
               if (speaker) {
                 session.employees.push(speaker);
@@ -98,9 +97,9 @@ export class ConferenceData {
   ) {
     let matchesQueryText = false;
     if (queryWords.length) {
-      // of any query word is in the session name than it passes the query test
+      // of any query word is in the session displayName than it passes the query test
       queryWords.forEach((queryWord: string) => {
-        if (session.name.toLowerCase().indexOf(queryWord) > -1) {
+        if (session.displayName.toLowerCase().indexOf(queryWord) > -1) {
           matchesQueryText = true;
         }
       });
@@ -122,7 +121,7 @@ export class ConferenceData {
     // then this session does not pass the segment test
     let matchesSegment = false;
     if (segment === 'favorites') {
-      if (this.user.hasFavorite(session.name)) {
+      if (this.user.hasFavorite(session.displayName)) {
         matchesSegment = true;
       }
     } else {
@@ -137,8 +136,8 @@ export class ConferenceData {
     return this.load().pipe(
       map((data: any) => {
         return data.employees.sort((a: any, b: any) => {
-          const aName = a.name.split(' ').pop();
-          const bName = b.name.split(' ').pop();
+          const aName = a.displayName.split(' ').pop();
+          const bName = b.displayName.split(' ').pop();
           return aName.localeCompare(bName);
         });
       })

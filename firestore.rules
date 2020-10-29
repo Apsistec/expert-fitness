@@ -1,22 +1,37 @@
 rules_version = '2';
   service cloud.firestore {
   match /databases/{database}/documents {
-    function hasBasicSubs() {
-      return request.auth.token.stripeRole == "basic";
+    function hasUserSubs() {
+      return request.auth.token.stripeRole == "user";
+    }
+    function hasMemberSubs() {
+      return request.auth.token.stripeRole == "member";
+    }
+    function hasEmployeeSubs() {
+      return request.auth.token.stripeRole == "employee";
+    }
+    function hasAdminSubs() {
+      return request.auth.token.stripeRole == "admin";
     }
 
-    function hasPremiumSubs() {
-      return request.auth.token.stripeRole == "premium";
+    match /user-content/{doc} {
+      allow read: if hasUserSubs() || hasMemberSubs() || hasEmployeeSubs() || hasAdminSubs();
+      allow write: if hasEmployeeSubs() || hasAdminSubs();
+    }
+    match /member-content/{doc} {
+      allow read: if hasMemberSubs()|| hasEmployeeSubs() || hasAdminSubs();
+      allow write: if hasEmployeeSubs() || hasAdminSubs();
+    }
+    match /employee-content/{doc} {
+      allow read: if hasEmployeeSubs() || hasAdminSubs();
+      allow write: if hasAdminSubs();
+    }
+    match /admin-content/{doc} {
+      allow read: if hasAdminSubs();
+      allow write: if hasAdminSubs();
     }
 
-    match /content-basic/{doc} {
-      allow read: if hasBasicSubs() || hasPremiumSubs();
-    }
-    match /content-premium/{doc} {
-      allow read: if hasPremiumSubs();
-    }
-
-    match /customers/{uid} {
+    match /users/{uid} {
       allow read: if request.auth.uid == uid;
 
       match /checkout_sessions/{id} {

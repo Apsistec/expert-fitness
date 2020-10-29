@@ -1,5 +1,17 @@
-import { Component, OnChanges, AfterViewInit, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { PopoverController, LoadingController, ModalController } from '@ionic/angular';
+import { TermsComponent } from './../terms/terms.component';
+import {
+  Component,
+  OnChanges,
+  AfterViewInit,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import {
+  PopoverController,
+  LoadingController,
+  ModalController,
+} from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -11,16 +23,16 @@ import { WizardComponent } from 'angular-archwizard';
 import { PopoverComponent } from '../../_shared/popover/popover.component';
 import { User } from '../../_models/users.model';
 import { map, switchMap } from 'rxjs/operators';
+import { PrivacyComponent } from '../privacy/privacy.component';
+import { AboutAppComponent } from '../about-app/about-app.component';
 declare var Stripe: stripe.StripeStatic;
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.page.html',
-  styleUrls: ['./checkout.page.scss']
+  styleUrls: ['./checkout.page.scss'],
 })
-
 export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
-
   stripe: stripe.Stripe;
 
   @ViewChild(WizardComponent, { static: true }) public wizard: WizardComponent;
@@ -47,6 +59,7 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
   card;
   source;
   amount = 0;
+  planID;
 
   confirmation;
   confirmation0;
@@ -61,16 +74,14 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
     private popoverController: PopoverController,
     private fb: FormBuilder,
     private router: Router,
-    private afAuth: AngularFireAuth,
-    private stepper: AwWizzardStep
+    private afAuth: AngularFireAuth
   ) {
     this.seoService.addTwitterCard(
       'Product and Subscription Purchase Page',
       'View and purchase Expert Fitness\' Subscriptions and other products at great prices',
       '../../../assets/img/rfs-logo.svg'
-      );
+    );
   }
-
 
   ngOnInit() {
     this.authService.user$.pipe(map((user) => (this.user = user)));
@@ -89,13 +100,13 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
         fontSmoothing: 'antialiased',
         fontSize: '1em',
         '::placeholder': {
-          color: '#121212'
-        }
+          color: '#121212',
+        },
       },
       invalid: {
         color: '#f73008',
-        iconColor: '#f73008'
-      }
+        iconColor: '#f73008',
+      },
     };
 
     // Create an instance of the card Element.
@@ -129,7 +140,7 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
   }
 
   stepperProcess() {
-    if (this.authService.authenticated) {
+    if (this.user && this.user.uid) {
       this.wizard.goToStep(1);
     } else {
       this.wizard.goToStep(0);
@@ -144,50 +155,101 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
     this.wizard.goToStep(1);
   }
 
-
   // toggle checkmark status
   toggleVisibility(e) {
     this.marked = e.target.checked;
   }
 
+  async Login() {
+    try {
+      const res = await this.authService.SignIn(this.loginForm.value);
+      this.nextStep();
+      this.messageService.isLoggedInToast();
+    } catch (error) {
+      this.messageService.errorAlert(error.message);
+    }
+  }
+
+  async registerUser() {
+    try {
+      const res = await this.authService.SignUp(this.registerForm.value);
+      this.nextStep();
+      this.messageService.registerSuccessToast();
+    } catch (error) {
+      this.messageService.errorAlert(error.message);
+    }
+  }
 
   async handleForm(e) {
-      e.preventDefault();
-      const { source, error } = await this.stripe.createSource(this.card);
-      if (error) {
-        // Inform the customer that there was an error.
-        const cardErrors = error.message;
-      } else {
-        // Send the token to your server.
-        this.isLoading = true;
-        const fun = this.functions.httpsCallable('stripeCreateSubscription');
-        this.confirmation = await fun({ source: source.id, uid: this.auth.currentUserId, plan: 'bronze' }).toPromise();
-        this.isLoading = false;
-        this.wizard.goToStep(2);
-      }
+    e.preventDefault();
+    const { source, error } = await this.stripe.createSource(this.card);
+    if (error) {
+      // Inform the customer that there was an error.
+      const cardErrors = error.message;
+    } else {
+      // Send the token to your server.
+      this.isLoading = true;
+      const fun = this.functions.httpsCallable('stripeCreateSubscription');
+      this.confirmation = await fun({
+        source: source.id,
+        uid: this.user.uid,
+        plan: this.planID,
+      }).toPromise();
+      this.isLoading = false;
+      this.wizard.goToStep(2);
+    }
   }
-}
 
-
-
-
-
-
-
-
-
-
-  switchAuthMode(); {
+  switchAuthMode() {
     this.isRegister = !this.isRegister;
   }
 
-  async presentPopover(ev: any); {
+  async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
       component: PopoverComponent,
       event: ev,
       translucent: true,
-      cssClass: 'popoverUser'
+      cssClass: 'popoverUser',
     });
     popover.present();
+  }
+
+  async showModalPrivacy() {
+    const modal = await this.modalController.create({
+      component: PrivacyComponent,
+      cssClass: 'modal-css',
+      backdropDismiss: true,
+      swipeToClose: true,
+      showBackdrop: true,
+    });
+    return modal.present().catch((err) => {
+      return this.messageService.errorAlert(err);
+    });
+  }
+
+  async showModalTerms() {
+    const modal = await this.modalController.create({
+      component: TermsComponent,
+      cssClass: 'modal-css',
+      backdropDismiss: true,
+      swipeToClose: true,
+      showBackdrop: true,
+    });
+    return modal.present().catch((err) => {
+      return this.messageService.errorAlert(err);
+    });
+  }
+
+  async showModalAbout() {
+    const modal = await this.modalController.create({
+      component: AboutAppComponent,
+      cssClass: 'modal-css',
+      backdropDismiss: true,
+      swipeToClose: true,
+      showBackdrop: true,
+    });
+    return modal.present().catch((err) => {
+      return this.messageService.errorAlert(err);
+    });
   }
 }

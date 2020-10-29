@@ -2,7 +2,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-// api.service.ts
 import { Injectable } from '@angular/core';
 
 import { User } from '../_models/users.model';

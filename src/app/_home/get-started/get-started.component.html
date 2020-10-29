@@ -61,7 +61,7 @@
                 (click)="toggleHid()"
                 slot="end"
                 *ngIf="!hid"
-                name="eye-sharp"
+                displayName="eye-sharp"
               >
               </ion-icon>
               <ion-icon
@@ -70,7 +70,7 @@
                 (click)="toggleHid()"
                 slot="end"
                 *ngIf="hid"
-                name="eye-off-sharp"
+                displayName="eye-off-sharp"
               >
               </ion-icon>
             </ion-item>
@@ -110,7 +110,7 @@
               <ion-select
                 class="selector"
                 formControlName="role"
-                name="role"
+                displayName="role"
                 value="role"
               >
                 <ion-select-option value="USER">User</ion-select-option>
@@ -125,7 +125,11 @@
             expand="block"
             type="submit"
           >
-            <ion-icon size="small" slot="start" name="arrow-forward-sharp">
+            <ion-icon
+              size="small"
+              slot="start"
+              displayName="arrow-forward-sharp"
+            >
             </ion-icon>
             <ion-text> Login </ion-text>
           </ion-button>
@@ -135,7 +139,11 @@
             type="button"
             (click)="authService.GoogleAuth()"
           >
-            <ion-icon size="small" slot="start" name="logo-google"></ion-icon>
+            <ion-icon
+              size="small"
+              slot="start"
+              displayName="logo-google"
+            ></ion-icon>
             Login with Google
           </ion-button>
           <ion-button
@@ -144,7 +152,11 @@
             color="twitter"
             (click)="authService.GoogleAuth()"
           >
-            <ion-icon size="small" slot="start" name="logo-twitter"></ion-icon>
+            <ion-icon
+              size="small"
+              slot="start"
+              displayName="logo-twitter"
+            ></ion-icon>
             Login with Twitter
           </ion-button>
           <hr />
@@ -157,7 +169,11 @@
             (click)="toggleRegister()"
           >
             I want to Create an Account
-            <ion-icon size="small" slot="end" name="arrow-forward"></ion-icon>
+            <ion-icon
+              size="small"
+              slot="end"
+              displayName="arrow-forward"
+            ></ion-icon>
           </ion-button>
         </form>
       </div>
@@ -172,26 +188,26 @@
                 color="primary"
                 type="text"
                 inputmode="text"
-                autocomplete="name"
-                formControlName="name"
+                autocomplete="displayName"
+                formControlName="displayName"
                 autocapitalize="words"
               >
               </ion-input>
             </ion-item>
             <div
               *ngIf="
-                registerFormControl.name.invalid &&
-                !registerFormControl.name.pristine
+                registerFormControl.displayName.invalid &&
+                !registerFormControl.displayName.pristine
               "
             >
               <ion-text
-                *ngIf="registerFormControl.name.errors.required"
+                *ngIf="registerFormControl.displayName.errors.required"
                 color="danger"
               >
                 Name required.
               </ion-text>
               <ion-text
-                *ngIf="registerFormControl.name.errors.maxlength"
+                *ngIf="registerFormControl.displayName.errors.maxlength"
                 color="danger"
               >
                 Must be no more than 25 characters.
@@ -242,7 +258,7 @@
                 (click)="toggleHide()"
                 slot="end"
                 *ngIf="!hide"
-                name="eye-sharp"
+                displayName="eye-sharp"
               >
               </ion-icon>
               <ion-icon
@@ -251,7 +267,7 @@
                 (click)="toggleHide()"
                 slot="end"
                 *ngIf="hide"
-                name="eye-off-sharp"
+                displayName="eye-off-sharp"
               >
               </ion-icon>
             </ion-item>
@@ -296,7 +312,7 @@
             <ion-icon
               size="small"
               slot="start"
-              name="person-add-sharp"
+              displayName="person-add-sharp"
             ></ion-icon>
             <ion-text> Register </ion-text>
           </ion-button>
@@ -306,7 +322,8 @@
             color="google"
             (click)="authService.GoogleAuth()"
           >
-            <ion-icon size=" small" slot="start" name="logo-google"> </ion-icon>
+            <ion-icon size=" small" slot="start" displayName="logo-google">
+            </ion-icon>
             Register with Google
           </ion-button>
           <ion-button
@@ -314,7 +331,11 @@
             expand="block"
             color="twitter"
           >
-            <ion-icon size="small" slot="start" name="logo-twitter"></ion-icon>
+            <ion-icon
+              size="small"
+              slot="start"
+              displayName="logo-twitter"
+            ></ion-icon>
             Register with Twitter
           </ion-button>
           <hr />
@@ -327,7 +348,7 @@
           >
             <ion-icon
               size="small"
-              name="arrow-back"
+              displayName="arrow-back"
               slot="start"
               type="button"
             ></ion-icon>

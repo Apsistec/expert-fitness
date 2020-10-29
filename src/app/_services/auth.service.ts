@@ -8,12 +8,6 @@ import { map, switchMap } from 'rxjs/operators';
 import { User } from '../_models/users.model';
 import { MessageService } from './message.service';
 
-export interface UserCredentials {
-  name: string;
-  email: string;
-  password: string;
-  role: string;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -41,33 +35,28 @@ export class AuthService {
     );
   }
 
-  SignIn(credentials: UserCredentials) {
+  SignIn(credentials) {
     return this.afAuth
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then((data) => {
-        return this.afs.doc(`users/${data.user.uid}`).update({
-          name: credentials.name,
+        return this.afs.doc<User>(`users/${data.user.uid}`).update({
+          displayName: credentials.displayName,
           email: data.user.email,
-          lastSignInTime: data.user.metadata.lastSignInTime,
-          providerId: data.user.providerId,
           emailVerified: data.user.emailVerified,
         });
       });
   }
 
-  SignUp(credentials: UserCredentials) {
+  SignUp(credentials) {
     return this.afAuth
       .createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then((data) => {
         this.SendVerificationMail();
-        return this.afs.doc(`users/${data.user.uid}`).set({
+        return this.afs.doc<User>(`users/${data.user.uid}`).set({
           uid: data.user.uid,
-          name: credentials.name,
+          displayName: data.user.displayName,
           email: data.user.email,
-          lastSignInTime: data.user.metadata.lastSignInTime,
           role: 'USER',
-          created: data.user.metadata.creationTime,
-          providerId: data.user.providerId,
           permissions: ['delete-ticket'],
           emailVerified: data.user.emailVerified,
         });
@@ -78,31 +67,22 @@ export class AuthService {
   AuthLogin(provider) {
     return this.afAuth.signInWithRedirect(provider).then(() => {
       return this.afAuth.getRedirectResult().then((data) => {
-        return this.afs.doc(`users/${data.user.uid}`).update({
+        return this.afs.doc<User>(`users/${data.user.uid}`).update({
           uid: data.user.uid,
-          name: data.user.name,
+          displayName: data.user.displayName,
           photoURL: data.user.photoURL,
-          lastSignInTime: data.user.metadata.lastSignInTime,
           email: data.user.email,
           role: 'USER',
-          created: data.user.metadata.creationTime,
-          providerId: data.user.providerId,
           permissions: ['delete-ticket'],
           emailVerified: data.user.emailVerified,
         });
       });
+    }).catch(async (error) => {
+    const alert = await this.messageService.errorAlert({header: 'Authentifcation Error',
+      subHeader: error.code,
+      message: error.message,
+      cssClass: 'warningAlert'
     });
-  }
-  // .catch(async (error) => {
-  //   const alert = await this.alertController.create({
-  //     header: "Error",
-  //     subHeader: error.code,
-  //     message: error.message,
-  //     cssClass: "warningA"
-  //   });
-
-  //   await alert.present();
-  // });
 
   // Sign in with 3rd party Oauth
   GoogleAuth() {
@@ -140,39 +120,7 @@ export class AuthService {
     });
   }
 
-  get isBronze() {
-    return this.user$.pipe(
-      map((user) => {
-        if (user && user.bronze) {
-          return true;
-        } else {
-          return false;
-        }
-      })
-    );
-  }
-  get isSilver() {
-    return this.user$.pipe(
-      map((user) => {
-        if (user && user.silver) {
-          return true;
-        } else {
-          return false;
-        }
-      })
-    );
-  }
-  get isGold() {
-    return this.user$.pipe(
-      map((user) => {
-        if (user && user.gold) {
-          return true;
-        } else {
-          return false;
-        }
-      })
-    );
-  }
+
 
   canRead(user: any): boolean {
     return this.checkAuthorization(user);
@@ -185,7 +133,7 @@ export class AuthService {
     }
     {
       // tslint:disable-next-line: triple-equals
-      if (user.role == 'USER' || 'MEMBER' || 'ADMIN') {
+      if (user.role == 'USER' || 'MEMBER' || 'TRAINER' || 'ADMIN') {
         return true;
       } else {
         return false;

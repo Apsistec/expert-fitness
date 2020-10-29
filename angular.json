@@ -34,12 +34,9 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              {
-                "input": "src/theme/variables.scss"
-              },
-              {
-                "input": "src/global.scss"
-              }
+              "node_modules/angular-archwizard/archwizard.scss",
+              "src/theme/variables.scss",
+              "src/global.scss"
             ],
             "scripts": []
           },
@@ -102,7 +99,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": ["node_modules/angular-archwizard/archwizard.scss","src/theme/variables.scss", "src/global.scss"],
             "scripts": [],
             "assets": [
               {

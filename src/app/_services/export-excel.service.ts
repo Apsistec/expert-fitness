@@ -1,21 +1,15 @@
-
+import { Injectable } from '@angular/core';
 import * as ExcelJs from 'exceljs';
 import * as fs from 'file-saver';
-
-import { Injectable } from '@angular/core';
-
 import * as logo from '../../assets/data/mylogo.js';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ExportExcelService {
-
-
-  constructor() { }
+  constructor() {}
 
   exportExcel(excelData) {
-
     // Title, Header & Data
     const title = excelData.title;
     const header = excelData.headers;
@@ -25,17 +19,16 @@ export class ExportExcelService {
     const workbook = new ExcelJs.Workbook();
     const worksheet = workbook.addWorksheet('Sales Data');
 
-
     // Add Row and formatting
     worksheet.mergeCells('C1', 'F4');
     const titleRow = worksheet.getCell('C1');
     titleRow.value = title;
     titleRow.font = {
-      name: 'Calibri',
+      displayName: 'Calibri',
       size: 16,
       underline: 'single',
       bold: true,
-      color: { argb: '0085A3' }
+      color: { argb: '0085A3' },
     };
     titleRow.alignment = { vertical: 'middle', horizontal: 'center' };
 
@@ -46,9 +39,9 @@ export class ExportExcelService {
     const dateCell = worksheet.getCell('G1');
     dateCell.value = date;
     dateCell.font = {
-      name: 'Calibri',
+      displayName: 'Calibri',
       size: 12,
-      bold: true
+      bold: true,
     };
     dateCell.alignment = { vertical: 'middle', horizontal: 'center' };
 
@@ -70,12 +63,12 @@ export class ExportExcelService {
         type: 'pattern',
         pattern: 'solid',
         fgColor: { argb: '4167B8' },
-        bgColor: { argb: '' }
+        bgColor: { argb: '' },
       };
       cell.font = {
         bold: true,
         color: { argb: 'FFFFFF' },
-        size: 12
+        size: 12,
       };
     });
 
@@ -93,20 +86,21 @@ export class ExportExcelService {
       sales.fill = {
         type: 'pattern',
         pattern: 'solid',
-        fgColor: { argb: color }
+        fgColor: { argb: color },
       };
-    }
-    );
+    });
 
     worksheet.getColumn(3).width = 20;
     worksheet.addRow([]);
 
     // Footer Row
-    const footerRow = worksheet.addRow(['Employee Sales Report Generated from expertfitness.com at ' + date]);
+    const footerRow = worksheet.addRow([
+      'Employee Sales Report Generated from expertfitness.com at ' + date,
+    ]);
     footerRow.getCell(1).fill = {
       type: 'pattern',
       pattern: 'solid',
-      fgColor: { argb: 'FFB050' }
+      fgColor: { argb: 'FFB050' },
     };
 
     // Merge Cells
@@ -115,9 +109,11 @@ export class ExportExcelService {
     // Generate & Save Excel File
     // tslint:disable-next-line: no-shadowed-variable
     workbook.xlsx.writeBuffer().then((data) => {
-      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const blob = new Blob([data], {
+        type:
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
       fs.saveAs(blob, title + '.xlsx');
     });
-
   }
 }
