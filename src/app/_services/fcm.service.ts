@@ -26,9 +26,9 @@ export class FcmService {
     private messageService: MessageService
   ) {
     try {
-      const _messaging = this.afMessaging;
-      _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
-      _messaging.onMessage = _messaging.onMessage.bind(_messaging);
+      const MESSAGING = this.afMessaging;
+      MESSAGING.onTokenRefresh = MESSAGING.onTokenRefresh.bind(MESSAGING);
+      MESSAGING.onMessage = MESSAGING.onMessage.bind(MESSAGING);
     } catch (e) {this.messageService.errorAlert(e.message); }
   }
 
