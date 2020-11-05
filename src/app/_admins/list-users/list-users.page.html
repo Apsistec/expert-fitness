@@ -18,7 +18,7 @@
     <tbody>
       <tr *ngFor="let item of userData">
         <td>{{ item.uid }}</td>
-        <td>{{ item.displayName }}</td>
+        <td>{{ item.name }}</td>
         <td>{{ item.phoneNumber }}</td>
         <td>{{ item.email }}</td>
         <td style="display: flex">
@@ -27,10 +27,10 @@
             size="small"
             routerLink="/student-edit/{{item.id}}"
           >
-            <ion-icon displayName="create"></ion-icon>
+            <ion-icon name="create"></ion-icon>
           </ion-button>
           <ion-button color="danger" size="small" (click)="delete(item)">
-            <ion-icon displayName="trash"></ion-icon>
+            <ion-icon name="trash"></ion-icon>
           </ion-button>
         </td>
       </tr>

@@ -25,7 +25,7 @@ export class ExportExcelService {
     const titleRow = worksheet.getCell('C1');
     titleRow.value = title;
     titleRow.font = {
-      displayName: 'Calibri',
+      name: 'Calibri',
       size: 16,
       underline: 'single',
       bold: true,
@@ -40,7 +40,7 @@ export class ExportExcelService {
     const dateCell = worksheet.getCell('G1');
     dateCell.value = date;
     dateCell.font = {
-      displayName: 'Calibri',
+      name: 'Calibri',
       size: 12,
       bold: true,
     };

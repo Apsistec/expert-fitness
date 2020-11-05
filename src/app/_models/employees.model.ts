@@ -1,6 +1,6 @@
 import { User } from 'src/app/_models/users.model';
 export interface Employee {
-  displayName: string;
+  name: string;
   Id: string;
   status: string;
   hireDate: number;

@@ -16,13 +16,13 @@
               ngSortgridItem
             >
               <ion-icon
-                displayName="radio-button-off"
+                name="radio-button-off"
                 color="danger"
                 *ngIf="ticket.status == 0"
                 slot="start"
               ></ion-icon>
               <ion-icon
-                displayName="done-all"
+                name="done-all"
                 color="success"
                 *ngIf="ticket.status == 1"
                 slot="start"
@@ -46,7 +46,7 @@
   </ion-grid>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="dark" (click)="openTicketModal()">
-      <ion-icon color="secondary" displayName="add"></ion-icon>
+      <ion-icon color="secondary" name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

@@ -22,7 +22,7 @@
                 <ion-col size-lg="4" class="ion-text-start">
                   <ion-card-title>
                     <ion-text>
-                      <h2>{{ user.displayName || "User" }}</h2>
+                      <h2>{{ user.name || "User" }}</h2>
                     </ion-text>
                   </ion-card-title>
 
@@ -155,12 +155,12 @@
               <ion-icon
                 slot="end"
                 color="dark"
-                displayName="glasses"
+                name="glasses"
               ></ion-icon>
               <ion-icon
                 slot="center"
                 color="dark"
-                displayName="glasses"
+                name="glasses"
               ></ion-icon>
               <ion-text color="success"> Admin Dashboard </ion-text>
             </ion-button>
@@ -194,9 +194,9 @@
             <ion-icon
               slot="start"
               color="tertiary"
-              displayName="bug"
+              name="bug"
             ></ion-icon>
-            <ion-icon slot="end" color="tertiary" displayName="bug"></ion-icon>
+            <ion-icon slot="end" color="tertiary" name="bug"></ion-icon>
             <ion-text> Support Dashboard </ion-text>
           </ion-button>
         </ion-card>
@@ -288,7 +288,7 @@
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="addPhotoToGallery()">
-      <ion-icon displayName="camera"></ion-icon>
+      <ion-icon name="camera"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

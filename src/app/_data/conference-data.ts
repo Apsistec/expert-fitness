@@ -37,7 +37,7 @@ export class ConferenceData {
           if (session.employeeNames) {
             session.employeeNames.forEach((employeeName: any) => {
               const speaker = this.data.employees.find(
-                (s: any) => s.displayName === employeeName
+                (s: any) => s.name === employeeName
               );
               if (speaker) {
                 session.employees.push(speaker);
@@ -97,9 +97,9 @@ export class ConferenceData {
   ) {
     let matchesQueryText = false;
     if (queryWords.length) {
-      // of any query word is in the session displayName than it passes the query test
+      // of any query word is in the session name than it passes the query test
       queryWords.forEach((queryWord: string) => {
-        if (session.displayName.toLowerCase().indexOf(queryWord) > -1) {
+        if (session.name.toLowerCase().indexOf(queryWord) > -1) {
           matchesQueryText = true;
         }
       });
@@ -121,7 +121,7 @@ export class ConferenceData {
     // then this session does not pass the segment test
     let matchesSegment = false;
     if (segment === 'favorites') {
-      if (this.user.hasFavorite(session.displayName)) {
+      if (this.user.hasFavorite(session.name)) {
         matchesSegment = true;
       }
     } else {
@@ -136,8 +136,8 @@ export class ConferenceData {
     return this.load().pipe(
       map((data: any) => {
         return data.employees.sort((a: any, b: any) => {
-          const aName = a.displayName.split(' ').pop();
-          const bName = b.displayName.split(' ').pop();
+          const aName = a.name.split(' ').pop();
+          const bName = b.name.split(' ').pop();
           return aName.localeCompare(bName);
         });
       })

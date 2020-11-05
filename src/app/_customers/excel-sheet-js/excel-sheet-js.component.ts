@@ -18,10 +18,10 @@ export class ExcelSheetJsComponent implements OnInit {
 //       //create new excel work book
 // let workbook = new Workbook();
 
-// //add displayName to sheet
+// //add name to sheet
 // let worksheet = workbook.addWorksheet("Employee Data");
 
-// //add column displayName
+// //add column name
 // let header=["Name","Age"]
 // let headerRow = worksheet.addRow(header);
 // //headerRow.font = { size: 14, bold: true };
@@ -36,10 +36,10 @@ export class ExcelSheetJsComponent implements OnInit {
 //   }
 //   worksheet.addRow(temp)
 // }
-// //set downloadable file displayName
+// //set downloadable file name
 // let fname="Emp Data Sep 2020"
 
-// //add data and file displayName and download
+// //add data and file name and download
 // workbook.xlsx.writeBuffer().then((data) => {
 //   let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 //   fs.saveAs(blob, fname+'-'+new Date().valueOf()+'.xlsx');

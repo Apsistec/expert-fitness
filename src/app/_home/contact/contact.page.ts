@@ -49,13 +49,13 @@ export class ContactPage implements AfterViewInit {
 
       mapData.forEach((markerData: any) => {
         const infoWindow = new googleMaps.InfoWindow({
-          content: `<h3>${markerData.displayName}</h3><h6>${markerData.address}</h6><h4>${markerData.phone}</h4>`,
+          content: `<h3>${markerData.name}</h3><h6>${markerData.address}</h6><h4>${markerData.phone}</h4>`,
         });
 
         const marker = new googleMaps.Marker({
           position: markerData,
           map,
-          title: markerData.displayName,
+          title: markerData.name,
         });
 
         marker.addListener('click', () => {

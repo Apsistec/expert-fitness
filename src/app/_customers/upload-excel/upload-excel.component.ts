@@ -36,7 +36,7 @@ export class UploadExcelComponent implements OnInit {
       if (!_.includes(af, file.type)) {
         alert('Only EXCEL Docs Allowed!');
       } else {
-        this.fileInputLabel = file.displayName;
+        this.fileInputLabel = file.name;
         this.fileUploadForm.get('myfile').setValue(file);
       }
     }

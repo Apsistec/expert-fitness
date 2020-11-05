@@ -61,7 +61,7 @@
                 (click)="toggleHid()"
                 slot="end"
                 *ngIf="!hid"
-                displayName="eye-sharp"
+                name="eye-sharp"
               >
               </ion-icon>
               <ion-icon
@@ -70,7 +70,7 @@
                 (click)="toggleHid()"
                 slot="end"
                 *ngIf="hid"
-                displayName="eye-off-sharp"
+                name="eye-off-sharp"
               >
               </ion-icon>
             </ion-item>
@@ -110,7 +110,7 @@
               <ion-select
                 class="selector"
                 formControlName="role"
-                displayName="role"
+                name="role"
                 value="role"
               >
                 <ion-select-option value="USER">User</ion-select-option>
@@ -128,7 +128,7 @@
             <ion-icon
               size="small"
               slot="start"
-              displayName="arrow-forward-sharp"
+              name="arrow-forward-sharp"
             >
             </ion-icon>
             <ion-text> Login </ion-text>
@@ -142,7 +142,7 @@
             <ion-icon
               size="small"
               slot="start"
-              displayName="logo-google"
+              name="logo-google"
             ></ion-icon>
             Login with Google
           </ion-button>
@@ -155,7 +155,7 @@
             <ion-icon
               size="small"
               slot="start"
-              displayName="logo-twitter"
+              name="logo-twitter"
             ></ion-icon>
             Login with Twitter
           </ion-button>
@@ -172,7 +172,7 @@
             <ion-icon
               size="small"
               slot="end"
-              displayName="arrow-forward"
+              name="arrow-forward"
             ></ion-icon>
           </ion-button>
         </form>
@@ -188,26 +188,26 @@
                 color="primary"
                 type="text"
                 inputmode="text"
-                autocomplete="displayName"
-                formControlName="displayName"
+                autocomplete="name"
+                formControlName="name"
                 autocapitalize="words"
               >
               </ion-input>
             </ion-item>
             <div
               *ngIf="
-                registerFormControl.displayName.invalid &&
-                !registerFormControl.displayName.pristine
+                registerFormControl.name.invalid &&
+                !registerFormControl.name.pristine
               "
             >
               <ion-text
-                *ngIf="registerFormControl.displayName.errors.required"
+                *ngIf="registerFormControl.name.errors.required"
                 color="danger"
               >
                 Name required.
               </ion-text>
               <ion-text
-                *ngIf="registerFormControl.displayName.errors.maxlength"
+                *ngIf="registerFormControl.name.errors.maxlength"
                 color="danger"
               >
                 Must be no more than 25 characters.
@@ -258,7 +258,7 @@
                 (click)="toggleHide()"
                 slot="end"
                 *ngIf="!hide"
-                displayName="eye-sharp"
+                name="eye-sharp"
               >
               </ion-icon>
               <ion-icon
@@ -267,7 +267,7 @@
                 (click)="toggleHide()"
                 slot="end"
                 *ngIf="hide"
-                displayName="eye-off-sharp"
+                name="eye-off-sharp"
               >
               </ion-icon>
             </ion-item>
@@ -312,7 +312,7 @@
             <ion-icon
               size="small"
               slot="start"
-              displayName="person-add-sharp"
+              name="person-add-sharp"
             ></ion-icon>
             <ion-text> Register </ion-text>
           </ion-button>
@@ -322,7 +322,7 @@
             color="google"
             (click)="authService.GoogleAuth()"
           >
-            <ion-icon size=" small" slot="start" displayName="logo-google">
+            <ion-icon size=" small" slot="start" name="logo-google">
             </ion-icon>
             Register with Google
           </ion-button>
@@ -334,7 +334,7 @@
             <ion-icon
               size="small"
               slot="start"
-              displayName="logo-twitter"
+              name="logo-twitter"
             ></ion-icon>
             Register with Twitter
           </ion-button>
@@ -348,7 +348,7 @@
           >
             <ion-icon
               size="small"
-              displayName="arrow-back"
+              name="arrow-back"
               slot="start"
               type="button"
             ></ion-icon>

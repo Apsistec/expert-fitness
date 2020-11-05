@@ -106,7 +106,7 @@ export class ProfilePage implements OnInit, AfterViewInit {
       inputs: [
         {
           type: 'email',
-          displayName: 'email',
+          name: 'email',
           value: this.email,
           placeholder: 'email',
         },

@@ -1,7 +1,7 @@
 export interface Lead {
   id: string;
   employeeId: string;
-  displayName: string;
+  name: string;
   phone?: string;
   email?: string;
   uid?: string;
