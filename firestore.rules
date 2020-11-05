@@ -4,7 +4,7 @@ rules_version = '2';
       function hasPublicSubs() {
         return request.auth.token.stripeRole == "PUBLIC";
       }
-      function hasMemberSubs() {
+      function hasCustomerSubs() {
         return request.auth.token.stripeRole == "MEMBER";
       }
       function hasEmployeeSubs() {
@@ -15,11 +15,11 @@ rules_version = '2';
       }
 
     match /public-content/{doc} {
-      allow read: if hasPublicSubs() || hasMemberSubs() || hasEmployeeSubs() || hasAdminSubs();
+      allow read: if hasPublicSubs() || hasCustomerSubs() || hasEmployeeSubs() || hasAdminSubs();
       allow write: if hasEmployeeSubs() || hasAdminSubs();
     }
     match /member-content/{doc} {
-      allow read: if hasMemberSubs()|| hasEmployeeSubs() || hasAdminSubs();
+      allow read: if hasCustomerSubs()|| hasEmployeeSubs() || hasAdminSubs();
       allow write: if hasEmployeeSubs() || hasAdminSubs();
     }
     match /employee-content/{doc} {

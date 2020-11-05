@@ -26,7 +26,11 @@ export class StripeService {
     private router: Router,
     private spinner: SpinnerService
     ) {
-      this.authService.user$.pipe(map((user) => (this.user = user)));
+      this.authService.user$.pipe(
+        map(user => {
+          this.user = user;
+        })
+      );
     }
 
 
@@ -71,15 +75,15 @@ export class StripeService {
 
 
     // Coupons
-    getCoupon() {
-      const coupon: any = document.getElementById('couponForm');
-      const couponFun = this.functions.httpsCallable('stripeGetCoupon');
-      coupon.onblur = async () => {
-        const couponCode: Coupon = await couponFun({ coupon });
-        if ( couponCode.name === coupon.name ) {
-          this.discount = couponCode.value;
-          this.messageService.generalToast('');
-        }
-      };
-    }
+    // getCoupon() {
+    //   const coupon: any = document.getElementById('couponForm');
+    //   const couponFun = this.functions.httpsCallable('stripeGetCoupon');
+    //   coupon.onblur = async () => {
+    //     const couponCode: Coupon = await couponFun({ coupon });
+    //     if ( couponCode.name === coupon.name ) {
+    //       this.discount = couponCode.value;
+    //       this.messageService.generalToast('');
+    //     }
+    //   };
+    // }
 }

@@ -33,7 +33,7 @@
 //                     // tslint:disable: triple-equals
 //                     const role = user["role"];
 //                     if (role == "MEMBER") {
-//                         this.router.navigateByUrl("/members");
+//                         this.router.navigateByUrl("/customers");
 //                     } else if (role == "TRAINER") {
 //                         this.router.navigateByUrl("/trainers");
 //                     } else if (role == "USER") {

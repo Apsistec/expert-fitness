@@ -90,7 +90,11 @@ export class HomePageOneComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.user$.pipe(map((user) => (this.user = user)));
+    this.authService.user$.pipe(
+      map( user => {
+        this.user = user;
+      })
+    );
 
     this.getYear();
   }

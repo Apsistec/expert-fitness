@@ -1,4 +1,4 @@
-export interface Member {
+export interface Customer {
   id: string;
   stripeId: string;
   stripeLink?: string;

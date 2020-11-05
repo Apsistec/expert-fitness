@@ -1,179 +1,117 @@
 <app-header></app-header>
 <ion-content fullscreen class="page-content">
   <ion-grid>
-    <ion-card color="secondary" class="title-card ion-text-center ion-padding ">
-      <ion-card-title class="page-card-title">
-        <ion-text>
-          <h1>Pricing Plans</h1>
-        </ion-text>
-      </ion-card-title>
-      <ion-card-subtitle class="card-subtitle-products">
-        <ion-text>
-          <h4>Choose one of our Awesome plans</h4>
-        </ion-text>
-      </ion-card-subtitle>
-    </ion-card>
-
-    <ion-row class="ion-justify-content-around">
-      <ion-col size-md="3" class="ion-text-left ion-align-self-stretch">
-        <ion-card class="ion-padding page-card">
-          <ion-card-header class="page-card-header">
-            <ion-card-title class="page-card-title">
-                <ion-text>
-                  <h2>Plan One</h2>
-                </ion-text>
-              </ion-card-title>
-
-                <ion-card-title class="page-card-title ion-text-end">
-                <ion-text>
-                <strong>$9.90</strong>
-                </ion-text>
-
-            </ion-card-title>
-            <ion-card-subtitle class="card-subtitle-products">
-              <ion-text>
-                <p>
-                  Far far away, behind the word mountains, far from the
-                  countries.
-                </p>
-              </ion-text>
-            </ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-            <hr />
-            <ion-list style="border-radius: 12px">
-              <ion-list-header class="list-header-global">
-                <ion-title>
-                  <ion-text> Features: </ion-text>
-                </ion-title>
-              </ion-list-header>
-              <ion-item>
-                <p class="ion-text-start"><em>Unlimited calls</em></p>
-              </ion-item>
-              <ion-item>
-                <p class="ion-text-start"><em>Free hosting</em></p>
-              </ion-item>
-              <ion-item lines="none">
-                <p class="ion-text-start"><em>40MB of storage</em></p>
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
-          <ion-footer class="ion-text-center ion-padding">
-            <ion-button
-              color="tertiary"
-              size="large"
-              (click)="purchaseChoiceOne()"
-              >Choose Plan One</ion-button
-            >
-          </ion-footer>
-        </ion-card>
-      </ion-col>
-
-      <ion-col size-md="3" class="ion-text-left ion-align-self-stretch">
-        <ion-card class="ion-padding page-card">
-          <ion-card-header class="page-card-header">
-            <ion-card-title class="page-card-title">
-              <ion-text>
-                <h2>Plan Two</h2>
-              </ion-text>
-            </ion-card-title>
-
-            <ion-card-title class="page-card-title ion-text-end">
-              <ion-text>
-                  <strong>$19.90</strong>
-                </ion-text>
-            </ion-card-title>
-            <ion-card-subtitle class="card-subtitle-products">
-              <ion-text>
-                <p >
-                  Far far away, behind the word mountains, far from the
-                  countries.
-                </p>
-              </ion-text>
-            </ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-            <hr />
-            <ion-list style="border-radius: 12px">
-              <ion-list-header class="list-header-global">
-                <ion-title>
-                  <ion-text> Features: </ion-text>
-                </ion-title>
-              </ion-list-header>
-              <ion-item>
-                <p class="ion-text-start"><em>Unlimited calls</em></p>
-              </ion-item>
-              <ion-item>
-                <p class="ion-text-start"><em>Free hosting</em></p>
-              </ion-item>
-              <ion-item lines="none">
-                <p class="ion-text-start"><em>40MB of storage</em></p>
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
-          <ion-footer class="ion-padding ion-text-center">
-            <ion-button
-              color="tertiary"
-              size="large"
-              (click)="purchaseChoiceTwo()"
-              >Choose Plan Two</ion-button
-            >
-          </ion-footer>
-        </ion-card>
-      </ion-col>
-
-      <ion-col size-md="3" class="ion-text-left ion-align-self-stretch">
-        <ion-card class="ion-padding page-card">
-          <ion-card-header class="page-card-header">
-            <ion-card-title class="page-card-title">
-              <ion-text>
-                <h2>Plan Three</h2>
-              </ion-text>
-            </ion-card-title>
-
-              <ion-card-title class="page-card-title ion-text-end">
-                <ion-text>
-                <strong>$29.90</strong>
-                </ion-text>
-              </ion-card-title>
-            <ion-card-subtitle class="card-subtitle-products">
-              <ion-text>
-                <p>
-                  Far far away, behind the word mountains, far from the
-                  countries.
-                </p>
-              </ion-text>
-            </ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-            <hr />
-            <ion-list style="border-radius: 12px">
-              <ion-list-header class="list-header-global">
-                <ion-title>
-                  <ion-text> Features: </ion-text>
-                </ion-title>
-              </ion-list-header>
-              <ion-item>
-                <p class="ion-text-start"><em>Unlimited calls</em></p>
-              </ion-item>
-              <ion-item>
-                <p class="ion-text-start"><em>Free hosting</em></p>
-              </ion-item>
-              <ion-item lines="none">
-                <p class="ion-text-start"><em>40MB of storage</em></p>
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
-          <ion-footer class="ion-padding ion-text-center">
-            <ion-button
-              color="tertiary"
-              size="large"
-              (click)="purchaseChoiceThree()"
-              >Choose Plan Three</ion-button
-            >
-          </ion-footer>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card color="secondary" class="title-card ion-text-center ion-padding ">
+          <ion-card-title class="page-card-title">
+            <ion-text>
+              <h1>Pricing Plans</h1>
+            </ion-text>
+          </ion-card-title>
+          <ion-card-subtitle class="card-subtitle-products">
+            <ion-text>
+              <h4>Choose one of our Awesome plans</h4>
+            </ion-text>
+          </ion-card-subtitle>
         </ion-card>
       </ion-col>
     </ion-row>
+
+    <ng-component *ngIf="signedIn == true; else getSignedIn">
+
+      <ion-row class="ion-justify-content-around">
+        <ng-component *ngIf="user && user.subStatus !== 'active' || 'trialing' then purchase; else paid">
+            <ion-spinner>Loading...</ion-spinner>
+
+          <ion-col #purchase size="12" size-md="3" *ngFor="let product of products" class="ion-text-left ion-align-self-stretch">
+            <ion-card class="ion-padding page-card">
+              <ion-card-header class="page-card-header">
+                <ion-card-title class="page-card-title">
+                  <ion-text class="ion-text-start">
+                    <h3>{{ product.name }}</h3>
+                  </ion-text>
+                  <ion-text class="ion-text-end">
+                    <h2>{{ product.price }}</h2>
+                  </ion-text>
+                </ion-card-title>
+
+              </ion-card-header>
+              <ion-card-content>
+              <hr/>
+              <ion-list style="border-radius: 12px">
+                <ion-list-header class="list-header-global">
+                  <ion-title>
+                    <ion-text> Features: </ion-text>
+                  </ion-title>
+                </ion-list-header>
+                <ion-item>
+                  <p>
+                    {{ product.description }}
+                  </p>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+            <ion-footer class="ion-text-center ion-padding">
+              <ion-button
+                color="tertiary"
+                size="large"
+                (click)="subscribe()"
+                >Subscribe to {{ product.name }}</ion-button>
+              </ion-footer>
+            </ion-card>
+          </ion-col>
+
+            <ng-template #paid>
+              <ion-col>
+                <ion-card>
+                  <ion-card-title>
+                    <ion-text>
+                      <h2>My subscription</h2>
+                    </ion-text>
+                  </ion-card-title>
+                  <ion-card-content>
+                    <ion-text>
+                      <h2>
+                        <!-- You are currently paying {{ subscription.unit_price | currency }} -->
+                      </h2>
+                    </ion-text>
+                    <ion-text>
+                      <h2>Stripe Customer Portal</h2>
+                    </ion-text>
+                    <ion-text>
+                      <h3>View invoices, update subscription & payment methods</h3>
+                    </ion-text>
+                    <ion-button color="tertiary" routerLink="">
+                      <ion-text>
+                        Access Customer Portal
+                      </ion-text>
+                    </ion-button>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ng-template>
+        </ng-component>
+      </ion-row>
+
+      <ng-template #getSignedIn>
+
+        <ion-row>
+        <ion-col>
+
+        </ion-col>
+      </ion-row>
+    </ng-template>
+    </ng-component>
+
+
   </ion-grid>
 </ion-content>
+
+
+
+
+
+
+
+

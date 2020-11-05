@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../../_services/auth.service';
 import { CollectionService } from '../../_services/collection.service';
 import { TicketService } from '../../_services/ticket.service';
-import { TicketComponent } from '../../_members/ticket/ticket.component';
+import { TicketComponent } from '../../_customers/ticket/ticket.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -16,7 +16,7 @@ export class AdminDashboardPage implements OnInit {
   title = 'Admin Dashboard';
   admins;
   users;
-  members;
+  customers;
   feed;
   trainers;
 
@@ -30,7 +30,7 @@ export class AdminDashboardPage implements OnInit {
   ngOnInit() {
     this.admins = this.collection.getAdmins();
     this.users = this.collection.getUsers();
-    this.members = this.collection.getMembers();
+    this.customers = this.collection.getCustomers();
     this.feed = this.collection.getUserFeed();
     this.trainers = this.collection.getTrainers();
     this.tickets = this.ticket.getAdminTickets();

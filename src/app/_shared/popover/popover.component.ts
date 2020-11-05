@@ -29,7 +29,7 @@ export class PopoverComponent {
 
   async goToProfile() {
     const res = await this.dismissPopover();
-    this.router.navigateByUrl('/members/dashboard');
+    this.router.navigateByUrl('/customers/dashboard');
   }
 
   dismissPopover() {

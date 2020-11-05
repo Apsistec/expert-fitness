@@ -14,19 +14,19 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        loadChildren: () => import('../_members/dashboard/dashboard.module').then(m => m.DashboardPageModule)
+        loadChildren: () => import('../_customers/dashboard/dashboard.module').then(m => m.DashboardPageModule)
       },
       {
         path: 'workouts',
-        loadChildren: () => import('../_members/workouts/workouts.module').then(m => m.WorkoutsPageModule)
+        loadChildren: () => import('../_customers/workouts/workouts.module').then(m => m.WorkoutsPageModule)
       },
       {
         path: 'nutrition',
-        loadChildren: () => import('../_members/nutrition/nutrition.module').then(m => m.NutritionPageModule)
+        loadChildren: () => import('../_customers/nutrition/nutrition.module').then(m => m.NutritionPageModule)
       },
       {
         path: 'videos/:playlistId',
-        loadChildren: () => import('../_members/videos/videos.module').then(m => m.VideosPageModule)
+        loadChildren: () => import('../_customers/videos/videos.module').then(m => m.VideosPageModule)
       },
     ]
   },

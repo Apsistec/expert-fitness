@@ -9,7 +9,7 @@ import {
 } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 
-const redirectLoggedInToDash = () => redirectLoggedInTo(['/members/dashboard']);
+const redirectLoggedInToDash = () => redirectLoggedInTo(['/customers/dashboard']);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 const verifiedEmail = () => emailVerified;
 
@@ -38,9 +38,9 @@ const routes: Routes = [
       import('./tabs/tabs.module').then((m) => m.TabsModule),
   },
   // {
-  //   path: 'members',
+  //   path: 'customers',
   //   loadChildren: () =>
-  //     import('./_members/members.module').then((m) => m.MembersPageModule),
+  //     import('./_customers/customers.module').then((m) => m.CustomersPageModule),
   //   // ...canActivate(redirectUnauthorizedToLogin),
   //   // ...canActivate(verifiedEmail)
   // },

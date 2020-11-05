@@ -1,42 +1,46 @@
-// import { Injectable } from '@angular/core';
-// import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
-// import { Observable } from 'rxjs';
-// import { MessageService } from './message.service';
+import { Injectable, OnDestroy } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
+import { Observable, Subscription } from 'rxjs';
+import { MessageService } from './message.service';
 
+@Injectable({
+  providedIn: 'root',
+})
+export class CheckForUpdateService implements OnDestroy {
+  updateAvailable: Subscription;
+  isUpdateAvailable: Subscription;
 
-// @Injectable({
-//   providedIn: 'root',
-// })
+  constructor(
+    private swUpdate: SwUpdate,
+    private messageService: MessageService
+  ) {
+  }
 
-// export class CheckForUpdateService {
-//   constructor(
-//     private swUpdate: SwUpdate,
-//     private messageService: MessageService
-//   ) {
-//     this.checkForUpdateService();
-//   }
+  checkForUpdateService() {
+    const enabled = this.swUpdate.isEnabled;
+    if (enabled) {
+      const isUpdateAvailable = new Observable((observer) => {
+        observer.next( (update: boolean) => {
+          if (update === true) {
+            this.messageService.updateOrCancel().then((choice) => {
+              if (choice === 'update') {
+                this.swUpdate.activateUpdate().then((updateComplete) => {
+                  window.location.reload();
+                });
+              }
+            });
+          }
+        }
+        );
+        observer.error((error) => this.messageService.errorAlert(error));
+        observer.complete();
+      });
 
-//   checkForUpdateService() {
-//     const enabled = this.swUpdate.isEnabled;
-//     if (enabled) {
-//       const updateAvailableEvent: UpdateAvailableEvent = new Observable(observer) => {
-//         next: ev => {this.swUpdate.activateUpdate;}
-//       }
+      isUpdateAvailable.subscribe();
+    }
+  }
+  public ngOnDestroy(): void {
+    this.isUpdateAvailable.unsubscribe();
+  }
 
-//       this.updateAvailableEvent.subscribe( up => {
-
-//         this.messageService.updateOrCancel().then((choice) => {
-//           if (choice === 'update') {
-//             window.location.reload();
-//           }
-//         })
-//       });
-//     })
-
-
-
-
-
-
-//   }
-// }
+}

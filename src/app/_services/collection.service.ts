@@ -6,10 +6,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { Admin } from '../_models/admins.model';
-import { Feed } from '../_models/feeds.model';
-import { Member } from '../_models/member';
-import { Message } from '../_models/text-messages.model';
-import { Trainer } from '../_models/trainer';
+// import { Feed } from '../_models/feeds.model';
+// import { Customer } from '../_models/member';
+// import { Message } from '../_models/text-messages.model';
+// import { Trainer } from '../_models/trainer';
 import { User } from '../_models/users.model';
 import { AuthService } from './auth.service';
 
@@ -21,7 +21,7 @@ export class CollectionService {
   usersRef: AngularFirestoreCollection<User>;
   users: Observable<User>;
   admins: Observable<Admin>;
-  members: Observable<any>;
+  customers: Observable<any>;
   wttsa: Observable<any>;
   collectionVar: AngularFirestoreCollection;
 
@@ -42,7 +42,7 @@ export class CollectionService {
       .valueChanges();
   }
 
-  getMembers() {
+  getCustomers() {
     return this.db
     .collection('users', ref => ref.where('subStatus', '==', 'current' || 'trialing'))
       .valueChanges();

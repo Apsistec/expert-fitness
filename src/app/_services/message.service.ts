@@ -153,7 +153,7 @@ export class MessageService {
 
   async needPaymentAlert() {
     const alert = await this.alertController.create({
-      header: 'Members Area Only',
+      header: 'Customers Area Only',
       subHeader: 'Paid PRO Package Required',
       message: 'Purchase any RF$ports PRO Package for immediate access',
       buttons: ['OK'],

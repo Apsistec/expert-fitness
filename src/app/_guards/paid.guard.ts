@@ -25,33 +25,34 @@ export class PaidGuard implements CanActivate {
           this.router.navigateByUrl('/get-started');
           return false;
         } else if (user) {
-          const paidUserStatus = user['subStatus'];
-          // if (!paidUserStatus) {
-          //   this.router.navigateByUrl('/home/memberships').then(async () => {
-          //     const alert = await this.alert.create({
-          //       message:
-          //         'Subscription Required. In order to access services, you will need to purchase a subscription.',
-          //     });
-          //     alert.present();
-          //     return false;
-          //   });
-          // } else
-          // tslint:disable-next-line: triple-equals
-          if (paidUserStatus == 'active' || 'trialing') {
+          const paidUserStatus = user.subStatus;
+          if (!paidUserStatus) {
+            this.router.navigateByUrl('/home/payment').then(async () => {
+              const alert = await this.alert.create({
+                subHeader: 'Subscription Required',
+                message:
+                  'In order to access services, you will need to purchase a subscription.',
+                translucent: true,
+                header: 'Account Error'
+              });
+              alert.present();
+              return false;
+            });
+          } else
+          if (paidUserStatus === 'active' || 'trialing') {
             this.router.navigateByUrl('/member').then(async () => {
               const toast = await this.toast.create({
                 header: 'Welcome Back',
                 message: 'Login Successful, your account is currently active.',
                 duration: 2000,
-                color: 'success',
+                color: 'successT',
                 cssClass: 'paid-user',
                 position: 'middle',
               });
               toast.present();
               return true;
             });
-          // tslint:disable-next-line: triple-equals
-          } else if (paidUserStatus == 'past_due') {
+          } else if (paidUserStatus === 'past_due') {
             this.router.navigateByUrl('/home/payment').then(async () => {
               const alert = await this.alert.create({
                 message:
@@ -59,27 +60,42 @@ export class PaidGuard implements CanActivate {
                   paidUserStatus +
                   '. You need to make a payment to restore access',
                 cssClass: 'unpaid-user',
+                translucent: true,
+                subHeader: 'Payment Past-due'
               });
               alert.present();
-              return true;
+              return false;
             });
-          // tslint:disable-next-line: triple-equals
-          } else if (paidUserStatus == 'cancelled' || 'unpaid') {
+          } else if (paidUserStatus === 'cancelled') {
             this.router.navigateByUrl('/home/payment').then(async () => {
               const alert = await this.alert.create({
+                translucent: true,
+                subHeader: 'Account Cancelled',
                 message:
-                  'Currently, your account is ' +
-                  paidUserStatus +
-                  '. You need to reopen your account to restore access',
+                'Currently, your account is ' +
+                paidUserStatus +
+                '. You need to reopen your account to restore access',
                 cssClass: 'unpaid-user',
               });
               alert.present();
-              return true;
+              return false;
+            });
+          } else if (paidUserStatus === 'unpaid') {
+            this.router.navigateByUrl('/home/payment').then(async () => {
+              const alert = await this.alert.create({
+                translucent: true,
+                header: 'Account Currently Unpaid',
+                message:
+                  'Currently, your account is ' +
+                  paidUserStatus +
+                  '. You need to use a valid card on your account to restore access',
+                cssClass: 'unpaid-user',
+              });
+              alert.present();
+              return false;
             });
           }
         }
-        // this.router.navigateByUrl('/home');
-        return false;
       })
     );
   }

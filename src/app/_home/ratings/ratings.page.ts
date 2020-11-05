@@ -13,7 +13,7 @@ import { MessageService } from 'src/app/_services/message.service';
   styleUrls: ['ratings.page.scss'],
 })
 export class RatingsPage {
-  imgDescription = 'Submitted by RF$ PRO Members';
+  imgDescription = 'Submitted by RF$ PRO Customers';
   slideOpts = {
     initialSlide: 1,
     speed: 400,

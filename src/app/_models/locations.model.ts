@@ -8,7 +8,7 @@ export interface Location{
   locationPhone: string;
   locationEmail: string;
   locationManagers: string[];
-  locationMemberIds: string[];
+  locationCustomerIds: string[];
   locationEmployeeIds: string[];
   locationPhotoURL?: string;
 }

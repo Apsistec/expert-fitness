@@ -79,7 +79,7 @@
               <!-- SignedIn Menu Items -->
               <li
                 *ngIf="user | async"
-                routerLink="/members/dashboard"
+                routerLink="/customers/dashboard"
                 routerLinkActive="active-bottom-menu"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
@@ -87,7 +87,7 @@
               </li>
               <li
                 *ngIf="user | async"
-                routerLink="/members/workouts"
+                routerLink="/customers/workouts"
                 routerLinkActive="active-bottom-menu"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
@@ -95,7 +95,7 @@
               </li>
               <li
                 *ngIf="user | async"
-                routerLink="/members/nutrition"
+                routerLink="/customers/nutrition"
                 routerLinkActive="active-bottom-menu"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
@@ -103,7 +103,7 @@
               </li>
               <li
                 *ngIf="user | async"
-                routerLink="/members/videos"
+                routerLink="/customers/videos"
                 routerLinkActive="active-bottom-menu"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
@@ -111,7 +111,7 @@
               </li>
               <li
                 *ngIf="user | async"
-                routerLink="/members/messages"
+                routerLink="/customers/messages"
                 routerLinkActive="active-bottom-menu"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
@@ -119,7 +119,7 @@
               </li>
               <li
                 *ngIf="user | async"
-                routerLink="/members/settings"
+                routerLink="/customers/settings"
                 routerLinkActive="active-bottom-menu"
                 [routerLinkActiveOptions]="{ exact: true }"
               >

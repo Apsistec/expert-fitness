@@ -16,6 +16,7 @@
   "dependencies": {
     "@angular/animations": "^10.2.1",
     "@angular/cdk": "^10.2.6",
+    "@angular/cli": "^10.2.0",
     "@angular/common": "~10.2.1",
     "@angular/compiler": "~10.2.1",
     "@angular/core": "~10.2.1",
@@ -40,6 +41,7 @@
     "@ionic/angular": "^5.4.1",
     "@ionic/angular-toolkit": "^2.3.3",
     "@ionic/storage": "^2.3.0",
+    "@stripe/stripe-js": "^1.11.0",
     "angular-archwizard": "^6.1.0",
     "exceljs": "^4.2.0",
     "file-saver": "^2.0.2",
