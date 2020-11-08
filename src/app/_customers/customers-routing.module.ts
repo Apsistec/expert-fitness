@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TicketComponent } from './ticket/ticket.component';
 import { DragndropComponent } from './dragndrop/dragndrop.component';
-
+import { RoleGuard } from '../_guards/role.guard';
 import { CustomersPage } from './customers.page';
 import { UploadExcelComponent } from './upload-excel/upload-excel.component';
 import { ExcelSheetJsComponent } from './excel-sheet-js/excel-sheet-js.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'customers',
     component: CustomersPage,
 
     children: [
@@ -55,7 +55,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./dashboard/dashboard.module').then(
             (m) => m.DashboardPageModule
-          ), outlet: 'memberOutlet',
+          )
       },
       {
         path: 'dragndrop',
@@ -80,6 +80,11 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: '',
+    redirectTo: '/customers',
+    pathMatch: 'full'
+  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

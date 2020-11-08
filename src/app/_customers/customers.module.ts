@@ -11,6 +11,7 @@ import { DragndropComponent } from './dragndrop/dragndrop.component';
 import { SharedModule } from '../_shared/shared.module';
 import { CustomersRoutingModule } from './customers-routing.module';
 import { MaterialModule } from '../material/material.module';
+
 @NgModule({
   declarations: [
     CancelSubscriptionComponent,

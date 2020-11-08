@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[30],{ZCKE:function(n,t,o){"use strict";o.r(t),o.d(t,"RatingsPageModule",(function(){return u}));var e=o("ofXK"),r=o("3Pt+"),i=o("TEn/"),c=o("i2L+"),s=o("fXoL");let u=(()=>{class n{}return n.\u0275mod=s.Mb({type:n}),n.\u0275inj=s.Lb({factory:function(t){return new(t||n)},imports:[[e.c,r.f,i.T,c.a]]}),n})()}}]);

@@ -1,11 +1,18 @@
+import { Employee } from './employees.model';
+import { MarketingCampaign } from './marketing-campaigns.model';
+import { User } from './users.model';
+
 export interface Lead {
-  id: string;
-  employeeId: string;
-  name: string;
+  leadId: string;
+  employeeId?: Employee;
+  name?: string;
   phone?: string;
   email?: string;
-  uid?: string;
-  referalUserId?: string;
-  campaigns?: string[];
+  uid?: User;
+  referrerId?: User;
+  campaigns?: MarketingCampaign[];
   message?: string;
+  createdAt: string;
+  lastUpdatedAt: string;
+  lastUpdatedBy: string;
 }

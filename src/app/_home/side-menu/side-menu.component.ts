@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { UserService } from '../../_services/user.service';
 import { MessageService } from '../../_services/message.service';
-import { GetStartedComponent } from '../get-started/get-started.component';
+import { GetStartedComponent } from '../../_shared/get-started/get-started.component';
 import { PopoverComponent } from '../../_shared/popover/popover.component';
 import { TermsComponent } from '../terms/terms.component';
 import { PrivacyComponent } from '../privacy/privacy.component';

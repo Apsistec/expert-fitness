@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/functions';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/_services/auth.service';
 import { map, take } from 'rxjs/operators';
 import { User } from '../../_models/users.model';
 import { environment } from '../../../environments/environment';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { MessageService } from 'src/app/_services/message.service';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -20,14 +19,13 @@ export class ProductsPage implements OnInit {
   user: User;
   role;
   signedIn;
-  products;
   subscriptions;
+  products: AngularFirestoreCollection;
 
   constructor(
     private db: AngularFirestore,
     private fun: AngularFireFunctions,
     private authService: AuthService,
-    private afAuth: AngularFireAuth,
     private messageService: MessageService
   ) { }
 
@@ -35,68 +33,22 @@ export class ProductsPage implements OnInit {
     this.user = this.authService.authState$.pipe( take ( 1 ) );
     if ( this.user && this.user !== null ) {
       this.signedIn = true;
-      this.startDataListeners();
+      this.getSubscriptions();
     } else {
       this.signedIn = false;
     }
   }
 
-  startDataListeners() {
-    //   // Get all our products and render them to the page
-    //   const products = document.querySelector('.products');
-    //   const template = document.querySelector('#product');
-    // this.db.collection<products>
-    //   .where('active', '==', true)
-    //   .get()
-    //   .then(function (querySnapshot) {
-    //     querySnapshot.forEach(async function (doc) {
-    //       const priceSnap = await doc.ref
-    //         .collection('prices')
-    //         .orderBy('unit_amount')
-    //         .get();
-    //       if (!'content' in document.createElement('template')) {
-    //         console.error('Your browser doesn’t support HTML template elements.');
-    //         return;
-    //       }
-    this.products = this.db.collection<any>( 'products', ref => ref.where( 'active', '==', true ) )
+  // Get all our products and render them to the page
+  getProducts() {
+    this.products = this.db.collection( 'products', ref => ref.where( 'active', '==', true ));
+    this.products
       .get();
-        // if (!'content' in document.createElement('template')) {
-        //   console.error('Your browser doesn’t support HTML template elements.');
-        //   return;
-  }
-
-    //         const product = doc.data();
-    //         const container = template.content.cloneNode(true);
-    //         container.querySelector('h2').innerText = product.name.toUpperCase();
-    //         container.querySelector('.description').innerText =
-    //           product.description.toUpperCase() || '';
-    //         // Prices dropdown
-    //         priceSnap.docs.forEach((doc) => {
-    //           const priceId = doc.id;
-    //           const priceData = doc.data();
-    //           const content = document.createTextNode(
-    //             `${new Intl.NumberFormat('en-US', {
-    //               style: 'currency',
-    //               currency: priceData.currency,
-    //             }).format((priceData.unit_amount / 100).toFixed(2))} per ${
-    //               priceData.interval
-    //             }`
-    //           );
-    //           const option = document.createElement('option');
-    //           option.value = priceId;
-    //           option.appendChild(content);
-    //           container.querySelector('#price').appendChild(option);
-    //         });
-    //         if (product.images.length) {
-    //           const img = container.querySelector('img');
-    //           img.src = product.images[0];
-    //           img.alt = product.name;
-    //         }
-    //         const form = container.querySelector('form');
-    //         form.addEventListener('submit', subscribe);
-    //         products.appendChild(container);
-    //       });
-    //     });
+      // .forEach( async ( prod ) => {
+      //   await this.db.collection('prices', ref => ref.orderBy('unit_amount'));
+      // });
+    return this.products;
+    }
 
   // Get all subscriptions for the customer
   getSubscriptions() {
@@ -109,7 +61,7 @@ export class ProductsPage implements OnInit {
         );
     if ( snapshot == null ) {
       // Show products
-      this.products = true;
+      this.getProducts();
     } else {
       // In this implementation we only expect one Subscription to exist
       this.subscriptions = snapshot.doc[0].data();

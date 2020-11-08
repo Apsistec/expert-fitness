@@ -1,15 +1,23 @@
 import { User } from 'src/app/_models/users.model';
+import { PaidCustomer } from './paid-customers.model';
+import { GymSession } from './gym-sessions.model';
+import { GymLocation } from './gym-locations.model';
+
 export interface Employee {
-  name: string;
-  Id: string;
+  employeeId: string;
   status: string;
+  uid: User;
   hireDate: number;
+  hiredBy: Employee;
   revenue?: number;
+  terminationDate?: number;
   positions?: string[];
-  appointments?: string[];
-  clients?: string[];
+  salesAppointments?: string[];
+  gymSessionId?: GymSession[];
+  PaidCustomerId?: PaidCustomer[];
   payRate?: number;
-  locations?: string[];
-  userId: User;
-  startDate: number;
+  gymLocationId?: GymLocation[];
+  createdAt?: string;
+  lastUpdatedAt?: string;
+  lastUpdatedBy?: string;
 }

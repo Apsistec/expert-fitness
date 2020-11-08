@@ -27,7 +27,7 @@ export class RoleGuard implements CanActivate {
           this.router.navigateByUrl('/home');
           return false;
         } else {
-          const role = user['role'];
+          const role = user.role;
           if (expectedRole === role) {
             return true;
           } else {

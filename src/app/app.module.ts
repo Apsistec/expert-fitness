@@ -20,7 +20,6 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutAppComponent } from './_home/about-app/about-app.component';
-import { GetStartedComponent } from './_home/get-started/get-started.component';
 import { PrivacyComponent } from './_home/privacy/privacy.component';
 import { SideMenuComponent } from './_home/side-menu/side-menu.component';
 import { TermsComponent } from './_home/terms/terms.component';
@@ -36,7 +35,6 @@ import { GlobalErrorHandlerService } from './_services/error-handler.service';
     SideMenuComponent,
     TermsComponent,
     PrivacyComponent,
-    GetStartedComponent,
     AboutAppComponent,
   ],
   entryComponents: [],

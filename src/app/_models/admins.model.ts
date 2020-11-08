@@ -1,10 +1,13 @@
-import { User } from 'src/app/_models/users.model';
 import { Employee } from './employees.model';
+
 export interface Admin {
-  id: string;
+  adminId: string;
   permissions: string[];
-  roles: string[];
   employeeId: Employee;
-  uid: User;
-  created: number;
+  status: string;
+  createdDate: number;
+  createdBy: Employee;
+  createdAt: string;
+  lastUpdatedAt: string;
+  lastUpdatedBy: Employee;
 }

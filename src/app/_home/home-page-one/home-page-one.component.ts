@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 import { AboutAppComponent } from '../../_home/about-app/about-app.component';
-import { GetStartedComponent } from '../../_home/get-started/get-started.component';
+import { GetStartedComponent } from '../../_shared/get-started/get-started.component';
 import { PrivacyComponent } from '../../_home/privacy/privacy.component';
 import { TermsComponent } from '../../_home/terms/terms.component';
 import { User } from '../../_models/users.model';

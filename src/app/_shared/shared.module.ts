@@ -11,6 +11,7 @@ import { QuicklinkModule } from 'ngx-quicklink';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartsComponent } from './charts/charts.component';
 import { RatingsInsertComponent } from './ratings-insert/ratings-insert.component';
+import { GetStartedComponent } from './get-started/get-started.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RatingsInsertComponent } from './ratings-insert/ratings-insert.componen
     PopoverComponent,
     ChartsComponent,
     RatingsInsertComponent,
+    GetStartedComponent,
   ],
   imports: [
     RouterModule,
@@ -32,6 +34,7 @@ import { RatingsInsertComponent } from './ratings-insert/ratings-insert.componen
   ],
   exports: [
     RouterModule,
+    GetStartedComponent,
     QuicklinkModule,
     IonicModule,
     FormsModule,

@@ -5,14 +5,7 @@
   },
   "targets": {
     "expert-fitness-midland-tx": {
-      "hosting": {
-        "expert-fitness-admin": [
-          "expert-fitness-admin"
-        ],
-        "web-app": [
-          "expert-fitness"
-        ]
-      }
+      "hosting": {}
     }
   }
 }

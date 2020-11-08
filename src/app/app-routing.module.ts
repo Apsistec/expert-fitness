@@ -8,9 +8,10 @@ import {
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
-
+import {PaidGuard} from './_guards/paid.guard';
+import {RoleGuard} from './_guards/role.guard';
 const redirectLoggedInToDash = () => redirectLoggedInTo(['/customers/dashboard']);
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/home']);
 const verifiedEmail = () => emailVerified;
 
 const routes: Routes = [
@@ -18,44 +19,50 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./_home/home.module').then((m) => m.HomePageModule),
-    ...canActivate(redirectLoggedInToDash)
+    // ...canActivate(redirectLoggedInToDash)
   },
   {
     path: 'unknown',
     loadChildren: () =>
-      import('./_home/unknown/unknown.module').then((m) => m.UnknownPageModule),
-  },
-  {
-    path: 'verify-email',
-    loadChildren: () =>
-      import('./_home/verify-email/verify-email.module').then(
-        (m) => m.VerifyEmailPageModule
-      ),
+    import('./_home/unknown/unknown.module').then((m) => m.UnknownPageModule),
+    // ...canActivate(redirectLoggedInToDash)
   },
   {
     path: 'tabs',
     loadChildren: () =>
       import('./tabs/tabs.module').then((m) => m.TabsModule),
+      // ...canActivate(verifiedEmail),
+      // canActivate: [PaidGuard, RoleGuard]
+    },
+    {
+      path: 'customers',
+      loadChildren: () =>
+      import('./_customers/customers.module').then((m) => m.CustomersPageModule),
+      // ...canActivate(redirectUnauthorizedToLogin),
+      // ...canActivate(verifiedEmail),
+      // canActivate: [PaidGuard, RoleGuard]
+    },
+    {
+      path: 'trainers',
+      loadChildren: () =>
+      import('./_trainers/trainers.module').then((m) => m.TrainersPageModule),
+      // ...canActivate(redirectUnauthorizedToLogin),
+      // ...canActivate(verifiedEmail),
+      // canActivate: [PaidGuard, RoleGuard]
+    },
+    {
+      path: 'admins',
+      loadChildren: () =>
+      import('./_admins/admins.module').then((m) => m.AdminsModule),
+      // ...canActivate(redirectUnauthorizedToLogin),
+      // ...canActivate(verifiedEmail),
+      // canActivate: [PaidGuard, RoleGuard]
   },
-  // {
-  //   path: 'customers',
-  //   loadChildren: () =>
-  //     import('./_customers/customers.module').then((m) => m.CustomersPageModule),
-  //   // ...canActivate(redirectUnauthorizedToLogin),
-  //   // ...canActivate(verifiedEmail)
-  // },
-  // {
-  //   path: 'trainers',
-  //   loadChildren: () =>
-  //     import('./_trainers/trainers.module').then((m) => m.TrainersPageModule),
-  //   ...canActivate(redirectUnauthorizedToLogin)
-  // },
-  // {
-  //   path: 'admins',
-  //   loadChildren: () =>
-  //     import('./_admins/admins.module').then((m) => m.AdminsModule),
-  //   ...canActivate(redirectUnauthorizedToLogin)
-  // },
+    {
+      path: 'verified-email',
+      loadChildren: () =>
+      import('./_home/verify-email/verify-email.module').then((m) => m.VerifyEmailModule)
+  },
   {
     path: '',
     redirectTo: '/home',
@@ -66,6 +73,7 @@ const routes: Routes = [
     redirectTo: '/unknown',
     pathMatch: 'full',
   },
+
 ];
 @NgModule({
   imports: [

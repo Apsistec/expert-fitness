@@ -3,7 +3,7 @@ import { AngularFireFunctions } from '@angular/fire/functions';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Coupon } from '../_models/coupon.model';
+import { Coupon } from '../_models/coupons.model';
 import { User } from '../_models/users.model';
 import { AuthService } from './auth.service';
 import { MessageService } from './message.service';

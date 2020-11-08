@@ -27,7 +27,10 @@ import { SharedModule } from '../_shared/shared.module';
     HomePageTwoComponent,
     HomePageOneComponent,
     HomePageThreeComponent,
-    HomePageFourComponent,
+    HomePageFourComponent
   ],
+  exports: [
+
+  ]
 })
 export class HomePageModule {}

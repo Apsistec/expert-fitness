@@ -44,26 +44,14 @@ export class MessageService {
     return toast.present();
   }
 
-  async isLoggedInToast() {
+  async loggedInToast(data) {
     const toast = await this.toastController.create({
       header: 'Log In Successful',
-      message: 'Welcome Back!',
+      message: 'Welcome Back ' + data.user.displayName + '!' || 'Welcome Back!',
       cssClass: 'successT',
       position: 'middle',
       keyboardClose: true,
       duration: 3000,
-    });
-    await toast.present();
-  }
-
-  async federatedLoginToast(data: any) {
-    const toast = await this.toastController.create({
-      header: 'Log In Successful',
-      message: ' Welcome back ' + data.user.displayName + '!',
-      cssClass: 'successT',
-      position: 'middle',
-      duration: 3000,
-      keyboardClose: true,
     });
     await toast.present();
   }
@@ -79,6 +67,7 @@ export class MessageService {
     });
     await toast.present();
   }
+
   async deleteTicketToast() {
     const toast = await this.toastController.create({
       header: 'Ticket Deleted',
