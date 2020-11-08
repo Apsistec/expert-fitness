@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
-  AlertController,
   LoadingController,
   ModalController,
 } from '@ionic/angular';
+import { MessageService } from 'src/app/_services/message.service';
 import { AuthService } from '../../_services/auth.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class GetStartedComponent implements OnInit {
     public authService: AuthService,
     private loadingController: LoadingController,
     private modalController: ModalController,
-    private alertController: AlertController
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -72,74 +72,31 @@ export class GetStartedComponent implements OnInit {
     });
   }
 
-  // navigateByRole(role) {
-  //   if (role === "USER") {
-  //     this.router.navigateByUrl("/tabs/dashboard");
-  //   } else if (role === "TRAINER") {
-  //     this.router.navigateByUrl("/trainers");
-  //   } else if (role === "ADMIN") {
-  //     this.router.navigateByUrl("/admins");
-  //   }
-  // }
 
   async onLogin() {
-    const loading = await this.loadingController.create({
-      message: 'Loading...',
-      translucent: true,
-      keyboardClose: true,
-    });
-    await loading.present();
-
-    this.authService.SignIn(this.loginForm.value).then(
-      async () => {
-        await loading.dismiss();
-        // this.navigateByRole(this.loginForm.value.role);
-      },
-
-      async (error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        loading.dismiss();
-
-        const alert = await this.alertController.create({
-          header: 'Error',
-          subHeader: errorCode,
-          message: errorMessage,
-          cssClass: 'warningA',
-          buttons: ['OK'],
-        });
-        alert.present();
-      }
-    );
+    await this.showLoading();
+    await this.authService.SignIn(this.loginForm.value);
+    await this.dismissLoading();
   }
 
+
   async onRegister() {
+    await this.showLoading();
+    await this.authService.SignUp(this.registerForm.value);
+    await this.dismissLoading();
+  }
+
+  async showLoading() {
     const loading = await this.loadingController.create({
       message: 'Loading...',
       translucent: true,
       keyboardClose: true,
     });
     await loading.present();
+  }
 
-    this.authService.SignUp(this.registerForm.value).then(
-      async () => {
-        await loading.dismiss();
-      },
-      async (error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        loading.dismiss();
-
-        const alert = await this.alertController.create({
-          header: 'Error',
-          subHeader: errorCode,
-          message: errorMessage,
-          cssClass: 'warningA',
-          buttons: ['OK'],
-        });
-        alert.present();
-      }
-    );
+  async dismissLoading() {
+    await this.loadingController.dismiss();
   }
 
   toggleHide() {

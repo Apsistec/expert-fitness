@@ -5,7 +5,7 @@
       >Account Registration</ion-title
     >
     <ion-buttons slot="end">
-      <ion-button (click)="dismissModal()">Close </ion-button>
+      <ion-button color="danger" (click)="dismissModal()">Close </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +14,7 @@
     <div class="flipper">
       <!-- Login Side of card -->
       <div class="front ion-no-margin">
-        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" >
           <ion-list class="ion-no-margin ion-no-padding">
             <ion-item>
               <ion-label position="floating">Email</ion-label>
@@ -155,7 +155,9 @@
             type="button"
             (click)="toggleRegister()"
           >
-            I want to Create an Account
+          <ion-text>
+            Go to Create an Account
+          </ion-text>
             <ion-icon
               size="small"
               slot="end"
@@ -339,7 +341,9 @@
               slot="start"
               type="button"
             ></ion-icon>
-            Go Back to Sign In
+            <ion-text>
+              Go Back to Login
+            </ion-text>
           </ion-button>
         </form>
       </div>

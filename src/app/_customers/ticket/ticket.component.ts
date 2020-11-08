@@ -50,7 +50,7 @@ export class TicketComponent implements OnInit {
     }
   }
 
-  close() {
+  dismissModal() {
     this.modalCtrl.dismiss();
   }
 
@@ -63,7 +63,7 @@ export class TicketComponent implements OnInit {
     this.ticket.createOrUpdateTicket(this.id, this.ticketForm.value).then(
       () => {
         loading.dismiss();
-        this.close();
+        this.dismissModal();
       },
       (err) => {
         loading.dismiss();
@@ -73,7 +73,7 @@ export class TicketComponent implements OnInit {
 
   deleteTicket() {
     this.ticket.deleteTicket(this.id).then(() => {
-      this.modalCtrl.dismiss();
+      this.dismissModal();
     });
   }
 }

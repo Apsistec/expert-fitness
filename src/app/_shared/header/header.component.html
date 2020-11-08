@@ -2,7 +2,7 @@
   <!-- small screen/ hamburger-->
   <ion-toolbar color="dark" class="small-screen">
     <ion-buttons slot="start">
-      <ion-menu-button color="warning"> </ion-menu-button>
+      <ion-menu-button color="tertiary"> </ion-menu-button>
     </ion-buttons>
     <ion-img
       src="../../../assets/logos/logo.png"
@@ -30,13 +30,22 @@
 
     <ng-template #startButton>
       <ion-buttons slot="end">
-        <ion-button
-          style="padding-right: 1.25em; font-size: large"
+        <div style="text-align: center;">
+          <ion-text color="warning" style="padding-right: 5px;">
+            <sup>
+              Returning Users:
+            </sup>
+          </ion-text>
+          <br>
+          <ion-button
+          style="font-size: x-large"
           appBlink
           (click)="showModalGetStarted()"
-        >
-          <ion-text> Sign In </ion-text>
+          color="danger"
+          >
+          <ion-text>Login</ion-text>
         </ion-button>
+      </div>
       </ion-buttons>
     </ng-template>
   </ion-toolbar>
@@ -48,7 +57,7 @@
       <ion-back-button
         *ngIf="!hideBackButton"
         defaultHref="/home"
-        color="warning-shade"
+        color="tertiary"
       ></ion-back-button>
       <!-- </ng-component> -->
       <ion-img
@@ -65,7 +74,7 @@
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <ion-label> Home </ion-label>
+        <ion-label>Home</ion-label>
       </ion-item>
 
       <ion-item
@@ -76,7 +85,7 @@
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <ion-label> Products </ion-label>
+        <ion-label>Products</ion-label>
       </ion-item>
 
       <ion-item
@@ -87,7 +96,7 @@
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <ion-label> FAQs </ion-label>
+        <ion-label>FAQs</ion-label>
       </ion-item>
 
       <ion-item
@@ -98,18 +107,18 @@
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <ion-label> Testimonials </ion-label>
+        <ion-label>Testimonials</ion-label>
       </ion-item>
 
       <ion-item
         class="menu-font"
         button
         color="dark"
-        routerLink="/home/contact"
+        routerLink="/home/about"
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <ion-label> Contact </ion-label>
+        <ion-label>About</ion-label>
       </ion-item>
     </ion-buttons>
 
@@ -132,13 +141,21 @@
     </ng-container>
 
     <ng-template #getStarted>
-      <div slot="end" style="margin-right: 2em; text-align: center">
-        <ion-text color="warning">Returning Users:</ion-text>
-        <br />
-        <ion-button (click)="showModalGetStarted()" color="primary">
-          <ion-text>Sign In</ion-text>
-        </ion-button>
-      </div>
+      <ion-buttons slot="end">
+
+        <div style="text-align: center;">
+          <ion-text color="warning" style="padding-right: 5px;">
+            <sup>
+              Returning Users:
+            </sup>
+          </ion-text>
+          <br>
+          <ion-button (click)="showModalGetStarted()" color="danger">
+
+            <ion-text style="font-size: x-large" appBlink>Login</ion-text>
+          </ion-button>
+        </div>
+      </ion-buttons>
     </ng-template>
   </ion-toolbar>
 </ion-header>

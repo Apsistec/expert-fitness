@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { AuthService } from '../_services/auth.service';
+import { MessageService } from '../_services/message.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class PaidGuard implements CanActivate {
     private router: Router,
     private auth: AuthService,
     private toast: ToastController,
-    private alert: AlertController
+    private messageService: MessageService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
@@ -28,14 +29,8 @@ export class PaidGuard implements CanActivate {
           const paidUserStatus = user.subStatus;
           if (!paidUserStatus) {
             this.router.navigateByUrl('/home/payment').then(async () => {
-              const alert = await this.alert.create({
-                subHeader: 'Subscription Required',
-                message:
-                  'In order to access services, you will need to purchase a subscription.',
-                translucent: true,
-                header: 'Account Error'
+              this.messageService.unsubscribedAlert();
               });
-              alert.present();
               return false;
             });
           } else

@@ -1,16 +1,18 @@
-<ion-header>
+<ion-header translucent>
   <ion-toolbar class="toolbar-global">
-    <ion-buttons slot="start">
-      <ion-button (click)="close()">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
     <ion-title>
       <ion-text color="medium"> Ticket Details </ion-text>
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button  (click)="dismissModal()" color="danger">
+        <ion-text>
+          Close
+        </ion-text>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content full-screen="true">
+<ion-content fullscreen>
   <ion-card color="light">
     <ion-card-header>
       <ion-card-title *ngIf="!id">

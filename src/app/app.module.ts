@@ -20,12 +20,13 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutAppComponent } from './_home/about-app/about-app.component';
+import { HomePage } from './_home/home.page';
 import { PrivacyComponent } from './_home/privacy/privacy.component';
 import { SideMenuComponent } from './_home/side-menu/side-menu.component';
 import { TermsComponent } from './_home/terms/terms.component';
 import { SafePipe } from './_pipes/safe.pipe';
 import { ToHttpsPipe } from './_pipes/to-https.pipe';
-import { GlobalErrorHandlerService } from './_services/error-handler.service';
+// import { GlobalErrorHandlerService } from './_services/error-handler.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { GlobalErrorHandlerService } from './_services/error-handler.service';
     TermsComponent,
     PrivacyComponent,
     AboutAppComponent,
+    HomePage
   ],
   entryComponents: [],
   imports: [
@@ -65,7 +67,7 @@ import { GlobalErrorHandlerService } from './_services/error-handler.service';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+    // { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
   ],
   bootstrap: [AppComponent],
 })

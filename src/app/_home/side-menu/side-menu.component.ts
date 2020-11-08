@@ -1,16 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { UserService } from '../../_services/user.service';
 import { MessageService } from '../../_services/message.service';
 import { GetStartedComponent } from '../../_shared/get-started/get-started.component';
-import { PopoverComponent } from '../../_shared/popover/popover.component';
 import { TermsComponent } from '../terms/terms.component';
 import { PrivacyComponent } from '../privacy/privacy.component';
 import { AboutAppComponent } from '../about-app/about-app.component';
 import { User } from '../../_models/users.model';
 import { map } from 'rxjs/operators';
+import { ContactPage } from '../contact/contact.page';
+import { AboutUsComponent } from '../about-us/about-us.component';
 
 @Component({
   selector: 'app-side-menu',
@@ -22,7 +23,6 @@ export class SideMenuComponent implements OnInit {
   user: User;
 
   constructor(
-    private popoverController: PopoverController,
     private router: Router,
     public authService: AuthService,
     public userService: UserService,
@@ -41,15 +41,6 @@ export class SideMenuComponent implements OnInit {
     this.yearDate = Date.now();
   }
 
-  async presentPopover(ev: any) {
-    const popover = await this.popoverController.create({
-      component: PopoverComponent,
-      event: ev,
-      translucent: true,
-      cssClass: 'popoverUser',
-    });
-    return popover.present();
-  }
 
   gotoGetStarted() {
     this.router.navigateByUrl('/home/get-started');
@@ -95,6 +86,30 @@ export class SideMenuComponent implements OnInit {
   async showModalAbout() {
     const modal = await this.modalController.create({
       component: AboutAppComponent,
+      cssClass: 'modal-css',
+      backdropDismiss: true,
+      swipeToClose: true,
+      showBackdrop: true,
+    });
+    return modal.present().catch((err) => {
+      return this.messageService.errorAlert(err);
+    });
+  }
+  async showModalContact() {
+    const modal = await this.modalController.create({
+      component: ContactPage,
+      cssClass: 'modal-css',
+      backdropDismiss: true,
+      swipeToClose: true,
+      showBackdrop: true,
+    });
+    return modal.present().catch((err) => {
+      return this.messageService.errorAlert(err);
+    });
+  }
+  async showModalAboutUs() {
+    const modal = await this.modalController.create({
+      component: AboutUsComponent,
       cssClass: 'modal-css',
       backdropDismiss: true,
       swipeToClose: true,

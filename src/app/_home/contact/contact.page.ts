@@ -6,7 +6,7 @@ import {
   Inject,
   ViewChild,
 } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { ConferenceData } from '../../_data/conference-data';
 import { darkStyle } from './map-dark-style';
 
@@ -21,7 +21,8 @@ export class ContactPage implements AfterViewInit {
   constructor(
     @Inject(DOCUMENT) private doc: Document,
     public confData: ConferenceData,
-    public platform: Platform
+    public platform: Platform,
+    private modalController: ModalController
   ) {}
 
   async ngAfterViewInit() {
@@ -84,6 +85,10 @@ export class ContactPage implements AfterViewInit {
     observer.observe(appEl, {
       attributes: true,
     });
+  }
+
+  dismissModal() {
+    this.modalController.dismiss();
   }
 }
 

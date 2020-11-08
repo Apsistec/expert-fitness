@@ -15,12 +15,15 @@ const routes: Routes = [
       },
 
       {
-        path: 'ratings',
+        path: 'testimonials',
         loadChildren: () =>
-          import('../_home/ratings/ratings.module').then(
-            (m) => m.RatingsPageModule
+          import('../_home/testimonials/testimonials.module').then(
+            (m) => m.TestimonialsPageModule
           ),
         // outlet: "homeOutlet",
+      },
+      {
+        path: 'ratings', redirectTo: '/home/testimonials', pathMatch: 'full'
       },
       {
         path: 'products',

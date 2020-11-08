@@ -4,34 +4,34 @@ import { ModalController, IonSlides } from '@ionic/angular';
 import { GetStartedComponent } from '../../_shared/get-started/get-started.component';
 import { MessageService } from '../../_services/message.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
-import * as animator from 'ng-animate';
+// import * as animator from 'ng-animate';
 import { Benefits } from '../../_models/training-benefits';
-import { slideInRight, slideInLeft } from 'ng-animate';
+// import { slideInRight, slideInLeft } from 'ng-animate';
 
 @Component({
   selector: 'app-home-page-two',
   templateUrl: './home-page-two.component.html',
   styleUrls: ['./home-page-two.component.scss'],
-  animations: [
-    trigger('slideInRight', [
-      transition(
-        '* => *',
-        useAnimation(animator.slideInRight, {
-          // Set the duration to 5seconds and delay to 2seconds
-          params: { timing: 1.5, delay: 0.5 },
-        })
-      ),
-    ]),
-    trigger('slideInLeft', [
-      transition(
-        '* => *',
-        useAnimation(animator.slideInLeft, {
-          // Set the duration to 5seconds and delay to 2seconds
-          params: { timing: 1.5, delay: 0.5 },
-        })
-      ),
-    ]),
-  ],
+  // animations: [
+  //   trigger('slideInRight', [
+  //     transition(
+  //       '* => *',
+  //       useAnimation(animator.slideInRight, {
+  //         // Set the duration to 5seconds and delay to 2seconds
+  //         params: { timing: 1.5, delay: 0.5 },
+  //       })
+  //     ),
+  //   ]),
+  //   trigger('slideInLeft', [
+  //     transition(
+  //       '* => *',
+  //       useAnimation(animator.slideInLeft, {
+  //         // Set the duration to 5seconds and delay to 2seconds
+  //         params: { timing: 1.5, delay: 0.5 },
+  //       })
+  //     ),
+  //   ]),
+  // ],
 })
 export class HomePageTwoComponent implements OnInit {
   @ViewChild('mySlider') slider: IonSlides;
@@ -53,13 +53,13 @@ export class HomePageTwoComponent implements OnInit {
       },
       // when window width is >= 640px
       1200: {
-        slidesPerView: 3.5,
-        spaceBetween: 15,
+        slidesPerView: 2.5,
+        spaceBetween: 30,
       },
     },
   };
 
-  benefits = Benefits;
+  benefits =  Benefits;
 
   slideInRight;
   slideInLeft;

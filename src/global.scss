@@ -49,20 +49,13 @@ a:hover {
 }
 
 .toolbar-global {
-  --min-height: 5em;
-  --background: var(--ion-color-secondary-shade);
-}
-
-.toolbar-title {
-  font: 800 "Montserrat", sans-serif;
   text-transform: uppercase;
-  color: var(--ion-color-medium-tint);
-  margin-left: 4em;
+  text-align: center;
+  font: 800 "Montserrat", sans-serif;
+  --min-height: 5em;
+  --background: var(--ion-color-dark);
 }
 
-.toolbar-end-button {
-  color: var(--ion-color-warning-tint);
-}
 
 .small-logo {
   width: 7.5em;

@@ -1,6 +1,13 @@
-<app-header></app-header>
+<ion-header translucent>
+  <ion-toolbar class="toolbar-global">
+    <ion-title>Contact Us</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="dismissModal()"> Close </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content fullscreen class="ion-padding">
   <ion-grid>
     <ion-row>
       <ion-col>

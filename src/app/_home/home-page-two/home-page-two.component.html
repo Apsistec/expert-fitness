@@ -18,7 +18,7 @@
       <ion-slide *ngFor="let benefit of benefits">
         <ion-col class="ion-align-self-start">
           <ion-card color="dark" class="ion-text-center" style="height: 34em">
-            <img [src]="benefit.image" />
+            <ion-img [src]="benefit.image" ></ion-img>
             <ion-card-header color="primary">
               <ion-card-title>
                 <ion-text color="tertiary">{{ benefit.title }}</ion-text>
@@ -38,7 +38,7 @@
     class="ion-no-margin-horizontal ion-margin-vertical ion-text-center"
     color="primary"
   >
-    <ion-toolbar class="toolbar-global">
+    <ion-toolbar class="toolbar-global ion-align-text-center">
       <ion-title [@slideInRight]="slideInRight">
         <ion-text color="warning">
         <h2>

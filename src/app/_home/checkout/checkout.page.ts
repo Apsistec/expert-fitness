@@ -164,7 +164,7 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
     try {
       const res = await this.authService.SignIn(this.loginForm.value);
       this.nextStep();
-      this.messageService.isLoggedInToast();
+      await this.messageService.loggedInToast(res);
     } catch (error) {
       this.messageService.errorAlert(error.message);
     }
@@ -174,7 +174,7 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
     try {
       const res = await this.authService.SignUp(this.registerForm.value);
       this.nextStep();
-      this.messageService.registerSuccessToast();
+      await this.messageService.registerSuccessToast();
     } catch (error) {
       this.messageService.errorAlert(error.message);
     }

@@ -1,3 +1,19 @@
+.side-content-back{
+  background-color: var(--ion-color-medium);
+  background: linear-gradient(
+      to bottom left,
+      rgba(0, 0, 0, 0.45) 15%,
+      rgba(71, 0, 0, 0.55) 50%,
+      rgba(0, 0, 0, 0.45) 85%
+    ),
+    linear-gradient(
+      to right,
+      rgba(92, 0, 8, 0.35) 0%,
+      rgba(17, 0, 2, 0.45) 50%,
+      rgba(83, 0, 7, 0.35) 100%
+    ),
+}
+
 .under-menu {
   position: absolute;
   text-align: center;
@@ -17,6 +33,10 @@
   bottom: 0px;
 }
 
+.showModalContact::active {
+  border-left: 0.625em solid var(--ion-color-tertiary);
+}
+
 .active-item {
   border-left: 0.625em solid var(--ion-color-tertiary);
   //   background: rgba(var(--ion-color-warning-rgb) 0.4);
@@ -25,7 +45,6 @@
 ion-item {
   border-left: 0.625em solid var(--ion-color-light);
 }
-
 
 .side-menu-font {
   // text-decoration: none;

@@ -1,5 +1,5 @@
 <app-header></app-header>
-<ion-content fullscreen translucent>
+<ion-content fullscreen>
   <ion-grid class="ion-no-padding">
     <ion-row
       class="scene-one ion-justify-content-around"
@@ -218,11 +218,13 @@
 
       <ion-col size="12" pull-sm="4" size-sm="4">
         <ion-row>
-          <!-- <app-testimoniall-insert></app-testimoniall-insert> -->
-        </ion-row>
+          <ion-col>
+            <app-ratings-insert></app-ratings-insert>
+          </ion-col>
+          </ion-row>
         <ion-row class="ion-justify-content-center ion-text-center">
           <ion-col class="ion-align-self-end ion-text-center">
-            <ion-buttons>
+            <!-- <ion-buttons> -->
               <ion-button color="tertiary" (click)="showModalPrivacy()">
                 Privacy
               </ion-button>
@@ -232,7 +234,7 @@
               <ion-button color="tertiary" (click)="showModalAbout()">
                 About App
               </ion-button>
-            </ion-buttons>
+            <!-- </ion-buttons> -->
             <hr />
 
             <share-buttons

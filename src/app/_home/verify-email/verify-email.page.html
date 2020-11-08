@@ -1,3 +1,9 @@
+<ion-header translucent>
+  <ion-toolbar class="toolbar-global">
+    <ion-title>Email Verified</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content fullscreen>
   <ion-card
     class="ion-padding ion-text-center"
@@ -6,16 +12,25 @@
   >
     <div class="displayTableCell">
       <div class="authBlock">
-        <h3>Thank You for Registering</h3>
+        <h3>Thank You!</h3>
 
         <div class="formGroup" *ngIf="user | async">
           <p class="text-center">
-            We have sent a confirmation email to
-            <strong>{{user.email}}</strong>.
+            Your email,
+            <strong>{{user.email}}</strong>
+            , has been verified. Also, depending on your screen's dimensions,
+            the navigation menus are either at top of this page for tv's,
+            desktops & tablets; yet for movile devices, click
+            <ion-icon name="menu-outline"></ion-icon> in the top left corner of
+            the screen.
           </p>
+
+          <h3>Didn't receive an email?</h3>
           <p class="text-center">
-            Please check your email and click on the link to verfiy your email
-            address.
+            If for some reason you keep arriving back at this page, please check
+            your email and click on the link in the body of the email to verfiy
+            your account. If you have not receieved an email, please click the
+            button below to have the email sent again. Thank you.
           </p>
         </div>
 
