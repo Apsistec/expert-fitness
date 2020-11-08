@@ -14,6 +14,7 @@ import { MessageService } from './message.service';
 export class AuthService {
   user$: Observable<User>;
   role;
+  displayName;
   currentBehaviorUser = new BehaviorSubject(null);
   authState$: any = this.afAuth.authState;
 
@@ -36,9 +37,11 @@ export class AuthService {
 
   async createUserRecord(data) {
     try {
+      console.log('data: ', data);
+      console.log(this.displayName);
       await this.afs.doc<User>(`users/${data.user.uid}`).set({
         uid: data.user.uid,
-        displayName: data.user.displayName,
+        displayName: this.displayName,
         photoURL: data.user.photoURL,
         email: data.user.email,
         role: 'USER',
@@ -68,38 +71,40 @@ export class AuthService {
   SignIn(credentials) {
     return this.afAuth
       .signInWithEmailAndPassword(credentials.email, credentials.password)
+      .then((data) => {
+        this.updateUserRecord(data);
+      })
+      .then((data) => {
+        this.messageService.loggedInToast(data);
+      })
       .catch((error) => {
         this.messageService.errorAlert(error);
-      })
-      .then((data) => {
-        this.updateUserRecord(data).catch((error) => {
-          this.messageService.errorAlert(error);
-        });
-      })
-      .then((data) => {
-        this.messageService.loggedInToast(data).catch((error) => {
-          this.messageService.errorAlert(error);
-        });
       });
   }
 
   SignUp(credentials) {
+    this.displayName = credentials.displayName;
     return this.afAuth
       .createUserWithEmailAndPassword(credentials.email, credentials.password)
-      .catch((error) => {
-        this.messageService.errorAlert(error);
-      })
       .then((data) => {
-        this.createUserRecord(data)
-          .catch((error) => {
-            this.messageService.errorAlert(error);
+        this.afs
+          .doc<User>(`users/${data.user.uid}`)
+          .set({
+            uid: data.user.uid,
+            displayName: credentials.displayName,
+            photoURL: data.user.photoURL,
+            email: data.user.email,
+            role: 'USER',
+            permissions: ['delete-ticket'],
+            emailVerified: data.user.emailVerified,
+            createdAt: fire.firestore.FieldValue.serverTimestamp(),
           })
           .then(() => {
             this.sendVerificationMail();
-          })
-          .catch((error) => {
-            this.messageService.errorAlert(error);
           });
+      })
+      .catch((error) => {
+        this.messageService.errorAlert(error);
       });
   }
 
@@ -152,7 +157,7 @@ export class AuthService {
       })
       .then(() => {
         this.messageService
-          .registerSuccessToast()
+          .registerSuccessAlert()
           .catch((error) => {
             this.messageService.errorAlert(error);
           })

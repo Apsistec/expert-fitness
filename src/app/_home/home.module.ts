@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { HomeRoutingModule } from './home-routing.module';
-// import { HomePage } from './home.page';
 import { HomePageTwoComponent } from './home-page-two/home-page-two.component';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
@@ -20,10 +19,9 @@ import { SharedModule } from '../_shared/shared.module';
     HomeRoutingModule,
     ShareIconsModule,
     ShareButtonsModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
-    // HomePage,
     HomePageTwoComponent,
     HomePageOneComponent,
     HomePageThreeComponent,

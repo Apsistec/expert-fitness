@@ -1,4 +1,4 @@
-import { Injectable, ErrorHandler } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
 @Injectable({
@@ -11,47 +11,27 @@ export class MessageService {
     private toastController: ToastController,
     private alertController: AlertController
   ) {}
-  messages: string[] = [];
 
-  add(message: string) {
-    this.messages.push(message);
-  }
-
-  clear() {
-    this.messages = [];
-  }
 
   // Toasts
-
   async presentToast(infoMessage: string) {
     const toast = await this.toastController.create({
       message: infoMessage,
       duration: 2000,
+      cssClass: 'infoT',
+      position: 'middle'
     });
     toast.present();
   }
 
-  async registerSuccessToast() {
-    const toast = await this.toastController.create({
-      header: 'Registration Successful',
-      message:
-        'You have successfully registered, now verify your email. Check your email inbox for instructions!',
-      cssClass: 'successT',
-      position: 'middle',
-      keyboardClose: true,
-      duration: 4000,
-    });
-    return toast.present();
-  }
-
   async loggedInToast(data) {
     const toast = await this.toastController.create({
-      header: 'Log In Successful',
+      header: 'Login Successful',
       message: 'Welcome Back ' + data.user.displayName + '!' || 'Welcome Back!',
       cssClass: 'successT',
       position: 'middle',
       keyboardClose: true,
-      duration: 3000,
+      duration: 2500,
     });
     await toast.present();
   }
@@ -62,7 +42,7 @@ export class MessageService {
       cssClass: 'successT',
       message: 'Thank You for Stopping By!',
       position: 'middle',
-      duration: 3000,
+      duration: 2500,
       keyboardClose: true,
     });
     await toast.present();
@@ -74,7 +54,7 @@ export class MessageService {
       cssClass: 'successT',
       message: 'The ticket was successfully deleted.',
       position: 'middle',
-      duration: 3000,
+      duration: 2500,
       keyboardClose: true,
     });
     await toast.present();
@@ -122,7 +102,7 @@ export class MessageService {
       cssClass: 'successT',
       message,
       position: 'middle',
-      duration: 2000,
+      duration: 2500,
       keyboardClose: true,
     });
     await toast.present();
@@ -134,18 +114,42 @@ export class MessageService {
       header: 'Error Occurred',
       subHeader: 'That email address is not in our system',
       message:
-        'Try another account. If you continue to have trouble, \n open a trouble ticket and we will assist you',
+      'Try another account. If you continue to have trouble, \n open a trouble ticket and we will assist you',
       buttons: ['OK'],
+      translucent: true
     });
     await alert.present();
+  }
+
+  async pastDueAlert() {
+    const alert = await this.alertController.create({
+      message:
+        'Currently, your account is Past Due. You can update your account with a valid card and make a payment in order to restore access immediately',
+      cssClass: 'unpaid-user',
+      translucent: true,
+      subHeader: 'Payment Past-due'
+    });
+    alert.present();
+  }
+
+  async cancelledAlert() {
+    const alertController = await this.alertController.create({
+      translucent: true,
+      subHeader: 'Account Cancelled',
+      message:
+      'Your account has successfully been cancelled, and service will end on the last day of your billing period(usually the last day of the month). Your card will not be charged again. In order to utilize the services, you will need to register a new account.',
+      cssClass: 'unpaid-user',
+    });
+    alertController.present();
   }
 
   async needPaymentAlert() {
     const alert = await this.alertController.create({
       header: 'Access Denied',
       subHeader: 'Active Membership Required',
-      message: 'For immediate access, subscribe to either of the Pro plans or purchase 1 or more semi-private sessions',
+      message: 'We have not been able to process a payment with the card on file. Please apply a valid card and we will process your payment immediately in order to provide access to your new account',
       buttons: ['OK'],
+      translucent: true
     });
     await alert.present();
   }
@@ -156,6 +160,7 @@ export class MessageService {
       subHeader: 'Password Reset Request Sent',
       message: 'Check your email for a link to RESET your password',
       buttons: ['OK'],
+      translucent: true
     });
     await alert.present();
   }
@@ -165,8 +170,23 @@ export class MessageService {
       header: 'Invalid Request',
       message: 'You are already Subscribed',
       buttons: ['OK'],
+      translucent: true
     });
     await alert.present();
+  }
+
+  async registerSuccessAlert() {
+    const toast = await this.toastController.create({
+      header: 'Registration Successful',
+      message:
+        'You have successfully registered. Now, one last step.... to verify your email, check your inbox for instructions!',
+      cssClass: 'successA',
+      position: 'middle',
+      keyboardClose: true,
+      translucent: true,
+      buttons: ['OK']
+    });
+    return toast.present();
   }
 
   async internalBlockPageAlert() {
@@ -176,19 +196,23 @@ export class MessageService {
       message: 'Your account does not need access to this area',
 
       buttons: ['OK'],
+      translucent: true
     });
     await internalBlock.present();
   }
 
-  async unsubscribedAlert() {
-    const alert = await this.alertController.create({
-      header: 'Cancellation Successful',
-      subHeader: 'Your account has been cancelled',
-      message: 'Effective immediately. Thank you for giving us a try!',
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
+  async welcomeBackToast() {
+  const toast = await this.toastController.create({
+    header: 'Welcome Back',
+    message: 'Login Successful, your account is currently active.',
+    duration: 2000,
+    color: 'success',
+    cssClass: 'successT',
+    position: 'middle',
+    translucent: true
+  });
+  toast.present();
+}
 
   async globalErrorAlert(err, router, page?) {
     const alert = await this.alertController.create({
@@ -196,6 +220,7 @@ export class MessageService {
       subHeader: 'Location: ' + router.url,
       message: err.message,
       cssClass: 'warningA',
+      translucent: true
     });
     await alert.present();
   }
@@ -205,6 +230,7 @@ export class MessageService {
       header: 'An Error Occurred',
       message: err.message,
       buttons: ['OK'],
+      translucent: true
     });
     await alert.present();
   }
@@ -215,6 +241,7 @@ export class MessageService {
       subHeader: 'Error Code: ' + err.code,
       message: err.message,
       buttons: ['OK'],
+      translucent: true
     });
     await alert.present();
   }
@@ -225,6 +252,7 @@ export class MessageService {
       subHeader: 'Changes were NOT saved',
       message: 'Press Save to resume editing or press OK to close',
       backdropDismiss: false,
+      translucent: true,
       buttons: [
         {
           text: 'OK',
@@ -247,6 +275,7 @@ export class MessageService {
     const alert = await this.alertController.create({
       header,
       message,
+      translucent: true,
       backdropDismiss: false,
       cssClass: 'infoA',
       buttons: [
@@ -272,6 +301,7 @@ export class MessageService {
     const alert = await this.alertController.create({
       header: 'Delete Post',
       subHeader: feedId,
+      translucent: true,
       message: 'Are you sure you want to delete this post?',
       cssClass: 'warningA',
       backdropDismiss: false,
@@ -301,6 +331,7 @@ export class MessageService {
       message:
         'Press Update to reload the page and apply the new update or press cancel to close.',
       backdropDismiss: false,
+      translucent: true,
       buttons: [
         {
           text: 'Cancel',

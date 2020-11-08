@@ -59,8 +59,8 @@ export class StripeService {
       .toPromise()
       .then(() => {
         this.spinner.dismissSpinner();
-        this.messageService.unsubscribedAlert();
-        this.router.navigate(['/']);
+        this.messageService.cancelledAlert();
+        this.router.navigate(['/home']);
       })
       .catch((error) => {
         this.spinner.dismissSpinner();

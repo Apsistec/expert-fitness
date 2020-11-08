@@ -43,6 +43,7 @@
     "@ionic/storage": "^2.3.0",
     "@stripe/stripe-js": "^1.11.0",
     "angular-archwizard": "^6.1.0",
+    "classlist.js": "^1.1.20150312",
     "exceljs": "^4.2.0",
     "file-saver": "^2.0.2",
     "firebase": "^7.21.0",
@@ -53,6 +54,7 @@
     "ngx-sharebuttons": "^8.0.1",
     "rxjs": "~6.6.2",
     "tslib": "^2.0.0",
+    "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {

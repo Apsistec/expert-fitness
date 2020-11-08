@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
+import { SharedModule } from 'src/app/_shared/shared.module';
 
 import { WorkoutsPageRoutingModule } from './workouts-routing.module';
 
@@ -13,7 +14,8 @@ import { WorkoutsPage } from './workouts.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    WorkoutsPageRoutingModule
+    WorkoutsPageRoutingModule,
+    SharedModule
   ],
   declarations: [WorkoutsPage]
 })

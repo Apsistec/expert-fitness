@@ -21,75 +21,29 @@ export class PaidGuard implements CanActivate {
     return this.auth.user$.pipe(
       take(1),
       map((user) => {
-        console.log('paid guard launched: ', user);
         if (!user) {
-          this.router.navigateByUrl('/get-started');
+          this.router.navigateByUrl('/home');
           return false;
-        } else if (user) {
-          const paidUserStatus = user.subStatus;
-          if (!paidUserStatus) {
-            this.router.navigateByUrl('/home/payment').then(async () => {
-              this.messageService.unsubscribedAlert();
-              });
-              return false;
+        } else if (user && user.subStatus === 'active' || 'trialing') {
+          this.router.navigateByUrl('/customers/dashboard').then(async () => {
+            this.messageService.welcomeBackToast();
+            return true;
+          });
+        } else if (user && user.subStatus  === 'past_due') {
+          this.router.navigateByUrl('/home/payment').then(async () => {
+            this.messageService.pastDueAlert();
+            return false;
             });
-          } else
-          if (paidUserStatus === 'active' || 'trialing') {
-            this.router.navigateByUrl('/member').then(async () => {
-              const toast = await this.toast.create({
-                header: 'Welcome Back',
-                message: 'Login Successful, your account is currently active.',
-                duration: 2000,
-                color: 'successT',
-                cssClass: 'paid-user',
-                position: 'middle',
-              });
-              toast.present();
-              return true;
-            });
-          } else if (paidUserStatus === 'past_due') {
-            this.router.navigateByUrl('/home/payment').then(async () => {
-              const alert = await this.alert.create({
-                message:
-                  'Currently, your account is ' +
-                  paidUserStatus +
-                  '. You need to make a payment to restore access',
-                cssClass: 'unpaid-user',
-                translucent: true,
-                subHeader: 'Payment Past-due'
-              });
-              alert.present();
-              return false;
-            });
-          } else if (paidUserStatus === 'cancelled') {
-            this.router.navigateByUrl('/home/payment').then(async () => {
-              const alert = await this.alert.create({
-                translucent: true,
-                subHeader: 'Account Cancelled',
-                message:
-                'Currently, your account is ' +
-                paidUserStatus +
-                '. You need to reopen your account to restore access',
-                cssClass: 'unpaid-user',
-              });
-              alert.present();
-              return false;
-            });
-          } else if (paidUserStatus === 'unpaid') {
-            this.router.navigateByUrl('/home/payment').then(async () => {
-              const alert = await this.alert.create({
-                translucent: true,
-                header: 'Account Currently Unpaid',
-                message:
-                  'Currently, your account is ' +
-                  paidUserStatus +
-                  '. You need to use a valid card on your account to restore access',
-                cssClass: 'unpaid-user',
-              });
-              alert.present();
-              return false;
-            });
-          }
+        } else if (user && user.subStatus  === 'cancelled') {
+          this.router.navigateByUrl('/home/payment').then(async () => {
+            this.messageService.cancelledAlert();
+            return false;
+          });
+        } else if (user && user.subStatus  === 'unpaid') {
+          this.router.navigateByUrl('/home/payment').then(async () => {
+            this.messageService.needPaymentAlert();
+            return false;
+          });
         }
       })
     );

@@ -6,11 +6,9 @@ import {
   slideInRight,
 } from 'ng-animate';
 import { map } from 'rxjs/operators';
-
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-
 import { AboutAppComponent } from '../../_home/about-app/about-app.component';
 import { GetStartedComponent } from '../../_shared/get-started/get-started.component';
 import { PrivacyComponent } from '../../_home/privacy/privacy.component';
