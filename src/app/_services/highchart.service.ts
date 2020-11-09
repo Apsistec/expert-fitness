@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import {
   AngularFirestore,
-  AngularFirestoreCollection,
+  AngularFirestoreCollection
 } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class HighchartService {
       map((info) =>
         info.map((a) => {
           const data = a.payload.doc.data() as ChartModal;
-          const id = a.payload.doc.id;
+          const id = a.payload.doc['id'];
           return {
             id,
             ...data,

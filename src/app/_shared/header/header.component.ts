@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   user: User;
   currentRoute;
-  hideBackButton = false;
+  showBackButton = false;
 
   constructor(
     private modalController: ModalController,
@@ -31,12 +31,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.authService.user$.pipe(map((user) => (this.user = user)));
 
-    this.currentRoute = this.router.url;
-    if (this.currentRoute === '/home') {
-      this.hideBackButton = true;
-    }
-    {
-      this.hideBackButton = false;
+    if (this.router.url === '/home') {
+      this.showBackButton = false;
+    } else {
+      this.showBackButton = true;
     }
   }
 

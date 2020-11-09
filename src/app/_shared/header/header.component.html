@@ -53,13 +53,11 @@
   <!-- large screen/ no hamburger -->
   <ion-toolbar color="dark" class="large-screen">
     <ion-buttons slot="start">
-      <!-- <ng-component *ngIf="!hideBackButton"> -->
       <ion-back-button
-        *ngIf="!hideBackButton"
+        *ngIf="showBackButton"
         defaultHref="/home"
         color="tertiary"
       ></ion-back-button>
-      <!-- </ng-component> -->
       <ion-img
         src="../../../assets/logos/logo.png"
         slot="start"
@@ -74,7 +72,7 @@
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <ion-label>Home</ion-label>
+        <ion-label class="menu-label">Home</ion-label>
       </ion-item>
 
       <ion-item
@@ -85,7 +83,7 @@
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <ion-label>Products</ion-label>
+        <ion-label class="menu-label">Products</ion-label>
       </ion-item>
 
       <ion-item
@@ -96,7 +94,7 @@
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <ion-label>FAQs</ion-label>
+        <ion-label class="menu-label">FAQs</ion-label>
       </ion-item>
 
       <ion-item
@@ -107,7 +105,7 @@
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <ion-label>Testimonials</ion-label>
+        <ion-label class="menu-label">Testimonials</ion-label>
       </ion-item>
 
       <ion-item
@@ -118,7 +116,17 @@
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <ion-label>About</ion-label>
+        <ion-label class="menu-label">About</ion-label>
+      </ion-item>
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/home/contact"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <ion-label class="menu-label">Contact</ion-label>
       </ion-item>
     </ion-buttons>
 

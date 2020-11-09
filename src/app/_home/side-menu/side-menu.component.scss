@@ -38,18 +38,23 @@
 }
 
 .active-item {
-  border-left: 0.625em solid var(--ion-color-tertiary);
+  border-left: 0.625em solid var(--ion-color-warning-shade);
   //   background: rgba(var(--ion-color-warning-rgb) 0.4);
 }
 
 ion-item {
-  border-left: 0.625em solid var(--ion-color-light);
+  border-left: 0.625em solid var(--ion-color-medium);
 }
 
 .side-menu-font {
   // text-decoration: none;
   // font: normal 800 1em sans-serif !important;
-  font-weight: 700;
+  color: var(--ion-color-dark-shade);
+  font-size: x-large;
+  font-weight: 900;
   text-transform: capitalize;
   font-variant: small-caps;
+}
+.sales{
+  border:  2px solid var(--ion-color=success);
 }

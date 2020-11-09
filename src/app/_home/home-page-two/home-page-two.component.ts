@@ -37,25 +37,20 @@ export class HomePageTwoComponent implements OnInit {
 
   slideOpts = {
     initialSlide: 1,
-    speed: 400,
+    speed: 200,
     loop: true,
+
     breakpoints: {
-      // when window width is >= 320px
-      150: {
-        slidesPerView: 1.5,
-        spaceBetween: 20,
+      350: {
+        slidesPerView: 1,
       },
-      // when window width is >= 480px
       576: {
-        slidesPerView: 2.5,
-        spaceBetween: 30,
+        slidesPerView: 1.5,
       },
-      // when window width is >= 640px
       1200: {
-        slidesPerView: 2.5,
-        spaceBetween: 30,
+        slidesPerView: 4,
       },
-    },
+    }
   };
 
   benefits =  Benefits;

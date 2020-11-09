@@ -174,7 +174,7 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
     try {
       const res = await this.authService.SignUp(this.registerForm.value);
       this.nextStep();
-      await this.messageService.registerSuccessToast();
+      await this.messageService.registerSuccessAlert();
     } catch (error) {
       this.messageService.errorAlert(error.message);
     }

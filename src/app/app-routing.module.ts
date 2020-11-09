@@ -18,76 +18,65 @@ const verifiedEmail = () => emailVerified;
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomePage,
-    loadChildren: () =>
-      import('./_home/home.module').then((m) => m.HomePageModule),
-    // ...canActivate(redirectLoggedInToDash)
-  },
-  {
     path: 'unknown',
     loadChildren: () =>
-      import('./_home/unknown/unknown.module').then((m) => m.UnknownPageModule),
+    import('./_home/unknown/unknown.module').then((m) => m.UnknownPageModule),
     // ...canActivate(redirectLoggedInToDash)
   },
   {
     path: 'customers',
     loadChildren: () =>
-      import('./_customers/customers.module').then(
-        (m) => m.CustomersPageModule
+    import('./_customers/customers.module').then(
+      (m) => m.CustomersPageModule
       ),
-    // ...canActivate(redirectUnauthorizedToLogin),
-    // ...canActivate(verifiedEmail),
-    // canActivate: [PaidGuard, RoleGuard]
-  },
-  {
-    path: 'trainers',
-    loadChildren: () =>
+      // ...canActivate(redirectUnauthorizedToLogin),
+      // ...canActivate(verifiedEmail),
+      // canActivate: [PaidGuard, RoleGuard]
+    },
+    {
+      path: 'trainers',
+      loadChildren: () =>
       import('./_trainers/trainers.module').then((m) => m.TrainersPageModule),
-    // ...canActivate(redirectUnauthorizedToLogin),
-    // ...canActivate(verifiedEmail),
-    // canActivate: [PaidGuard, RoleGuard]
-  },
-  {
-    path: 'admins',
-    loadChildren: () =>
+      // ...canActivate(redirectUnauthorizedToLogin),
+      // ...canActivate(verifiedEmail),
+      // canActivate: [PaidGuard, RoleGuard]
+    },
+    {
+      path: 'admins',
+      loadChildren: () =>
       import('./_admins/admins.module').then((m) => m.AdminsModule),
-    // ...canActivate(redirectUnauthorizedToLogin),
-    // ...canActivate(verifiedEmail),
-    // canActivate: [PaidGuard, RoleGuard]
-  },
-  {
-    path: 'verified-email',
-    loadChildren: () =>
+      // ...canActivate(redirectUnauthorizedToLogin),
+      // ...canActivate(verifiedEmail),
+      // canActivate: [PaidGuard, RoleGuard]
+    },
+    {
+      path: 'verified-email',
+      loadChildren: () =>
       import('./_home/verify-email/verify-email.module').then(
         (m) => m.VerifyEmailModule
-      ),
-  },
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
-  },
-  {
-    path: '**',
-    redirectTo: '/unknown',
-    pathMatch: 'full',
-  },
-];
+        ),
+      },
+      {
+        path: 'home',
+        loadChildren: () =>
+          import('./_home/home.module').then((m) => m.HomePageModule),
+        // ...canActivate(redirectLoggedInToDash)
+      },
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+      },
+      {
+        path: '**',
+        redirectTo: '/unknown',
+        pathMatch: 'full',
+      },
+    ];
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
       preloadingStrategy: QuicklinkStrategy,
-      // enableTracing: true,
-      // scrollPositionRestoration: 'enabled',
-      // onSameUrlNavigation: 'reload',
-      // anchorScrolling: 'enabled',
-      // useHash: true,
-      // relativeLinkResolution: "corrected",
-      // urlUpdateStrategy: "eager",
-      // scrollOffset: [100, 100],
-      // paramsInheritanceStrategy: "always"
-      // errorHandler: routingError;
     }),
   ],
   exports: [RouterModule],

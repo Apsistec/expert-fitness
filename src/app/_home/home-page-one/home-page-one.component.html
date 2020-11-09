@@ -1,5 +1,5 @@
-<app-header></app-header>
-<ion-content fullscreen>
+<app-header #toolbar></app-header>
+<ion-content [fullscreen]="true" scrollEvents="true" [appFadeHeader]="toolbar">
   <ion-grid class="ion-no-padding">
     <ion-row
       class="scene-one ion-justify-content-around"
@@ -12,30 +12,33 @@
       >
         <ion-row class="ion-text-center">
           <ion-col size="6" offset="3">
-            <img src="../../../assets/logos/logo.png" style="max-width: 50%" />
+            <img [@bounceOutUp]="bounceOutUp" src="../../../assets/logos/logo.png" style="max-width: 450px" class="raised-z" />
             <hr />
             <!-- </ion-row>
             <ion-row class="ion-justify-content-center"> -->
-            <ion-card class="logo-card ion-padding">
+            <ion-card [@pulse]="pulse" class="raised-z logo-card ion-padding">
               <ion-card-title>
-                <ion-text color="tertiary">
-                  A new paradigm in total body fitness
+                <ion-text color="warning">
+                  <h3>
+                     omni-fit: A holistic fitness paradigm
+                  </h3>
                 </ion-text>
               </ion-card-title>
             </ion-card>
             <!-- </ion-row>
             <ion-row class="ion-justify-content-center"> -->
             <ion-button
-              class="cta"
+            [@flash]="flash"
+              class="cta raised-z"
               color="light"
               size="large"
-              routerLink="/home/testimonials"
+              routerLink="/home/checkout"
               fill="outline"
               >Learn More</ion-button
             >
             <ion-button
-              [@pulse]="pulse"
-              class="cta"
+              [@flash]="flash"
+              class="cta raised-z"
               size="large"
               color="primary"
               (click)="showModalGetStarted()"
@@ -51,7 +54,7 @@
         class="ion-align-self-stretch ion-text-center"
       >
         <div>
-          <img src="../../../assets/svg/btn-play.svg" />
+          <img style="z-index: 22;" src="../../../assets/svg/btn-play.svg" />
         </div>
       </ion-col>
     </ion-row>
@@ -219,7 +222,6 @@
       <ion-col size="12" pull-sm="4" size-sm="4">
         <ion-row>
           <ion-col>
-            <app-ratings-insert></app-ratings-insert>
           </ion-col>
           </ion-row>
         <ion-row class="ion-justify-content-center ion-text-center">

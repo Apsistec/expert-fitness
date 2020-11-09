@@ -1,9 +1,8 @@
 import {
-  fadeInDown,
   flash,
   pulse,
-  slideInLeft,
-  slideInRight,
+  bounceOutUp,
+  jello
 } from 'ng-animate';
 import { map } from 'rxjs/operators';
 import { transition, trigger, useAnimation } from '@angular/animations';
@@ -23,30 +22,20 @@ import { UserService } from '../../_services/user.service';
   templateUrl: './home-page-one.component.html',
   styleUrls: ['./home-page-one.component.scss'],
   animations: [
-    trigger('fadeInDown', [
+
+    trigger('bounceOutUp', [
       transition(
         '* => *',
-        useAnimation(fadeInDown, {
-          // Set the duration to 5seconds and delay to 2seconds
-          params: { timing: 1.5, delay: 0.5 },
+        useAnimation(bounceOutUp, {
+          params: { timing: 1.75, delay: 2.4 },
         })
       ),
     ]),
-    trigger('slideInRight', [
+    trigger('jello', [
       transition(
         '* => *',
-        useAnimation(slideInRight, {
-          // Set the duration to 5seconds and delay to 2seconds
-          params: { timing: 1.5, delay: 0.5 },
-        })
-      ),
-    ]),
-    trigger('slideInLeft', [
-      transition(
-        '* => *',
-        useAnimation(slideInLeft, {
-          // Set the duration to 5seconds and delay to 2seconds
-          params: { timing: 1.5, delay: 0.5 },
+        useAnimation(jello, {
+          params: { timing: 5, delay: 1 },
         })
       ),
     ]),
@@ -54,8 +43,7 @@ import { UserService } from '../../_services/user.service';
       transition(
         '* => *',
         useAnimation(pulse, {
-          // Set the duration to 5seconds and delay to 2seconds
-          params: { timing: 2, delay: 0.75 },
+          params: { timing: 1.75, delay: 1.2 },
         })
       ),
     ]),
@@ -63,8 +51,7 @@ import { UserService } from '../../_services/user.service';
       transition(
         '* => *',
         useAnimation(flash, {
-          // Set the duration to 5seconds and delay to 2seconds
-          params: { timing: 2, delay: 0.75 },
+          params: { timing: .66, delay: 3.95 },
         })
       ),
     ]),
@@ -78,6 +65,8 @@ export class HomePageOneComponent implements OnInit {
   slideInRight;
   slideInLeft;
   pulse;
+  jello;
+  bounceOutUp;
   yearDate: number;
 
   constructor(

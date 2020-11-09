@@ -2,50 +2,41 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { SharedDirectivesModule } from '../_directives/shared-directives.module';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { PopoverComponent } from './popover/popover.component';
-import { RouterModule } from '@angular/router';
-import { QuicklinkModule } from 'ngx-quicklink';
-import { HighchartsChartModule } from 'highcharts-angular';
-import { ChartsComponent } from './charts/charts.component';
-import { RatingsInsertComponent } from './ratings-insert/ratings-insert.component';
 import { GetStartedComponent } from './get-started/get-started.component';
+import { AppModule } from '../app.module';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+
+];
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
     PopoverComponent,
-    ChartsComponent,
-    RatingsInsertComponent,
-    GetStartedComponent,
+    GetStartedComponent
   ],
   imports: [
-    RouterModule,
-    QuicklinkModule,
     IonicModule,
+    RouterModule.forChild(routes),
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedDirectivesModule,
-    HighchartsChartModule,
+    AppModule
   ],
   exports: [
-    RouterModule,
-    GetStartedComponent,
-    QuicklinkModule,
     IonicModule,
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    SharedDirectivesModule,
     PopoverComponent,
     HeaderComponent,
     FooterComponent,
-    ChartsComponent,
-    RatingsInsertComponent,
-  ],
+    GetStartedComponent
+  ]
 })
 export class SharedModule {}

@@ -19,7 +19,7 @@ export class ProductService {
     return this.db.collection('products').snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data();
-        const id = a.payload.doc.id;
+        const id = a.payload.doc['id'];
         return { id, ...data as any };
       }))
     );
@@ -60,7 +60,7 @@ export class ProductService {
       map(actions => actions.map(a => {
         const data = a.payload.doc.data();
         // tslint:disable-next-line: no-shadowed-variable
-        const id = a.payload.doc.id;
+        const id = a.payload.doc['id'];
         return { id, ...data as any };
       }))
     );

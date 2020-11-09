@@ -1,26 +1,30 @@
-ion-header {
-  z-index: 22;
+
+ion-header{
+  z-index: 30;;
 }
 
-.menu-font :hover {
-  border-bottom: 0.3125em solid var(--ion-color-light-tint);
-  color: var(--ion-color-light-tint);
+ion-toolbar {
+  --background: transparent;
+  --border-color: transparent;
 }
+
+
+
+
 .menu-font {
   ion-label {
-    font: 800 1.4em/2 "Montserrat", sans-serif;
+    font: 800 1.1em/1.4 "Montserrat", sans-serif;
     text-transform: uppercase;
-    color: var(--ion-color-medium-tint);
+    color: var(--ion-color-light-tint);
   }
   padding: 0 1.3125em;
   display: inline-block;
   border-bottom: 0.3125em solid transparent;
-  margin-left: 2.375em;
 }
 
 .active-link {
   ion-label {
-    color: var(--ion-color-light-tint);
+    color: var(--ion-color-tertiary);
     border-bottom: 0.3125em solid var(--ion-color-warning-shade);
   }
 }

@@ -12,32 +12,32 @@ export const Benefits: Benefit[] = [
   },
   {
     title: 'Proper Form',
-    image: '../../assets/images/bw-girl-pushups.jpg',
+    image: '"../../assets/svg/Plain_infographic4slot.svg"',
     content:
       'Having a Personal Trainer beside you to demonstrate the correct posture and technique is invaluable. A Personal Trainer will ensure clients are performing exercises correctly and efficiently, in order to maximise results. If your form when exercising is not correct, then you are at increased risk of injury as well as not achieving your goals (because nothing kills a dream like 10 weeks of prescribed bed rest!).',
   },
   {
     title: 'Cleanliness',
-    image: '../../assets/images/bw-girl-pushups.jpg',
+    image: '../../assets/images/female-lifting.jpg',
     content: `With everything going on the world these days, you really want to limit your exposure. We understand, so at the Expert Fitness Gym you can trust that we are staying on top of maintaining the highest level of cleanliness. Not only do we sanitize the facility and equipment before every session; we also keep you informed should we observe anyone that shows any signs of being sick. We will contact you before your session should we observe anyone come in contact with any part of our gym or that in any way leads us to have concerns. We are taking every reasonable measure to ensure your health and safety, and we also want to have a an exceptionally clean working environment for the sake of our own families and friends.`,
   },
   {
     title: 'Unique Requirements',
-    image: '../../assets/images/bw-girl-pushups.jpg',
+    image: '../../assets/images/bw-open-gym.jpg',
     content: `Everybody is different, and that means everyone’s abilities and requirements are different when it comes to exercise. This could be anything from having an old injury that requires special exercises to having a phobia that may impact on where or how you workout.
 
   For example, if you have an old knee injury that required surgery, but since then you haven’t done anything to rebuild the muscles or improve mobility, then you are going to need different exercises and goals than an athlete who is training to run a marathon. This is where a Personal Trainers experience can make a huge difference to your training program.`,
   },
   {
     title: 'Realistic Goals',
-    image: '../../assets/images/bw-girl-pushups.jpg',
+    image: '../../assets/images/bw-huge-freeweights.jpg',
     content: `Everyone wants to achieve their goals straight away, whether they be weight loss, cheese grater abs or Hulk-like strength. But these are not always achievable, and if you don’t hit them then you may be discouraged and backslide.
 
   A Personal Trainer will not only help you set realistic goals that you will be able to achieve - if you put in the effort, of course - but they will also be able to keep you on track to hit those goals. For example, if your goal is to achieve a ‘bikini body’ for summer, it’s not just about doing 100 crunches a day for a month to work your abs. It’s about altering your diet to eat the correct foods, mixing cardio and weights to work the right muscles, and setting a timeframe in which this can be achieved.`,
   },
   {
     title: 'Specific Goals',
-    image: '../../assets/images/bw-girl-pushups.jpg',
+    image: '../../assets/images/bw-huge-dumbells.jpg',
     content: `As well as helping their clients set realistic goals, Personal Trainers are the perfect tool to help you achieve a specific goal. This is ideal for those who are training for a specific event, or need to achieve a certain level of fitness before they are able to do something they really want.
 
   For example, if you have a bucket list with ‘Skydiving’ on it but are over the maximum weight, then hiring a Personal Trainer to assist with helping you lose weight is a great start to achieving this goal. Or if your goal is to be able to run a marathon in six months, then hiring a Personal Trainer to put you on the right track could be all you need to complete a marathon.`,

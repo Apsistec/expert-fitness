@@ -40,7 +40,7 @@ a:hover {
   --background: var(--ion-color-medium-tint);
   color: var(--ion-color-secondary-shade);
   text-transform: uppercase;
-  font: 800 16px/1 "Montserrat", sans-serif;
+  font: 800 18px/1 "Montserrat", sans-serif;
 }
 
 .card-subtitle-global {
@@ -56,7 +56,6 @@ a:hover {
   --background: var(--ion-color-dark);
 }
 
-
 .small-logo {
   width: 7.5em;
   margin: 15px 10px 10px 25px;
@@ -65,7 +64,7 @@ a:hover {
 // Toasts
 .successT {
   --border-color: var(--ion-color-success-shade);
-  --border-radius: 0.625em;
+  --border-radius: 12px;
   --border-style: solid;
   --border-width: 0.25em;
   --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05), 0px 6px 6px rgba(0, 0, 0, 0.1),
@@ -75,9 +74,8 @@ a:hover {
 }
 
 .warningT {
-  --background: var(--ion-color-warning-tint);
   --border-color: var(--ion-color-warning-shade);
-  --border-radius: 0.625em;
+  --border-radius: 12px;
   --border-style: solid;
   --border-width: 0.25em;
   --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05), 0px 6px 6px rgba(0, 0, 0, 0.1),
@@ -87,9 +85,8 @@ a:hover {
 }
 
 .dangerT {
-  --background: var(--ion-color-danger-tint);
   --border-color: var(--ion-color-danger-shade);
-  --border-radius: 0.625em;
+  --border-radius: 12px;
   --border-style: solid;
   --border-width: 0.25em;
   --box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05), 0px 6px 6px rgba(0, 0, 0, 0.1),
@@ -121,13 +118,13 @@ a:hover {
 .cart-modal {
   @extend .modal-css;
   --height: 50%;
-  --border-radius: 0.625em;
+  --border-radius: 12px;
   padding: 2.3125em;
 }
 
 .modal-css {
   --border: 3px solid var(--ion-color-warning);
-  --border-radius: 5px;
+  --border-radius: 12px;
   --backdrop-opacity: 30% !important;
   .modal-toolbar {
     --background: var(--ion-color-secondary-shade);

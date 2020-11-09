@@ -13,7 +13,7 @@ export class RatingsInsertComponent implements OnInit {
   slideOpts = {
     speed: 400,
     loop: true,
-    slidesPerView: 1,
+    slidesPerView: 3,
   };
   ratings: Rating;
 
