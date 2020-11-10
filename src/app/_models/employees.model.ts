@@ -1,5 +1,5 @@
 import { User } from 'src/app/_models/users.model';
-import { PaidCustomer } from './paid-customers.model';
+import { Customer } from './customers.model';
 import { GymSession } from './gym-sessions.model';
 import { GymLocation } from './gym-locations.model';
 
@@ -14,7 +14,7 @@ export interface Employee {
   positions?: string[];
   salesAppointments?: string[];
   gymSessionId?: GymSession[];
-  PaidCustomerId?: PaidCustomer[];
+  PaidCustomerId?: Customer[];
   payRate?: number;
   gymLocationId?: GymLocation[];
   createdAt?: string;

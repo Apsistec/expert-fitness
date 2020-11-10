@@ -17,6 +17,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SideMenuComponent } from './_home/side-menu/side-menu.component';
 import { QuicklinkModule } from 'ngx-quicklink';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedDirectivesModule } from './_directives/shared-directives.module';
 
 // import { GlobalErrorHandlerService } from './_services/error-handler.service';
 
@@ -43,7 +46,10 @@ import { QuicklinkModule } from 'ngx-quicklink';
     AngularFireStorageModule,
     AngularFirestoreModule,
     AppRoutingModule,
-    QuicklinkModule
+    QuicklinkModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    SharedDirectivesModule
 
   ],
   providers: [

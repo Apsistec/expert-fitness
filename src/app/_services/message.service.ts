@@ -18,7 +18,7 @@ export class MessageService {
     const toast = await this.toastController.create({
       message: infoMessage,
       duration: 2000,
-      cssClass: 'infoT',
+      cssClass: 'info',
       position: 'middle'
     });
     toast.present();
@@ -28,7 +28,7 @@ export class MessageService {
     const toast = await this.toastController.create({
       header: 'Login Successful',
       message: 'Welcome Back ' + data.user.displayName + '!' || 'Welcome Back!',
-      cssClass: 'successT',
+      cssClass: 'success',
       position: 'middle',
       keyboardClose: true,
       duration: 2500,
@@ -39,7 +39,7 @@ export class MessageService {
   async signOutToast() {
     const toast = await this.toastController.create({
       header: 'Sign Out Successful',
-      cssClass: 'successT',
+      cssClass: 'success',
       message: 'Thank You for Stopping By!',
       position: 'middle',
       duration: 2500,
@@ -51,7 +51,7 @@ export class MessageService {
   async deleteTicketToast() {
     const toast = await this.toastController.create({
       header: 'Ticket Deleted',
-      cssClass: 'successT',
+      cssClass: 'success',
       message: 'The ticket was successfully deleted.',
       position: 'middle',
       duration: 2500,
@@ -66,7 +66,7 @@ export class MessageService {
       message: 'User info was updated',
       duration: 3000,
       position: 'middle',
-      cssClass: 'successT',
+      cssClass: 'success',
       keyboardClose: true,
     });
     await toast.present();
@@ -75,7 +75,7 @@ export class MessageService {
   async subscribedToast() {
     const toast = await this.toastController.create({
       header: 'Payment Successful',
-      cssClass: 'successT',
+      cssClass: 'success',
       message: 'You are subscribed! Thank You!',
       position: 'middle',
       duration: 3000,
@@ -87,7 +87,7 @@ export class MessageService {
   async alreadySubscribedToast() {
     const toast = await this.toastController.create({
       header: 'Invalid Request',
-      cssClass: 'warningT',
+      cssClass: 'warning',
       message: ' You are already Subscribed',
       position: 'middle',
       duration: 3000,
@@ -99,7 +99,7 @@ export class MessageService {
   async generalToast(message) {
     const toast = await this.toastController.create({
       header: 'Message Service',
-      cssClass: 'successT',
+      cssClass: 'success',
       message,
       position: 'middle',
       duration: 2500,
@@ -107,6 +107,20 @@ export class MessageService {
     });
     await toast.present();
   }
+
+
+  async welcomeBackToast() {
+    const toast = await this.toastController.create({
+      header: 'Welcome Back',
+      message: 'Login Successful, your account is currently active.',
+      duration: 2000,
+      cssClass: 'success',
+      position: 'middle',
+      translucent: true
+    });
+    toast.present();
+  }
+
 
   //  Alerts
   async noExistFederatedUserAlert() {
@@ -116,6 +130,7 @@ export class MessageService {
       message:
       'Try another account. If you continue to have trouble, \n open a trouble ticket and we will assist you',
       buttons: ['OK'],
+      cssClass: 'danger',
       translucent: true
     });
     await alert.present();
@@ -125,7 +140,7 @@ export class MessageService {
     const alert = await this.alertController.create({
       message:
         'Currently, your account is Past Due. You can update your account with a valid card and make a payment in order to restore access immediately',
-      cssClass: 'unpaid-user',
+      cssClass: 'danger',
       translucent: true,
       subHeader: 'Payment Past-due'
     });
@@ -138,7 +153,7 @@ export class MessageService {
       subHeader: 'Account Cancelled',
       message:
       'Your account has successfully been cancelled, and service will end on the last day of your billing period(usually the last day of the month). Your card will not be charged again. In order to utilize the services, you will need to register a new account.',
-      cssClass: 'unpaid-user',
+      cssClass: 'danger',
     });
     alertController.present();
   }
@@ -149,7 +164,8 @@ export class MessageService {
       subHeader: 'Active Membership Required',
       message: 'We have not been able to process a payment with the card on file. Please apply a valid card and we will process your payment immediately in order to provide access to your new account',
       buttons: ['OK'],
-      translucent: true
+      translucent: true,
+      cssClass: 'danger'
     });
     await alert.present();
   }
@@ -160,7 +176,8 @@ export class MessageService {
       subHeader: 'Password Reset Request Sent',
       message: 'Check your email for a link to RESET your password',
       buttons: ['OK'],
-      translucent: true
+      translucent: true,
+      cssClass: 'success'
     });
     await alert.present();
   }
@@ -170,18 +187,18 @@ export class MessageService {
       header: 'Invalid Request',
       message: 'You are already Subscribed',
       buttons: ['OK'],
+      cssClass: 'warning',
       translucent: true
     });
     await alert.present();
   }
 
   async registerSuccessAlert() {
-    const toast = await this.toastController.create({
+    const toast = await this.alertController.create({
       header: 'Registration Successful',
       message:
         'You have successfully registered. Now, one last step.... to verify your email, check your inbox for instructions!',
-      cssClass: 'successA',
-      position: 'middle',
+      cssClass: 'success',
       keyboardClose: true,
       translucent: true,
       buttons: ['OK']
@@ -194,32 +211,19 @@ export class MessageService {
       header: 'Invalid Request',
       subHeader: 'You are already Signed In',
       message: 'Your account does not need access to this area',
-
+      cssClass: 'warning',
       buttons: ['OK'],
       translucent: true
     });
     await internalBlock.present();
   }
 
-  async welcomeBackToast() {
-  const toast = await this.toastController.create({
-    header: 'Welcome Back',
-    message: 'Login Successful, your account is currently active.',
-    duration: 2000,
-    color: 'success',
-    cssClass: 'successT',
-    position: 'middle',
-    translucent: true
-  });
-  toast.present();
-}
-
   async globalErrorAlert(err, router, page?) {
     const alert = await this.alertController.create({
       header: 'Page: ' + page,
       subHeader: 'Location: ' + router.url,
       message: err.message,
-      cssClass: 'warningA',
+      cssClass: 'warning',
       translucent: true
     });
     await alert.present();
@@ -230,7 +234,8 @@ export class MessageService {
       header: 'An Error Occurred',
       message: err.message,
       buttons: ['OK'],
-      translucent: true
+      translucent: true,
+      cssClass: 'warning'
     });
     await alert.present();
   }
@@ -241,7 +246,8 @@ export class MessageService {
       subHeader: 'Error Code: ' + err.code,
       message: err.message,
       buttons: ['OK'],
-      translucent: true
+      translucent: true,
+      cssClass: 'warning'
     });
     await alert.present();
   }
@@ -252,6 +258,7 @@ export class MessageService {
       subHeader: 'Changes were NOT saved',
       message: 'Press Save to resume editing or press OK to close',
       backdropDismiss: false,
+      cssClass: 'info',
       translucent: true,
       buttons: [
         {
@@ -277,7 +284,7 @@ export class MessageService {
       message,
       translucent: true,
       backdropDismiss: false,
-      cssClass: 'infoA',
+      cssClass: 'info',
       buttons: [
         {
           text: 'Cancel',
@@ -303,7 +310,7 @@ export class MessageService {
       subHeader: feedId,
       translucent: true,
       message: 'Are you sure you want to delete this post?',
-      cssClass: 'warningA',
+      cssClass: 'warning',
       backdropDismiss: false,
       buttons: [
         {
@@ -331,6 +338,7 @@ export class MessageService {
       message:
         'Press Update to reload the page and apply the new update or press cancel to close.',
       backdropDismiss: false,
+      cssClass: 'info',
       translucent: true,
       buttons: [
         {

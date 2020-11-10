@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExportExcelService } from '../../_services/export-excel.service';
-import { ExcelSampleData } from './../../_data/excel-sample.data';
+import { ExcelSampleData } from '../../../assets/_data/excel-sample.data';
 
 @Component({
   selector: 'app-excel-sheet-js',

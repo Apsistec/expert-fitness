@@ -18,7 +18,7 @@ export class AdminDashboardPage implements OnInit {
   users;
   customers;
   feed;
-  trainers;
+  employees;
 
   constructor(
     public auth: AuthService,
@@ -28,11 +28,11 @@ export class AdminDashboardPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.admins = this.collection.getAdmins();
+    this.admins = this.collection.getAllAdmins();
     this.users = this.collection.getUsers();
-    this.customers = this.collection.getCustomers();
+    this.customers = this.collection.getCurrentCustomers();
     this.feed = this.collection.getUserFeed();
-    this.trainers = this.collection.getTrainers();
+    this.employees = this.collection.getEmployees();
     this.tickets = this.ticket.getAdminTickets();
   }
 

@@ -34,9 +34,9 @@ const routes: Routes = [
       // canActivate: [PaidGuard, RoleGuard]
     },
     {
-      path: 'trainers',
+      path: 'employees',
       loadChildren: () =>
-      import('./_trainers/trainers.module').then((m) => m.TrainersPageModule),
+      import('./_employees/employees.module').then((m) => m.EmployeesPageModule),
       // ...canActivate(redirectUnauthorizedToLogin),
       // ...canActivate(verifiedEmail),
       // canActivate: [PaidGuard, RoleGuard]
@@ -71,7 +71,7 @@ const routes: Routes = [
         path: '**',
         redirectTo: '/unknown',
         pathMatch: 'full',
-      },
+      }
     ];
 @NgModule({
   imports: [

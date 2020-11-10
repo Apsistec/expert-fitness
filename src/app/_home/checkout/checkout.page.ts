@@ -9,10 +9,9 @@ import {
 } from '@angular/core';
 import {
   PopoverController,
-  LoadingController,
   ModalController,
 } from '@ionic/angular';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireFunctions } from '@angular/fire/functions';
@@ -22,10 +21,14 @@ import { SeoService } from '../../_services/seo.service';
 import { WizardComponent } from 'angular-archwizard';
 import { PopoverComponent } from '../../_shared/popover/popover.component';
 import { User } from '../../_models/users.model';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { PrivacyComponent } from '../privacy/privacy.component';
 import { AboutAppComponent } from '../about-app/about-app.component';
-declare var Stripe: stripe.StripeStatic;
+
+import * as stripe from '@stripe/stripe-js';
+import { environment } from 'src/environments/environment';
+import { analytics } from 'firebase/app';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-checkout',
@@ -55,8 +58,7 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
   theCheckbox = false;
   hide = true;
 
-  @ViewChild('cardElement', { static: true }) cardElement: ElementRef;
-  card;
+  // @ViewChild('cardElement', { static: true }) cardElement: ElementRef;
   source;
   amount = 0;
   planID;
@@ -68,9 +70,9 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
   constructor(
     public functions: AngularFireFunctions,
     public authService: AuthService,
-    private messageService: MessageService,
     public modalController: ModalController,
     private seoService: SeoService,
+    private messageService: MessageService,
     private popoverController: PopoverController,
     private fb: FormBuilder,
     private router: Router,
@@ -82,39 +84,86 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
       '../../../assets/img/rfs-logo.svg'
     );
   }
+  @ViewChild('card-payment') card: stripe.StripeCardElement;
 
   ngOnInit() {
     this.authService.user$.pipe(map((user) => (this.user = user)));
 
-    this.resetVars();
-    this.checkboxStatus();
-    this.stepperProcess();
+    // this.resetVars();
+    // this.checkboxStatus();
+    // this.stepperProcess();
 
-    // Stripe Details
-    this.stripe = Stripe('pk_test_Rm4QbcP0thjADBses4DnzU5600K3q0XqMA');
-    const elements = this.stripe.elements();
+
+    analytics().logEvent('select_item', {
+      item_list_id: this.data.course_id,
+      item_list_name: this.data.title,
+      price: this.data.price
+
+    })
+
+    this.stripe = await stripe.loadStripe(environment.stripePubKey);
     const style = {
       base: {
-        color: 'var(--ion-color-secondary)',
-        fontFamily: 'Monteserat, "Helvetica Neue", sans-serif',
+        color: '#32325d',
+        fontFamily: '"Nunito", Nunito, sans-serif',
         fontSmoothing: 'antialiased',
-        fontSize: '1em',
+        fontSize: (window.innerWidth <= 500) ? '12px' : '16px',
         '::placeholder': {
-          color: '#121212',
-        },
+          color: '#aab7c4'
+        }
       },
       invalid: {
-        color: '#f73008',
-        iconColor: '#f73008',
-      },
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
     };
 
-    // Create an instance of the card Element.
-    this.card = elements.create('card', { style });
-    this.card.mount(this.cardElement.nativeElement);
-    this.card.addEventListener('change', ({ error }) => {
-      this.cardErrors = error && error.message;
-    });
+    const elements = this.stripe.elements()
+    const card: stripe.StripeCardElement = elements.create('card', {
+      hidePostalCode: true,
+      style
+    })
+    this.card = card
+    this.userDoc = await this.authService.getUser()
+
+    let body =
+      {
+        description: this.data.title,
+        amount: this.data.price*100,
+        customer: this.userDoc.cus_id,
+        receipt_email : this.userDoc.email,
+      }
+
+    this.setupIntent = await this.pmt.createSetupIntent()
+    this.paymentIntent = await this.pmt.createPaymentIntent(body)
+
+    }
+
+    // Stripe Details
+    // this.stripe = Stripe('pk_test_Rm4QbcP0thjADBses4DnzU5600K3q0XqMA');
+    // const elements = this.stripe.elements();
+    // const style = {
+    //   base: {
+    //     color: 'var(--ion-color-secondary)',
+    //     fontFamily: 'Monteserat, "Helvetica Neue", sans-serif',
+    //     fontSmoothing: 'antialiased',
+    //     fontSize: '1em',
+    //     '::placeholder': {
+    //       color: '#121212',
+    //     },
+    //   },
+    //   invalid: {
+    //     color: '#f73008',
+    //     iconColor: '#f73008',
+    //   },
+    // };
+
+    // // Create an instance of the card Element.
+    // this.card = elements.create('card', { style });
+    // this.card.mount(this.cardElement.nativeElement);
+    // this.card.addEventListener('change', ({ error }) => {
+    //   this.cardErrors = error && error.message;
+    // });
   }
 
   ngAfterViewInit() {
@@ -180,25 +229,92 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  async handleForm(e) {
-    e.preventDefault();
-    const { source, error } = await this.stripe.createSource(this.card);
-    if (error) {
-      // Inform the customer that there was an error.
-      const cardErrors = error.message;
-    } else {
-      // Send the token to your server.
-      this.isLoading = true;
-      const fun = this.functions.httpsCallable('stripeCreateSubscription');
-      this.confirmation = await fun({
-        source: source.id,
-        uid: this.user.uid,
-        plan: this.planID,
-      }).toPromise();
-      this.isLoading = false;
-      this.wizard.goToStep(2);
-    }
+  // async handleForm(e) {
+  //   e.preventDefault();
+  //   const { source, error } = await this.stripe.createSource(this.card);
+  //   if (error) {
+  //     // Inform the customer that there was an error.
+  //     const cardErrors = error.message;
+  //   } else {
+  //     // Send the token to your server.
+  //     this.isLoading = true;
+  //     const fun = this.functions.httpsCallable('stripeCreateSubscription');
+  //     this.confirmation = await fun({
+  //       source: source.id,
+  //       uid: this.user.uid,
+  //       plan: this.planID,
+  //     }).toPromise();
+  //     this.isLoading = false;
+  //     this.wizard.goToStep(2);
+  //   }
+  // }
+
+  @ViewChild('sections') photos : MatExpansionPanel
+  @ViewChild('info') info : MatExpansionPanel
+  @ViewChild('pay') pay : MatExpansionPanel
+  ngAfterViewInit() {
+    this.info.close()
+    this.pay.close()
+    this.photos.open()
+    setTimeout(() => {
+      this.card.mount('#card-payment')
+      this.card.focus()
+      this.card.on('change', e => this.btnOpts.disabled = e.complete ? false : true)
+    })
   }
+
+  public done: boolean
+
+  async handlePayment(e: Event) {
+    e.preventDefault()
+    this.btnOpts.active = true;
+
+    try {
+      const { paymentIntent: pi, error } =
+          await this.stripe
+                    .confirmCardPayment(
+                      this.paymentIntent.client_secret,
+                      {
+                        payment_method: { card: this.card },
+                        receipt_email: this.userDoc.email ,
+                        setup_future_usage: 'on_session'
+                        // mallon gia subscriptions se saved cards?
+                      })
+
+      if (error){
+        console.error(error)
+        this.onClose.emit(null)
+        }
+      else {
+        console.log(pi)
+        this.btnOpts.active = false;
+        this.done = true
+        setTimeout(() => this.onClose.emit(this.data), 1200)
+        await this.pmt.confirmSetupIntent(this.setupIntent.id, pi.payment_method)
+
+        if (!environment.production){
+          console.log('firing purchase event');
+          let item: firebase.analytics.Item =
+          {
+            item_id: this.data.course_id,
+            item_name: this.data.title,
+            price: this.data.price,
+            item_category: 'e-book',
+            quantity: 1,
+          }
+          analytics().logEvent('purchase', {
+            transaction_id: this.data.title,
+            currency: 'EUR',
+            value: this.data.price,
+            date: new Date()
+          })
+        }
+      }
+    } catch (e){
+      console.error(e)
+      this.onClose.emit(null)
+    }
+
 
   switchAuthMode() {
     this.isRegister = !this.isRegister;

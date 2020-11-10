@@ -16,7 +16,6 @@ export class UserService {
   user: User;
   favorites: string[] = [];
 
-  HAS_SEEN_TUTORIAL = 'ion_did_tutorial';
 
   constructor(
     public storage: Storage,
@@ -41,14 +40,6 @@ export class UserService {
     }
   }
 
-  setEmail(email: string): Promise<any> {
-    return this.afs.doc(`users/${this.user.uid}`).update({
-      email
-    }).then(() => {
-     this.messageService.generalToast('The email that you sign in with was successfully updated.');
-    });
-  }
-
   getEmail() {
     let email;
     this.afAuth.authState.pipe(
@@ -57,5 +48,31 @@ export class UserService {
         return email;
       })
     );
+  }
+
+  setEmail(email: string): Promise<any> {
+    return this.afs.doc(`users/${this.user.uid}`).update({
+      email
+    }).then(() => {
+     this.messageService.generalToast('The email that you sign in with was successfully updated.');
+    });
+  }
+
+  getDisplayName() {
+    let displayName;
+    this.afAuth.authState.pipe(
+      switchMap((user) => {
+        displayName = user.displayName;
+        return displayName;
+      })
+    );
+  }
+
+  setDisplayName(displayName: string): Promise<any> {
+    return this.afs.doc(`users/${this.user.uid}`).update({
+      displayName
+    }).then(() => {
+     this.messageService.generalToast('Your display name has been successfully updated.');
+    });
   }
 }

@@ -1,4 +1,4 @@
-import { PaidCustomer } from './paid-customers.model';
+import { Customer } from './customers.model';
 import { Employee } from './employees.model';
 
 export interface GymLocation{
@@ -12,7 +12,7 @@ export interface GymLocation{
   locationPhone: string;
   locationEmail: string;
   managerId: Employee[];
-  customerId: PaidCustomer[];
+  customerId: Customer[];
   employeeId: Employee[];
   locationPhotosURL?: string[];
 }

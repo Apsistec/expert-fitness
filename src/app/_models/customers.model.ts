@@ -1,7 +1,7 @@
 import { User } from './users.model';
 
-export interface PaidCustomer {
-  paidCustomerId: string;
+export interface Customer {
+  customerId: string;
   uid: User;
   stripeId: string;
   stripeLink?: string;

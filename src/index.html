@@ -32,15 +32,13 @@
     <!-- add to homescreen for ios -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta
-      name="apple-mobile-web-app-title"
-      content="Expert Fitness App"
-    />
+    <meta name="apple-mobile-web-app-title" content="Expert Fitness App" />
 
     <!-- Stripe -->
     <script src="https://js.stripe.com/v3" async></script>
 
     <!-- Open Graph / Facebook -->
+
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.expert-fitness.com/" />
     <meta property="og:title" content="Expert Fitness App" />
@@ -62,6 +60,55 @@
   </head>
 
   <body>
+    <script>
+            window.fbAsyncInit = function() {
+              FB.init({
+                appId      : '842482879622606',
+                cookie     : true,
+                xfbml      : true,
+                version    : '8.0'
+              });
+
+              FB.AppEvents.logPageView();
+
+            };
+
+
+
+          {
+              status: 'connected',
+              authResponse: {
+                  accessToken: '...',
+                  expiresIn:'...',
+                  signedRequest:'...',
+                  userID:'...'
+              }
+          }
+
+
+            (function(d, s, id){
+               var js, fjs = d.getElementsByTagName(s)[0];
+               if (d.getElementById(id)) {return;}
+               js = d.createElement(s); js.id = id;
+               js.src = "https://connect.facebook.net/en_US/sdk.js";
+               fjs.parentNode.insertBefore(js, fjs);
+             }(document, 'script', 'facebook-jssdk'));
+
+
+          FB.getLoginStatus(function(response) {
+              statusChangeCallback(response);
+          });
+
+
+      function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      }
+    </script>
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
     <app-root></app-root>
 
     <noscript

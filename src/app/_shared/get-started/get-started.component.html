@@ -178,25 +178,25 @@
                 type="text"
                 inputmode="text"
                 autocomplete="name"
-                formControlName="name"
+                formControlName="displayName"
                 autocapitalize="words"
               >
               </ion-input>
             </ion-item>
             <div
               *ngIf="
-                registerFormControl.name.invalid &&
-                !registerFormControl.name.pristine
+                registerFormControl.displayName.invalid &&
+                !registerFormControl.displayName.pristine
               "
             >
               <ion-text
-                *ngIf="registerFormControl.name.errors.required"
+                *ngIf="registerFormControl.displayName.errors.required"
                 color="danger"
               >
                 Name required.
               </ion-text>
               <ion-text
-                *ngIf="registerFormControl.name.errors.maxlength"
+                *ngIf="registerFormControl.displayName.errors.maxlength"
                 color="danger"
               >
                 Must be no more than 25 characters.

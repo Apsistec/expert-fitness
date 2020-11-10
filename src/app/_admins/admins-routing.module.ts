@@ -45,7 +45,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/admins/dashboard',
+        redirectTo: '/admins/admin-dashboard',
         pathMatch: 'full',
       },
     ],

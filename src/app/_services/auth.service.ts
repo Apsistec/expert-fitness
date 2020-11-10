@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import * as fire from 'firebase/app';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -22,7 +23,8 @@ export class AuthService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private modalController: ModalController
   ) {
     this.user$ = this.authState$.pipe(
       switchMap((user: any) => {
@@ -35,55 +37,26 @@ export class AuthService {
     );
   }
 
-  async createUserRecord(data) {
-    try {
-      console.log('data: ', data);
-      console.log(this.displayName);
-      await this.afs.doc<User>(`users/${data.user.uid}`).set({
-        uid: data.user.uid,
-        displayName: this.displayName,
-        photoURL: data.user.photoURL,
-        email: data.user.email,
-        role: 'USER',
-        permissions: ['delete-ticket'],
-        emailVerified: data.user.emailVerified,
-        createdAt: fire.firestore.FieldValue.serverTimestamp(),
-      });
-    } catch (error) {
-      await this.messageService.errorAlert(error);
-    }
-  }
-
-  async updateUserRecord(data) {
-    try {
-      await this.afs.doc<User>(`users/${data.user.uid}`).update({
-        uid: data.user.uid,
-        photoURL: data.user.photoURL,
-        email: data.user.email,
-        emailVerified: data.user.emailVerified,
-        lastUpdatedAt: fire.firestore.FieldValue.serverTimestamp(),
-      });
-    } catch (error) {
-      await this.messageService.errorAlert(error);
-    }
-  }
-
   SignIn(credentials) {
     return this.afAuth
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then((data) => {
-        this.updateUserRecord(data);
-      })
-      .then((data) => {
+        this.afs.doc<User>(`users/${data.user.uid}`).update({
+          uid: data.user.uid,
+          photoURL: data.user.photoURL,
+          email: data.user.email,
+          emailVerified: data.user.emailVerified,
+          lastUpdatedAt: fire.firestore.FieldValue.serverTimestamp(),
+        });
+        this.modalController.dismiss();
         this.messageService.loggedInToast(data);
       })
       .catch((error) => {
-        this.messageService.errorAlert(error);
+        this.messageService.authErrorAlert(error);
       });
   }
 
   SignUp(credentials) {
-    this.displayName = credentials.displayName;
     return this.afAuth
       .createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then((data) => {
@@ -99,35 +72,39 @@ export class AuthService {
             emailVerified: data.user.emailVerified,
             createdAt: fire.firestore.FieldValue.serverTimestamp(),
           })
+          .catch((error) => {
+            this.messageService.authErrorAlert(error);
+          })
           .then(() => {
+            this.modalController.dismiss();
             this.sendVerificationMail();
+            this.messageService.registerSuccessAlert();
           });
-      })
-      .catch((error) => {
-        this.messageService.errorAlert(error);
       });
   }
 
   // Auth providers
   AuthLogin(provider) {
-    return this.afAuth
-      .signInWithRedirect(provider)
-      .catch((error) => {
-        this.messageService.errorAlert(error);
-      })
-      .then(() => {
-        return this.afAuth
-          .getRedirectResult()
-          .catch((error) => {
-            this.messageService.errorAlert(error);
+    return this.afAuth.signInWithRedirect(provider).then(() => {
+      return this.afAuth.getRedirectResult().then((data) => {
+        this.afs
+          .doc<User>(`users/${data.user.uid}`)
+          .update({
+            uid: data.user.uid,
+            photoURL: data.user.photoURL,
+            email: data.user.email,
+            emailVerified: data.user.emailVerified,
+            lastUpdatedAt: fire.firestore.FieldValue.serverTimestamp(),
           })
-          .then((data) => {
-            this.updateUserRecord(data);
+          .catch((err) => {
+            this.messageService.authErrorAlert(err);
           })
-          .catch((error) => {
-            this.messageService.errorAlert(error);
+          .then(() => {
+            this.modalController.dismiss();
+            this.messageService.loggedInToast(data);
           });
       });
+    });
   }
 
   // Sign in with 3rd party Oauth
@@ -142,6 +119,17 @@ export class AuthService {
       this.messageService.errorAlert(error);
     });
   }
+  // MicrosoftAuth() {
+  //   this.AuthLogin(new fire.auth.OAuthProvider()).catch((error) => {
+  //     this.messageService.errorAlert(error);
+  //   });
+  // }
+
+  FacebookAuth() {
+    this.AuthLogin(new fire.auth.FacebookAuthProvider()).catch((error) => {
+      this.messageService.errorAlert(error);
+    });
+  }
 
   /* Send email verfificaiton when new user sign up */
   sendVerificationMail() {
@@ -152,16 +140,11 @@ export class AuthService {
     fire
       .auth()
       .currentUser.sendEmailVerification(actionCodeSettings)
+      .then(() => {
+        this.messageService.registerSuccessAlert();
+      })
       .catch((error) => {
         this.messageService.errorAlert(error);
-      })
-      .then(() => {
-        this.messageService
-          .registerSuccessAlert()
-          .catch((error) => {
-            this.messageService.errorAlert(error);
-          })
-          .then(() => this.router.navigate(['/verify-email']));
       });
   }
 

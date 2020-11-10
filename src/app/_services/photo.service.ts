@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-    CameraPhoto, CameraResultType, CameraSource, Capacitor, FilesystemDirectory, Plugins
+    CameraPhoto, CameraResultType, CameraSource, Plugins
 } from '@capacitor/core';
 import { MessageService } from './message.service';
 

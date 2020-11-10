@@ -47,7 +47,7 @@ export class GetStartedComponent implements OnInit {
           Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$'),
         ],
       ],
-      name: [
+      displayName: [
         '',
         [
           Validators.required,
@@ -78,7 +78,6 @@ export class GetStartedComponent implements OnInit {
     await this.authService.SignIn(this.loginForm.value);
     await this.dismissLoading();
   }
-
 
   async onRegister() {
     await this.showLoading();

@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-import { Admin } from '../_models/admins.model';
 // import { Feed } from '../_models/feeds.model';
-// import { Customer } from '../_models/member';
 // import { Message } from '../_models/text-messages.model';
 // import { Trainer } from '../_models/trainer';
+import { Admin } from '../_models/admins.model';
+import { Customer } from '../_models/customers.model';
 import { User } from '../_models/users.model';
 import { AuthService } from './auth.service';
 
@@ -21,14 +21,12 @@ export class CollectionService {
   usersRef: AngularFirestoreCollection<User>;
   users: Observable<User>;
   admins: Observable<Admin>;
-  customers: Observable<any>;
-  wttsa: Observable<any>;
+  customers: Observable<Customer>;
+
   collectionVar: AngularFirestoreCollection;
 
   constructor(
     private db: AngularFirestore,
-    private auth: AuthService,
-    private afAuth: AngularFireAuth
   ) {}
 
   getUserFeed() {
@@ -41,22 +39,46 @@ export class CollectionService {
       .collection('users', ref => ref.where('role', '==', 'USER'))
       .valueChanges();
   }
+  getEmployees() {
+    return this.db
+      .collection('users', ref => ref.where('role', '==', 'EMPLOYEE'))
+      .valueChanges();
+  }
+  getPremiumSubs() {
+    return this.db
+      .collection('users', ref => ref.where('plan', '==', 'PREMIUM'))
+      .valueChanges();
+  }
+  getBasicSubs() {
+    return this.db
+      .collection('users', ref => ref.where('plan', '==', 'BASIC'))
+      .valueChanges();
+  }
+  getFreeSubs() {
+    return this.db
+      .collection('users', ref => ref.where('plan', '==', 'FREE'))
+      .valueChanges();
+  }
 
-  getCustomers() {
+  getCurrentCustomers() {
     return this.db
     .collection('users', ref => ref.where('subStatus', '==', 'current' || 'trialing'))
       .valueChanges();
   }
-
-  getTrainers() {
+  getTroubledCustomers() {
     return this.db
-    .collection('trainers', ref => ref.where('role', '==', 'TRAINER'))
+    .collection('users', ref => ref.where('subStatus', '==', 'past_due' || 'unpaid'))
+      .valueChanges();
+  }
+  getCancelledCustomers() {
+    return this.db
+    .collection('users', ref => ref.where('subStatus', '==', 'cancelled'))
       .valueChanges();
   }
 
-  getAdmins() {
+  getAllAdmins() {
     return this.db
-      .collection('admins', ref => ref.where('role', '==', 'ADMIN'))
+      .collection('users', ref => ref.where('role', '==', 'ADMIN' || 'SUPERADMIN'))
       .valueChanges();
   }
 }

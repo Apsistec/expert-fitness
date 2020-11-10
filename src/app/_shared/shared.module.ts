@@ -6,8 +6,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { PopoverComponent } from './popover/popover.component';
 import { GetStartedComponent } from './get-started/get-started.component';
-import { AppModule } from '../app.module';
 import { RouterModule, Routes } from '@angular/router';
+import { TicketComponent } from '../_customers/ticket/ticket.component';
 
 const routes: Routes = [
 
@@ -18,7 +18,8 @@ const routes: Routes = [
     FooterComponent,
     HeaderComponent,
     PopoverComponent,
-    GetStartedComponent
+    GetStartedComponent,
+    TicketComponent
   ],
   imports: [
     IonicModule,
@@ -26,7 +27,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AppModule
   ],
   exports: [
     IonicModule,
@@ -36,7 +36,8 @@ const routes: Routes = [
     PopoverComponent,
     HeaderComponent,
     FooterComponent,
-    GetStartedComponent
+    GetStartedComponent,
+    TicketComponent
   ]
 })
 export class SharedModule {}

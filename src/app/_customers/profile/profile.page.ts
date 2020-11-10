@@ -90,38 +90,12 @@ export class ProfilePage implements OnInit, AfterViewInit {
   // Present an alert with the current email populated
   // clicking OK will update the email and display it
   // clicking Cancel will close the alert and do nothing
-  async changeEmail() {
-    const alert = await this.alertController.create({
-      header: 'Change Email',
-      buttons: [
-        'Cancel',
-        {
-          text: 'Ok',
-          handler: (data: any) => {
-            this.userService.setEmail(data.email);
-            this.getEmail();
-          },
-        },
-      ],
-      inputs: [
-        {
-          type: 'email',
-          name: 'email',
-          value: this.email,
-          placeholder: 'email',
-        },
-      ],
-    });
-    await alert.present();
-  }
 
   getEmail() {
     return this.userService.getEmail();
   }
 
-  changePassword() {
-    console.log('Clicked to change password');
-  }
+
 
   logout() {
     this.authService.SignOut().then(() => {
@@ -130,6 +104,6 @@ export class ProfilePage implements OnInit, AfterViewInit {
   }
 
   support() {
-    this.router.navigateByUrl('/support');
+    this.router.navigateByUrl('/customer/dashboard');
   }
 }
