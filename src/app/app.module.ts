@@ -21,16 +21,24 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedDirectivesModule } from './_directives/shared-directives.module';
+import { SharedModalsModule } from './_modals/shared-modals.module';
 import { SideMenuComponent } from './_home/side-menu/side-menu.component';
-
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { HomePageTwoComponent } from './_home/home-page-two/home-page-two.component';
+import { HomePageThreeComponent } from './_home/home-page-three/home-page-three.component';
+import { HomePageFourComponent } from './_home/home-page-four/home-page-four.component';
 // import { GlobalErrorHandlerService } from './_services/error-handler.service';
 
-
-
-
-
 @NgModule({
-  declarations: [AppComponent, SideMenuComponent],
+  declarations: [
+    AppComponent,
+    SideMenuComponent,
+    SharedDirectivesModule,
+    HomePageFourComponent,
+    HomePageTwoComponent,
+    HomePageThreeComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -52,9 +60,12 @@ import { SideMenuComponent } from './_home/side-menu/side-menu.component';
     QuicklinkModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedDirectivesModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedDirectivesModule,
+    SharedModalsModule,
+    ShareButtonsModule,
+    ShareIconsModule
   ],
   providers: [
     StatusBar,

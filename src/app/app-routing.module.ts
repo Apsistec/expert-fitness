@@ -12,12 +12,49 @@ import { PaidGuard } from './_guards/paid.guard';
 import { RoleGuard } from './_guards/role.guard';
 import { HomePage } from './_home/home.page';
 const redirectLoggedInToDash = () =>
-  redirectLoggedInTo(['/customers/dashboard']);
+redirectLoggedInTo(['/customers/dashboard']);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/home']);
 const verifiedEmail = () => emailVerified;
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'faqs',
+    loadChildren: () =>
+      import('./_home/faq/faq.module').then((m) => m.FaqPageModule),
+  },
+
+  {
+    path: 'testimonials',
+    loadChildren: () =>
+      import('./_home/testimonials/testimonials.module').then(
+        (m) => m.TestimonialsPageModule
+      )
+  },
+  {
+    path: 'ratings',
+    redirectTo: '/testimonials',
+    pathMatch: 'full',
+  },
+  {
+    path: 'products',
+    loadChildren: () =>
+      import('./_home/products/products.module').then(
+        (m) => m.ProductsPageModule
+      )
+  },
+  {
+    path: 'contact',
+    loadChildren: () =>
+      import('./_home/contact/contact.module').then(
+        (m) => m.ContactPageModule
+      )
+    },
+    {
     path: 'unknown',
     loadChildren: () =>
     import('./_home/unknown/unknown.module').then((m) => m.UnknownPageModule),
@@ -58,14 +95,8 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        loadChildren: () =>
-          import('./_home/home.module').then((m) => m.HomePageModule),
+        component: HomePage
         // ...canActivate(redirectLoggedInToDash)
-      },
-      {
-        path: '',
-        redirectTo: '/home',
-        pathMatch: 'full',
       },
       {
         path: '**',

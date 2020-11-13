@@ -1,17 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../_services/auth.service';
-import { UserService } from '../../_services/user.service';
-import { MessageService } from '../../_services/message.service';
-import { GetStartedComponent } from '../../_modals/get-started/get-started.component';
-import { TermsComponent } from '../../_modals/terms/terms.component';
-import { PrivacyComponent } from '../../_modals/privacy/privacy.component';
-import { AboutAppComponent } from '../../_modals/about-app/about-app.component';
-import { User } from '../../_models/users.model';
+import { ModalController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
-import { ContactPage } from '../contact/contact.page';
+import { AboutAppComponent } from '../../_modals/about-app/about-app.component';
 import { AboutUsComponent } from '../../_modals/about-us/about-us.component';
+import { GetStartedComponent } from '../../_modals/get-started/get-started.component';
+import { PrivacyComponent } from '../../_modals/privacy/privacy.component';
+import { TermsComponent } from '../../_modals/terms/terms.component';
+import { User } from '../../_models/users.model';
+import { AuthService } from '../../_services/auth.service';
+import { MessageService } from '../../_services/message.service';
+import { UserService } from '../../_services/user.service';
+import { ContactPage } from '../contact/contact.page';
 
 @Component({
   selector: 'app-side-menu',
@@ -43,7 +43,7 @@ export class SideMenuComponent implements OnInit {
 
 
   gotoGetStarted() {
-    this.router.navigateByUrl('/home/get-started');
+    this.router.navigateByUrl('/get-started');
   }
 
   async showModalTerms() {

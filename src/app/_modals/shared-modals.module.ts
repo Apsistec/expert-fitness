@@ -7,12 +7,27 @@ import { AboutAppComponent } from './about-app/about-app.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
-import { GetStartedComponent } from '../_modals/get-started/get-started.component';
-import { TicketComponent } from '../_customers/ticket/ticket.component';
+import { GetStartedComponent } from './get-started/get-started.component';
+import { TicketComponent } from './ticket/ticket.component';
+import { PopoverComponent } from './popover/popover.component';
 
 @NgModule({
-  declarations: [AboutAppComponent, AboutUsComponent, GetStartedComponent, TicketComponent, PrivacyComponent, TermsComponent],
+  declarations: [
+    AboutAppComponent,
+    PopoverComponent,
+    AboutUsComponent,
+    GetStartedComponent,
+    TicketComponent,
+    PrivacyComponent,
+    TermsComponent],
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule],
-  exports: [AboutAppComponent, AboutUsComponent, GetStartedComponent, TicketComponent, PrivacyComponent, TermsComponent],
+  exports: [
+    AboutAppComponent,
+    PopoverComponent,
+    AboutUsComponent,
+    GetStartedComponent,
+    TicketComponent,
+    PrivacyComponent,
+    TermsComponent],
 })
 export class SharedModalsModule {}

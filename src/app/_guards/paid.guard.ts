@@ -30,17 +30,17 @@ export class PaidGuard implements CanActivate {
             return true;
           });
         } else if (user && user.subStatus  === 'past_due') {
-          this.router.navigateByUrl('/home/payment').then(async () => {
+          this.router.navigateByUrl('/payment').then(async () => {
             this.messageService.pastDueAlert();
             return false;
             });
         } else if (user && user.subStatus  === 'cancelled') {
-          this.router.navigateByUrl('/home/payment').then(async () => {
+          this.router.navigateByUrl('/payment').then(async () => {
             this.messageService.cancelledAlert();
             return false;
           });
         } else if (user && user.subStatus  === 'unpaid') {
-          this.router.navigateByUrl('/home/payment').then(async () => {
+          this.router.navigateByUrl('/payment').then(async () => {
             this.messageService.needPaymentAlert();
             return false;
           });

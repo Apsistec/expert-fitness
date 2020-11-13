@@ -19,7 +19,7 @@ import { AuthService } from '../../_services/auth.service';
 import { MessageService } from '../../_services/message.service';
 import { SeoService } from '../../_services/seo.service';
 import { WizardComponent } from 'angular-archwizard';
-import { PopoverComponent } from '../../_shared/popover/popover.component';
+import { PopoverComponent } from '../../_modals/popover/popover.component';
 import { User } from '../../_models/users.model';
 import { map } from 'rxjs/operators';
 import { PrivacyComponent } from '../../_modals/privacy/privacy.component';

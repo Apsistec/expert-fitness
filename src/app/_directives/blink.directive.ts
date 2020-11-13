@@ -11,8 +11,7 @@ export class BlinkDirective implements OnInit, OnDestroy {
   private blinker$: Observable<string>;
   private active = true;
 
-  @HostBinding('style.visibility')
-  private visibility: string;
+  @HostBinding('style.visibility') visibility: string;
 
   constructor() {
     const show$ = timer(250, 500);
