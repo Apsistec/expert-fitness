@@ -4,14 +4,14 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { UserService } from '../../_services/user.service';
 import { MessageService } from '../../_services/message.service';
-import { GetStartedComponent } from '../../_shared/get-started/get-started.component';
-import { TermsComponent } from '../terms/terms.component';
-import { PrivacyComponent } from '../privacy/privacy.component';
-import { AboutAppComponent } from '../about-app/about-app.component';
+import { GetStartedComponent } from '../../_modals/get-started/get-started.component';
+import { TermsComponent } from '../../_modals/terms/terms.component';
+import { PrivacyComponent } from '../../_modals/privacy/privacy.component';
+import { AboutAppComponent } from '../../_modals/about-app/about-app.component';
 import { User } from '../../_models/users.model';
 import { map } from 'rxjs/operators';
 import { ContactPage } from '../contact/contact.page';
-import { AboutUsComponent } from '../about-us/about-us.component';
+import { AboutUsComponent } from '../../_modals/about-us/about-us.component';
 
 @Component({
   selector: 'app-side-menu',
@@ -19,7 +19,7 @@ import { AboutUsComponent } from '../about-us/about-us.component';
   styleUrls: ['./side-menu.component.scss'],
 })
 export class SideMenuComponent implements OnInit {
-  yearDate;
+  yearDate: any;
   user: User;
 
   constructor(

@@ -1,13 +1,4 @@
-<ion-header translucent>
-  <ion-toolbar class="toolbar-global">
-    <ion-title> Invoice History </ion-title>
-    <ion-buttons slot="end">
-      <ion-button color="danger" (click)="dismissModal()"> Close </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content fullscreen >
 
     <ion-card color="dark" *ngIf="stripeService.invoices | async as invoice">
       <ion-card-content>
@@ -25,4 +16,4 @@
       </ion-card-content>
     </ion-card>
 
-</ion-content>
+

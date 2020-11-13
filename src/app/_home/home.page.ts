@@ -5,17 +5,11 @@ import { AuthService } from '../_services/auth.service';
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-
 })
 export class HomePage implements OnInit {
   user: any;
 
-  constructor(
-  public auth: AuthService,
-  ) {}
+  constructor(public auth: AuthService) {}
 
-ngOnInit() {
+  ngOnInit() {}
 }
-
-  }
-

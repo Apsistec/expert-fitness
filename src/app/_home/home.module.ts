@@ -9,12 +9,9 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { HomePageOneComponent } from './home-page-one/home-page-one.component';
 import { HomePageThreeComponent } from './home-page-three/home-page-three.component';
 import { HomePageFourComponent } from './home-page-four/home-page-four.component';
-import { SharedModule } from '../_shared/shared.module';
+import { SharedModalsModule } from '../_modals/shared-modals.module';
 import { SharedDirectivesModule } from '../_directives/shared-directives.module';
-import { AboutAppComponent } from './about-app/about-app.component';
-import { HomePage } from './home.page';
-import { PrivacyComponent } from './privacy/privacy.component';
-import { TermsComponent } from './terms/terms.component';
+import { SharedModule } from '../_shared/shared.module';
 
 @NgModule({
   imports: [
@@ -24,22 +21,16 @@ import { TermsComponent } from './terms/terms.component';
     HomeRoutingModule,
     ShareIconsModule,
     ShareButtonsModule,
-    SharedModule,
+    SharedModalsModule,
     SharedDirectivesModule,
-
+    SharedModule
   ],
   declarations: [
     HomePageTwoComponent,
     HomePageOneComponent,
     HomePageThreeComponent,
     HomePageFourComponent,
-    TermsComponent,
-    PrivacyComponent,
-    HomePage,
-    AboutAppComponent
   ],
-  exports: [
-
-  ]
+  exports: [],
 })
 export class HomePageModule {}

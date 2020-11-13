@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../../_shared/shared.module';
 import { ContactPageRoutingModule } from './contact-routing.module';
 import { ContactPage } from './contact.page';
-import { AboutUsComponent } from '../about-us/about-us.component';
+import { AboutUsComponent } from '../../_modals/about-us/about-us.component';
 
 @NgModule({
   imports: [

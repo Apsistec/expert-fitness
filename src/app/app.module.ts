@@ -1,33 +1,36 @@
-import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ApplicationRef, NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule, enableDebugTools } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouteReuseStrategy } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage';
+import { QuicklinkModule } from 'ngx-quicklink';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SideMenuComponent } from './_home/side-menu/side-menu.component';
-import { QuicklinkModule } from 'ngx-quicklink';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedDirectivesModule } from './_directives/shared-directives.module';
+import { SideMenuComponent } from './_home/side-menu/side-menu.component';
 
 // import { GlobalErrorHandlerService } from './_services/error-handler.service';
 
+
+
+
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    SideMenuComponent
-  ],
+  declarations: [AppComponent, SideMenuComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -49,8 +52,9 @@ import { SharedDirectivesModule } from './_directives/shared-directives.module';
     QuicklinkModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedDirectivesModule
-
+    SharedDirectivesModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     StatusBar,
@@ -58,7 +62,16 @@ import { SharedDirectivesModule } from './_directives/shared-directives.module';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
-  exports: [
-  ]
+  exports: [],
 })
 export class AppModule {}
+
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .then(moduleRef => {
+    const applicationRef = moduleRef.injector.get(ApplicationRef);
+    const appComponent = applicationRef.components[0];
+    enableDebugTools(appComponent);
+  });
+
+// .....

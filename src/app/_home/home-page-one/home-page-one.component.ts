@@ -8,10 +8,10 @@ import { map } from 'rxjs/operators';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { AboutAppComponent } from '../../_home/about-app/about-app.component';
-import { GetStartedComponent } from '../../_shared/get-started/get-started.component';
-import { PrivacyComponent } from '../../_home/privacy/privacy.component';
-import { TermsComponent } from '../../_home/terms/terms.component';
+import { AboutAppComponent } from '../../_modals/about-app/about-app.component';
+import { GetStartedComponent } from '../../_modals/get-started/get-started.component';
+import { PrivacyComponent } from '../../_modals/privacy/privacy.component';
+import { TermsComponent } from '../../_modals/terms/terms.component';
 import { User } from '../../_models/users.model';
 import { AuthService } from '../../_services/auth.service';
 import { MessageService } from '../../_services/message.service';
@@ -60,13 +60,13 @@ import { UserService } from '../../_services/user.service';
 export class HomePageOneComponent implements OnInit {
   title = 'Home';
   user: User;
-  fadeInDown;
-  flash;
-  slideInRight;
-  slideInLeft;
-  pulse;
-  jello;
-  bounceOutUp;
+  fadeInDown: any;
+  flash: any;
+  slideInRight: any;
+  slideInLeft: any;
+  pulse: any;
+  jello: any;
+  bounceOutUp: any;
   yearDate: number;
 
   constructor(

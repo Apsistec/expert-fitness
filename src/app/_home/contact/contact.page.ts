@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
-import { ConferenceData } from '../../../assets/_data/conference-data';
+import { ConferenceData  } from '../../../assets/_data/conference-data';
 import { darkStyle } from '../../../assets/_data/map-dark-style';
 
 @Component({

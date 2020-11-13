@@ -1,4 +1,4 @@
-import { TermsComponent } from './../terms/terms.component';
+import { TermsComponent } from '../../_modals/terms/terms.component';
 import {
   Component,
   OnChanges,
@@ -22,11 +22,11 @@ import { WizardComponent } from 'angular-archwizard';
 import { PopoverComponent } from '../../_shared/popover/popover.component';
 import { User } from '../../_models/users.model';
 import { map } from 'rxjs/operators';
-import { PrivacyComponent } from '../privacy/privacy.component';
-import { AboutAppComponent } from '../about-app/about-app.component';
+import { PrivacyComponent } from '../../_modals/privacy/privacy.component';
+import { AboutAppComponent } from '../../_modals/about-app/about-app.component';
 
 import * as stripe from '@stripe/stripe-js';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { analytics } from 'firebase/app';
 import { MatExpansionPanel } from '@angular/material/expansion';
 

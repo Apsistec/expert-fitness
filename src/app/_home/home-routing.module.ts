@@ -23,7 +23,9 @@ const routes: Routes = [
         // outlet: "homeOutlet",
       },
       {
-        path: 'ratings', redirectTo: '/home/testimonials', pathMatch: 'full'
+        path: 'ratings',
+        redirectTo: '/home/testimonials',
+        pathMatch: 'full',
       },
       {
         path: 'products',
@@ -44,7 +46,7 @@ const routes: Routes = [
         path: '',
         component: HomePageOneComponent,
         // outlet: 'homeOutlet',
-      }
+      },
     ],
   },
 ];

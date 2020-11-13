@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { PopoverComponent } from './popover/popover.component';
-import { GetStartedComponent } from './get-started/get-started.component';
 import { RouterModule, Routes } from '@angular/router';
 import { TicketComponent } from '../_customers/ticket/ticket.component';
 
@@ -18,7 +17,6 @@ const routes: Routes = [
     FooterComponent,
     HeaderComponent,
     PopoverComponent,
-    GetStartedComponent,
     TicketComponent
   ],
   imports: [
@@ -36,7 +34,6 @@ const routes: Routes = [
     PopoverComponent,
     HeaderComponent,
     FooterComponent,
-    GetStartedComponent,
     TicketComponent
   ]
 })

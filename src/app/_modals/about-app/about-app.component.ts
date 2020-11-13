@@ -7,10 +7,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./about-app.component.scss'],
 })
 export class AboutAppComponent implements OnInit {
-
-  constructor(
-    private modalController: ModalController
-  ) { }
+  constructor(private modalController: ModalController) {}
 
   ngOnInit() {}
 

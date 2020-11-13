@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController, IonSlides } from '@ionic/angular';
-import { GetStartedComponent } from '../../_shared/get-started/get-started.component';
+import { GetStartedComponent } from '../../_modals/get-started/get-started.component';
 import { MessageService } from '../../_services/message.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import * as animator from 'ng-animate';
@@ -55,8 +55,8 @@ export class HomePageTwoComponent implements OnInit {
 
   benefits =  Benefits;
 
-  slideInRight;
-  slideInLeft;
+  slideInRight: any;
+  slideInLeft: any;
 
   constructor(
     private modalController: ModalController,

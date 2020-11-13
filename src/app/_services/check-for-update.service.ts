@@ -32,7 +32,9 @@ export class CheckForUpdateService implements OnDestroy {
           }
         }
         );
-        observer.error((error) => this.messageService.errorAlert(error));
+        observer.error((error) => {
+          return this.messageService.errorAlert( error );
+        });
         observer.complete();
       });
 
