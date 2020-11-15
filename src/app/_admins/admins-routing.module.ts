@@ -13,7 +13,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./admin-dashboard/admin-dashboard.module').then(
             (m) => m.AdminDashboardPageModule
-          ), outlet: 'adminOutlet'
+          )
       },
       {
         path: 'create-users',

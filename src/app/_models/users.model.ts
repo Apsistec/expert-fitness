@@ -21,4 +21,5 @@ export interface User {
   subId?: string;
   createdAt: any;
   lastUpdatedAt?: any;
+  stripeId?: string;
 }

@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UserData } from './user-data';
+import { User } from 'src/app/_models/users.model';
+import { UserService } from 'src/app/_services/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,14 +11,18 @@ import { UserData } from './user-data';
 export class ConferenceData {
   data: any;
 
-  constructor(public http: HttpClient, public user: UserData) {}
+  constructor(
+    public http: HttpClient,
+    public user: User,
+    private userService: UserService
+    ) {}
 
   load(): any {
     if (this.data) {
       return of(this.data);
     } else {
       return this.http
-        .get('./conference_data.json')
+        .get('/assets/_data/conference_data.json')
         .pipe(map(this.processData, this));
     }
   }
@@ -121,7 +126,7 @@ export class ConferenceData {
     // then this session does not pass the segment test
     let matchesSegment = false;
     if (segment === 'favorites') {
-      if (this.user.hasFavorite(session.name)) {
+      if (this.userService.hasFavorite(session.name)) {
         matchesSegment = true;
       }
     } else {

@@ -4,10 +4,10 @@ import { User } from 'src/app/_models/users.model';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 
-import { GetStartedComponent } from '../../_modals/get-started/get-started.component';
+import { GetStartedComponent } from '../get-started/get-started.component';
 import { AuthService } from '../../_services/auth.service';
 import { MessageService } from '../../_services/message.service';
-import { PopoverComponent } from '../../_modals/popover/popover.component';
+import { PopoverComponent } from '../popover/popover.component';
 import { Router } from '@angular/router';
 
 @Component({

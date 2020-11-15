@@ -6,6 +6,7 @@
   "homepage": "https://apsistec,app/",
   "scripts": {
     "ng": "ng",
+    "postinstall": "ngcc",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -43,6 +44,7 @@
     "@ionic/storage": "^2.3.0",
     "@stripe/stripe-js": "^1.11.0",
     "angular-archwizard": "^6.1.0",
+    "babel-eslint": "^10.1.0",
     "classlist.js": "^1.1.20150312",
     "file-saver": "^2.0.2",
     "firebase": "^7.21.0",

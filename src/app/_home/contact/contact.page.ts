@@ -7,8 +7,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
-import { ConferenceData  } from '../../../assets/_data/conference-data';
-import { darkStyle } from '../../../assets/_data/map-dark-style';
+import { ConferenceData  } from './conference-data';
+import { darkStyle } from './map-dark-style';
 
 @Component({
   selector: 'app-contact',

@@ -20,24 +20,15 @@ import { QuicklinkModule } from 'ngx-quicklink';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedDirectivesModule } from './_directives/shared-directives.module';
-import { SharedModalsModule } from './_modals/shared-modals.module';
 import { SideMenuComponent } from './_home/side-menu/side-menu.component';
-import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
-import { ShareIconsModule } from 'ngx-sharebuttons/icons';
-import { HomePageTwoComponent } from './_home/home-page-two/home-page-two.component';
-import { HomePageThreeComponent } from './_home/home-page-three/home-page-three.component';
-import { HomePageFourComponent } from './_home/home-page-four/home-page-four.component';
+// import { SharedDirectivesModule } from './_directives/shared-directives.module';
+// import { SharedModule } from './_shared/shared.module';
 // import { GlobalErrorHandlerService } from './_services/error-handler.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SideMenuComponent,
-    SharedDirectivesModule,
-    HomePageFourComponent,
-    HomePageTwoComponent,
-    HomePageThreeComponent
+    SideMenuComponent
   ],
   entryComponents: [],
   imports: [
@@ -60,12 +51,11 @@ import { HomePageFourComponent } from './_home/home-page-four/home-page-four.com
     QuicklinkModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    SharedDirectivesModule,
-    SharedModalsModule,
-    ShareButtonsModule,
-    ShareIconsModule
+    // ReactiveFormsModule,
+    // FormsModule,
+    // SharedDirectivesModule,
+    // SharedModule,
+
   ],
   providers: [
     StatusBar,
@@ -78,11 +68,11 @@ import { HomePageFourComponent } from './_home/home-page-four/home-page-four.com
 export class AppModule {}
 
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .then(moduleRef => {
-    const applicationRef = moduleRef.injector.get(ApplicationRef);
-    const appComponent = applicationRef.components[0];
-    enableDebugTools(appComponent);
-  });
+// platformBrowserDynamic().bootstrapModule(AppModule)
+//   .then(moduleRef => {
+//     const applicationRef = moduleRef.injector.get(ApplicationRef);
+//     const appComponent = applicationRef.components[0];
+//     enableDebugTools(appComponent);
+//   });
 
 // .....

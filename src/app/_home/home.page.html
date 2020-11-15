@@ -1,33 +1,207 @@
 
+<ion-header translucent>
+  <!-- small screen/ hamburger-->
+  <ion-toolbar color="dark" class="small-screen" #toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="tertiary"> </ion-menu-button>
+    </ion-buttons>
+    <ion-img
+      src="../../../assets/logos/logo.png"
+      slot="start"
+      class="small-logo"
+      routerLink="/home"
+    ></ion-img>
+
+    <ng-container *ngIf="user | async; else startButton">
+      <ion-item
+        slot="end"
+        type="button"
+        color="dark"
+        (click)="presentPopover($event)"
+        detail="false"
+        lines="none"
+      >
+        <ion-icon slot="start" name="arrow-dropdown"></ion-icon>
+        <ion-avatar>
+          <ion-img
+            [src]="user.photoURL || '../../../assets/img/dummy-user.png'"
+          ></ion-img>
+        </ion-avatar>
+      </ion-item>
+    </ng-container>
+
+    <ng-template #startButton>
+      <ion-buttons slot="end">
+        <div style="text-align: center;">
+          <ion-text color="warning" style="padding-right: 5px;">
+            <sup>
+              Returning Users:
+            </sup>
+          </ion-text>
+          <br>
+          <ion-button
+          style="font-size: x-large"
+          appBlink
+          (click)="showModalGetStarted()"
+          color="danger"
+          >
+          <ion-text>Login</ion-text>
+        </ion-button>
+      </div>
+      </ion-buttons>
+    </ng-template>
+  </ion-toolbar>
+
+  <!-- large screen/ no hamburger -->
+  <ion-toolbar color="dark" class="large-screen" #toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        *ngIf="showBackButton"
+        defaultHref="/home"
+        color="tertiary"
+      ></ion-back-button>
+      <ion-img
+        src="../../../assets/logos/logo.png"
+        slot="start"
+        class="small-logo"
+        routerLink="/home"
+      ></ion-img>
+
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/home"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <ion-label class="menu-label">Home</ion-label>
+      </ion-item>
+
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/products"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <ion-label class="menu-label">Products</ion-label>
+      </ion-item>
+
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/faqs"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <ion-label class="menu-label">FAQs</ion-label>
+      </ion-item>
+
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/testimonials"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <ion-label class="menu-label">Testimonials</ion-label>
+      </ion-item>
+
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/about-us"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <ion-label class="menu-label">About</ion-label>
+      </ion-item>
+      <ion-item
+        class="menu-font"
+        button
+        color="dark"
+        routerLink="/contact"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <ion-label class="menu-label">Contact</ion-label>
+      </ion-item>
+    </ion-buttons>
+
+    <ng-container *ngIf="user | async; else getStarted">
+      <ion-item
+        slot="end"
+        type="button"
+        color="dark"
+        (click)="presentPopover($event)"
+        detail="false"
+        lines="none"
+      >
+        <ion-icon slot="start" name="arrow-dropdown"></ion-icon>
+        <ion-avatar>
+          <ion-img
+            [src]="user.photoURL || '../../../assets/images/dummy-user.png'"
+          ></ion-img>
+        </ion-avatar>
+      </ion-item>
+    </ng-container>
+
+    <ng-template #getStarted>
+      <ion-buttons slot="end">
+
+        <div style="text-align: center;">
+          <ion-text color="warning" style="padding-right: 5px;">
+            <sup>
+              Returning Users:
+            </sup>
+          </ion-text>
+          <br>
+          <ion-button (click)="showModalGetStarted()" color="danger">
+
+            <ion-text style="font-size: x-large" appBlink>Login</ion-text>
+          </ion-button>
+        </div>
+      </ion-buttons>
+    </ng-template>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen scrollEvents="true" [appFadeHeader]="toolbar">
+
 <ion-grid class="ion-no-padding">
   <ion-row
     class="scene-one ion-justify-content-around"
     style="padding-top: 14vh"
   >
-    <ion-col
-      size="12"
-      size-md="6"
-      class="ion-align-self-start ion-text-center"
-    >
+    <ion-col size="12" size-md="6" class="ion-align-self-start ion-text-center">
       <ion-row class="ion-text-center">
         <ion-col size="6" offset="3">
-          <img [@bounceOutUp]="bounceOutUp" src="../../../assets/logos/logo.png" style="max-width: 450px" class="raised-z" />
+          <img
+            [@bounceOutUp]="bounceOutUp"
+            src="../../../assets/logos/logo.png"
+            style="max-width: 450px"
+            class="raised-z"
+          />
           <hr />
           <!-- </ion-row>
           <ion-row class="ion-justify-content-center"> -->
           <ion-card [@pulse]="pulse" class="raised-z logo-card ion-padding">
             <ion-card-title>
               <ion-text color="warning">
-                <h3>
-                   omni-fit: A holistic fitness paradigm
-                </h3>
+                <h3>omni-fit: A holistic fitness paradigm</h3>
               </ion-text>
             </ion-card-title>
           </ion-card>
           <!-- </ion-row>
           <ion-row class="ion-justify-content-center"> -->
           <ion-button
-          [@flash]="flash"
+            [@flash]="flash"
             class="cta raised-z"
             color="light"
             size="large"
@@ -53,12 +227,15 @@
       class="ion-align-self-stretch ion-text-center"
     >
       <div>
-        <img style="z-index: 22;" src="../../../assets/svg/btn-play.svg" />
+        <img style="z-index: 22" src="../../../assets/svg/btn-play.svg" />
       </div>
     </ion-col>
   </ion-row>
-
-  <app-home-page-two></app-home-page-two>
+ 
+ 
+  <ion-row>
+    <app-home-page-two></app-home-page-two>
+  </ion-row>
   <!-- <ion-fab>
     <ion-fab-button (click)="topFunction()" id="myBtn" title="Go to top">Top</ion-fab-button>
 
@@ -69,99 +246,112 @@
     <ion-col size="12" size-sm="4">
       <ion-row>
         <ion-col>
-          <ul class="bottom-menu">
-            <li><h3>Menu</h3></li>
-            <li
+          <ion-list lines="none" class="bottom-menu">
+            <ion-list-header color="dark">
+              <h3>Menu</h3>
+            </ion-list-header>
+            <ion-item
+              color="dark"
               routerLink="/home"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>Home</ion-label>
-            </li>
+            </ion-item>
             <!-- SignedIn Menu Items -->
-            <li
-              *ngIf="user | async"
+            <ion-item
+              color="dark"
+              *ngIf="user"
               routerLink="/customers/dashboard"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>Dashboard</ion-label>
-            </li>
-            <li
-              *ngIf="user | async"
+            </ion-item>
+            <ion-item
+              color="dark"
+              *ngIf="user "
               routerLink="/customers/workouts"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>Workouts</ion-label>
-            </li>
-            <li
-              *ngIf="user | async"
+            </ion-item>
+            <ion-item
+              color="dark"
+              *ngIf="user"
               routerLink="/customers/nutrition"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>Nutrition</ion-label>
-            </li>
-            <li
-              *ngIf="user | async"
+            </ion-item>
+            <ion-item
+              color="dark"
+              *ngIf="user"
               routerLink="/customers/videos"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>Videos</ion-label>
-            </li>
-            <li
-              *ngIf="user | async"
+            </ion-item>
+            <ion-item
+              color="dark"
+              *ngIf="user"
               routerLink="/customers/messages"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>Messages</ion-label>
-            </li>
-            <li
-              *ngIf="user | async"
+            </ion-item>
+            <ion-item
+              color="dark"
+              *ngIf="user"
               routerLink="/customers/settings"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>Settings</ion-label>
-            </li>
+            </ion-item>
             <!-- Menu Options for nonusers -->
-            <li
+            <ion-item
+              color="dark"
               *ngIf="!user"
               routerLink="/products"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>Products</ion-label>
-            </li>
-            <li
+            </ion-item>
+            <ion-item
+              color="dark"
               *ngIf="!user"
               routerLink="/faqs"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>FAQs</ion-label>
-            </li>
-            <li *ngIf="!user" routerLink="/testimonials">
+            </ion-item>
+            <ion-item color="dark" *ngIf="!user" routerLink="/testimonials">
               <ion-label>Testimonials</ion-label>
-            </li>
-            <li
+            </ion-item>
+            <ion-item
+              color="dark"
               routerLink="/about"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>About</ion-label>
-            </li>
-            <li
+            </ion-item>
+            <ion-item
+              color="dark"
               routerLink="/contact"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>Contact</ion-label>
-            </li>
-          </ul>
+            </ion-item>
+          </ion-list>
         </ion-col>
       </ion-row>
 
@@ -170,9 +360,7 @@
           <img src="../../../assets/logos/logo.png" class="small-logo" />
           <br />
           <ion-text color="light">
-            <small>
-              &#9426;{{ yearDate | date: "yyyy" }} www.expertfitness.com
-            </small>
+            <small> &#9426;{{ yearDate }} www.expertfitness.com </small>
           </ion-text>
         </ion-col>
       </ion-row>
@@ -220,22 +408,23 @@
 
     <ion-col size="12" pull-sm="4" size-sm="4">
       <ion-row>
-        <ion-col>
+        <ion-col> 
+          
         </ion-col>
-        </ion-row>
+      </ion-row>
       <ion-row class="ion-justify-content-center ion-text-center">
         <ion-col class="ion-align-self-end ion-text-center">
-          <!-- <ion-buttons> -->
-            <ion-button color="tertiary" (click)="showModalPrivacy()">
-              Privacy
-            </ion-button>
-            <ion-button color="tertiary" (click)="showModalTerms()">
-              Terms
-            </ion-button>
-            <ion-button color="tertiary" (click)="showModalAbout()">
-              About App
-            </ion-button>
-          <!-- </ion-buttons> -->
+          <ion-buttons>
+          <ion-button color="tertiary" (click)="showModalPrivacy()">
+            Privacy
+          </ion-button>
+          <ion-button color="tertiary" (click)="showModalTerms()">
+            Terms
+          </ion-button>
+          <ion-button color="tertiary" (click)="showModalAbout()">
+            About App
+          </ion-button>
+          </ion-buttons>
           <hr />
 
           <share-buttons
@@ -248,3 +437,4 @@
     </ion-col>
   </ion-row>
 </ion-grid>
+</ion-content>

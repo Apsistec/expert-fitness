@@ -1,7 +1,6 @@
-import { TermsComponent } from '../../_modals/terms/terms.component';
+import { TermsComponent } from '../../_shared/terms/terms.component';
 import {
   Component,
-  OnChanges,
   AfterViewInit,
   ElementRef,
   OnInit,
@@ -19,11 +18,11 @@ import { AuthService } from '../../_services/auth.service';
 import { MessageService } from '../../_services/message.service';
 import { SeoService } from '../../_services/seo.service';
 import { WizardComponent } from 'angular-archwizard';
-import { PopoverComponent } from '../../_modals/popover/popover.component';
+import { PopoverComponent } from '../../_shared/popover/popover.component';
 import { User } from '../../_models/users.model';
 import { map } from 'rxjs/operators';
-import { PrivacyComponent } from '../../_modals/privacy/privacy.component';
-import { AboutAppComponent } from '../../_modals/about-app/about-app.component';
+import { PrivacyComponent } from '../../_shared/privacy/privacy.component';
+import { AboutAppComponent } from '../../_shared/about-app/about-app.component';
 
 import * as stripe from '@stripe/stripe-js';
 import { environment } from '../../../environments/environment';
@@ -35,11 +34,16 @@ import { MatExpansionPanel } from '@angular/material/expansion';
   templateUrl: './checkout.page.html',
   styleUrls: ['./checkout.page.scss'],
 })
-export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
+export class CheckoutPage implements OnInit, AfterViewInit {
   stripe: stripe.Stripe;
-
+  
   @ViewChild(WizardComponent, { static: true }) public wizard: WizardComponent;
-
+  @ViewChild('card-payment') card: stripe.StripeCardElement;
+  @ViewChild('sections') photos : MatExpansionPanel;
+  @ViewChild('info') info : MatExpansionPanel;
+  @ViewChild('pay') pay : MatExpansionPanel;
+  
+  public done: boolean;
   loginForm: FormGroup;
   registerForm: FormGroup;
   isRegister = true;
@@ -49,20 +53,20 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
 
   showDetails: boolean;
   hideProduct: boolean;
-
+  
   user: User;
   uid;
   userId;
-
+  
   marked = false;
   theCheckbox = false;
   hide = true;
-
+  
   // @ViewChild('cardElement', { static: true }) cardElement: ElementRef;
   source;
   amount = 0;
   planID;
-
+  
   confirmation;
   confirmation0;
   cardErrors;
@@ -84,22 +88,21 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
       '../../../assets/img/rfs-logo.svg'
     );
   }
-  @ViewChild('card-payment') card: stripe.StripeCardElement;
 
   ngOnInit() {
-    this.authService.user$.pipe(map((user) => (this.user = user)));
+    this.authService.user$.pipe(map((user) => this.user = user));
 
     // this.resetVars();
     // this.checkboxStatus();
     // this.stepperProcess();
 
 
-    analytics().logEvent('select_item', {
-      item_list_id: this.data.course_id,
-      item_list_name: this.data.title,
-      price: this.data.price
+    // analytics().logEvent('select_item', {
+    //   item_list_id: this.data.course_id,
+    //   item_list_name: this.data.title,
+    //   price: this.data.price
 
-    })
+    // })
 
     this.stripe = await stripe.loadStripe(environment.stripePubKey);
     const style = {
@@ -118,24 +121,23 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
       }
     };
 
-    const elements = this.stripe.elements()
+    const elements = this.stripe.elements();
     const card: stripe.StripeCardElement = elements.create('card', {
       hidePostalCode: true,
       style
     })
-    this.card = card
-    this.userDoc = await this.authService.getUser()
+    this.card = card;
 
-    let body =
+    const body =
       {
         description: this.data.title,
-        amount: this.data.price*100,
-        customer: this.userDoc.cus_id,
+        amount: this.data.price * 100,
+        customer: this.user.stripeId,
         receipt_email : this.userDoc.email,
       }
 
-    this.setupIntent = await this.pmt.createSetupIntent()
-    this.paymentIntent = await this.pmt.createPaymentIntent(body)
+    this.setupIntent = await this.pmt.createSetupIntent();
+    this.paymentIntent = await this.pmt.createPaymentIntent(body);
 
     }
 
@@ -145,7 +147,7 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
     // const style = {
     //   base: {
     //     color: 'var(--ion-color-secondary)',
-    //     fontFamily: 'Monteserat, "Helvetica Neue", sans-serif',
+    //     fontFamily: 'Montserrat, "Helvetica Neue", sans-serif',
     //     fontSmoothing: 'antialiased',
     //     fontSize: '1em',
     //     '::placeholder': {
@@ -166,18 +168,9 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
     // });
   }
 
-  ngAfterViewInit() {
-    this.resetVars();
-    this.checkboxStatus();
-    this.stepperProcess();
-  }
-
-  ngOnChanges() {
-    this.resetVars();
-    this.checkboxStatus();
-    this.stepperProcess();
-  }
-
+  
+  
+  
   resetVars() {
     this.hide = true;
     this.showDetails = true;
@@ -187,7 +180,7 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
   checkboxStatus() {
     this.amount = this.theCheckbox ? +'5700' : +'000';
   }
-
+  
   stepperProcess() {
     if (this.user && this.user.uid) {
       this.wizard.goToStep(1);
@@ -195,7 +188,7 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
       this.wizard.goToStep(0);
     }
   }
-
+  
   firstStep() {
     this.wizard.goToStep(0);
   }
@@ -203,12 +196,12 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
   nextStep() {
     this.wizard.goToStep(1);
   }
-
+  
   // toggle checkmark status
   toggleVisibility(e) {
     this.marked = e.target.checked;
   }
-
+  
   async Login() {
     try {
       const res = await this.authService.SignIn(this.loginForm.value);
@@ -218,7 +211,7 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
       this.messageService.errorAlert(error.message);
     }
   }
-
+  
   async registerUser() {
     try {
       const res = await this.authService.SignUp(this.registerForm.value);
@@ -228,46 +221,47 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
       this.messageService.errorAlert(error.message);
     }
   }
-
+  
   // async handleForm(e) {
-  //   e.preventDefault();
-  //   const { source, error } = await this.stripe.createSource(this.card);
-  //   if (error) {
-  //     // Inform the customer that there was an error.
-  //     const cardErrors = error.message;
-  //   } else {
-  //     // Send the token to your server.
-  //     this.isLoading = true;
-  //     const fun = this.functions.httpsCallable('stripeCreateSubscription');
-  //     this.confirmation = await fun({
-  //       source: source.id,
-  //       uid: this.user.uid,
-  //       plan: this.planID,
-  //     }).toPromise();
-  //     this.isLoading = false;
-  //     this.wizard.goToStep(2);
-  //   }
-  // }
+    //   e.preventDefault();
+    //   const { source, error } = await this.stripe.createSource(this.card);
+    //   if (error) {
+      //     // Inform the customer that there was an error.
+      //     const cardErrors = error.message;
+      //   } else {
+        //     // Send the token to your server.
+        //     this.isLoading = true;
+        //     const fun = this.functions.httpsCallable('stripeCreateSubscription');
+        //     this.confirmation = await fun({
+          //       source: source.id,
+          //       uid: this.user.uid,
+          //       plan: this.planID,
+          //     }).toPromise();
+          //     this.isLoading = false;
+          //     this.wizard.goToStep(2);
+          //   }
+          // }
+          
+          
+          ngAfterViewInit() {
+            this.resetVars();
+            this.checkboxStatus();
+            this.stepperProcess();
 
-  @ViewChild('sections') photos : MatExpansionPanel
-  @ViewChild('info') info : MatExpansionPanel
-  @ViewChild('pay') pay : MatExpansionPanel
-  ngAfterViewInit() {
-    this.info.close()
-    this.pay.close()
-    this.photos.open()
-    setTimeout(() => {
-      this.card.mount('#card-payment')
-      this.card.focus()
-      this.card.on('change', e => this.btnOpts.disabled = e.complete ? false : true)
-    })
-  }
-
-  public done: boolean
-
-  async handlePayment(e: Event) {
-    e.preventDefault()
-    this.btnOpts.active = true;
+            this.info.close()
+            this.pay.close()
+            this.photos.open()
+            setTimeout(() => {
+              this.card.mount('#card-payment')
+              this.card.focus()
+              this.card.on('change', e => this.btnOpts.disabled = e.complete ? false : true)
+            })
+          }
+          
+          
+          async handlePayment(e: Event) {
+            e.preventDefault();
+            this.btnOpts.active = true;
 
     try {
       const { paymentIntent: pi, error } =
@@ -351,8 +345,10 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
       swipeToClose: true,
       showBackdrop: true,
     });
-    return modal.present().catch((err) => {
-      return this.messageService.errorAlert(err);
+    return modal.present()
+    .catch((err) => {
+      return this.messageService
+      .errorAlert(err);
     });
   }
 
@@ -364,7 +360,8 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnChanges {
       swipeToClose: true,
       showBackdrop: true,
     });
-    return modal.present().catch((err) => {
+    return modal.present()
+    .catch((err) => {
       return this.messageService.errorAlert(err);
     });
   }

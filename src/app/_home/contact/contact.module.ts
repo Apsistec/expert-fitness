@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../../_shared/shared.module';
 import { ContactPageRoutingModule } from './contact-routing.module';
 import { ContactPage } from './contact.page';
-import { AboutUsComponent } from '../../_modals/about-us/about-us.component';
 
 @NgModule({
   imports: [
@@ -15,6 +14,6 @@ import { AboutUsComponent } from '../../_modals/about-us/about-us.component';
     IonicModule,
     ContactPageRoutingModule,
   ],
-  declarations: [ContactPage, AboutUsComponent],
+  declarations: [ContactPage],
 })
 export class ContactPageModule {}

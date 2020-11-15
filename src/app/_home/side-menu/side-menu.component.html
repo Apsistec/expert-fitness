@@ -11,7 +11,9 @@
   </ion-header>
   <ion-content color="medium" fullscreen>
     <ion-list class="ion-no-padding" lines="none">
-      <ion-list-header class="list-header-global ion-text-center">Menu</ion-list-header>
+      <ion-list-header class="list-header-global ion-text-center"
+        >Menu</ion-list-header
+      >
       <ion-menu-toggle>
         <!-- Menu options -->
         <ion-item
@@ -21,7 +23,8 @@
           [routerLinkActiveOptions]="{ exact: true }"
           routerLink="/home"
         >
-          <ion-icon color="secondary"
+          <ion-icon
+            color="secondary"
             size="small"
             slot="start"
             name="home-sharp"
@@ -34,10 +37,11 @@
             color="medium"
             button
             routerLinkActive="active-item"
-           [routerLinkActiveOptions]="{ exact: true }"
+            [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/customers/dashboard"
           >
-            <ion-icon color="secondary"
+            <ion-icon
+              color="secondary"
               size="small"
               slot="start"
               name="speedometer-sharp"
@@ -48,10 +52,11 @@
             color="medium"
             button
             routerLinkActive="active-item"
-           [routerLinkActiveOptions]="{ exact: true }"
+            [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/customers/workouts"
           >
-            <ion-icon color="secondary"
+            <ion-icon
+              color="secondary"
               size="small"
               slot="start"
               name="fitness-sharp"
@@ -62,10 +67,11 @@
             color="medium"
             button
             routerLinkActive="active-item"
-           [routerLinkActiveOptions]="{ exact: true }"
+            [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/customers/nutrition"
           >
-            <ion-icon color="secondary"
+            <ion-icon
+              color="secondary"
               size="small"
               slot="start"
               name="nutrition-sharp"
@@ -76,10 +82,11 @@
             color="medium"
             button
             routerLinkActive="active-item"
-           [routerLinkActiveOptions]="{ exact: true }"
+            [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/customers/videos"
           >
-            <ion-icon color="secondary"
+            <ion-icon
+              color="secondary"
               size="small"
               slot="start"
               name="videocam-sharp"
@@ -90,10 +97,11 @@
             color="medium"
             button
             routerLinkActive="active-item"
-           [routerLinkActiveOptions]="{ exact: true }"
+            [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/customers/messages"
           >
-            <ion-icon color="secondary"
+            <ion-icon
+              color="secondary"
               size="small"
               slot="start"
               name="send-sharp"
@@ -104,10 +112,11 @@
             color="medium"
             button
             routerLinkActive="active-item"
-           [routerLinkActiveOptions]="{ exact: true }"
+            [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/customers/settings"
           >
-            <ion-icon color="secondary"
+            <ion-icon
+              color="secondary"
               size="small"
               slot="start"
               name="cog-sharp"
@@ -120,10 +129,11 @@
           color="medium"
           button
           routerLinkActive="active-item"
-         [routerLinkActiveOptions]="{ exact: true }"
+          [routerLinkActiveOptions]="{ exact: true }"
           routerLink="/products"
         >
-          <ion-icon color="secondary"
+          <ion-icon
+            color="secondary"
             size="small"
             slot="start"
             name="body-sharp"
@@ -134,10 +144,11 @@
           color="medium"
           button
           routerLinkActive="active-item"
-         [routerLinkActiveOptions]="{ exact: true }"
+          [routerLinkActiveOptions]="{ exact: true }"
           routerLink="/faqs"
         >
-          <ion-icon color="secondary"
+          <ion-icon
+            color="secondary"
             size="small"
             slot="start"
             name="help-circle-sharp"
@@ -148,43 +159,48 @@
           color="medium"
           button
           routerLinkActive="active-item"
-         [routerLinkActiveOptions]="{ exact: true }"
+          [routerLinkActiveOptions]="{ exact: true }"
           routerLink="/testimonials"
-          >
-          <ion-icon color="secondary"
+        >
+          <ion-icon
+            color="secondary"
             size="small"
             slot="start"
             name="ribbon-sharp"
-            ></ion-icon>
-            <ion-label class="side-menu-font">Testimonials</ion-label>
-          </ion-item>
-          <ion-item
+          ></ion-icon>
+          <ion-label class="side-menu-font">Testimonials</ion-label>
+        </ion-item>
+        <ion-item
           color="medium"
           button
-          (click)="showModalContact()"
+          routerLink="/contact"
+          routerLinkActive="active-item"
+          [routerLinkActiveOptions]="{ exact: true }"
           class="contact-modal-button"
-          >
-          <ion-icon color="secondary"
-          size="small"
-          slot="start"
-          name="mail-sharp"
+        >
+          <ion-icon
+            color="secondary"
+            size="small"
+            slot="start"
+            name="mail-sharp"
           ></ion-icon>
           <ion-label class="side-menu-font">Contact</ion-label>
         </ion-item>
         <ion-item
-        color="medium"
-        button
-        routerLink="/about-us"
-        routerLinkActive="active-item"
-       [routerLinkActiveOptions]="{ exact: true }"
+          color="medium"
+          button
+          routerLink="/about-us"
+          routerLinkActive="active-item"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
-        <ion-icon color="secondary"
-        size="small"
-        slot="start"
-        name="business-sharp"
-        ></ion-icon>
-        <ion-label class="side-menu-font">About Us</ion-label>
-      </ion-item>
+          <ion-icon
+            color="secondary"
+            size="small"
+            slot="start"
+            name="business-sharp"
+          ></ion-icon>
+          <ion-label class="side-menu-font">About Us</ion-label>
+        </ion-item>
         <!-- authentication area of menu -->
         <ion-list-header class="list-header-global">
           Authentication
@@ -194,7 +210,8 @@
             <ion-label color="danger" class="side-menu-font">
               Sign Out
             </ion-label>
-            <ion-icon color="secondary"
+            <ion-icon
+              color="secondary"
               size="small"
               slot="start"
               name="log-out"
@@ -208,18 +225,17 @@
             color="medium"
             button
             routerLinkActive="active-item"
-           [routerLinkActiveOptions]="{ exact: true }"
+            [routerLinkActiveOptions]="{ exact: true }"
             (click)="showModalGetStarted()"
           >
-            <ion-icon color="secondary"
+            <ion-icon
+              color="secondary"
               color="success"
               size="small"
               slot="start"
               name="rocket"
             ></ion-icon>
-            <ion-label class="sales side-menu-font"
-              >Get Started</ion-label
-            >
+            <ion-label class="sales side-menu-font">Get Started</ion-label>
           </ion-item>
         </ng-template>
       </ion-menu-toggle>

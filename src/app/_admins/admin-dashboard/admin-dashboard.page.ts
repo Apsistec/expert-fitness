@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../../_services/auth.service';
 import { CollectionService } from '../../_services/collection.service';
 import { TicketService } from '../../_services/ticket.service';
-import { TicketComponent } from '../../_modals/ticket/ticket.component';
+import { TicketComponent } from '../../_shared/ticket/ticket.component';
 
 @Component({
   selector: 'app-admin-dashboard',

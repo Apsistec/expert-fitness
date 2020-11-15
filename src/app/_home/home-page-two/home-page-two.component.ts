@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController, IonSlides } from '@ionic/angular';
-import { GetStartedComponent } from '../../_modals/get-started/get-started.component';
+import { GetStartedComponent } from '../../_shared/get-started/get-started.component';
 import { MessageService } from '../../_services/message.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
-import * as animator from 'ng-animate';
 import { Benefits } from '../../_models/training-benefits';
 import { slideInRight, slideInLeft } from 'ng-animate';
 
@@ -15,7 +14,7 @@ import { slideInRight, slideInLeft } from 'ng-animate';
     trigger('slideInRight', [
       transition(
         '* => *',
-        useAnimation(animator.slideInRight, {
+        useAnimation(slideInRight, {
           // Set the duration to 5seconds and delay to 2seconds
           params: { timing: 1.5, delay: 0.5 },
         })
@@ -24,7 +23,7 @@ import { slideInRight, slideInLeft } from 'ng-animate';
     trigger('slideInLeft', [
       transition(
         '* => *',
-        useAnimation(animator.slideInLeft, {
+        useAnimation(slideInLeft, {
           // Set the duration to 5seconds and delay to 2seconds
           params: { timing: 1.5, delay: 0.5 },
         })
@@ -43,12 +42,15 @@ export class HomePageTwoComponent implements OnInit {
     breakpoints: {
       350: {
         slidesPerView: 1,
+         spaceBetween: 15,
       },
       576: {
         slidesPerView: 1.5,
+         spaceBetween: 15,
       },
       1200: {
         slidesPerView: 4,
+         spaceBetween: 15,
       },
     }
   };
