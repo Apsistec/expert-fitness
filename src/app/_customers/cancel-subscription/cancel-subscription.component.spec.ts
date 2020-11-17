@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { CancelSubscriptionComponent } from './cancel-subscription.component';
@@ -7,7 +7,7 @@ describe('CancelSubscriptionComponent', () => {
   let component: CancelSubscriptionComponent;
   let fixture: ComponentFixture<CancelSubscriptionComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CancelSubscriptionComponent ],
       imports: [IonicModule.forRoot()]

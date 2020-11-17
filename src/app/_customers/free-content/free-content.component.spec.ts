@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { FreeContentComponent } from './free-content.component';
@@ -7,7 +7,7 @@ describe('FreeContentComponent', () => {
   let component: FreeContentComponent;
   let fixture: ComponentFixture<FreeContentComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FreeContentComponent ],
       imports: [IonicModule.forRoot()]
