@@ -12,7 +12,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es201m5",
+    "target": "es2015",
     "module": "es2020",
     "lib": [
       "es2018",

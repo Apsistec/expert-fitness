@@ -16,3 +16,4 @@ jobs:
           projectId: expert-fitness-midland-tx
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
+k
