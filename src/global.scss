@@ -29,7 +29,7 @@
 @import "~ngx-sharebuttons/themes/material/material-dark-theme";
 
 // Fonts
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Open+Sans:wght@700;800&family=Philosopher:wght@700;800&family=Roboto:wght@700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Open+Sans:wght@700;800&family=Philosopher:wght@700;800&family=Roboto:wght@300;400;500;700;800&display=swap");
 
 // Classes
 a:hover {
@@ -40,18 +40,18 @@ a:hover {
   --background: var(--ion-color-medium-tint);
   color: var(--ion-color-secondary-shade);
   text-transform: uppercase;
-  font: 800 18px/1 "Montserrat", sans-serif;
+  font: 800 18px/1 Montserrat, sans-serif;
 }
 
 .card-subtitle-global {
   color: var(--ion-color-light-shade);
-  font: 800 "Philosopher", sans-serif;
+  font: 800 Philosopher, sans-serif;
 }
 
 .toolbar-global {
   text-transform: uppercase;
   text-align: center;
-  font: 800 "Montserrat", sans-serif;
+  font: 800 Montserrat, sans-serif;
   --min-height: 5em;
   --background: var(--ion-color-dark);
 }

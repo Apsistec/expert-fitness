@@ -46,7 +46,7 @@ export class AuthService {
           photoURL: data.user.photoURL,
           email: data.user.email,
           emailVerified: data.user.emailVerified,
-          lastUpdatedAt: fire.firestore.FieldValue.serverTimestamp(),
+          lastUpdatedAt: fire.default.firestore.FieldValue.serverTimestamp()
         });
         this.modalController.dismiss();
         this.messageService.loggedInToast(data);
@@ -70,7 +70,7 @@ export class AuthService {
             role: 'USER',
             permissions: ['delete-ticket'],
             emailVerified: data.user.emailVerified,
-            createdAt: fire.firestore.FieldValue.serverTimestamp(),
+            createdAt: fire.default.firestore.FieldValue.serverTimestamp()
           })
           .catch((error) => {
             this.messageService.authErrorAlert(error);
@@ -94,7 +94,7 @@ export class AuthService {
             photoURL: data.user.photoURL,
             email: data.user.email,
             emailVerified: data.user.emailVerified,
-            lastUpdatedAt: fire.firestore.FieldValue.serverTimestamp(),
+            lastUpdatedAt: fire.default.firestore.FieldValue.serverTimestamp()
           })
           .catch((err) => {
             this.messageService.authErrorAlert(err);
@@ -109,24 +109,24 @@ export class AuthService {
 
   // Sign in with 3rd party Oauth
   GoogleAuth() {
-    this.AuthLogin(new fire.auth.GoogleAuthProvider()).catch((error) => {
+    this.AuthLogin(new fire.default.auth.GoogleAuthProvider()).catch((error) => {
       this.messageService.errorAlert(error);
     });
   }
 
   TwitterAuth() {
-    this.AuthLogin(new fire.auth.TwitterAuthProvider()).catch((error) => {
+    this.AuthLogin(new fire.default.auth.TwitterAuthProvider()).catch((error) => {
       this.messageService.errorAlert(error);
     });
   }
   // MicrosoftAuth() {
-  //   this.AuthLogin(new fire.auth.OAuthProvider()).catch((error) => {
+  //   this.AuthLogin(new fire.default.auth.OAuthProvider()).catch((error) => {
   //     this.messageService.errorAlert(error);
   //   });
   // }
 
   FacebookAuth() {
-    this.AuthLogin(new fire.auth.FacebookAuthProvider()).catch((error) => {
+    this.AuthLogin(new fire.default.auth.FacebookAuthProvider()).catch((error) => {
       this.messageService.errorAlert(error);
     });
   }
@@ -138,6 +138,7 @@ export class AuthService {
       handleCodeInApp: true,
     };
     fire
+      .default
       .auth()
       .currentUser.sendEmailVerification(actionCodeSettings)
       .then(() => {

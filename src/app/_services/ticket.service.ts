@@ -1,11 +1,10 @@
-import * as firebase from 'firebase/app';
+import * as fire from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from './auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { map, take, takeUntil } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
-import { User } from '../_models/users.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +30,7 @@ export class TicketService {
       return this.db.doc(`tickets/${id}`).update(info);
     } else {
       info.creator = this.auth.currentBehaviorUser.value.id;
-      info.created_at = firebase.firestore.FieldValue.serverTimestamp();
+      info.created_at = fire.default.firestore.FieldValue.serverTimestamp();
       return this.db.collection('tickets').add(info);
     }
   }
