@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, Platform, PopoverController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-// import * as firebase from 'firebase/app';
 import { CheckForUpdateService } from './_services/check-for-update.service';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { GetStartedComponent } from './_shared/get-started/get-started.component';
 import { PopoverComponent } from './_shared/popover/popover.component';
 import { AuthService } from './_services/auth.service';
@@ -46,7 +45,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.authService.user$.pipe(map((user) => (this.user = user)));
+    // this.authService.user$.pipe(map((user) => (this.user = user)));
 
     if (this.router.url === '/home') {
       this.showBackButton = false;

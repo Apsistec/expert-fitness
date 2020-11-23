@@ -13,7 +13,6 @@ import { MessageService } from 'src/app/_services/message.service';
   styleUrls: ['ratings.page.scss'],
 })
 export class RatingsPage {
-  imgDescription = 'Submitted by RF$ PRO Customers';
   slideOpts = {
     initialSlide: 1,
     speed: 400,
@@ -38,6 +37,7 @@ export class RatingsPage {
   };
   reviewForm;
   user: User;
+  testimonials;
 
   constructor(
     public modalController: ModalController,
@@ -46,37 +46,35 @@ export class RatingsPage {
     private messageService: MessageService,
     private afs: AngularFirestore,
   ) {
-    this.authService.user$.pipe(map((user) => (this.user = user)));
+    // this.authService.user$.pipe(map((user) => (this.user = user)));
 
     this.reviewForm = this.fb.group({
       review: ['', [Validators.required]],
     });
   }
 
-  // setTestimonial(review: string): Promise<any> {
-  //   // return this.afs
-  //   //   .doc(`testimonials/${this.testimonials.uid}`)
-  //   //   .update({
-  //   //     review,
-  //   //   })
-  //   //   .then(() => {
-  //   //     this.messageService.generalToast(
-  //   //       'Testimonial Created',
-  //   //       'Your review/testimonial has been created.'
-  //   //     );
-  //   //   });
-  // }
+  setTestimonial(review: string) {
+    return this.afs
+      .doc(`testimonials/${this.testimonials.id}`)
+      .set({
+        review,
+      })
+      .then(() => {
+        this.messageService.generalToast({
+            header: 'Testimonial Created',
+            message: 'Your review/testimonial has been created.'
+        });
+      });
+  }
 
-  // getTestimonial() {
-  //   // this.afs
-  //   //   .collection<Testimonial>('testimonials')
-  //   //   .get()
-  //   //   .pipe(
-  //   //     map((testimonial) => {
-  //   //       this.testimonials = testimonial;
-  //   //     })
-  //   //   );
-
-
-  // }
+  getTestimonial() {
+    this.afs
+      .collection<any>('testimonials')
+      .get()
+      .pipe(
+        map((testimonial) => {
+          this.testimonials = testimonial;
+        })
+      );
+  }
 }

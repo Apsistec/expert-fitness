@@ -32,10 +32,10 @@
 //                 if (user && user.role) {
 //                     // tslint:disable: triple-equals
 //                     const role = user["role"];
-//                     if (role == "MEMBER") {
+//                     if (role == "CUSTOMER") {
 //                         this.router.navigateByUrl("/customers");
-//                     } else if (role == "TRAINER") {
-//                         this.router.navigateByUrl("/trainers");
+//                     } else if (role == "EMPLOYEE") {
+//                         this.router.navigateByUrl("/employee");
 //                     } else if (role == "USER") {
 //                         this.router.navigateByUrl("/users");
 //                     } else if (role == "ADMIN") {

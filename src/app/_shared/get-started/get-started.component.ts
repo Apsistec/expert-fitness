@@ -68,7 +68,6 @@ export class GetStartedComponent implements OnInit {
           Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$'),
         ],
       ],
-      role: ['USER', []],
     });
   }
 

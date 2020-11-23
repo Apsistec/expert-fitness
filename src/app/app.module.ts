@@ -1,14 +1,21 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ApplicationRef, NgModule } from '@angular/core';
+import { 
+    // ApplicationRef, 
+    NgModule 
+} from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAnalyticsModule} from '@angular/fire/analytics';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule, enableDebugTools } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { 
+    BrowserModule, 
+    // enableDebugTools 
+} from '@angular/platform-browser';
+// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouteReuseStrategy } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -47,12 +54,13 @@ import { SideMenuComponent } from './_home/side-menu/side-menu.component';
     AngularFireFunctionsModule,
     AngularFireStorageModule,
     AngularFirestoreModule,
+    AngularFireAnalyticsModule,
     AppRoutingModule,
     QuicklinkModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // ReactiveFormsModule,
-    // FormsModule,
+    ReactiveFormsModule,
+    FormsModule,
     // SharedDirectivesModule,
     // SharedModule,
 

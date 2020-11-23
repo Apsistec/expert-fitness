@@ -2,13 +2,12 @@
 * Shows how you can use CSS to style your Element's container.
 */
 .tech {
-  background:rgba(0, 0, 0, 0.85) url(../../assets/img/tech.jpg);
+  background:rgba(0, 0, 0, 0.85) url(../../../assets/images/bw-girl-pushups.jpg);
   min-height: 100vh;
   width: 100vw;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment:fixed;
 }
 .home{
   top: 0.5%;
@@ -20,7 +19,7 @@
 }
 
 .bottom {
-  background: var(--ion-color-silver);
+  background: var(--ion-color-secondary);
 }
 p {
   font-size: small;
@@ -29,7 +28,7 @@ p {
 
 
 h3{
-color: var(--ion-color-white);
+color: var(--ion-color-light);
 font-weight: 900;
 font-size: xx-large;
 font-variant: small-caps;

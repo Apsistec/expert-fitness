@@ -112,13 +112,13 @@
                     <br />
                     <ion-note color="dark"> {{ user.email }} </ion-note>
                     <br />
-                    <ion-note *ngIf="user.plan == 'PREMIUM'" color="dark">
+                    <ion-note *ngIf="user.plan == 'premium'" color="dark">
                       Premium Plan
                     </ion-note>
-                    <ion-note *ngIf="user.plan == 'BASIC'" color="tertiary">
+                    <ion-note *ngIf="user.plan == 'basic'" color="tertiary">
                       Basic Plan
                     </ion-note>
-                    <ion-note *ngIf="user.plan != 'PREMIUM' || 'BASIC'" color="dark">
+                    <ion-note *ngIf="user.plan != 'premium' || 'basic'" color="dark">
                       Free Plan
                     </ion-note>
                   </ion-label>

@@ -33,7 +33,7 @@ export class SideMenuComponent implements OnInit {
   ngOnInit() {
     this.getYear();
     // this.user = this.authService.user$;
-    this.authService.user$.pipe(map((user) => (this.user = user)));
+    // this.authService.user$.pipe(map((user) => (this.user = user)));
 
   }
 

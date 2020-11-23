@@ -19,7 +19,7 @@
 
 
       <ion-row class="ion-justify-content-around">
-        <ng-component *ngIf="user && user.subStatus !== 'active' || 'trialing' then purchase; else paid">
+        <ng-component *ngIf="user.subStatus !== 'active' || 'trialing'; else paid">
             <ion-spinner>Loading...</ion-spinner>
 
           <ion-col #purchase size="12" size-md="3" *ngFor="let product of products" class="ion-text-left ion-align-self-stretch">
@@ -59,6 +59,7 @@
               </ion-footer>
             </ion-card>
           </ion-col>
+        </ng-component>
 
             <ng-template #paid>
               <ion-col>
@@ -89,7 +90,6 @@
                 </ion-card>
               </ion-col>
             </ng-template>
-        </ng-component>
       </ion-row>
 
 

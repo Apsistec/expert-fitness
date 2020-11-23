@@ -11,132 +11,140 @@ import { User } from '../_models/users.model';
 import { AuthService } from '../_services/auth.service';
 import { MessageService } from '../_services/message.service';
 import { UserService } from '../_services/user.service';
+import { PopoverService } from '../_services/popover.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
-  animations: [
-    trigger('bounceOutUp', [
-      transition(
-        '* => *',
-        useAnimation(bounceOutUp, {
-          params: { timing: 1.75, delay: 2.4 },
-        })
-      ),
-    ]),
-    trigger('jello', [
-      transition(
-        '* => *',
-        useAnimation(jello, {
-          params: { timing: 5, delay: 1 },
-        })
-      ),
-    ]),
-    trigger('pulse', [
-      transition(
-        '* => *',
-        useAnimation(pulse, {
-          params: { timing: 1.75, delay: 1.2 },
-        })
-      ),
-    ]),
-    trigger('flash', [
-      transition(
-        '* => *',
-        useAnimation(flash, {
-          params: { timing: 0.66, delay: 3.95 },
-        })
-      ),
-    ]),
-  ],
+    selector: 'app-home',
+    templateUrl: './home.page.html',
+    styleUrls: ['./home.page.scss'],
+    animations: [
+        trigger('bounceOutUp', [
+            transition(
+                '* => *',
+                useAnimation(bounceOutUp, {
+                    params: { timing: 1.75, delay: 2.4 },
+                })
+            ),
+        ]),
+        trigger('jello', [
+            transition(
+                '* => *',
+                useAnimation(jello, {
+                    params: { timing: 5, delay: 1 },
+                })
+            ),
+        ]),
+        trigger('pulse', [
+            transition(
+                '* => *',
+                useAnimation(pulse, {
+                    params: { timing: 1.75, delay: 1.2 },
+                })
+            ),
+        ]),
+        trigger('flash', [
+            transition(
+                '* => *',
+                useAnimation(flash, {
+                    params: { timing: 0.66, delay: 3.95 },
+                })
+            ),
+        ]),
+    ],
 })
 export class HomePage implements OnInit {
-  title = 'Home';
-  user: User;
-  fadeInDown: any;
-  flash: any;
-  slideInRight: any;
-  slideInLeft: any;
-  pulse: any;
-  jello: any;
-  bounceOutUp: any;
-  yearDate: number;
+    title = 'Home';
+    user: User;
+    fadeInDown: any;
+    flash: any;
+    slideInRight: any;
+    slideInLeft: any;
+    pulse: any;
+    jello: any;
+    bounceOutUp: any;
+    yearDate: number;
+    showBackButton = false;
+    currentURL: string;
 
   constructor(
-    public authService: AuthService,
-    public userService: UserService,
-    private modalController: ModalController,
-    private messageService: MessageService
-  ) {}
-
-  ngOnInit() {
-    this.authService.user$.pipe(
-      map((user) => {
-        this.user = user;
-      })
-    );
-
-    this.getYear();
+      public authService: AuthService,
+      public userService: UserService,
+      private modalController: ModalController,
+      private messageService: MessageService,
+      public popoverService: PopoverService,
+      private router: Router
+  ) {
+    // this.authService.user$.pipe(
+    //   map((user) => {
+    //       this.user = user;
+    //   })
+    // );
   }
 
-  getYear(): void {
+  ngOnInit() {
+    this.currentURL =  this.router.url;
     this.yearDate = Date.now();
+    if (this.currentURL === 'home') {
+      this.showBackButton = false;
+    } else {
+      this.showBackButton = true;
+    }
   }
 
   async showModalTerms() {
     const modal = await this.modalController.create({
-      component: TermsComponent,
-      cssClass: 'modal-css',
-      backdropDismiss: true,
-      swipeToClose: true,
-      showBackdrop: true,
+        component: TermsComponent,
+        cssClass: 'modal-css',
+        backdropDismiss: true,
+        swipeToClose: true,
+        showBackdrop: true,
     });
     return modal.present().catch((err) => {
-      return this.messageService.errorAlert(err);
+        return this.messageService.errorAlert(err);
     });
   }
 
   async showModalPrivacy() {
     const modal = await this.modalController.create({
-      component: PrivacyComponent,
-      cssClass: 'modal-css',
-      backdropDismiss: true,
-      swipeToClose: true,
-      showBackdrop: true,
+        component: PrivacyComponent,
+        cssClass: 'modal-css',
+        backdropDismiss: true,
+        swipeToClose: true,
+        showBackdrop: true,
     });
     return modal.present().catch((err) => {
-      return this.messageService.errorAlert(err);
+        return this.messageService.errorAlert(err);
     });
   }
 
   async showModalGetStarted() {
-    const modal = await this.modalController.create({
-      component: GetStartedComponent,
-      cssClass: 'modal-css',
-      showBackdrop: true,
-      backdropDismiss: false,
-    });
-    return modal.present().catch((err) => {
-      return this.messageService.errorAlert(err);
-    });
+      const modal = await this.modalController.create({
+          component: GetStartedComponent,
+          cssClass: 'modal-css',
+          showBackdrop: true,
+          backdropDismiss: false,
+      });
+      return modal.present().catch((err) => {
+          return this.messageService.errorAlert(err);
+      });
   }
 
   async showModalAbout() {
-    const modal = await this.modalController.create({
-      component: AboutAppComponent,
-      cssClass: 'modal-css',
-      backdropDismiss: true,
-      swipeToClose: true,
-      showBackdrop: true,
-    });
-    return modal.present().catch((err) => {
-      return this.messageService.errorAlert(err);
-    });
+      const modal = await this.modalController.create({
+          component: AboutAppComponent,
+          cssClass: 'modal-css',
+          backdropDismiss: true,
+          swipeToClose: true,
+          showBackdrop: true,
+      });
+      return modal.present().catch((err) => {
+          return this.messageService.errorAlert(err);
+      });
   }
 
   dismissModal() {
-    this.modalController.dismiss();
+      this.modalController.dismiss();
   }
 
 }

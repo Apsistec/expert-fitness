@@ -16,7 +16,7 @@
           style="width: 60px; height: 60px"
         />
       </div>
-      <div *ngIf="user | async">
+      <div *ngIf="user">
         <a
           (click)="presentPopover($event)"
           style="
@@ -476,7 +476,7 @@
                   class="ion-text-start ion-text-wrap ion-no-margin"
                   style="
                     border: 4px black dotted;
-                    background-color: palegoldenrod;
+                    background-color: rgb(54, 68, 131);
                   "
                 >
                   <ion-card-content>

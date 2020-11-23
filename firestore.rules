@@ -2,33 +2,39 @@ rules_version = '2';
   service cloud.firestore {
     match /databases/{database}/documents {
       function hasPublicSubs() {
-        return request.auth.token.stripeRole == "PUBLIC";
+        return request.auth.token.role == "PUBLIC";
       }
       function hasCustomerSubs() {
-        return request.auth.token.stripeRole == "MEMBER";
+        return request.auth.token.role == "CUSTOMER";
       }
       function hasEmployeeSubs() {
-        return request.auth.token.stripeRole == "EMPLOYEE";
+        return request.auth.token.role == "EMPLOYEE";
       }
       function hasAdminSubs() {
-        return request.auth.token.stripeRole == "ADMIN";
+        return request.auth.token.role == "ADMIN";
+      }
+      function hasSuperAdminSubs() {
+        return request.auth.token.role == "SUPERADMIN";
+      }
+      function hasAnyAdminSubs() {
+        return request.auth.token.role == "SUPERADMIN" || "ADMIN";
       }
 
     match /public-content/{doc} {
-      allow read: if hasPublicSubs() || hasCustomerSubs() || hasEmployeeSubs() || hasAdminSubs();
-      allow write: if hasEmployeeSubs() || hasAdminSubs();
+      allow read: if hasPublicSubs() || hasCustomerSubs() || hasEmployeeSubs() || hasAnyAdminSubs()
+      allow write: if hasEmployeeSubs() || hasAnyAdminSubs()
     }
-    match /member-content/{doc} {
-      allow read: if hasCustomerSubs()|| hasEmployeeSubs() || hasAdminSubs();
-      allow write: if hasEmployeeSubs() || hasAdminSubs();
+    match /customer-content/{doc} {
+      allow read: if hasCustomerSubs()|| hasEmployeeSubs() || hasAnyAdminSubs() 
+      allow write: if hasEmployeeSubs() || hasAnyAdminSubs()
     }
     match /employee-content/{doc} {
-      allow read: if hasEmployeeSubs() || hasAdminSubs();
-      allow write: if hasAdminSubs();
+      allow read: if hasEmployeeSubs() || hasAnyAdminSubs();
+      allow write: if hasAnyAdminSubs();
     }
     match /admin-content/{doc} {
-      allow read: if hasAdminSubs();
-      allow write: if hasAdminSubs();
+      allow read: if hasAnyAdminSubs();
+      allow write: if hasAnyAdminSubs();
     }
 
     match /users/{uid} {

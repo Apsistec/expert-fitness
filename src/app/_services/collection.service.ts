@@ -22,16 +22,23 @@ export class CollectionService {
   users: Observable<User>;
   admins: Observable<Admin>;
   customers: Observable<Customer>;
-
+  user: User;
   collectionVar: AngularFirestoreCollection;
 
   constructor(
     private db: AngularFirestore,
-  ) {}
+    private authService: AuthService
+  ) {
+    this.authService.user$.pipe(
+        map((user) => {
+            this.user = user;
+        })
+      );
+  }
 
   getUserFeed() {
     return this.db
-      .collection('feed', ref => ref.where('from', '==', ''))
+      .collection('feed', ref => ref.where('uid', '==', this.user.uid))
       .valueChanges();
   }
   getUsers() {
@@ -46,17 +53,17 @@ export class CollectionService {
   }
   getPremiumSubs() {
     return this.db
-      .collection('users', ref => ref.where('plan', '==', 'PREMIUM'))
+      .collection('users', ref => ref.where('plan', '==', 'premium'))
       .valueChanges();
   }
   getBasicSubs() {
     return this.db
-      .collection('users', ref => ref.where('plan', '==', 'BASIC'))
+      .collection('users', ref => ref.where('plan', '==', 'basic'))
       .valueChanges();
   }
   getFreeSubs() {
     return this.db
-      .collection('users', ref => ref.where('plan', '==', 'FREE'))
+      .collection('users', ref => ref.where('plan', '!=', 'basic' || 'premium'))
       .valueChanges();
   }
 

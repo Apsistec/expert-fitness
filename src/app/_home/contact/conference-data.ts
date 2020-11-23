@@ -10,10 +10,10 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class ConferenceData {
   data: any;
+  user: User;
 
   constructor(
     public http: HttpClient,
-    public user: User,
     private userService: UserService
     ) {}
 

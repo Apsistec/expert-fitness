@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import { CustomersPage } from './customers.page';
+import { NewsfeedComponent } from './newsfeed/newsfeed.component';
+import { NutritionComponent } from './nutrition/nutrition.component';
+import { VideosComponent } from './videos/videos.component';
+import { WorkoutsComponent } from './workouts/workouts.component';
 
 const routes: Routes = [
   {
@@ -8,41 +13,44 @@ const routes: Routes = [
     component: CustomersPage,
     children: [
       {
-        path: 'workouts',
-        loadChildren: () =>
-          import('./workouts/workouts.module').then(
-            (m) => m.WorkoutsPageModule
-          )
+        path: 'workouts', component: WorkoutsComponent
       },
       {
-        path: 'videos',
-        loadChildren: () =>
-          import('./videos/videos.module').then((m) => m.VideosPageModule)
+        path: 'videos', component: VideosComponent
       },
       {
-        path: 'newsfeed',
-        loadChildren: () =>
-          import('./newsfeed/newsfeed.module').then(
-            (m) => m.NewsfeedPageModule
-          )
+        path: 'newsfeed', component: NewsfeedComponent
       },
       {
-        path: 'nutrition',
-        loadChildren: () =>
-          import('./nutrition/nutrition.module').then(
-            (m) => m.NutritionPageModule
-          )
+        path: 'free-content', component: FreeContentComponent
       },
       {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('./dashboard/dashboard.module').then(
-            (m) => m.DashboardPageModule
-          )
+        path: 'premium-content', component: PremiumContentComponent
+      },
+      {
+        path: 'invoices', component: InvoicesComponent
+      },
+      {
+        path: 'profile', component: ProfileComponent
+      },
+      {
+        path: 'settings', component: SettingsComponent
+      },
+      {
+        path: 'user-tickets', component: UserTicketsComponent
+      },
+      {
+        path: 'nutrition', component: NutritionComponent
+      },
+      {
+        path: 'workouts', component: WorkoutsComponent
+      },
+      {
+        path: 'customer-dashboard', component: CustomerDashboardComponent
       },
       {
         path: '',
-        redirectTo: '/customers/dashboard',
+        redirectTo: '/customers/customer-dashboard',
         pathMatch: 'full'
       }
     ]
