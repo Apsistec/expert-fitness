@@ -44,7 +44,7 @@ export class TicketService {
         map((actions) =>
           actions.map((a) => {
             const data: any = a.payload.doc.data();
-            const i = a.payload.doc['id'];
+            const i = a.payload.doc.id;
             return { i, ...data };
           })
         ),
@@ -60,7 +60,7 @@ export class TicketService {
         map((actions) =>
           actions.map((a) => {
             const data: any = a.payload.doc.data();
-            const id  = a.payload.doc['id'];
+            const id  = a.payload.doc.id;
             return { id, ...data };
           })
         ),

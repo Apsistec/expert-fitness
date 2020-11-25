@@ -86,7 +86,7 @@ export class HomePage implements OnInit {
     // this.user = this.afAuth.currentUser;
     // this.authService.authState$.pipe(map(user => this.user = user));
     // this.authService.user$.pipe(map(user => this.user = user));
-    console.log('user: ', this.user);
+      console.log('user: ', this.user);
   }
 
 

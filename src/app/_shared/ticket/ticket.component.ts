@@ -1,13 +1,13 @@
-import { AuthService } from '../../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, ModalController, NavParams } from '@ionic/angular';
+import { AuthService } from '../../_services/auth.service';
 import { TicketService } from '../../_services/ticket.service';
 
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.scss'],
+  styleUrls: ['./ticket.component.scss']
 })
 export class TicketComponent implements OnInit {
   ticketForm: FormGroup;
@@ -27,7 +27,7 @@ export class TicketComponent implements OnInit {
     this.ticketForm = this.fb.group({
       title: ['', Validators.required],
       desc: ['', Validators.required],
-      status: 0,
+      status: 0
     });
 
     this.id = this.navParam.get('id');
@@ -36,15 +36,17 @@ export class TicketComponent implements OnInit {
         this.ticketForm.patchValue({
           title: ticket['title'],
           desc: ticket['desc'],
-          status: ticket['status'],
+          status: ticket['status']
         });
 
         // this.ticketForm.controls['title'].disable();
         // this.ticketForm.controls['desc'].disable();
 
-        this.ticket.getUser(ticket['creator']).subscribe((user) => {
-          this.user = user['email'];
-        });
+        this.ticket.getUser(
+          ticket['creator'].subscribe((user) => {
+            this.user = user['email'];
+          })
+        );
       });
     }
   }
@@ -55,7 +57,7 @@ export class TicketComponent implements OnInit {
 
   async saveOrUpdate() {
     const loading = await this.loadingCtrl.create({
-      message: 'Loading...',
+      message: 'Loading...'
     });
     await loading.present();
 

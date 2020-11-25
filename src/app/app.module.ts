@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
-import { 
-    // ApplicationRef, 
-    NgModule 
+import {
+    // ApplicationRef,
+    NgModule
 } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -12,9 +12,9 @@ import { AngularFireAnalyticsModule} from '@angular/fire/analytics';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { 
-    BrowserModule, 
-    // enableDebugTools 
+import {
+    BrowserModule,
+    // enableDebugTools
 } from '@angular/platform-browser';
 // import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
