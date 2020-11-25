@@ -1,7 +1,7 @@
-
-<ion-header translucent>
-  <!-- small screen/ hamburger-->
-  <ion-toolbar color="dark" class="small-screen" #toolbar>
+<ion-header  translucent>
+    <ion-toolbar color="dark">
+<!-- small screen/ hamburger-->
+      <div class="small-screen">
     <ion-buttons slot="start">
       <ion-menu-button color="tertiary"> </ion-menu-button>
     </ion-buttons>
@@ -12,48 +12,26 @@
       routerLink="/home"
     ></ion-img>
 
-    <ng-container *ngIf="authService.user$ | async as user; else startButton">
-      <ion-item
-        slot="end"
-        type="button"
-        color="dark"
-        (click)="popoverService.presentPopover($event)"
-        detail="false"
-        lines="none"
-      >
-        <ion-icon slot="start" name="arrow-dropdown"></ion-icon>
-        <ion-avatar>
-          <ion-img
-            [src]="user.photoURL || '../../../assets/img/dummy-user.png'"
-          ></ion-img>
-        </ion-avatar>
-      </ion-item>
-    </ng-container>
+            <ion-item
+            slot="end"
+            type="button"
+            color="dark"
+            (click)="popoverService.presentPopover($event)"
+            detail="false"
+            lines="none"
+            >
+            <ion-icon slot="start" name="arrow-dropdown"></ion-icon>
+            <ion-avatar>
+                <ion-img
+                [src]="user.photoURL || '../../../assets/img/dummy-user.png'"
+                ></ion-img>
+            </ion-avatar>
+        </ion-item>
+    </div>
+     <!-- end small screen -->
 
-    <ng-template #startButton>
-      <ion-buttons slot="end">
-        <div style="text-align: center;">
-          <ion-text color="warning" style="padding-right: 5px;">
-            <sup>
-              Returning Users:
-            </sup>
-          </ion-text>
-          <br>
-          <ion-button
-          style="font-size: x-large"
-          appBlink
-          (click)="showModalGetStarted()"
-          color="danger"
-          >
-          <ion-text>Login</ion-text>
-        </ion-button>
-      </div>
-      </ion-buttons>
-    </ng-template>
-  </ion-toolbar>
-
-  <!-- large screen/ no hamburger -->
-  <ion-toolbar color="dark" class="large-screen" #toolbar>
+    <!-- large screen/ no hamburger -->
+  <div class="large-screen">
     <ion-buttons slot="start">
       <ion-back-button
         *ngIf="showBackButton"
@@ -133,7 +111,6 @@
       </ion-item>
     </ion-buttons>
 
-    <ng-container *ngIf="authService.user$ | async as user; else getStarted">
       <ion-item
         slot="end"
         type="button"
@@ -149,9 +126,40 @@
           ></ion-img>
         </ion-avatar>
       </ion-item>
-    </ng-container>
-
-    <ng-template #getStarted>
+<!-- end large screen -->
+  </div>
+</ion-toolbar>
+</ion-header>
+    <!-- end check if currently signed in -->
+    
+    <!-- if not signed in toolbar -->
+    <ng-template #notSignedIn>
+        <ion-header>
+            <ion-toolbar>
+<!-- small toolbar if not signed in currently -->
+    <div class="small-toolbar">
+      <ion-buttons slot="end">
+        <div style="text-align: center;">
+          <ion-text color="warning" style="padding-right: 5px;">
+            <sup>
+              Returning Users:
+            </sup>
+          </ion-text>
+          <br>
+          <ion-button
+          style="font-size: x-large"
+          appBlink
+          (click)="showModalGetStarted()"
+          color="danger"
+          >
+          <ion-text>Login</ion-text>
+        </ion-button>
+      </div>
+      </ion-buttons>
+      </div>
+      <!-- end small toolbar not currently signed in -->
+    <!-- large toolbar if not currently signed in -->
+    <div class="large-toolbar">
       <ion-buttons slot="end">
 
         <div style="text-align: center;">
@@ -167,9 +175,13 @@
           </ion-button>
         </div>
       </ion-buttons>
-    </ng-template>
-  </ion-toolbar>
+    </div>
+    <!-- end large toolbar if not currently signed in -->
+</ion-toolbar>
 </ion-header>
+</ng-template>
+</div>
+
 
 
 <ion-content fullscreen scrollEvents="true" [appFadeHeader]="toolbar">
@@ -261,7 +273,6 @@
             <!-- SignedIn Menu Items -->
             <ion-item
               color="dark"
-              *ngIf="user"
               routerLink="/customers/dashboard"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
@@ -270,7 +281,6 @@
             </ion-item>
             <ion-item
               color="dark"
-              *ngIf="user "
               routerLink="/customers/workouts"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
@@ -279,7 +289,6 @@
             </ion-item>
             <ion-item
               color="dark"
-              *ngIf="user"
               routerLink="/customers/nutrition"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
@@ -288,7 +297,6 @@
             </ion-item>
             <ion-item
               color="dark"
-              *ngIf="user"
               routerLink="/customers/videos"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
@@ -297,7 +305,6 @@
             </ion-item>
             <ion-item
               color="dark"
-              *ngIf="user"
               routerLink="/customers/messages"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
@@ -306,7 +313,6 @@
             </ion-item>
             <ion-item
               color="dark"
-              *ngIf="user"
               routerLink="/customers/settings"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
@@ -316,7 +322,6 @@
             <!-- Menu Options for nonusers -->
             <ion-item
               color="dark"
-              *ngIf="!user"
               routerLink="/products"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
@@ -325,14 +330,13 @@
             </ion-item>
             <ion-item
               color="dark"
-              *ngIf="!user"
               routerLink="/faqs"
               routerLinkActive="active-bottom-menu"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <ion-label>FAQs</ion-label>
             </ion-item>
-            <ion-item color="dark" *ngIf="!user" routerLink="/testimonials">
+            <ion-item color="dark" routerLink="/testimonials">
               <ion-label>Testimonials</ion-label>
             </ion-item>
             <ion-item
@@ -437,4 +441,5 @@
     </ion-col>
   </ion-row>
 </ion-grid>
+
 </ion-content>

@@ -20,6 +20,7 @@
 
       <ion-row class="ion-justify-content-around">
         <ng-component *ngIf="user.subStatus !== 'active' || 'trialing'; else paid">
+            <form #purchaseForm="ngForm" (ngSubmit)="onSubmit(purchaseForm)">
             <ion-spinner>Loading...</ion-spinner>
 
           <ion-col #purchase size="12" size-md="3" *ngFor="let product of products" class="ion-text-left ion-align-self-stretch">
@@ -54,11 +55,12 @@
               <ion-button
                 color="tertiary"
                 size="large"
-                (click)="subscribe()"
+                type="submit"
                 >Subscribe to {{ product.name }}</ion-button>
               </ion-footer>
             </ion-card>
           </ion-col>
+        </form>
         </ng-component>
 
             <ng-template #paid>

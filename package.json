@@ -9,7 +9,9 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
+    "nglint": "ng lint",
+    "oldlint": "eslint -c .eslintrc.js --ext .ts src",
+    "lint": "eslint --color --fix -c .eslintrc.js --ext .ts ./src/app",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -18,7 +20,7 @@
     "@angular/cdk": "^11.0.0",
     "@angular/common": "^11.0.2",
     "@angular/core": "^11.0.2",
-    "@angular/fire": "^6.0.5",
+    "@angular/fire": "^6.1.1",
     "@angular/forms": "^11.0.2",
     "@angular/material": "^11.0.0",
     "@angular/platform-browser": "^11.0.2",
@@ -71,6 +73,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "prettier": "^2.2.0",
     "protractor": "~7.0.0",
     "ts-node": "^8.3.0",
     "tslint": "^6.1.3"

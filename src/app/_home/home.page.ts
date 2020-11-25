@@ -1,5 +1,5 @@
 import { flash, pulse, bounceOutUp, jello } from 'ng-animate';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
@@ -13,6 +13,9 @@ import { MessageService } from '../_services/message.service';
 import { UserService } from '../_services/user.service';
 import { PopoverService } from '../_services/popover.service';
 import { Router } from '@angular/router';
+import { AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
     selector: 'app-home',
@@ -55,7 +58,6 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
     title = 'Home';
-    user: User;
     fadeInDown: any;
     flash: any;
     slideInRight: any;
@@ -66,6 +68,8 @@ export class HomePage implements OnInit {
     yearDate: number;
     showBackButton = false;
     currentURL: string;
+    userCollection: AngularFirestoreCollection<User>;
+    user;
 
   constructor(
       public authService: AuthService,
@@ -73,14 +77,18 @@ export class HomePage implements OnInit {
       private modalController: ModalController,
       private messageService: MessageService,
       public popoverService: PopoverService,
-      private router: Router
+      private router: Router,
+      private afAuth: AngularFireAuth
   ) {
-    // this.authService.user$.pipe(
-    //   map((user) => {
-    //       this.user = user;
-    //   })
-    // );
+      this.afAuth.credential.pipe(map(user => this.user = user));
+    // this.user = this.authService.currentBehaviorUser;
+    // this.afAuth.authState.pipe(map(user => this.user = user));
+    // this.user = this.afAuth.currentUser;
+    // this.authService.authState$.pipe(map(user => this.user = user));
+    // this.authService.user$.pipe(map(user => this.user = user));
+    console.log('user: ', this.user);
   }
+
 
   ngOnInit() {
     this.currentURL =  this.router.url;

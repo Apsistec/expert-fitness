@@ -16,5 +16,6 @@
         "titleBar.inactiveBackground": "#ff3d0099",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "typescript.tsdk": "node_modules\\typescript\\lib"
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "tslint.configFile": "C:\\Users\\dougw\\Dev\\expert-fitness",
   }

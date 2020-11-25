@@ -4,10 +4,15 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import * as fire from 'firebase/app';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { User } from '../_models/users.model';
 import { MessageService } from './message.service';
+// import { AngularFireModule } from '@angular/fire';
+// import { AngularFireAuthModule } from '@angular/fire/auth';
+// import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { AngularFireFunctionsModule } from '@angular/fire/functions';
+// import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -55,6 +60,7 @@ export class AuthService {
         this.messageService.authErrorAlert(error);
       });
   }
+
 
   SignUp(credentials) {
     return this.afAuth
